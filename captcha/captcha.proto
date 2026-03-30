@@ -1,0 +1,28 @@
+syntax = "proto3";
+package openim.captcha;
+
+option go_package = "github.com/openimsdk/protocol/captcha";
+
+message generateCaptchaReq {}
+
+message generateCaptchaResp {
+  string captchaID = 1;
+  string masterImage = 2;
+  string tileImage = 3;
+  int64 expireAt = 4;
+}
+
+message verifyCaptchaReq {
+  string captchaID = 1;
+  int32 x = 2;
+  int32 y = 3;
+}
+
+message verifyCaptchaResp {
+  bool success = 1;
+}
+
+service Captcha {
+  rpc generateCaptcha(generateCaptchaReq) returns (generateCaptchaResp);
+  rpc verifyCaptcha(verifyCaptchaReq) returns (verifyCaptchaResp);
+}
