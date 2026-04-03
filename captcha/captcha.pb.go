@@ -63,6 +63,7 @@ type GenerateCaptchaResp struct {
 	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage"`
 	TileImage     string                 `protobuf:"bytes,3,opt,name=tileImage,proto3" json:"tileImage"`
 	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`
+	TileY         int32                  `protobuf:"varint,5,opt,name=tileY,proto3" json:"tileY"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -121,6 +122,13 @@ func (x *GenerateCaptchaResp) GetTileImage() string {
 func (x *GenerateCaptchaResp) GetExpireAt() int64 {
 	if x != nil {
 		return x.ExpireAt
+	}
+	return 0
+}
+
+func (x *GenerateCaptchaResp) GetTileY() int32 {
+	if x != nil {
+		return x.TileY
 	}
 	return 0
 }
@@ -234,12 +242,13 @@ var File_captcha_captcha_proto protoreflect.FileDescriptor
 const file_captcha_captcha_proto_rawDesc = "" +
 	"\n" +
 	"\x15captcha/captcha.proto\x12\x0eopenim.captcha\"\x14\n" +
-	"\x12generateCaptchaReq\"\x8f\x01\n" +
+	"\x12generateCaptchaReq\"\xa5\x01\n" +
 	"\x13generateCaptchaResp\x12\x1c\n" +
 	"\tcaptchaID\x18\x01 \x01(\tR\tcaptchaID\x12 \n" +
 	"\vmasterImage\x18\x02 \x01(\tR\vmasterImage\x12\x1c\n" +
 	"\ttileImage\x18\x03 \x01(\tR\ttileImage\x12\x1a\n" +
-	"\bexpireAt\x18\x04 \x01(\x03R\bexpireAt\"L\n" +
+	"\bexpireAt\x18\x04 \x01(\x03R\bexpireAt\x12\x14\n" +
+	"\x05tileY\x18\x05 \x01(\x05R\x05tileY\"L\n" +
 	"\x10verifyCaptchaReq\x12\x1c\n" +
 	"\tcaptchaID\x18\x01 \x01(\tR\tcaptchaID\x12\f\n" +
 	"\x01x\x18\x02 \x01(\x05R\x01x\x12\f\n" +

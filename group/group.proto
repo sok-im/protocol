@@ -244,6 +244,10 @@ message SetGroupMemberInfo {
   openim.protobuf.StringValue faceURL = 4;
   openim.protobuf.Int32Value roleLevel = 5;
   openim.protobuf.StringValue ex = 6;
+  openim.protobuf.BoolValue isPinned = 7;
+  openim.protobuf.BoolValue isMsgDestruct = 8;
+  openim.protobuf.Int64Value msgDestructTime = 9;
+  openim.protobuf.Int32Value burnDuration = 10;
 }
 
 message SetGroupMemberInfoReq {
@@ -404,6 +408,15 @@ message BatchGetIncrementalGroupMemberResp {
   map<string, getIncrementalGroupMemberResp> respList = 1;
 }
 
+message GetCommonGroupsWithFriendReq {
+  string friendUserID = 1;
+}
+
+message GetCommonGroupsWithFriendResp {
+  uint32 total = 1;
+  repeated openim.sdkws.GroupInfo groups = 2;
+}
+
 service group {
   // Create group
   rpc createGroup(CreateGroupReq) returns (CreateGroupResp);
@@ -480,4 +493,6 @@ service group {
   rpc GetFullGroupMemberUserIDs(GetFullGroupMemberUserIDsReq) returns (GetFullGroupMemberUserIDsResp);
 
   rpc GetFullJoinGroupIDs(GetFullJoinGroupIDsReq) returns (GetFullJoinGroupIDsResp);
+
+  rpc getCommonGroupsWithFriend(GetCommonGroupsWithFriendReq) returns (GetCommonGroupsWithFriendResp);
 }

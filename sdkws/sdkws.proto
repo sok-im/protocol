@@ -52,6 +52,10 @@ message GroupMemberFullInfo {
   string ex = 10;
   int64 muteEndTime = 11;
   string inviterUserID = 12;
+  bool isPinned = 13;
+  bool isMsgDestruct = 14;
+  int64 msgDestructTime = 15;
+  int32 burnDuration = 16;
 }
 
 message PublicUserInfo {
@@ -88,6 +92,12 @@ message FriendInfo {
   string operatorUserID = 6;
   string ex = 7;
   bool isPinned = 8;
+  bool isMsgDestruct = 9;
+  int64 msgDestructTime = 10;
+  int32 burnDuration = 11;
+  bool isMute = 12;
+  int64 muteDuration = 13;
+  int64 muteEndTime = 14;
 }
 
 message BlackInfo {
@@ -574,6 +584,7 @@ message FriendsInfoUpdateTips {
   repeated string friendIDs = 2;
   uint64 friendVersion = 3;
   string friendVersionID = 4;
+  uint64 friendSortVersion = 5;
 }
 
 message SubUserOnlineStatusElem {

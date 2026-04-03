@@ -57,6 +57,10 @@ message GetUsersOnlineStatusResp {
     string connID = 2;
     bool isBackground = 3;
     string token = 4;
+    int64 loginTime = 5;
+    string deviceName = 6;
+    string deviceModel = 7;
+    string sdkVersion = 8;
   }
 
   message FailedDetail {

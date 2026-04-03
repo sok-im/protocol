@@ -34,6 +34,9 @@ message friendInfo {
   string operatorUserID = 8;
   string ex = 9;
   bool isPinned = 10;
+  bool isMute = 11;
+  int64 muteDuration = 12;
+  int64 muteEndTime = 13;
 }
 
 message importFriendReq {
@@ -167,6 +170,12 @@ message updateFriendsReq {
   openim.protobuf.BoolValue isPinned = 3;
   openim.protobuf.StringValue remark = 4;
   openim.protobuf.StringValue ex = 5;
+  openim.protobuf.BoolValue isMsgDestruct = 6;
+  openim.protobuf.Int64Value msgDestructTime = 7;
+  openim.protobuf.Int32Value burnDuration = 8;
+  openim.protobuf.BoolValue isMute = 9;
+  openim.protobuf.Int64Value muteDuration = 10;
+  openim.protobuf.Int64Value muteEndTime = 11;
 }
 message updateFriendsResp {}
 
@@ -279,6 +288,12 @@ message FriendInfoOnly {
   string operatorUserID = 6;
   string ex = 7;
   bool isPinned = 8;
+  bool isMsgDestruct = 9;
+  int64 msgDestructTime = 10;
+  int32 burnDuration = 11;
+  bool isMute = 12;
+  int64 muteDuration = 13;
+  int64 muteEndTime = 14;
 }
 
 message getFriendInfoReq {

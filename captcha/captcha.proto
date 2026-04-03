@@ -10,6 +10,7 @@ message generateCaptchaResp {
   string masterImage = 2;
   string tileImage = 3;
   int64 expireAt = 4;
+  int32 tileY = 5;
 }
 
 message verifyCaptchaReq {

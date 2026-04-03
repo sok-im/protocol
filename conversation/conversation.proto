@@ -24,6 +24,8 @@ message Conversation {
   int64 msgDestructTime = 15;
   int64 latestMsgDestructTime = 16;
   bool isMsgDestruct = 17;
+  int32 muteDuration = 18;
+  int64 muteEndTime = 19;
 }
 
 message ConversationReq {
@@ -42,6 +44,8 @@ message ConversationReq {
   openim.protobuf.Int32Value groupAtType = 13;
   openim.protobuf.Int64Value msgDestructTime = 14;
   openim.protobuf.BoolValue isMsgDestruct = 15;
+  openim.protobuf.Int32Value muteDuration = 16;
+  openim.protobuf.Int64Value muteEndTime = 17;
 }
 
 message SetConversationReq {
@@ -219,6 +223,8 @@ message UpdateConversationReq {
   openim.protobuf.Int64Value msgDestructTime = 12;
   openim.protobuf.BoolValue isMsgDestruct = 13;
   openim.protobuf.Int64Value latestMsgDestructTime = 14;
+  openim.protobuf.Int32Value muteDuration = 15;
+  openim.protobuf.Int64Value muteEndTime = 16;
 }
 
 message UpdateConversationResp {}
