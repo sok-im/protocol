@@ -236,3 +236,13 @@ func (x *DestructMsgsReq) Check() error {
 	}
 	return nil
 }
+
+func (x *ReportSpamReq) Check() error {
+	if x.ReportedUserID == "" {
+		return errors.New("reportedUserID is empty")
+	}
+	if x.ReasonType <= 0 {
+		return errors.New("reasonType must be positive")
+	}
+	return nil
+}

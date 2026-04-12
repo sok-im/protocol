@@ -58,6 +58,26 @@ message getExistingTokenResp {
   map<string, int32> tokenStates = 1;
 }
 
+message getActiveDevicesReq {
+  string userID = 1;
+}
+
+message deviceInfo {
+  int32  platformID   = 1;
+  string platformName = 2;
+}
+
+message getActiveDevicesResp {
+  repeated deviceInfo devices = 1;
+}
+
+message kickDeviceReq {
+  string userID     = 1;
+  int32  platformID = 2;
+}
+
+message kickDeviceResp {}
+
 service Auth {
   // Generate token
   rpc getAdminToken(getAdminTokenReq) returns (getAdminTokenResp);
@@ -73,4 +93,8 @@ service Auth {
   rpc kickTokens(kickTokensReq) returns (kickTokensResp);
   // Get existing token
   rpc getExistingToken(GetExistingTokenReq) returns (getExistingTokenResp);
+  // Get all active devices for the user (self or admin)
+  rpc getActiveDevices(getActiveDevicesReq) returns (getActiveDevicesResp);
+  // Kick a specific device offline (self or admin)
+  rpc kickDevice(kickDeviceReq) returns (kickDeviceResp);
 }

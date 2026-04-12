@@ -53,6 +53,7 @@ const (
 	Msg_SetUserConversationMinSeq_FullMethodName        = "/openim.msg.msg/SetUserConversationMinSeq"
 	Msg_GetLastMessageSeqByTime_FullMethodName          = "/openim.msg.msg/GetLastMessageSeqByTime"
 	Msg_GetLastMessage_FullMethodName                   = "/openim.msg.msg/GetLastMessage"
+	Msg_ReportSpam_FullMethodName                       = "/openim.msg.msg/ReportSpam"
 )
 
 // MsgClient is the client API for Msg service.
@@ -107,6 +108,8 @@ type MsgClient interface {
 	SetUserConversationMinSeq(ctx context.Context, in *SetUserConversationMinSeqReq, opts ...grpc.CallOption) (*SetUserConversationMinSeqResp, error)
 	GetLastMessageSeqByTime(ctx context.Context, in *GetLastMessageSeqByTimeReq, opts ...grpc.CallOption) (*GetLastMessageSeqByTimeResp, error)
 	GetLastMessage(ctx context.Context, in *GetLastMessageReq, opts ...grpc.CallOption) (*GetLastMessageResp, error)
+	// Report spam: submit a spam report for a message or a user
+	ReportSpam(ctx context.Context, in *ReportSpamReq, opts ...grpc.CallOption) (*ReportSpamResp, error)
 }
 
 type msgClient struct {
@@ -447,6 +450,16 @@ func (c *msgClient) GetLastMessage(ctx context.Context, in *GetLastMessageReq, o
 	return out, nil
 }
 
+func (c *msgClient) ReportSpam(ctx context.Context, in *ReportSpamReq, opts ...grpc.CallOption) (*ReportSpamResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReportSpamResp)
+	err := c.cc.Invoke(ctx, Msg_ReportSpam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility.
@@ -499,6 +512,8 @@ type MsgServer interface {
 	SetUserConversationMinSeq(context.Context, *SetUserConversationMinSeqReq) (*SetUserConversationMinSeqResp, error)
 	GetLastMessageSeqByTime(context.Context, *GetLastMessageSeqByTimeReq) (*GetLastMessageSeqByTimeResp, error)
 	GetLastMessage(context.Context, *GetLastMessageReq) (*GetLastMessageResp, error)
+	// Report spam: submit a spam report for a message or a user
+	ReportSpam(context.Context, *ReportSpamReq) (*ReportSpamResp, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -607,6 +622,9 @@ func (UnimplementedMsgServer) GetLastMessageSeqByTime(context.Context, *GetLastM
 }
 func (UnimplementedMsgServer) GetLastMessage(context.Context, *GetLastMessageReq) (*GetLastMessageResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLastMessage not implemented")
+}
+func (UnimplementedMsgServer) ReportSpam(context.Context, *ReportSpamReq) (*ReportSpamResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method ReportSpam not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -1223,6 +1241,24 @@ func _Msg_GetLastMessage_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ReportSpam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReportSpamReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ReportSpam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ReportSpam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ReportSpam(ctx, req.(*ReportSpamReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1361,6 +1397,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLastMessage",
 			Handler:    _Msg_GetLastMessage_Handler,
+		},
+		{
+			MethodName: "ReportSpam",
+			Handler:    _Msg_ReportSpam_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
