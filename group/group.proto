@@ -39,6 +39,14 @@ message SetGroupInfoExReq {
   openim.protobuf.Int32Value needVerification = 7;
   openim.protobuf.Int32Value lookMemberInfo = 8;
   openim.protobuf.Int32Value applyMemberFriend = 9;
+  // allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
+  openim.protobuf.Int32Value allowSendMsg = 10;
+  // allowPinMsg 0=全员可置顶消息 1=仅群主/管理员可置顶消息
+  openim.protobuf.Int32Value allowPinMsg = 11;
+  // allowAddMember 0=全员可拉人入群 1=仅群主/管理员可拉人入群
+  openim.protobuf.Int32Value allowAddMember = 12;
+  // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
+  openim.protobuf.Int32Value allowEditGroupInfo = 13;
 }
 message SetGroupInfoExResp {}
 

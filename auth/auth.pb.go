@@ -693,6 +693,234 @@ func (x *GetExistingTokenResp) GetTokenStates() map[string]int32 {
 	return nil
 }
 
+type GetActiveDevicesReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetActiveDevicesReq) Reset() {
+	*x = GetActiveDevicesReq{}
+	mi := &file_auth_auth_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetActiveDevicesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetActiveDevicesReq) ProtoMessage() {}
+
+func (x *GetActiveDevicesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetActiveDevicesReq.ProtoReflect.Descriptor instead.
+func (*GetActiveDevicesReq) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetActiveDevicesReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+type DeviceInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlatformID    int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
+	PlatformName  string                 `protobuf:"bytes,2,opt,name=platformName,proto3" json:"platformName"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeviceInfo) Reset() {
+	*x = DeviceInfo{}
+	mi := &file_auth_auth_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceInfo) ProtoMessage() {}
+
+func (x *DeviceInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeviceInfo.ProtoReflect.Descriptor instead.
+func (*DeviceInfo) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *DeviceInfo) GetPlatformID() int32 {
+	if x != nil {
+		return x.PlatformID
+	}
+	return 0
+}
+
+func (x *DeviceInfo) GetPlatformName() string {
+	if x != nil {
+		return x.PlatformName
+	}
+	return ""
+}
+
+type GetActiveDevicesResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Devices       []*DeviceInfo          `protobuf:"bytes,1,rep,name=devices,proto3" json:"devices"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetActiveDevicesResp) Reset() {
+	*x = GetActiveDevicesResp{}
+	mi := &file_auth_auth_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetActiveDevicesResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetActiveDevicesResp) ProtoMessage() {}
+
+func (x *GetActiveDevicesResp) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetActiveDevicesResp.ProtoReflect.Descriptor instead.
+func (*GetActiveDevicesResp) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetActiveDevicesResp) GetDevices() []*DeviceInfo {
+	if x != nil {
+		return x.Devices
+	}
+	return nil
+}
+
+type KickDeviceReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	PlatformID    int32                  `protobuf:"varint,2,opt,name=platformID,proto3" json:"platformID"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *KickDeviceReq) Reset() {
+	*x = KickDeviceReq{}
+	mi := &file_auth_auth_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *KickDeviceReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickDeviceReq) ProtoMessage() {}
+
+func (x *KickDeviceReq) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickDeviceReq.ProtoReflect.Descriptor instead.
+func (*KickDeviceReq) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *KickDeviceReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *KickDeviceReq) GetPlatformID() int32 {
+	if x != nil {
+		return x.PlatformID
+	}
+	return 0
+}
+
+type KickDeviceResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *KickDeviceResp) Reset() {
+	*x = KickDeviceResp{}
+	mi := &file_auth_auth_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *KickDeviceResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickDeviceResp) ProtoMessage() {}
+
+func (x *KickDeviceResp) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickDeviceResp.ProtoReflect.Descriptor instead.
+func (*KickDeviceResp) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{18}
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -745,7 +973,23 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\vtokenStates\x18\x01 \x03(\v22.openim.auth.getExistingTokenResp.TokenStatesEntryR\vtokenStates\x1a>\n" +
 	"\x10TokenStatesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x012\xaa\x04\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"-\n" +
+	"\x13getActiveDevicesReq\x12\x16\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\"P\n" +
+	"\n" +
+	"deviceInfo\x12\x1e\n" +
+	"\n" +
+	"platformID\x18\x01 \x01(\x05R\n" +
+	"platformID\x12\"\n" +
+	"\fplatformName\x18\x02 \x01(\tR\fplatformName\"I\n" +
+	"\x14getActiveDevicesResp\x121\n" +
+	"\adevices\x18\x01 \x03(\v2\x17.openim.auth.deviceInfoR\adevices\"G\n" +
+	"\rkickDeviceReq\x12\x16\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1e\n" +
+	"\n" +
+	"platformID\x18\x02 \x01(\x05R\n" +
+	"platformID\"\x10\n" +
+	"\x0ekickDeviceResp2\xca\x05\n" +
 	"\x04Auth\x12N\n" +
 	"\rgetAdminToken\x12\x1d.openim.auth.getAdminTokenReq\x1a\x1e.openim.auth.getAdminTokenResp\x12K\n" +
 	"\fgetUserToken\x12\x1c.openim.auth.getUserTokenReq\x1a\x1d.openim.auth.getUserTokenResp\x12H\n" +
@@ -755,7 +999,10 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x0finvalidateToken\x12\x1f.openim.auth.invalidateTokenReq\x1a .openim.auth.invalidateTokenResp\x12E\n" +
 	"\n" +
 	"kickTokens\x12\x1a.openim.auth.kickTokensReq\x1a\x1b.openim.auth.kickTokensResp\x12W\n" +
-	"\x10getExistingToken\x12 .openim.auth.GetExistingTokenReq\x1a!.openim.auth.getExistingTokenRespB$Z\"github.com/openimsdk/protocol/authb\x06proto3"
+	"\x10getExistingToken\x12 .openim.auth.GetExistingTokenReq\x1a!.openim.auth.getExistingTokenResp\x12W\n" +
+	"\x10getActiveDevices\x12 .openim.auth.getActiveDevicesReq\x1a!.openim.auth.getActiveDevicesResp\x12E\n" +
+	"\n" +
+	"kickDevice\x12\x1a.openim.auth.kickDeviceReq\x1a\x1b.openim.auth.kickDeviceRespB$Z\"github.com/openimsdk/protocol/authb\x06proto3"
 
 var (
 	file_auth_auth_proto_rawDescOnce sync.Once
@@ -769,7 +1016,7 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_auth_auth_proto_goTypes = []any{
 	(*GetAdminTokenReq)(nil),     // 0: openim.auth.getAdminTokenReq
 	(*GetAdminTokenResp)(nil),    // 1: openim.auth.getAdminTokenResp
@@ -785,29 +1032,39 @@ var file_auth_auth_proto_goTypes = []any{
 	(*KickTokensResp)(nil),       // 11: openim.auth.kickTokensResp
 	(*GetExistingTokenReq)(nil),  // 12: openim.auth.GetExistingTokenReq
 	(*GetExistingTokenResp)(nil), // 13: openim.auth.getExistingTokenResp
-	nil,                          // 14: openim.auth.getExistingTokenResp.TokenStatesEntry
+	(*GetActiveDevicesReq)(nil),  // 14: openim.auth.getActiveDevicesReq
+	(*DeviceInfo)(nil),           // 15: openim.auth.deviceInfo
+	(*GetActiveDevicesResp)(nil), // 16: openim.auth.getActiveDevicesResp
+	(*KickDeviceReq)(nil),        // 17: openim.auth.kickDeviceReq
+	(*KickDeviceResp)(nil),       // 18: openim.auth.kickDeviceResp
+	nil,                          // 19: openim.auth.getExistingTokenResp.TokenStatesEntry
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	14, // 0: openim.auth.getExistingTokenResp.tokenStates:type_name -> openim.auth.getExistingTokenResp.TokenStatesEntry
-	0,  // 1: openim.auth.Auth.getAdminToken:input_type -> openim.auth.getAdminTokenReq
-	6,  // 2: openim.auth.Auth.getUserToken:input_type -> openim.auth.getUserTokenReq
-	2,  // 3: openim.auth.Auth.forceLogout:input_type -> openim.auth.forceLogoutReq
-	4,  // 4: openim.auth.Auth.parseToken:input_type -> openim.auth.parseTokenReq
-	8,  // 5: openim.auth.Auth.invalidateToken:input_type -> openim.auth.invalidateTokenReq
-	10, // 6: openim.auth.Auth.kickTokens:input_type -> openim.auth.kickTokensReq
-	12, // 7: openim.auth.Auth.getExistingToken:input_type -> openim.auth.GetExistingTokenReq
-	1,  // 8: openim.auth.Auth.getAdminToken:output_type -> openim.auth.getAdminTokenResp
-	7,  // 9: openim.auth.Auth.getUserToken:output_type -> openim.auth.getUserTokenResp
-	3,  // 10: openim.auth.Auth.forceLogout:output_type -> openim.auth.forceLogoutResp
-	5,  // 11: openim.auth.Auth.parseToken:output_type -> openim.auth.parseTokenResp
-	9,  // 12: openim.auth.Auth.invalidateToken:output_type -> openim.auth.invalidateTokenResp
-	11, // 13: openim.auth.Auth.kickTokens:output_type -> openim.auth.kickTokensResp
-	13, // 14: openim.auth.Auth.getExistingToken:output_type -> openim.auth.getExistingTokenResp
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	19, // 0: openim.auth.getExistingTokenResp.tokenStates:type_name -> openim.auth.getExistingTokenResp.TokenStatesEntry
+	15, // 1: openim.auth.getActiveDevicesResp.devices:type_name -> openim.auth.deviceInfo
+	0,  // 2: openim.auth.Auth.getAdminToken:input_type -> openim.auth.getAdminTokenReq
+	6,  // 3: openim.auth.Auth.getUserToken:input_type -> openim.auth.getUserTokenReq
+	2,  // 4: openim.auth.Auth.forceLogout:input_type -> openim.auth.forceLogoutReq
+	4,  // 5: openim.auth.Auth.parseToken:input_type -> openim.auth.parseTokenReq
+	8,  // 6: openim.auth.Auth.invalidateToken:input_type -> openim.auth.invalidateTokenReq
+	10, // 7: openim.auth.Auth.kickTokens:input_type -> openim.auth.kickTokensReq
+	12, // 8: openim.auth.Auth.getExistingToken:input_type -> openim.auth.GetExistingTokenReq
+	14, // 9: openim.auth.Auth.getActiveDevices:input_type -> openim.auth.getActiveDevicesReq
+	17, // 10: openim.auth.Auth.kickDevice:input_type -> openim.auth.kickDeviceReq
+	1,  // 11: openim.auth.Auth.getAdminToken:output_type -> openim.auth.getAdminTokenResp
+	7,  // 12: openim.auth.Auth.getUserToken:output_type -> openim.auth.getUserTokenResp
+	3,  // 13: openim.auth.Auth.forceLogout:output_type -> openim.auth.forceLogoutResp
+	5,  // 14: openim.auth.Auth.parseToken:output_type -> openim.auth.parseTokenResp
+	9,  // 15: openim.auth.Auth.invalidateToken:output_type -> openim.auth.invalidateTokenResp
+	11, // 16: openim.auth.Auth.kickTokens:output_type -> openim.auth.kickTokensResp
+	13, // 17: openim.auth.Auth.getExistingToken:output_type -> openim.auth.getExistingTokenResp
+	16, // 18: openim.auth.Auth.getActiveDevices:output_type -> openim.auth.getActiveDevicesResp
+	18, // 19: openim.auth.Auth.kickDevice:output_type -> openim.auth.kickDeviceResp
+	11, // [11:20] is the sub-list for method output_type
+	2,  // [2:11] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_auth_auth_proto_init() }
@@ -821,7 +1078,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

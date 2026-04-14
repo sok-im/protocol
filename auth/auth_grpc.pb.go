@@ -26,6 +26,8 @@ const (
 	Auth_InvalidateToken_FullMethodName  = "/openim.auth.Auth/invalidateToken"
 	Auth_KickTokens_FullMethodName       = "/openim.auth.Auth/kickTokens"
 	Auth_GetExistingToken_FullMethodName = "/openim.auth.Auth/getExistingToken"
+	Auth_GetActiveDevices_FullMethodName = "/openim.auth.Auth/getActiveDevices"
+	Auth_KickDevice_FullMethodName       = "/openim.auth.Auth/kickDevice"
 )
 
 // AuthClient is the client API for Auth service.
@@ -46,6 +48,10 @@ type AuthClient interface {
 	KickTokens(ctx context.Context, in *KickTokensReq, opts ...grpc.CallOption) (*KickTokensResp, error)
 	// Get existing token
 	GetExistingToken(ctx context.Context, in *GetExistingTokenReq, opts ...grpc.CallOption) (*GetExistingTokenResp, error)
+	// Get all active devices for the user (self or admin)
+	GetActiveDevices(ctx context.Context, in *GetActiveDevicesReq, opts ...grpc.CallOption) (*GetActiveDevicesResp, error)
+	// Kick a specific device offline (self or admin)
+	KickDevice(ctx context.Context, in *KickDeviceReq, opts ...grpc.CallOption) (*KickDeviceResp, error)
 }
 
 type authClient struct {
@@ -126,6 +132,26 @@ func (c *authClient) GetExistingToken(ctx context.Context, in *GetExistingTokenR
 	return out, nil
 }
 
+func (c *authClient) GetActiveDevices(ctx context.Context, in *GetActiveDevicesReq, opts ...grpc.CallOption) (*GetActiveDevicesResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetActiveDevicesResp)
+	err := c.cc.Invoke(ctx, Auth_GetActiveDevices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) KickDevice(ctx context.Context, in *KickDeviceReq, opts ...grpc.CallOption) (*KickDeviceResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(KickDeviceResp)
+	err := c.cc.Invoke(ctx, Auth_KickDevice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -144,6 +170,10 @@ type AuthServer interface {
 	KickTokens(context.Context, *KickTokensReq) (*KickTokensResp, error)
 	// Get existing token
 	GetExistingToken(context.Context, *GetExistingTokenReq) (*GetExistingTokenResp, error)
+	// Get all active devices for the user (self or admin)
+	GetActiveDevices(context.Context, *GetActiveDevicesReq) (*GetActiveDevicesResp, error)
+	// Kick a specific device offline (self or admin)
+	KickDevice(context.Context, *KickDeviceReq) (*KickDeviceResp, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -174,6 +204,12 @@ func (UnimplementedAuthServer) KickTokens(context.Context, *KickTokensReq) (*Kic
 }
 func (UnimplementedAuthServer) GetExistingToken(context.Context, *GetExistingTokenReq) (*GetExistingTokenResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetExistingToken not implemented")
+}
+func (UnimplementedAuthServer) GetActiveDevices(context.Context, *GetActiveDevicesReq) (*GetActiveDevicesResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetActiveDevices not implemented")
+}
+func (UnimplementedAuthServer) KickDevice(context.Context, *KickDeviceReq) (*KickDeviceResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method KickDevice not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -322,6 +358,42 @@ func _Auth_GetExistingToken_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_GetActiveDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetActiveDevicesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetActiveDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetActiveDevices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetActiveDevices(ctx, req.(*GetActiveDevicesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_KickDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KickDeviceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).KickDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_KickDevice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).KickDevice(ctx, req.(*KickDeviceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -356,6 +428,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getExistingToken",
 			Handler:    _Auth_GetExistingToken_Handler,
+		},
+		{
+			MethodName: "getActiveDevices",
+			Handler:    _Auth_GetActiveDevices_Handler,
+		},
+		{
+			MethodName: "kickDevice",
+			Handler:    _Auth_KickDevice_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -25,6 +25,14 @@ message GroupInfo {
   int32 applyMemberFriend = 15;
   int64 notificationUpdateTime = 16;
   string notificationUserID = 17;
+  // allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
+  int32 allowSendMsg = 18;
+  // allowPinMsg 0=全员可置顶消息 1=仅群主/管理员可置顶消息
+  int32 allowPinMsg = 19;
+  // allowAddMember 0=全员可拉人入群 1=仅群主/管理员可拉人入群
+  int32 allowAddMember = 20;
+  // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
+  int32 allowEditGroupInfo = 21;
 }
 
 message GroupInfoForSet {
@@ -37,6 +45,14 @@ message GroupInfoForSet {
   openim.protobuf.Int32Value needVerification = 7;
   openim.protobuf.Int32Value lookMemberInfo = 8;
   openim.protobuf.Int32Value applyMemberFriend = 9;
+  // allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
+  openim.protobuf.Int32Value allowSendMsg = 10;
+  // allowPinMsg 0=全员可置顶消息 1=仅群主/管理员可置顶消息
+  openim.protobuf.Int32Value allowPinMsg = 11;
+  // allowAddMember 0=全员可拉人入群 1=仅群主/管理员可拉人入群
+  openim.protobuf.Int32Value allowAddMember = 12;
+  // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
+  openim.protobuf.Int32Value allowEditGroupInfo = 13;
 }
 
 message GroupMemberFullInfo {
@@ -73,6 +89,14 @@ message UserInfo {
   int64 createTime = 5;
   int32 appMangerLevel = 6;
   int32 globalRecvMsgOpt = 7;
+  // phone 仅对有权限的 viewer 下发，无权限时为空字符串
+  string phone = 8;
+  // phoneVisibility 0=所有人 1=仅好友 2=隐藏
+  int32 phoneVisibility = 9;
+  // callAcceptSetting 0=所有人可发起 1=仅好友可发起 2=不接受任何通话
+  int32 callAcceptSetting = 10;
+  // msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
+  int32 msgReceiveSetting = 11;
 }
 
 message UserInfoWithEx {
@@ -81,6 +105,10 @@ message UserInfoWithEx {
   openim.protobuf.StringValue faceURL = 3;
   openim.protobuf.StringValue ex = 4;
   openim.protobuf.Int32Value globalRecvMsgOpt = 7;
+  openim.protobuf.StringValue phone = 8;
+  openim.protobuf.Int32Value phoneVisibility = 9;
+  openim.protobuf.Int32Value callAcceptSetting = 10;
+  openim.protobuf.Int32Value msgReceiveSetting = 11;
 }
 
 message FriendInfo {

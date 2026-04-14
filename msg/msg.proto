@@ -387,6 +387,57 @@ message GetLastMessageResp {
   map<string,sdkws.MsgData> msgs = 1;
 }
 
+message SpamReportInfo {
+  string reportID      = 1;
+  string reporterUserID = 2;
+  string reportedUserID = 3;
+  string conversationID = 4;
+  string clientMsgID   = 5;
+  int64  seq           = 6;
+  int32  reasonType    = 7;
+  string reason        = 8;
+  int32  status        = 9;
+  int64  createTime    = 10;
+  int64  handleTime    = 11;
+  string handlerUserID = 12;
+  string ex            = 13;
+}
+
+message ReportSpamReq {
+  string reportedUserID = 1;
+  string conversationID = 2;
+  string clientMsgID   = 3;
+  int64  seq           = 4;
+  int32  reasonType    = 5;
+  string reason        = 6;
+  string ex            = 7;
+}
+
+message ReportSpamResp {
+  string reportID = 1;
+}
+
+message GetSpamReportsReq {
+  int32                   status         = 1;
+  string                  reportedUserID = 2;
+  string                  reporterUserID = 3;
+  int64                   startTime      = 4;
+  int64                   endTime        = 5;
+  sdkws.RequestPagination pagination     = 6;
+}
+
+message GetSpamReportsResp {
+  repeated SpamReportInfo reports = 1;
+  uint32                  total   = 2;
+}
+
+message HandleSpamReportReq {
+  string reportID = 1;
+  int32  status   = 2;
+}
+
+message HandleSpamReportResp {}
+
 service msg {
   // Get min and max seq (including the user and specified groups)
   rpc GetMaxSeq(sdkws.GetMaxSeqReq) returns (sdkws.GetMaxSeqResp);
@@ -443,4 +494,11 @@ service msg {
   rpc SetUserConversationMinSeq(SetUserConversationMinSeqReq) returns (SetUserConversationMinSeqResp);
   rpc GetLastMessageSeqByTime(GetLastMessageSeqByTimeReq) returns (GetLastMessageSeqByTimeResp);
   rpc GetLastMessage(GetLastMessageReq) returns (GetLastMessageResp);
+
+  // Report spam: submit a spam report for a message or a user
+  rpc ReportSpam(ReportSpamReq) returns (ReportSpamResp);
+  // GetSpamReports: admin queries spam report list with filters
+  rpc GetSpamReports(GetSpamReportsReq) returns (GetSpamReportsResp);
+  // HandleSpamReport: admin marks a spam report as handled or ignored
+  rpc HandleSpamReport(HandleSpamReportReq) returns (HandleSpamReportResp);
 }

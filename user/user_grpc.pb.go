@@ -49,6 +49,11 @@ const (
 	User_SetUserClientConfig_FullMethodName           = "/openim.user.user/setUserClientConfig"
 	User_DelUserClientConfig_FullMethodName           = "/openim.user.user/delUserClientConfig"
 	User_PageUserClientConfig_FullMethodName          = "/openim.user.user/pageUserClientConfig"
+	User_SetPhoneVisibility_FullMethodName            = "/openim.user.user/setPhoneVisibility"
+	User_SetCallAcceptSetting_FullMethodName          = "/openim.user.user/setCallAcceptSetting"
+	User_SetMsgReceiveSetting_FullMethodName          = "/openim.user.user/setMsgReceiveSetting"
+	User_GetUserByPhone_FullMethodName                = "/openim.user.user/getUserByPhone"
+	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
 )
 
 // UserClient is the client API for User service.
@@ -108,6 +113,16 @@ type UserClient interface {
 	SetUserClientConfig(ctx context.Context, in *SetUserClientConfigReq, opts ...grpc.CallOption) (*SetUserClientConfigResp, error)
 	DelUserClientConfig(ctx context.Context, in *DelUserClientConfigReq, opts ...grpc.CallOption) (*DelUserClientConfigResp, error)
 	PageUserClientConfig(ctx context.Context, in *PageUserClientConfigReq, opts ...grpc.CallOption) (*PageUserClientConfigResp, error)
+	// 设置手机号及其可见性（所有人/仅好友/隐藏）
+	SetPhoneVisibility(ctx context.Context, in *SetPhoneVisibilityReq, opts ...grpc.CallOption) (*SetPhoneVisibilityResp, error)
+	// 设置音视频通话接受权限（所有人/仅好友/不接受）
+	SetCallAcceptSetting(ctx context.Context, in *SetCallAcceptSettingReq, opts ...grpc.CallOption) (*SetCallAcceptSettingResp, error)
+	// 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
+	SetMsgReceiveSetting(ctx context.Context, in *SetMsgReceiveSettingReq, opts ...grpc.CallOption) (*SetMsgReceiveSettingResp, error)
+	// 根据手机号精确查询用户，自动尊重 phone_visibility 设置
+	GetUserByPhone(ctx context.Context, in *GetUserByPhoneReq, opts ...grpc.CallOption) (*GetUserByPhoneResp, error)
+	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
+	GetUsersByNickname(ctx context.Context, in *GetUsersByNicknameReq, opts ...grpc.CallOption) (*GetUsersByNicknameResp, error)
 }
 
 type userClient struct {
@@ -418,6 +433,56 @@ func (c *userClient) PageUserClientConfig(ctx context.Context, in *PageUserClien
 	return out, nil
 }
 
+func (c *userClient) SetPhoneVisibility(ctx context.Context, in *SetPhoneVisibilityReq, opts ...grpc.CallOption) (*SetPhoneVisibilityResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetPhoneVisibilityResp)
+	err := c.cc.Invoke(ctx, User_SetPhoneVisibility_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetCallAcceptSetting(ctx context.Context, in *SetCallAcceptSettingReq, opts ...grpc.CallOption) (*SetCallAcceptSettingResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetCallAcceptSettingResp)
+	err := c.cc.Invoke(ctx, User_SetCallAcceptSetting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetMsgReceiveSetting(ctx context.Context, in *SetMsgReceiveSettingReq, opts ...grpc.CallOption) (*SetMsgReceiveSettingResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetMsgReceiveSettingResp)
+	err := c.cc.Invoke(ctx, User_SetMsgReceiveSetting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserByPhone(ctx context.Context, in *GetUserByPhoneReq, opts ...grpc.CallOption) (*GetUserByPhoneResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserByPhoneResp)
+	err := c.cc.Invoke(ctx, User_GetUserByPhone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUsersByNickname(ctx context.Context, in *GetUsersByNicknameReq, opts ...grpc.CallOption) (*GetUsersByNicknameResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUsersByNicknameResp)
+	err := c.cc.Invoke(ctx, User_GetUsersByNickname_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -475,6 +540,16 @@ type UserServer interface {
 	SetUserClientConfig(context.Context, *SetUserClientConfigReq) (*SetUserClientConfigResp, error)
 	DelUserClientConfig(context.Context, *DelUserClientConfigReq) (*DelUserClientConfigResp, error)
 	PageUserClientConfig(context.Context, *PageUserClientConfigReq) (*PageUserClientConfigResp, error)
+	// 设置手机号及其可见性（所有人/仅好友/隐藏）
+	SetPhoneVisibility(context.Context, *SetPhoneVisibilityReq) (*SetPhoneVisibilityResp, error)
+	// 设置音视频通话接受权限（所有人/仅好友/不接受）
+	SetCallAcceptSetting(context.Context, *SetCallAcceptSettingReq) (*SetCallAcceptSettingResp, error)
+	// 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
+	SetMsgReceiveSetting(context.Context, *SetMsgReceiveSettingReq) (*SetMsgReceiveSettingResp, error)
+	// 根据手机号精确查询用户，自动尊重 phone_visibility 设置
+	GetUserByPhone(context.Context, *GetUserByPhoneReq) (*GetUserByPhoneResp, error)
+	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
+	GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -574,6 +649,21 @@ func (UnimplementedUserServer) DelUserClientConfig(context.Context, *DelUserClie
 }
 func (UnimplementedUserServer) PageUserClientConfig(context.Context, *PageUserClientConfigReq) (*PageUserClientConfigResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method PageUserClientConfig not implemented")
+}
+func (UnimplementedUserServer) SetPhoneVisibility(context.Context, *SetPhoneVisibilityReq) (*SetPhoneVisibilityResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetPhoneVisibility not implemented")
+}
+func (UnimplementedUserServer) SetCallAcceptSetting(context.Context, *SetCallAcceptSettingReq) (*SetCallAcceptSettingResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetCallAcceptSetting not implemented")
+}
+func (UnimplementedUserServer) SetMsgReceiveSetting(context.Context, *SetMsgReceiveSettingReq) (*SetMsgReceiveSettingResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetMsgReceiveSetting not implemented")
+}
+func (UnimplementedUserServer) GetUserByPhone(context.Context, *GetUserByPhoneReq) (*GetUserByPhoneResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserByPhone not implemented")
+}
+func (UnimplementedUserServer) GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUsersByNickname not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -1136,6 +1226,96 @@ func _User_PageUserClientConfig_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SetPhoneVisibility_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPhoneVisibilityReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetPhoneVisibility(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetPhoneVisibility_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetPhoneVisibility(ctx, req.(*SetPhoneVisibilityReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetCallAcceptSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetCallAcceptSettingReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetCallAcceptSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetCallAcceptSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetCallAcceptSetting(ctx, req.(*SetCallAcceptSettingReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetMsgReceiveSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetMsgReceiveSettingReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetMsgReceiveSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetMsgReceiveSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetMsgReceiveSetting(ctx, req.(*SetMsgReceiveSettingReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserByPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserByPhoneReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserByPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserByPhone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserByPhone(ctx, req.(*GetUserByPhoneReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUsersByNickname_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUsersByNicknameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUsersByNickname(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUsersByNickname_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUsersByNickname(ctx, req.(*GetUsersByNicknameReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1262,6 +1442,26 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "pageUserClientConfig",
 			Handler:    _User_PageUserClientConfig_Handler,
+		},
+		{
+			MethodName: "setPhoneVisibility",
+			Handler:    _User_SetPhoneVisibility_Handler,
+		},
+		{
+			MethodName: "setCallAcceptSetting",
+			Handler:    _User_SetCallAcceptSetting_Handler,
+		},
+		{
+			MethodName: "setMsgReceiveSetting",
+			Handler:    _User_SetMsgReceiveSetting_Handler,
+		},
+		{
+			MethodName: "getUserByPhone",
+			Handler:    _User_GetUserByPhone_Handler,
+		},
+		{
+			MethodName: "getUsersByNickname",
+			Handler:    _User_GetUsersByNickname_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

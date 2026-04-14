@@ -365,6 +365,46 @@ message clientConfig {
   string value = 3;
 }
 
+message setPhoneVisibilityReq {
+  string userID = 1;
+  // phone 手机号，可选，若不想修改手机号则留空
+  string phone = 2;
+  // phoneVisibility 0=所有人 1=仅好友 2=隐藏
+  int32 phoneVisibility = 3;
+}
+message setPhoneVisibilityResp {}
+
+message setCallAcceptSettingReq {
+  string userID = 1;
+  // callAcceptSetting 0=所有人可发起 1=仅好友可发起 2=不接受任何通话
+  int32 callAcceptSetting = 2;
+}
+message setCallAcceptSettingResp {}
+
+message setMsgReceiveSettingReq {
+  string userID = 1;
+  // msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
+  int32 msgReceiveSetting = 2;
+}
+message setMsgReceiveSettingResp {}
+
+message getUserByPhoneReq {
+  // phone 精确手机号，纯数字 5-20 位，可选 + 前缀（如 13800138000 或 +8613800138000）
+  string phone = 1;
+}
+message getUserByPhoneResp {
+  // userInfo 若为 nil，表示未找到或用户已隐藏手机号
+  sdkws.UserInfo userInfo = 1;
+}
+
+message getUsersByNicknameReq {
+  // nickname 用户昵称精确匹配（展示名）；按 userID 查询请使用 getDesignateUsers
+  string nickname = 1;
+}
+message getUsersByNicknameResp {
+  repeated sdkws.UserInfo usersInfo = 1;
+}
+
 service user {
   //Get the specified user information full field
   rpc getDesignateUsers(getDesignateUsersReq) returns (getDesignateUsersResp);
@@ -425,5 +465,20 @@ service user {
   rpc delUserClientConfig(delUserClientConfigReq) returns (delUserClientConfigResp);
 
   rpc pageUserClientConfig(pageUserClientConfigReq) returns (pageUserClientConfigResp);
+
+  // 设置手机号及其可见性（所有人/仅好友/隐藏）
+  rpc setPhoneVisibility(setPhoneVisibilityReq) returns (setPhoneVisibilityResp);
+
+  // 设置音视频通话接受权限（所有人/仅好友/不接受）
+  rpc setCallAcceptSetting(setCallAcceptSettingReq) returns (setCallAcceptSettingResp);
+
+  // 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
+  rpc setMsgReceiveSetting(setMsgReceiveSettingReq) returns (setMsgReceiveSettingResp);
+
+  // 根据手机号精确查询用户，自动尊重 phone_visibility 设置
+  rpc getUserByPhone(getUserByPhoneReq) returns (getUserByPhoneResp);
+
+  // 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
+  rpc getUsersByNickname(getUsersByNicknameReq) returns (getUsersByNicknameResp);
 
 }

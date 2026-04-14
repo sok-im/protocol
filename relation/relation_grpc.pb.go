@@ -46,6 +46,7 @@ const (
 	Friend_GetFullFriendUserIDs_FullMethodName           = "/openim.relation.friend/getFullFriendUserIDs"
 	Friend_NotificationUserInfoUpdate_FullMethodName     = "/openim.relation.friend/NotificationUserInfoUpdate"
 	Friend_GetFriendInfo_FullMethodName                  = "/openim.relation.friend/getFriendInfo"
+	Friend_GetPinnedFriendIDs_FullMethodName             = "/openim.relation.friend/GetPinnedFriendIDs"
 )
 
 // FriendClient is the client API for Friend service.
@@ -103,6 +104,8 @@ type FriendClient interface {
 	GetFullFriendUserIDs(ctx context.Context, in *GetFullFriendUserIDsReq, opts ...grpc.CallOption) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(ctx context.Context, in *NotificationUserInfoUpdateReq, opts ...grpc.CallOption) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, opts ...grpc.CallOption) (*GetFriendInfoResp, error)
+	// Get pinned friend user IDs
+	GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error)
 }
 
 type friendClient struct {
@@ -383,6 +386,16 @@ func (c *friendClient) GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, 
 	return out, nil
 }
 
+func (c *friendClient) GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPinnedFriendIDsResp)
+	err := c.cc.Invoke(ctx, Friend_GetPinnedFriendIDs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendServer is the server API for Friend service.
 // All implementations must embed UnimplementedFriendServer
 // for forward compatibility.
@@ -438,6 +451,8 @@ type FriendServer interface {
 	GetFullFriendUserIDs(context.Context, *GetFullFriendUserIDsReq) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(context.Context, *NotificationUserInfoUpdateReq) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error)
+	// Get pinned friend user IDs
+	GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error)
 	mustEmbedUnimplementedFriendServer()
 }
 
@@ -528,6 +543,9 @@ func (UnimplementedFriendServer) NotificationUserInfoUpdate(context.Context, *No
 }
 func (UnimplementedFriendServer) GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFriendInfo not implemented")
+}
+func (UnimplementedFriendServer) GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPinnedFriendIDs not implemented")
 }
 func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
 func (UnimplementedFriendServer) testEmbeddedByValue()                {}
@@ -1036,6 +1054,24 @@ func _Friend_GetFriendInfo_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_GetPinnedFriendIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPinnedFriendIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).GetPinnedFriendIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_GetPinnedFriendIDs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).GetPinnedFriendIDs(ctx, req.(*GetPinnedFriendIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1150,6 +1186,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getFriendInfo",
 			Handler:    _Friend_GetFriendInfo_Handler,
+		},
+		{
+			MethodName: "GetPinnedFriendIDs",
+			Handler:    _Friend_GetPinnedFriendIDs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
