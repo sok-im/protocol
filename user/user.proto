@@ -367,7 +367,6 @@ message clientConfig {
 
 message setPhoneVisibilityReq {
   string userID = 1;
-  // phone 手机号，可选，若不想修改手机号则留空
   string phone = 2;
   // phoneVisibility 0=所有人 1=仅好友 2=隐藏
   int32 phoneVisibility = 3;
@@ -393,12 +392,10 @@ message getUserByPhoneReq {
   string phone = 1;
 }
 message getUserByPhoneResp {
-  // userInfo 若为 nil，表示未找到或用户已隐藏手机号
   sdkws.UserInfo userInfo = 1;
 }
 
 message getUsersByNicknameReq {
-  // nickname 用户昵称精确匹配（展示名）；按 userID 查询请使用 getDesignateUsers
   string nickname = 1;
 }
 message getUsersByNicknameResp {

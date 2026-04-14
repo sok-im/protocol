@@ -1512,7 +1512,7 @@ type UserRegisterCountResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Total         int64                  `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
 	Before        int64                  `protobuf:"varint,2,opt,name=before,proto3" json:"before"`
-	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3335,7 +3335,7 @@ func (x *GetNotificationAccountResp) GetAccount() *NotificationAccountInfo {
 type SortQueryReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Asc           bool                   `protobuf:"varint,1,opt,name=asc,proto3" json:"asc"`
-	UserIDName    map[string]string      `protobuf:"bytes,2,rep,name=userIDName,proto3" json:"userIDName" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	UserIDName    map[string]string      `protobuf:"bytes,2,rep,name=userIDName,proto3" json:"userIDName,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3570,7 +3570,7 @@ func (x *GetUserClientConfigReq) GetUserID() string {
 
 type GetUserClientConfigResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Configs       map[string]string      `protobuf:"bytes,2,rep,name=configs,proto3" json:"configs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Configs       map[string]string      `protobuf:"bytes,2,rep,name=configs,proto3" json:"configs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3615,7 +3615,7 @@ func (x *GetUserClientConfigResp) GetConfigs() map[string]string {
 type SetUserClientConfigReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Configs       map[string]string      `protobuf:"bytes,2,rep,name=configs,proto3" json:"configs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Configs       map[string]string      `protobuf:"bytes,2,rep,name=configs,proto3" json:"configs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3963,8 +3963,7 @@ func (x *ClientConfig) GetValue() string {
 type SetPhoneVisibilityReq struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
 	UserID string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	// phone 手机号，可选，若不想修改手机号则留空
-	Phone string `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone"`
+	Phone  string                 `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone"`
 	// phoneVisibility 0=所有人 1=仅好友 2=隐藏
 	PhoneVisibility int32 `protobuf:"varint,3,opt,name=phoneVisibility,proto3" json:"phoneVisibility"`
 	unknownFields   protoimpl.UnknownFields
@@ -4282,9 +4281,8 @@ func (x *GetUserByPhoneReq) GetPhone() string {
 }
 
 type GetUserByPhoneResp struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// userInfo 若为 nil，表示未找到或用户已隐藏手机号
-	UserInfo      *sdkws.UserInfo `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserInfo      *sdkws.UserInfo        `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4327,9 +4325,8 @@ func (x *GetUserByPhoneResp) GetUserInfo() *sdkws.UserInfo {
 }
 
 type GetUsersByNicknameReq struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// nickname 用户昵称精确匹配（展示名）；按 userID 查询请使用 getDesignateUsers
-	Nickname      string `protobuf:"bytes,1,opt,name=nickname,proto3" json:"nickname"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Nickname      string                 `protobuf:"bytes,1,opt,name=nickname,proto3" json:"nickname"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
