@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v6.33.0
-// source: captcha/captcha.proto
+// source: protocol/captcha/captcha.proto
 
 package captcha
 
@@ -155,5 +155,5 @@ var Captcha_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "captcha/captcha.proto",
+	Metadata: "protocol/captcha/captcha.proto",
 }
