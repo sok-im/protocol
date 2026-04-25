@@ -312,8 +312,9 @@ const (
 )
 
 const (
-	BecomeFriendByImport = 1 // imported by administrator
-	BecomeFriendByApply  = 2 // added via application
+	BecomeFriendByImport  = 1 // imported by administrator
+	BecomeFriendByApply   = 2 // added via application
+	BecomeFriendByOneway  = 3 // added via one-way (no consent required from the target user)
 )
 
 const (

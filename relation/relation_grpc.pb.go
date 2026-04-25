@@ -47,6 +47,7 @@ const (
 	Friend_NotificationUserInfoUpdate_FullMethodName     = "/openim.relation.friend/NotificationUserInfoUpdate"
 	Friend_GetFriendInfo_FullMethodName                  = "/openim.relation.friend/getFriendInfo"
 	Friend_GetPinnedFriendIDs_FullMethodName             = "/openim.relation.friend/GetPinnedFriendIDs"
+	Friend_AddOnewayFriend_FullMethodName                = "/openim.relation.friend/addOnewayFriend"
 )
 
 // FriendClient is the client API for Friend service.
@@ -106,6 +107,8 @@ type FriendClient interface {
 	GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, opts ...grpc.CallOption) (*GetFriendInfoResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error)
+	// Add one-way friend (no consent required from the target user)
+	AddOnewayFriend(ctx context.Context, in *ApplyToAddFriendReq, opts ...grpc.CallOption) (*ApplyToAddFriendResp, error)
 }
 
 type friendClient struct {
@@ -396,6 +399,16 @@ func (c *friendClient) GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFrie
 	return out, nil
 }
 
+func (c *friendClient) AddOnewayFriend(ctx context.Context, in *ApplyToAddFriendReq, opts ...grpc.CallOption) (*ApplyToAddFriendResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ApplyToAddFriendResp)
+	err := c.cc.Invoke(ctx, Friend_AddOnewayFriend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendServer is the server API for Friend service.
 // All implementations must embed UnimplementedFriendServer
 // for forward compatibility.
@@ -453,6 +466,8 @@ type FriendServer interface {
 	GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error)
+	// Add one-way friend (no consent required from the target user)
+	AddOnewayFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error)
 	mustEmbedUnimplementedFriendServer()
 }
 
@@ -546,6 +561,9 @@ func (UnimplementedFriendServer) GetFriendInfo(context.Context, *GetFriendInfoRe
 }
 func (UnimplementedFriendServer) GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPinnedFriendIDs not implemented")
+}
+func (UnimplementedFriendServer) AddOnewayFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddOnewayFriend not implemented")
 }
 func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
 func (UnimplementedFriendServer) testEmbeddedByValue()                {}
@@ -1072,6 +1090,24 @@ func _Friend_GetPinnedFriendIDs_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_AddOnewayFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ApplyToAddFriendReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).AddOnewayFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_AddOnewayFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).AddOnewayFriend(ctx, req.(*ApplyToAddFriendReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1190,6 +1226,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPinnedFriendIDs",
 			Handler:    _Friend_GetPinnedFriendIDs_Handler,
+		},
+		{
+			MethodName: "addOnewayFriend",
+			Handler:    _Friend_AddOnewayFriend_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
