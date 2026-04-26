@@ -316,6 +316,8 @@ message GetPinnedFriendIDsResp {
 service friend {
   // Friend request
   rpc applyToAddFriend(applyToAddFriendReq) returns (applyToAddFriendResp);
+  // Add one-way friend relation (A -> B only)
+  rpc addOnewayFriend(applyToAddFriendReq) returns (applyToAddFriendResp);
   // Get friend request list
   rpc getPaginationFriendsApplyTo(getPaginationFriendsApplyToReq) returns (getPaginationFriendsApplyToResp);
   // Get sent friend request list
