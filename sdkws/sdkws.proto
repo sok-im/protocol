@@ -97,6 +97,8 @@ message UserInfo {
   int32 callAcceptSetting = 10;
   // msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
   int32 msgReceiveSetting = 11;
+  string firstName = 12;
+  string lastName = 13;
 }
 
 message UserInfoWithEx {
@@ -109,6 +111,8 @@ message UserInfoWithEx {
   openim.protobuf.Int32Value phoneVisibility = 9;
   openim.protobuf.Int32Value callAcceptSetting = 10;
   openim.protobuf.Int32Value msgReceiveSetting = 11;
+  openim.protobuf.StringValue firstName = 12;
+  openim.protobuf.StringValue lastName = 13;
 }
 
 message FriendInfo {
