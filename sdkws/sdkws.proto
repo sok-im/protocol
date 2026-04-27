@@ -115,8 +115,6 @@ message UserInfoWithEx {
   openim.protobuf.Int32Value phoneVisibility = 9;
   openim.protobuf.Int32Value callAcceptSetting = 10;
   openim.protobuf.Int32Value msgReceiveSetting = 11;
-  openim.protobuf.StringValue firstName = 12;
-  openim.protobuf.StringValue lastName = 13;
 }
 
 message FriendInfo {

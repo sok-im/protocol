@@ -7,12 +7,13 @@
 package sdkws
 
 import (
-	wrapperspb "github.com/openimsdk/protocol/wrapperspb"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	wrapperspb "github.com/openimsdk/protocol/wrapperspb"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -654,22 +655,20 @@ func (x *PublicUserInfo) GetEx() string {
 }
 
 type UserInfo struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	UserID           string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Nickname         string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
-	FaceURL          string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL"`
-	Ex               string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
-	CreateTime       int64                  `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime"`
-	AppMangerLevel   int32                  `protobuf:"varint,6,opt,name=appMangerLevel,proto3" json:"appMangerLevel"`
-	GlobalRecvMsgOpt int32                  `protobuf:"varint,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt"`
-	// phone 仅对有权限的 viewer 下发，无权限时为空字符串
-	Phone string `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone"`
-	// phoneVisibility 0=所有人 1=仅好友 2=隐藏
-	PhoneVisibility int32 `protobuf:"varint,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility"`
-	// callAcceptSetting 0=所有人可发起 1=仅好友可发起 2=不接受任何通话
-	CallAcceptSetting int32 `protobuf:"varint,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting"`
-	// msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
-	MsgReceiveSetting int32 `protobuf:"varint,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting"`
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	UserID            string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	Nickname          string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
+	FaceURL           string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL"`
+	Ex                string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
+	CreateTime        int64                  `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime"`
+	AppMangerLevel    int32                  `protobuf:"varint,6,opt,name=appMangerLevel,proto3" json:"appMangerLevel"`
+	GlobalRecvMsgOpt  int32                  `protobuf:"varint,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt"`
+	Phone             string                 `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone"`
+	PhoneVisibility   int32                  `protobuf:"varint,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility"`
+	CallAcceptSetting int32                  `protobuf:"varint,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting"`
+	MsgReceiveSetting int32                  `protobuf:"varint,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting"`
+	FirstName         string                 `protobuf:"bytes,12,opt,name=firstName,proto3" json:"firstName"`
+	LastName          string                 `protobuf:"bytes,13,opt,name=lastName,proto3" json:"lastName"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
