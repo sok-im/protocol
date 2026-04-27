@@ -86,8 +86,6 @@ message UserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
-  string firstName = 12;
-  string lastName = 13;
   int64 createTime = 5;
   int32 appMangerLevel = 6;
   int32 globalRecvMsgOpt = 7;
