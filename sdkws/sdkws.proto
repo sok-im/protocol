@@ -86,6 +86,8 @@ message UserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
+  string firstName = 12;
+  string lastName = 13;
   int64 createTime = 5;
   int32 appMangerLevel = 6;
   int32 globalRecvMsgOpt = 7;
@@ -106,6 +108,8 @@ message UserInfoWithEx {
   openim.protobuf.StringValue nickname = 2;
   openim.protobuf.StringValue faceURL = 3;
   openim.protobuf.StringValue ex = 4;
+  openim.protobuf.StringValue firstName = 5;
+  openim.protobuf.StringValue lastName = 6;
   openim.protobuf.Int32Value globalRecvMsgOpt = 7;
   openim.protobuf.StringValue phone = 8;
   openim.protobuf.Int32Value phoneVisibility = 9;
