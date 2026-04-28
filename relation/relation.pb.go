@@ -133,6 +133,7 @@ type ApplyToAddFriendReq struct {
 	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
 	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg"`
 	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
+	Remark        string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -191,6 +192,13 @@ func (x *ApplyToAddFriendReq) GetReqMsg() string {
 func (x *ApplyToAddFriendReq) GetEx() string {
 	if x != nil {
 		return x.Ex
+	}
+	return ""
+}
+
+func (x *ApplyToAddFriendReq) GetRemark() string {
+	if x != nil {
+		return x.Remark
 	}
 	return ""
 }
