@@ -59,6 +59,7 @@ var protoModules = []string{
 	"msg",
 	"msggateway",
 	"push",
+	"redpacket",
 	"relation",
 	"rtc",
 	"sdkws",
