@@ -80,6 +80,7 @@ const (
 	GroupMemberSetToOrdinaryUserNotification = 1518
 	GroupInfoSetAnnouncementNotification     = 1519
 	GroupInfoSetNameNotification             = 1520
+	GroupMessagePinnedNotification           = 1521
 
 	//SignalingNotificationBegin = 1600
 	//SignalingNotification      = 1601

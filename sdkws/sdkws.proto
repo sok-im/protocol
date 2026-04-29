@@ -294,6 +294,46 @@ message GroupInfoSetAnnouncementTips {
   string groupMemberVersionID = 4;
 }
 
+// 群置顶消息条目（保留最近3条置顶消息）
+// pinID 为该置顶记录在数据库中的唯一 id，由服务端生成
+// 客户端调用取消置顶时建议优先使用 pinID 精确删除
+message GroupPinnedMsgInfo {
+  string pinID = 1;
+  string groupID = 2;
+  string conversationID = 3;
+  int64 seq = 4;
+  string serverMsgID = 5;
+  string clientMsgID = 6;
+  string sendID = 7;
+  string recvID = 8;
+  int32 senderPlatformID = 9;
+  string senderNickname = 10;
+  string senderFaceURL = 11;
+  int32 sessionType = 12;
+  int32 msgFrom = 13;
+  int32 contentType = 14;
+  string content = 15;
+  repeated string atUserIDList = 16;
+  map<string, bool> options = 17;
+  string attachedInfo = 18;
+  string ex = 19;
+  int64 sendTime = 20;
+  int64 createTime = 21;
+  int32 status = 22;
+  string pinUserID = 23;
+  int64 pinTime = 24;
+}
+
+// OnGroupMessagePinned()
+// type: 1=置顶，2=取消置顶
+message GroupMessagePinnedTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  int32 type = 3;
+  GroupPinnedMsgInfo pinnedMsg = 4;
+  repeated GroupPinnedMsgInfo pinnedList = 5;
+}
+
 //	OnJoinGroupApplication()
 message JoinGroupApplicationTips {
   GroupInfo group = 1;

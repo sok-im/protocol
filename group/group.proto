@@ -425,6 +425,36 @@ message GetCommonGroupsWithFriendResp {
   repeated openim.sdkws.GroupInfo groups = 2;
 }
 
+// 群聊置顶单条消息：自动滚动保留最近 3 条置顶消息
+message PinGroupMessageReq {
+  string groupID = 1;
+  int64 seq = 2;
+}
+
+message PinGroupMessageResp {
+  openim.sdkws.GroupPinnedMsgInfo pinnedMsg = 1;
+  repeated openim.sdkws.GroupPinnedMsgInfo pinnedList = 2;
+}
+
+// 取消置顶请求：pinID 与 seq 至少传一个，pinID 优先（精确匹配数据库唯一 id）
+message UnpinGroupMessageReq {
+  string groupID = 1;
+  int64 seq = 2;
+  string pinID = 3;
+}
+
+message UnpinGroupMessageResp {
+  repeated openim.sdkws.GroupPinnedMsgInfo pinnedList = 1;
+}
+
+message GetGroupPinnedMessagesReq {
+  string groupID = 1;
+}
+
+message GetGroupPinnedMessagesResp {
+  repeated openim.sdkws.GroupPinnedMsgInfo pinnedList = 1;
+}
+
 service group {
   // Create group
   rpc createGroup(CreateGroupReq) returns (CreateGroupResp);
@@ -503,4 +533,11 @@ service group {
   rpc GetFullJoinGroupIDs(GetFullJoinGroupIDsReq) returns (GetFullJoinGroupIDsResp);
 
   rpc getCommonGroupsWithFriend(GetCommonGroupsWithFriendReq) returns (GetCommonGroupsWithFriendResp);
+
+  // 群置顶单条消息（自动滚动保留最近 3 条置顶消息）
+  rpc pinGroupMessage(PinGroupMessageReq) returns (PinGroupMessageResp);
+  // 取消群置顶消息
+  rpc unpinGroupMessage(UnpinGroupMessageReq) returns (UnpinGroupMessageResp);
+  // 获取群置顶消息列表（最多 3 条）
+  rpc getGroupPinnedMessages(GetGroupPinnedMessagesReq) returns (GetGroupPinnedMessagesResp);
 }

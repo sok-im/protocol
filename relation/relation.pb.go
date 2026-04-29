@@ -3400,14 +3400,15 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x06userID\x18\x02 \x01(\tR\x06userID\"l\n" +
 	"\x18getPaginationFriendsResp\x12:\n" +
 	"\vfriendsInfo\x18\x01 \x03(\v2\x18.openim.sdkws.FriendInfoR\vfriendsInfo\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"y\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x91\x01\n" +
 	"\x13applyToAddFriendReq\x12\x1e\n" +
 	"\n" +
 	"fromUserID\x18\x01 \x01(\tR\n" +
 	"fromUserID\x12\x1a\n" +
 	"\btoUserID\x18\x02 \x01(\tR\btoUserID\x12\x16\n" +
 	"\x06reqMsg\x18\x03 \x01(\tR\x06reqMsg\x12\x0e\n" +
-	"\x02ex\x18\x04 \x01(\tR\x02ex\"\x16\n" +
+	"\x02ex\x18\x04 \x01(\tR\x02ex\x12\x16\n" +
+	"\x06remark\x18\x05 \x01(\tR\x06remark\"\x16\n" +
 	"\x14applyToAddFriendResp\"\xa8\x03\n" +
 	"\n" +
 	"friendInfo\x12 \n" +
