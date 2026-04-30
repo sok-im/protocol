@@ -3,160 +3,248 @@ package openim.redpacket;
 
 option go_package = "github.com/openimsdk/protocol/redpacket";
 
-// ─── User-side messages ───────────────────────────────────────────────────────
+// ─── Common record types ──────────────────────────────────────────────────────
 
-message createOrderReq {
-  string creator_user_id = 1;
-  string creator_wallet  = 2;
-  int32  packet_type     = 3;
-  string token           = 4;
-  string total_amount    = 5;
-  int32  total_shares    = 6;
-  int64  expiry_at       = 7;
-  string chain           = 8;
+message RedPacketRecord {
+  string bizID            = 1;
+  string chainType        = 2;
+  string packetID         = 3;
+  int64  chainID          = 4;
+  string contractAddress  = 5;
+  string creatorUserID    = 6;
+  string creatorWallet    = 7;
+  string groupID          = 8;
+  string scopeType        = 9;
+  string receiverUserID   = 10;
+  repeated string receiverUserIDs = 11;
+  int32  packetType       = 12;
+  string token            = 13;
+  string totalAmount      = 14;
+  int32  totalShares      = 15;
+  string claimedAmount    = 16;
+  int32  claimedShares    = 17;
+  int64  expiryAt         = 18;
+  string txHash           = 19;
+  string status           = 20;
+  int64  createdAt        = 21;
+  int64  updatedAt        = 22;
 }
 
-message createOrderResp {
-  string biz_id = 1;
+message RedPacketClaimRecord {
+  string packetID      = 1;
+  string userID        = 2;
+  string claimerWallet = 3;
+  string authNonce     = 4;
+  string claimTxHash   = 5;
+  string claimedAmount = 6;
+  uint64 blockNumber   = 7;
+  string status        = 8;
+  int64  createdAt     = 9;
+  int64  updatedAt     = 10;
 }
 
-message createdCallbackReq {
-  string biz_id    = 1;
-  string tx_hash   = 2;
-  string packet_id = 3;
-}
-
-message createdCallbackResp {
-  bool ok = 1;
-}
-
-message getDetailReq {
-  string packet_id = 1;
-}
-
-message redPacketRecord {
-  int64  id               = 1;
-  string biz_id           = 2;
-  string packet_id        = 3;
-  int64  chain_id         = 4;
-  string contract_address = 5;
-  string creator_user_id  = 6;
-  string creator_wallet   = 7;
-  int32  packet_type      = 8;
-  string token            = 9;
-  string total_amount     = 10;
-  int32  total_shares     = 11;
-  int64  expiry_at        = 12;
-  string tx_hash          = 13;
-  string status           = 14;
-  string chain            = 15;
-  int64  created_at       = 16;
-  int64  updated_at       = 17;
-}
-
-message claimRecord {
-  int64  id             = 1;
-  string packet_id      = 2;
-  string claimer_wallet = 3;
-  string auth_nonce     = 4;
-  string claim_tx_hash  = 5;
-  string claimed_amount = 6;
-  int64  block_number   = 7;
-  string status         = 8;
-  int64  created_at     = 9;
-  int64  updated_at     = 10;
-}
-
-message getDetailResp {
-  redPacketRecord biz_record = 1;
-  repeated claimRecord claims = 2;
-}
-
-message claimSignReq {
-  string packet_id    = 1;
-  string claimer      = 2;
-  string user_id      = 3;
-  string random_seed  = 4;
-}
-
-message claimSignResp {
-  string auth_nonce   = 1;
-  int64  deadline     = 2;
-  string signature    = 3;
-  string random_seed  = 4;
-}
-
-message claimResultReq {
-  string packet_id      = 1;
-  string claimer_wallet = 2;
-  string tx_hash        = 3;
-  string auth_nonce     = 4;
-}
-
-message claimResultResp {
-  bool ok = 1;
-}
-
-// ─── Admin messages ───────────────────────────────────────────────────────────
-
-message txResp {
-  string tx_hash = 1;
-}
-
-message setSignerReq {
-  string new_signer = 1;
-  string chain      = 2;
-}
-
-message setTokenReq {
-  string token            = 1;
-  bool   allowed          = 2;
-  string min_share_amount = 3;
-  string chain            = 4;
-}
-
-message setExpiryReq {
-  string duration = 1;
-  string chain    = 2;
-}
-
-message setAllowAllTokensReq {
-  bool   allow = 1;
-  string chain = 2;
-}
-
-message setNativeTokenReq {
-  bool   enabled = 1;
-  string chain   = 2;
-}
-
-message parseTxEventsReq {
-  string chain   = 1;
-  string tx_hash = 2;
-}
-
-message txEvent {
+message ParsedEvent {
   string name = 1;
-  bytes  data = 2;
+  map<string, string> data = 2;
 }
 
-message parseTxEventsResp {
-  repeated txEvent events = 1;
+// ─── Create order ─────────────────────────────────────────────────────────────
+
+message CreateOrderReq {
+  string chainType         = 1;
+  int64  chainID           = 2;
+  string contractAddress   = 3;
+  string creatorWallet     = 4;
+  string groupID           = 5;
+  string scopeType         = 6;
+  string receiverUserID    = 7;
+  repeated string receiverUserIDs = 8;
+  int32  packetType        = 9;
+  string token             = 10;
+  string totalAmount       = 11;
+  int32  totalShares       = 12;
+  int64  expiryAt          = 13;
+  string remark            = 14;
+}
+
+message CreateOrderResp {
+  string bizID = 1;
+}
+
+// ─── Created callback ─────────────────────────────────────────────────────────
+
+message CreatedCallbackReq {
+  string bizID            = 1;
+  string txHash           = 2;
+  string packetID         = 3;
+  string groupID          = 4;
+  string scopeType        = 5;
+  string receiverUserID   = 6;
+  repeated string receiverUserIDs = 7;
+}
+
+message CreatedCallbackResp {}
+
+// ─── Detail ───────────────────────────────────────────────────────────────────
+
+message GetDetailReq {
+  string packetID = 1;
+}
+
+message GetDetailResp {
+  RedPacketRecord record = 1;
+  repeated RedPacketClaimRecord claims = 2;
+}
+
+// ─── Claim sign / result ──────────────────────────────────────────────────────
+
+message IssueClaimSignReq {
+  string packetID   = 1;
+  string claimer    = 2;
+  string randomSeed = 3;
+}
+
+message IssueClaimSignResp {
+  string authNonce  = 1;
+  int64  deadline   = 2;
+  string signature  = 3;
+  string randomSeed = 4;
+}
+
+message ClaimResultReq {
+  string packetID = 1;
+  string claimer  = 2;
+  string txHash   = 3;
+}
+
+message ClaimResultResp {}
+
+// ─── Wallet binding ───────────────────────────────────────────────────────────
+
+message IssueWalletBindChallengeReq {
+  string chainType     = 1;
+  int64  chainID       = 2;
+  string walletAddress = 3;
+  string domain        = 4;
+  string uri           = 5;
+}
+
+message IssueWalletBindChallengeResp {
+  string challengeID = 1;
+  string userID      = 2;
+  string chainType   = 3;
+  int64  chainID     = 4;
+  string wallet      = 5;
+  string protocol    = 6;
+  string signMethod  = 7;
+  string nonce       = 8;
+  string message     = 9;
+  string issuedAt    = 10;
+  string expiresAt   = 11;
+}
+
+message ConfirmWalletBindReq {
+  string challengeID = 1;
+  string signature   = 2;
+}
+
+message ConfirmWalletBindResp {
+  string userID        = 1;
+  string chainType     = 2;
+  int64  chainID       = 3;
+  string walletAddress = 4;
+  string status        = 5;
+  string verifiedAt    = 6;
+}
+
+message GetWalletBindingReq {
+  string chainType     = 1;
+  string walletAddress = 2;
+}
+
+message GetWalletBindingResp {
+  string userID        = 1;
+  string chainType     = 2;
+  int64  chainID       = 3;
+  string walletAddress = 4;
+  string status        = 5;
+  string challengeID   = 6;
+  string verifiedAt    = 7;
+}
+
+// ─── Admin ────────────────────────────────────────────────────────────────────
+
+message SetSignerReq {
+  string signerAddress = 1;
+}
+
+message SetSignerResp {
+  string message = 1;
+}
+
+message SetTokenReq {
+  string tokenAddress = 1;
+  bool   allowed      = 2;
+  string minAmount    = 3;
+}
+
+message SetTokenResp {
+  string message = 1;
+}
+
+message SetExpiryReq {
+  int64 expirySeconds = 1;
+}
+
+message SetExpiryResp {
+  string message = 1;
+}
+
+message SetAllowAllTokensReq {
+  bool allowAll = 1;
+}
+
+message SetAllowAllTokensResp {
+  string message = 1;
+}
+
+message SetNativeTokenEnabledReq {
+  bool enabled = 1;
+}
+
+message SetNativeTokenEnabledResp {
+  string message = 1;
+}
+
+message ParseTxEventsReq {
+  string chain  = 1;
+  string txHash = 2;
+}
+
+message ParseTxEventsResp {
+  string chain  = 1;
+  string txHash = 2;
+  repeated ParsedEvent events = 3;
+  string note   = 4;
 }
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 
 service RedPacket {
-  rpc createOrder(createOrderReq) returns (createOrderResp);
-  rpc createdCallback(createdCallbackReq) returns (createdCallbackResp);
-  rpc getDetail(getDetailReq) returns (getDetailResp);
-  rpc claimSign(claimSignReq) returns (claimSignResp);
-  rpc claimResult(claimResultReq) returns (claimResultResp);
+  rpc CreateOrder(CreateOrderReq)           returns (CreateOrderResp);
+  rpc CreatedCallback(CreatedCallbackReq)   returns (CreatedCallbackResp);
+  rpc GetDetail(GetDetailReq)               returns (GetDetailResp);
+  rpc IssueClaimSign(IssueClaimSignReq)     returns (IssueClaimSignResp);
+  rpc ClaimResult(ClaimResultReq)           returns (ClaimResultResp);
 
-  rpc setSigner(setSignerReq) returns (txResp);
-  rpc setToken(setTokenReq) returns (txResp);
-  rpc setExpiry(setExpiryReq) returns (txResp);
-  rpc setAllowAllTokens(setAllowAllTokensReq) returns (txResp);
-  rpc setNativeToken(setNativeTokenReq) returns (txResp);
-  rpc parseTxEvents(parseTxEventsReq) returns (parseTxEventsResp);
+  rpc IssueWalletBindChallenge(IssueWalletBindChallengeReq) returns (IssueWalletBindChallengeResp);
+  rpc ConfirmWalletBind(ConfirmWalletBindReq)               returns (ConfirmWalletBindResp);
+  rpc GetWalletBinding(GetWalletBindingReq)                 returns (GetWalletBindingResp);
+
+  rpc SetSigner(SetSignerReq)                       returns (SetSignerResp);
+  rpc SetToken(SetTokenReq)                         returns (SetTokenResp);
+  rpc SetExpiry(SetExpiryReq)                       returns (SetExpiryResp);
+  rpc SetAllowAllTokens(SetAllowAllTokensReq)       returns (SetAllowAllTokensResp);
+  rpc SetNativeTokenEnabled(SetNativeTokenEnabledReq) returns (SetNativeTokenEnabledResp);
+  rpc ParseTxEvents(ParseTxEventsReq)               returns (ParseTxEventsResp);
 }
