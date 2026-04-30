@@ -24,6 +24,8 @@ const (
 	RedPacket_GetDetail_FullMethodName                = "/openim.redpacket.RedPacket/GetDetail"
 	RedPacket_IssueClaimSign_FullMethodName           = "/openim.redpacket.RedPacket/IssueClaimSign"
 	RedPacket_ClaimResult_FullMethodName              = "/openim.redpacket.RedPacket/ClaimResult"
+	RedPacket_RequestRefund_FullMethodName            = "/openim.redpacket.RedPacket/RequestRefund"
+	RedPacket_GetRefund_FullMethodName                = "/openim.redpacket.RedPacket/GetRefund"
 	RedPacket_IssueWalletBindChallenge_FullMethodName = "/openim.redpacket.RedPacket/IssueWalletBindChallenge"
 	RedPacket_ConfirmWalletBind_FullMethodName        = "/openim.redpacket.RedPacket/ConfirmWalletBind"
 	RedPacket_GetWalletBinding_FullMethodName         = "/openim.redpacket.RedPacket/GetWalletBinding"
@@ -44,6 +46,8 @@ type RedPacketClient interface {
 	GetDetail(ctx context.Context, in *GetDetailReq, opts ...grpc.CallOption) (*GetDetailResp, error)
 	IssueClaimSign(ctx context.Context, in *IssueClaimSignReq, opts ...grpc.CallOption) (*IssueClaimSignResp, error)
 	ClaimResult(ctx context.Context, in *ClaimResultReq, opts ...grpc.CallOption) (*ClaimResultResp, error)
+	RequestRefund(ctx context.Context, in *RequestRefundReq, opts ...grpc.CallOption) (*RequestRefundResp, error)
+	GetRefund(ctx context.Context, in *GetRefundReq, opts ...grpc.CallOption) (*GetRefundResp, error)
 	IssueWalletBindChallenge(ctx context.Context, in *IssueWalletBindChallengeReq, opts ...grpc.CallOption) (*IssueWalletBindChallengeResp, error)
 	ConfirmWalletBind(ctx context.Context, in *ConfirmWalletBindReq, opts ...grpc.CallOption) (*ConfirmWalletBindResp, error)
 	GetWalletBinding(ctx context.Context, in *GetWalletBindingReq, opts ...grpc.CallOption) (*GetWalletBindingResp, error)
@@ -107,6 +111,26 @@ func (c *redPacketClient) ClaimResult(ctx context.Context, in *ClaimResultReq, o
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ClaimResultResp)
 	err := c.cc.Invoke(ctx, RedPacket_ClaimResult_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redPacketClient) RequestRefund(ctx context.Context, in *RequestRefundReq, opts ...grpc.CallOption) (*RequestRefundResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RequestRefundResp)
+	err := c.cc.Invoke(ctx, RedPacket_RequestRefund_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redPacketClient) GetRefund(ctx context.Context, in *GetRefundReq, opts ...grpc.CallOption) (*GetRefundResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetRefundResp)
+	err := c.cc.Invoke(ctx, RedPacket_GetRefund_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -212,6 +236,8 @@ type RedPacketServer interface {
 	GetDetail(context.Context, *GetDetailReq) (*GetDetailResp, error)
 	IssueClaimSign(context.Context, *IssueClaimSignReq) (*IssueClaimSignResp, error)
 	ClaimResult(context.Context, *ClaimResultReq) (*ClaimResultResp, error)
+	RequestRefund(context.Context, *RequestRefundReq) (*RequestRefundResp, error)
+	GetRefund(context.Context, *GetRefundReq) (*GetRefundResp, error)
 	IssueWalletBindChallenge(context.Context, *IssueWalletBindChallengeReq) (*IssueWalletBindChallengeResp, error)
 	ConfirmWalletBind(context.Context, *ConfirmWalletBindReq) (*ConfirmWalletBindResp, error)
 	GetWalletBinding(context.Context, *GetWalletBindingReq) (*GetWalletBindingResp, error)
@@ -245,6 +271,12 @@ func (UnimplementedRedPacketServer) IssueClaimSign(context.Context, *IssueClaimS
 }
 func (UnimplementedRedPacketServer) ClaimResult(context.Context, *ClaimResultReq) (*ClaimResultResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ClaimResult not implemented")
+}
+func (UnimplementedRedPacketServer) RequestRefund(context.Context, *RequestRefundReq) (*RequestRefundResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method RequestRefund not implemented")
+}
+func (UnimplementedRedPacketServer) GetRefund(context.Context, *GetRefundReq) (*GetRefundResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetRefund not implemented")
 }
 func (UnimplementedRedPacketServer) IssueWalletBindChallenge(context.Context, *IssueWalletBindChallengeReq) (*IssueWalletBindChallengeResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method IssueWalletBindChallenge not implemented")
@@ -380,6 +412,42 @@ func _RedPacket_ClaimResult_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RedPacketServer).ClaimResult(ctx, req.(*ClaimResultReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedPacket_RequestRefund_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestRefundReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedPacketServer).RequestRefund(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedPacket_RequestRefund_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedPacketServer).RequestRefund(ctx, req.(*RequestRefundReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedPacket_GetRefund_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRefundReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedPacketServer).GetRefund(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedPacket_GetRefund_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedPacketServer).GetRefund(ctx, req.(*GetRefundReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -572,6 +640,14 @@ var RedPacket_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ClaimResult",
 			Handler:    _RedPacket_ClaimResult_Handler,
+		},
+		{
+			MethodName: "RequestRefund",
+			Handler:    _RedPacket_RequestRefund_Handler,
+		},
+		{
+			MethodName: "GetRefund",
+			Handler:    _RedPacket_GetRefund_Handler,
 		},
 		{
 			MethodName: "IssueWalletBindChallenge",

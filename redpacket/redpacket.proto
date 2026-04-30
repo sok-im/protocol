@@ -172,6 +172,29 @@ message GetWalletBindingResp {
   string verifiedAt    = 7;
 }
 
+// ─── Refund ───────────────────────────────────────────────────────────────────
+
+message RequestRefundReq {
+  string packetID = 1;
+}
+
+message RequestRefundResp {
+  string txHash = 1;
+  string status = 2;
+}
+
+message GetRefundReq {
+  string packetID = 1;
+}
+
+message GetRefundResp {
+  string packetID  = 1;
+  string refundTo  = 2;
+  string txHash    = 3;
+  string amount    = 4;
+  int64  createdAt = 5;
+}
+
 // ─── Admin ────────────────────────────────────────────────────────────────────
 
 message SetSignerReq {
@@ -236,6 +259,8 @@ service RedPacket {
   rpc GetDetail(GetDetailReq)               returns (GetDetailResp);
   rpc IssueClaimSign(IssueClaimSignReq)     returns (IssueClaimSignResp);
   rpc ClaimResult(ClaimResultReq)           returns (ClaimResultResp);
+  rpc RequestRefund(RequestRefundReq)       returns (RequestRefundResp);
+  rpc GetRefund(GetRefundReq)               returns (GetRefundResp);
 
   rpc IssueWalletBindChallenge(IssueWalletBindChallengeReq) returns (IssueWalletBindChallengeResp);
   rpc ConfirmWalletBind(ConfirmWalletBindReq)               returns (ConfirmWalletBindResp);
