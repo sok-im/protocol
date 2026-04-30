@@ -3072,6 +3072,8 @@ type FriendInfoOnly struct {
 	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute"`
 	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration"`
 	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	FirstName       string                 `protobuf:"bytes,15,opt,name=firstName,proto3" json:"firstName"`
+	LastName        string                 `protobuf:"bytes,16,opt,name=lastName,proto3" json:"lastName"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -3202,6 +3204,20 @@ func (x *FriendInfoOnly) GetMuteEndTime() int64 {
 		return x.MuteEndTime
 	}
 	return 0
+}
+
+func (x *FriendInfoOnly) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *FriendInfoOnly) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
 }
 
 type GetFriendInfoReq struct {
@@ -3608,7 +3624,7 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x128\n" +
 	"\voldUserInfo\x18\x02 \x01(\v2\x16.openim.sdkws.UserInfoR\voldUserInfo\x128\n" +
 	"\vnewUserInfo\x18\x03 \x01(\v2\x16.openim.sdkws.UserInfoR\vnewUserInfo\" \n" +
-	"\x1enotificationUserInfoUpdateResp\"\xd2\x03\n" +
+	"\x1enotificationUserInfoUpdateResp\"\x8c\x04\n" +
 	"\x0eFriendInfoOnly\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
 	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\x12\x16\n" +
@@ -3626,7 +3642,9 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\fburnDuration\x18\v \x01(\x05R\fburnDuration\x12\x16\n" +
 	"\x06isMute\x18\f \x01(\bR\x06isMute\x12\"\n" +
 	"\fmuteDuration\x18\r \x01(\x03R\fmuteDuration\x12 \n" +
-	"\vmuteEndTime\x18\x0e \x01(\x03R\vmuteEndTime\"Z\n" +
+	"\vmuteEndTime\x18\x0e \x01(\x03R\vmuteEndTime\x12\x1c\n" +
+	"\tfirstName\x18\x0f \x01(\tR\tfirstName\x12\x1a\n" +
+	"\blastName\x18\x10 \x01(\tR\blastName\"Z\n" +
 	"\x10getFriendInfoReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12$\n" +
 	"\rfriendUserIDs\x18\x02 \x03(\tR\rfriendUserIDs\"V\n" +

@@ -295,6 +295,8 @@ message FriendInfoOnly {
   bool isMute = 12;
   int64 muteDuration = 13;
   int64 muteEndTime = 14;
+  string firstName = 15;
+  string lastName = 16;
 }
 
 message getFriendInfoReq {
