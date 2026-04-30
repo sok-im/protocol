@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Friend_ApplyToAddFriend_FullMethodName               = "/openim.relation.friend/applyToAddFriend"
+	Friend_AddOnewayFriend_FullMethodName                = "/openim.relation.friend/addOnewayFriend"
 	Friend_GetPaginationFriendsApplyTo_FullMethodName    = "/openim.relation.friend/getPaginationFriendsApplyTo"
 	Friend_GetPaginationFriendsApplyFrom_FullMethodName  = "/openim.relation.friend/getPaginationFriendsApplyFrom"
 	Friend_GetSelfUnhandledApplyCount_FullMethodName     = "/openim.relation.friend/getSelfUnhandledApplyCount"
@@ -56,6 +57,8 @@ const (
 type FriendClient interface {
 	// Friend request
 	ApplyToAddFriend(ctx context.Context, in *ApplyToAddFriendReq, opts ...grpc.CallOption) (*ApplyToAddFriendResp, error)
+	// Add one-way friend relation (A -> B only)
+	AddOnewayFriend(ctx context.Context, in *ApplyToAddFriendReq, opts ...grpc.CallOption) (*ApplyToAddFriendResp, error)
 	// Get friend request list
 	GetPaginationFriendsApplyTo(ctx context.Context, in *GetPaginationFriendsApplyToReq, opts ...grpc.CallOption) (*GetPaginationFriendsApplyToResp, error)
 	// Get sent friend request list
@@ -123,6 +126,16 @@ func (c *friendClient) ApplyToAddFriend(ctx context.Context, in *ApplyToAddFrien
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ApplyToAddFriendResp)
 	err := c.cc.Invoke(ctx, Friend_ApplyToAddFriend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) AddOnewayFriend(ctx context.Context, in *ApplyToAddFriendReq, opts ...grpc.CallOption) (*ApplyToAddFriendResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ApplyToAddFriendResp)
+	err := c.cc.Invoke(ctx, Friend_AddOnewayFriend_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -415,6 +428,8 @@ func (c *friendClient) AddOnewayFriend(ctx context.Context, in *ApplyToAddFriend
 type FriendServer interface {
 	// Friend request
 	ApplyToAddFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error)
+	// Add one-way friend relation (A -> B only)
+	AddOnewayFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error)
 	// Get friend request list
 	GetPaginationFriendsApplyTo(context.Context, *GetPaginationFriendsApplyToReq) (*GetPaginationFriendsApplyToResp, error)
 	// Get sent friend request list
@@ -480,6 +495,9 @@ type UnimplementedFriendServer struct{}
 
 func (UnimplementedFriendServer) ApplyToAddFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ApplyToAddFriend not implemented")
+}
+func (UnimplementedFriendServer) AddOnewayFriend(context.Context, *ApplyToAddFriendReq) (*ApplyToAddFriendResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddOnewayFriend not implemented")
 }
 func (UnimplementedFriendServer) GetPaginationFriendsApplyTo(context.Context, *GetPaginationFriendsApplyToReq) (*GetPaginationFriendsApplyToResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPaginationFriendsApplyTo not implemented")
@@ -600,6 +618,24 @@ func _Friend_ApplyToAddFriend_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FriendServer).ApplyToAddFriend(ctx, req.(*ApplyToAddFriendReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_AddOnewayFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ApplyToAddFriendReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).AddOnewayFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_AddOnewayFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).AddOnewayFriend(ctx, req.(*ApplyToAddFriendReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1118,6 +1154,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "applyToAddFriend",
 			Handler:    _Friend_ApplyToAddFriend_Handler,
+		},
+		{
+			MethodName: "addOnewayFriend",
+			Handler:    _Friend_AddOnewayFriend_Handler,
 		},
 		{
 			MethodName: "getPaginationFriendsApplyTo",

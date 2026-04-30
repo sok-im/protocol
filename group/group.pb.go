@@ -3587,7 +3587,7 @@ type GroupCreateCountResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Total         int64                  `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
 	Before        int64                  `protobuf:"varint,2,opt,name=before,proto3" json:"before"`
-	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4449,7 +4449,7 @@ func (x *BatchGetIncrementalGroupMemberReq) GetReqList() []*GetIncrementalGroupM
 
 type BatchGetIncrementalGroupMemberResp struct {
 	state         protoimpl.MessageState                    `protogen:"open.v1"`
-	RespList      map[string]*GetIncrementalGroupMemberResp `protobuf:"bytes,1,rep,name=respList,proto3" json:"respList" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	RespList      map[string]*GetIncrementalGroupMemberResp `protobuf:"bytes,1,rep,name=respList,proto3" json:"respList,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4583,6 +4583,304 @@ func (x *GetCommonGroupsWithFriendResp) GetTotal() uint32 {
 func (x *GetCommonGroupsWithFriendResp) GetGroups() []*sdkws.GroupInfo {
 	if x != nil {
 		return x.Groups
+	}
+	return nil
+}
+
+// 群聊置顶单条消息：自动滚动保留最近 3 条置顶消息
+type PinGroupMessageReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	Seq           int64                  `protobuf:"varint,2,opt,name=seq,proto3" json:"seq"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PinGroupMessageReq) Reset() {
+	*x = PinGroupMessageReq{}
+	mi := &file_group_group_proto_msgTypes[86]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PinGroupMessageReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PinGroupMessageReq) ProtoMessage() {}
+
+func (x *PinGroupMessageReq) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[86]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PinGroupMessageReq.ProtoReflect.Descriptor instead.
+func (*PinGroupMessageReq) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{86}
+}
+
+func (x *PinGroupMessageReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *PinGroupMessageReq) GetSeq() int64 {
+	if x != nil {
+		return x.Seq
+	}
+	return 0
+}
+
+type PinGroupMessageResp struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	PinnedMsg     *sdkws.GroupPinnedMsgInfo   `protobuf:"bytes,1,opt,name=pinnedMsg,proto3" json:"pinnedMsg"`
+	PinnedList    []*sdkws.GroupPinnedMsgInfo `protobuf:"bytes,2,rep,name=pinnedList,proto3" json:"pinnedList"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PinGroupMessageResp) Reset() {
+	*x = PinGroupMessageResp{}
+	mi := &file_group_group_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PinGroupMessageResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PinGroupMessageResp) ProtoMessage() {}
+
+func (x *PinGroupMessageResp) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PinGroupMessageResp.ProtoReflect.Descriptor instead.
+func (*PinGroupMessageResp) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{87}
+}
+
+func (x *PinGroupMessageResp) GetPinnedMsg() *sdkws.GroupPinnedMsgInfo {
+	if x != nil {
+		return x.PinnedMsg
+	}
+	return nil
+}
+
+func (x *PinGroupMessageResp) GetPinnedList() []*sdkws.GroupPinnedMsgInfo {
+	if x != nil {
+		return x.PinnedList
+	}
+	return nil
+}
+
+// 取消置顶请求：pinID 与 seq 至少传一个，pinID 优先（精确匹配数据库唯一 id）
+type UnpinGroupMessageReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	Seq           int64                  `protobuf:"varint,2,opt,name=seq,proto3" json:"seq"`
+	PinID         string                 `protobuf:"bytes,3,opt,name=pinID,proto3" json:"pinID"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnpinGroupMessageReq) Reset() {
+	*x = UnpinGroupMessageReq{}
+	mi := &file_group_group_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnpinGroupMessageReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnpinGroupMessageReq) ProtoMessage() {}
+
+func (x *UnpinGroupMessageReq) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnpinGroupMessageReq.ProtoReflect.Descriptor instead.
+func (*UnpinGroupMessageReq) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{88}
+}
+
+func (x *UnpinGroupMessageReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *UnpinGroupMessageReq) GetSeq() int64 {
+	if x != nil {
+		return x.Seq
+	}
+	return 0
+}
+
+func (x *UnpinGroupMessageReq) GetPinID() string {
+	if x != nil {
+		return x.PinID
+	}
+	return ""
+}
+
+type UnpinGroupMessageResp struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	PinnedList    []*sdkws.GroupPinnedMsgInfo `protobuf:"bytes,1,rep,name=pinnedList,proto3" json:"pinnedList"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnpinGroupMessageResp) Reset() {
+	*x = UnpinGroupMessageResp{}
+	mi := &file_group_group_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnpinGroupMessageResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnpinGroupMessageResp) ProtoMessage() {}
+
+func (x *UnpinGroupMessageResp) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnpinGroupMessageResp.ProtoReflect.Descriptor instead.
+func (*UnpinGroupMessageResp) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{89}
+}
+
+func (x *UnpinGroupMessageResp) GetPinnedList() []*sdkws.GroupPinnedMsgInfo {
+	if x != nil {
+		return x.PinnedList
+	}
+	return nil
+}
+
+type GetGroupPinnedMessagesReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGroupPinnedMessagesReq) Reset() {
+	*x = GetGroupPinnedMessagesReq{}
+	mi := &file_group_group_proto_msgTypes[90]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGroupPinnedMessagesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGroupPinnedMessagesReq) ProtoMessage() {}
+
+func (x *GetGroupPinnedMessagesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[90]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGroupPinnedMessagesReq.ProtoReflect.Descriptor instead.
+func (*GetGroupPinnedMessagesReq) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{90}
+}
+
+func (x *GetGroupPinnedMessagesReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+type GetGroupPinnedMessagesResp struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	PinnedList    []*sdkws.GroupPinnedMsgInfo `protobuf:"bytes,1,rep,name=pinnedList,proto3" json:"pinnedList"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGroupPinnedMessagesResp) Reset() {
+	*x = GetGroupPinnedMessagesResp{}
+	mi := &file_group_group_proto_msgTypes[91]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGroupPinnedMessagesResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGroupPinnedMessagesResp) ProtoMessage() {}
+
+func (x *GetGroupPinnedMessagesResp) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[91]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGroupPinnedMessagesResp.ProtoReflect.Descriptor instead.
+func (*GetGroupPinnedMessagesResp) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{91}
+}
+
+func (x *GetGroupPinnedMessagesResp) GetPinnedList() []*sdkws.GroupPinnedMsgInfo {
+	if x != nil {
+		return x.PinnedList
 	}
 	return nil
 }
@@ -4903,7 +5201,29 @@ const file_group_group_proto_rawDesc = "" +
 	"\ffriendUserID\x18\x01 \x01(\tR\ffriendUserID\"f\n" +
 	"\x1dGetCommonGroupsWithFriendResp\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\rR\x05total\x12/\n" +
-	"\x06groups\x18\x02 \x03(\v2\x17.openim.sdkws.GroupInfoR\x06groups2\xc3\x1f\n" +
+	"\x06groups\x18\x02 \x03(\v2\x17.openim.sdkws.GroupInfoR\x06groups\"@\n" +
+	"\x12PinGroupMessageReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x10\n" +
+	"\x03seq\x18\x02 \x01(\x03R\x03seq\"\x97\x01\n" +
+	"\x13PinGroupMessageResp\x12>\n" +
+	"\tpinnedMsg\x18\x01 \x01(\v2 .openim.sdkws.GroupPinnedMsgInfoR\tpinnedMsg\x12@\n" +
+	"\n" +
+	"pinnedList\x18\x02 \x03(\v2 .openim.sdkws.GroupPinnedMsgInfoR\n" +
+	"pinnedList\"X\n" +
+	"\x14UnpinGroupMessageReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x10\n" +
+	"\x03seq\x18\x02 \x01(\x03R\x03seq\x12\x14\n" +
+	"\x05pinID\x18\x03 \x01(\tR\x05pinID\"Y\n" +
+	"\x15UnpinGroupMessageResp\x12@\n" +
+	"\n" +
+	"pinnedList\x18\x01 \x03(\v2 .openim.sdkws.GroupPinnedMsgInfoR\n" +
+	"pinnedList\"5\n" +
+	"\x19GetGroupPinnedMessagesReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\"^\n" +
+	"\x1aGetGroupPinnedMessagesResp\x12@\n" +
+	"\n" +
+	"pinnedList\x18\x01 \x03(\v2 .openim.sdkws.GroupPinnedMsgInfoR\n" +
+	"pinnedList2\xe6!\n" +
 	"\x05group\x12J\n" +
 	"\vcreateGroup\x12\x1c.openim.group.CreateGroupReq\x1a\x1d.openim.group.CreateGroupResp\x12D\n" +
 	"\tjoinGroup\x12\x1a.openim.group.JoinGroupReq\x1a\x1b.openim.group.JoinGroupResp\x12D\n" +
@@ -4944,7 +5264,10 @@ const file_group_group_proto_rawDesc = "" +
 	"\x17getIncrementalJoinGroup\x12(.openim.group.getIncrementalJoinGroupReq\x1a).openim.group.getIncrementalJoinGroupResp\x12t\n" +
 	"\x19GetFullGroupMemberUserIDs\x12*.openim.group.GetFullGroupMemberUserIDsReq\x1a+.openim.group.GetFullGroupMemberUserIDsResp\x12b\n" +
 	"\x13GetFullJoinGroupIDs\x12$.openim.group.GetFullJoinGroupIDsReq\x1a%.openim.group.GetFullJoinGroupIDsResp\x12t\n" +
-	"\x19getCommonGroupsWithFriend\x12*.openim.group.GetCommonGroupsWithFriendReq\x1a+.openim.group.GetCommonGroupsWithFriendRespB%Z#github.com/openimsdk/protocol/groupb\x06proto3"
+	"\x19getCommonGroupsWithFriend\x12*.openim.group.GetCommonGroupsWithFriendReq\x1a+.openim.group.GetCommonGroupsWithFriendResp\x12V\n" +
+	"\x0fpinGroupMessage\x12 .openim.group.PinGroupMessageReq\x1a!.openim.group.PinGroupMessageResp\x12\\\n" +
+	"\x11unpinGroupMessage\x12\".openim.group.UnpinGroupMessageReq\x1a#.openim.group.UnpinGroupMessageResp\x12k\n" +
+	"\x16getGroupPinnedMessages\x12'.openim.group.GetGroupPinnedMessagesReq\x1a(.openim.group.GetGroupPinnedMessagesRespB%Z#github.com/openimsdk/protocol/groupb\x06proto3"
 
 var (
 	file_group_group_proto_rawDescOnce sync.Once
@@ -4958,7 +5281,7 @@ func file_group_group_proto_rawDescGZIP() []byte {
 	return file_group_group_proto_rawDescData
 }
 
-var file_group_group_proto_msgTypes = make([]protoimpl.MessageInfo, 88)
+var file_group_group_proto_msgTypes = make([]protoimpl.MessageInfo, 94)
 var file_group_group_proto_goTypes = []any{
 	(*CreateGroupReq)(nil),                        // 0: openim.group.CreateGroupReq
 	(*CreateGroupResp)(nil),                       // 1: openim.group.CreateGroupResp
@@ -5046,165 +5369,182 @@ var file_group_group_proto_goTypes = []any{
 	(*BatchGetIncrementalGroupMemberResp)(nil),    // 83: openim.group.BatchGetIncrementalGroupMemberResp
 	(*GetCommonGroupsWithFriendReq)(nil),          // 84: openim.group.GetCommonGroupsWithFriendReq
 	(*GetCommonGroupsWithFriendResp)(nil),         // 85: openim.group.GetCommonGroupsWithFriendResp
-	nil,                                           // 86: openim.group.GroupCreateCountResp.CountEntry
-	nil,                                           // 87: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
-	(*sdkws.GroupInfo)(nil),                       // 88: openim.sdkws.GroupInfo
-	(*sdkws.GroupInfoForSet)(nil),                 // 89: openim.sdkws.GroupInfoForSet
-	(*wrapperspb.StringValue)(nil),                // 90: openim.protobuf.StringValue
-	(*wrapperspb.Int32Value)(nil),                 // 91: openim.protobuf.Int32Value
-	(*sdkws.RequestPagination)(nil),               // 92: openim.sdkws.RequestPagination
-	(*sdkws.GroupRequest)(nil),                    // 93: openim.sdkws.GroupRequest
-	(*sdkws.GroupMemberFullInfo)(nil),             // 94: openim.sdkws.GroupMemberFullInfo
-	(*wrapperspb.BoolValue)(nil),                  // 95: openim.protobuf.BoolValue
-	(*wrapperspb.Int64Value)(nil),                 // 96: openim.protobuf.Int64Value
-	(*sdkws.UserInfo)(nil),                        // 97: openim.sdkws.UserInfo
+	(*PinGroupMessageReq)(nil),                    // 86: openim.group.PinGroupMessageReq
+	(*PinGroupMessageResp)(nil),                   // 87: openim.group.PinGroupMessageResp
+	(*UnpinGroupMessageReq)(nil),                  // 88: openim.group.UnpinGroupMessageReq
+	(*UnpinGroupMessageResp)(nil),                 // 89: openim.group.UnpinGroupMessageResp
+	(*GetGroupPinnedMessagesReq)(nil),             // 90: openim.group.GetGroupPinnedMessagesReq
+	(*GetGroupPinnedMessagesResp)(nil),            // 91: openim.group.GetGroupPinnedMessagesResp
+	nil,                                           // 92: openim.group.GroupCreateCountResp.CountEntry
+	nil,                                           // 93: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
+	(*sdkws.GroupInfo)(nil),                       // 94: openim.sdkws.GroupInfo
+	(*sdkws.GroupInfoForSet)(nil),                 // 95: openim.sdkws.GroupInfoForSet
+	(*wrapperspb.StringValue)(nil),                // 96: openim.protobuf.StringValue
+	(*wrapperspb.Int32Value)(nil),                 // 97: openim.protobuf.Int32Value
+	(*sdkws.RequestPagination)(nil),               // 98: openim.sdkws.RequestPagination
+	(*sdkws.GroupRequest)(nil),                    // 99: openim.sdkws.GroupRequest
+	(*sdkws.GroupMemberFullInfo)(nil),             // 100: openim.sdkws.GroupMemberFullInfo
+	(*wrapperspb.BoolValue)(nil),                  // 101: openim.protobuf.BoolValue
+	(*wrapperspb.Int64Value)(nil),                 // 102: openim.protobuf.Int64Value
+	(*sdkws.UserInfo)(nil),                        // 103: openim.sdkws.UserInfo
+	(*sdkws.GroupPinnedMsgInfo)(nil),              // 104: openim.sdkws.GroupPinnedMsgInfo
 }
 var file_group_group_proto_depIdxs = []int32{
-	88,  // 0: openim.group.CreateGroupReq.groupInfo:type_name -> openim.sdkws.GroupInfo
-	88,  // 1: openim.group.CreateGroupResp.groupInfo:type_name -> openim.sdkws.GroupInfo
-	88,  // 2: openim.group.GetGroupsInfoResp.groupInfos:type_name -> openim.sdkws.GroupInfo
-	89,  // 3: openim.group.SetGroupInfoReq.groupInfoForSet:type_name -> openim.sdkws.GroupInfoForSet
-	90,  // 4: openim.group.SetGroupInfoExReq.groupName:type_name -> openim.protobuf.StringValue
-	90,  // 5: openim.group.SetGroupInfoExReq.notification:type_name -> openim.protobuf.StringValue
-	90,  // 6: openim.group.SetGroupInfoExReq.introduction:type_name -> openim.protobuf.StringValue
-	90,  // 7: openim.group.SetGroupInfoExReq.faceURL:type_name -> openim.protobuf.StringValue
-	90,  // 8: openim.group.SetGroupInfoExReq.ex:type_name -> openim.protobuf.StringValue
-	91,  // 9: openim.group.SetGroupInfoExReq.needVerification:type_name -> openim.protobuf.Int32Value
-	91,  // 10: openim.group.SetGroupInfoExReq.lookMemberInfo:type_name -> openim.protobuf.Int32Value
-	91,  // 11: openim.group.SetGroupInfoExReq.applyMemberFriend:type_name -> openim.protobuf.Int32Value
-	91,  // 12: openim.group.SetGroupInfoExReq.allowSendMsg:type_name -> openim.protobuf.Int32Value
-	91,  // 13: openim.group.SetGroupInfoExReq.allowPinMsg:type_name -> openim.protobuf.Int32Value
-	91,  // 14: openim.group.SetGroupInfoExReq.allowAddMember:type_name -> openim.protobuf.Int32Value
-	91,  // 15: openim.group.SetGroupInfoExReq.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
-	92,  // 16: openim.group.GetGroupApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	93,  // 17: openim.group.GetGroupApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	92,  // 18: openim.group.GetUserReqApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	93,  // 19: openim.group.GetUserReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	93,  // 20: openim.group.GetSpecifiedUserGroupRequestInfoResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	92,  // 21: openim.group.GetGroupMemberListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	94,  // 22: openim.group.GetGroupMemberListResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	94,  // 23: openim.group.GetGroupMembersInfoResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	92,  // 24: openim.group.GetJoinedGroupListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	88,  // 25: openim.group.GetJoinedGroupListResp.groups:type_name -> openim.sdkws.GroupInfo
-	92,  // 26: openim.group.GetGroupAllMemberReq.pagination:type_name -> openim.sdkws.RequestPagination
-	94,  // 27: openim.group.GetGroupAllMemberResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	88,  // 28: openim.group.CMSGroup.groupInfo:type_name -> openim.sdkws.GroupInfo
-	92,  // 29: openim.group.GetGroupsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	94,  // 0: openim.group.CreateGroupReq.groupInfo:type_name -> openim.sdkws.GroupInfo
+	94,  // 1: openim.group.CreateGroupResp.groupInfo:type_name -> openim.sdkws.GroupInfo
+	94,  // 2: openim.group.GetGroupsInfoResp.groupInfos:type_name -> openim.sdkws.GroupInfo
+	95,  // 3: openim.group.SetGroupInfoReq.groupInfoForSet:type_name -> openim.sdkws.GroupInfoForSet
+	96,  // 4: openim.group.SetGroupInfoExReq.groupName:type_name -> openim.protobuf.StringValue
+	96,  // 5: openim.group.SetGroupInfoExReq.notification:type_name -> openim.protobuf.StringValue
+	96,  // 6: openim.group.SetGroupInfoExReq.introduction:type_name -> openim.protobuf.StringValue
+	96,  // 7: openim.group.SetGroupInfoExReq.faceURL:type_name -> openim.protobuf.StringValue
+	96,  // 8: openim.group.SetGroupInfoExReq.ex:type_name -> openim.protobuf.StringValue
+	97,  // 9: openim.group.SetGroupInfoExReq.needVerification:type_name -> openim.protobuf.Int32Value
+	97,  // 10: openim.group.SetGroupInfoExReq.lookMemberInfo:type_name -> openim.protobuf.Int32Value
+	97,  // 11: openim.group.SetGroupInfoExReq.applyMemberFriend:type_name -> openim.protobuf.Int32Value
+	97,  // 12: openim.group.SetGroupInfoExReq.allowSendMsg:type_name -> openim.protobuf.Int32Value
+	97,  // 13: openim.group.SetGroupInfoExReq.allowPinMsg:type_name -> openim.protobuf.Int32Value
+	97,  // 14: openim.group.SetGroupInfoExReq.allowAddMember:type_name -> openim.protobuf.Int32Value
+	97,  // 15: openim.group.SetGroupInfoExReq.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
+	98,  // 16: openim.group.GetGroupApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	99,  // 17: openim.group.GetGroupApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	98,  // 18: openim.group.GetUserReqApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	99,  // 19: openim.group.GetUserReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	99,  // 20: openim.group.GetSpecifiedUserGroupRequestInfoResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	98,  // 21: openim.group.GetGroupMemberListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	100, // 22: openim.group.GetGroupMemberListResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	100, // 23: openim.group.GetGroupMembersInfoResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	98,  // 24: openim.group.GetJoinedGroupListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	94,  // 25: openim.group.GetJoinedGroupListResp.groups:type_name -> openim.sdkws.GroupInfo
+	98,  // 26: openim.group.GetGroupAllMemberReq.pagination:type_name -> openim.sdkws.RequestPagination
+	100, // 27: openim.group.GetGroupAllMemberResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	94,  // 28: openim.group.CMSGroup.groupInfo:type_name -> openim.sdkws.GroupInfo
+	98,  // 29: openim.group.GetGroupsReq.pagination:type_name -> openim.sdkws.RequestPagination
 	36,  // 30: openim.group.GetGroupsResp.groups:type_name -> openim.group.CMSGroup
-	92,  // 31: openim.group.GetGroupMembersCMSReq.pagination:type_name -> openim.sdkws.RequestPagination
-	94,  // 32: openim.group.GetGroupMembersCMSResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	90,  // 33: openim.group.SetGroupMemberInfo.nickname:type_name -> openim.protobuf.StringValue
-	90,  // 34: openim.group.SetGroupMemberInfo.faceURL:type_name -> openim.protobuf.StringValue
-	91,  // 35: openim.group.SetGroupMemberInfo.roleLevel:type_name -> openim.protobuf.Int32Value
-	90,  // 36: openim.group.SetGroupMemberInfo.ex:type_name -> openim.protobuf.StringValue
-	95,  // 37: openim.group.SetGroupMemberInfo.isPinned:type_name -> openim.protobuf.BoolValue
-	95,  // 38: openim.group.SetGroupMemberInfo.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	96,  // 39: openim.group.SetGroupMemberInfo.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	91,  // 40: openim.group.SetGroupMemberInfo.burnDuration:type_name -> openim.protobuf.Int32Value
+	98,  // 31: openim.group.GetGroupMembersCMSReq.pagination:type_name -> openim.sdkws.RequestPagination
+	100, // 32: openim.group.GetGroupMembersCMSResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	96,  // 33: openim.group.SetGroupMemberInfo.nickname:type_name -> openim.protobuf.StringValue
+	96,  // 34: openim.group.SetGroupMemberInfo.faceURL:type_name -> openim.protobuf.StringValue
+	97,  // 35: openim.group.SetGroupMemberInfo.roleLevel:type_name -> openim.protobuf.Int32Value
+	96,  // 36: openim.group.SetGroupMemberInfo.ex:type_name -> openim.protobuf.StringValue
+	101, // 37: openim.group.SetGroupMemberInfo.isPinned:type_name -> openim.protobuf.BoolValue
+	101, // 38: openim.group.SetGroupMemberInfo.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	102, // 39: openim.group.SetGroupMemberInfo.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	97,  // 40: openim.group.SetGroupMemberInfo.burnDuration:type_name -> openim.protobuf.Int32Value
 	52,  // 41: openim.group.SetGroupMemberInfoReq.members:type_name -> openim.group.SetGroupMemberInfo
 	56,  // 42: openim.group.GetGroupAbstractInfoResp.groupAbstractInfos:type_name -> openim.group.GroupAbstractInfo
-	94,  // 43: openim.group.GetUserInGroupMembersResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	94,  // 44: openim.group.GetGroupMemberRoleLevelResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	88,  // 45: openim.group.GetGroupInfoCacheResp.groupInfo:type_name -> openim.sdkws.GroupInfo
-	94,  // 46: openim.group.GetGroupMemberCacheResp.member:type_name -> openim.sdkws.GroupMemberFullInfo
-	86,  // 47: openim.group.GroupCreateCountResp.count:type_name -> openim.group.GroupCreateCountResp.CountEntry
-	93,  // 48: openim.group.getGroupUsersReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	97,  // 49: openim.group.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
-	97,  // 50: openim.group.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
-	94,  // 51: openim.group.getIncrementalGroupMemberResp.insert:type_name -> openim.sdkws.GroupMemberFullInfo
-	94,  // 52: openim.group.getIncrementalGroupMemberResp.update:type_name -> openim.sdkws.GroupMemberFullInfo
-	88,  // 53: openim.group.getIncrementalGroupMemberResp.group:type_name -> openim.sdkws.GroupInfo
-	88,  // 54: openim.group.getIncrementalJoinGroupResp.insert:type_name -> openim.sdkws.GroupInfo
-	88,  // 55: openim.group.getIncrementalJoinGroupResp.update:type_name -> openim.sdkws.GroupInfo
+	100, // 43: openim.group.GetUserInGroupMembersResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	100, // 44: openim.group.GetGroupMemberRoleLevelResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	94,  // 45: openim.group.GetGroupInfoCacheResp.groupInfo:type_name -> openim.sdkws.GroupInfo
+	100, // 46: openim.group.GetGroupMemberCacheResp.member:type_name -> openim.sdkws.GroupMemberFullInfo
+	92,  // 47: openim.group.GroupCreateCountResp.count:type_name -> openim.group.GroupCreateCountResp.CountEntry
+	99,  // 48: openim.group.getGroupUsersReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	103, // 49: openim.group.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
+	103, // 50: openim.group.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
+	100, // 51: openim.group.getIncrementalGroupMemberResp.insert:type_name -> openim.sdkws.GroupMemberFullInfo
+	100, // 52: openim.group.getIncrementalGroupMemberResp.update:type_name -> openim.sdkws.GroupMemberFullInfo
+	94,  // 53: openim.group.getIncrementalGroupMemberResp.group:type_name -> openim.sdkws.GroupInfo
+	94,  // 54: openim.group.getIncrementalJoinGroupResp.insert:type_name -> openim.sdkws.GroupInfo
+	94,  // 55: openim.group.getIncrementalJoinGroupResp.update:type_name -> openim.sdkws.GroupInfo
 	74,  // 56: openim.group.BatchGetIncrementalGroupMemberReq.reqList:type_name -> openim.group.getIncrementalGroupMemberReq
-	87,  // 57: openim.group.BatchGetIncrementalGroupMemberResp.respList:type_name -> openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
-	88,  // 58: openim.group.GetCommonGroupsWithFriendResp.groups:type_name -> openim.sdkws.GroupInfo
-	75,  // 59: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry.value:type_name -> openim.group.getIncrementalGroupMemberResp
-	0,   // 60: openim.group.group.createGroup:input_type -> openim.group.CreateGroupReq
-	18,  // 61: openim.group.group.joinGroup:input_type -> openim.group.JoinGroupReq
-	22,  // 62: openim.group.group.quitGroup:input_type -> openim.group.QuitGroupReq
-	2,   // 63: openim.group.group.getGroupsInfo:input_type -> openim.group.GetGroupsInfoReq
-	4,   // 64: openim.group.group.setGroupInfo:input_type -> openim.group.SetGroupInfoReq
-	6,   // 65: openim.group.group.setGroupInfoEx:input_type -> openim.group.SetGroupInfoExReq
-	8,   // 66: openim.group.group.getGroupApplicationList:input_type -> openim.group.GetGroupApplicationListReq
-	10,  // 67: openim.group.group.getGroupApplicationUnhandledCount:input_type -> openim.group.GetGroupApplicationUnhandledCountReq
-	12,  // 68: openim.group.group.getUserReqApplicationList:input_type -> openim.group.GetUserReqApplicationListReq
-	70,  // 69: openim.group.group.getGroupUsersReqApplicationList:input_type -> openim.group.getGroupUsersReqApplicationListReq
-	14,  // 70: openim.group.group.getSpecifiedUserGroupRequestInfo:input_type -> openim.group.GetSpecifiedUserGroupRequestInfoReq
-	16,  // 71: openim.group.group.transferGroupOwner:input_type -> openim.group.TransferGroupOwnerReq
-	20,  // 72: openim.group.group.groupApplicationResponse:input_type -> openim.group.GroupApplicationResponseReq
-	24,  // 73: openim.group.group.getGroupMemberList:input_type -> openim.group.GetGroupMemberListReq
-	26,  // 74: openim.group.group.getGroupMembersInfo:input_type -> openim.group.GetGroupMembersInfoReq
-	28,  // 75: openim.group.group.kickGroupMember:input_type -> openim.group.KickGroupMemberReq
-	30,  // 76: openim.group.group.getJoinedGroupList:input_type -> openim.group.GetJoinedGroupListReq
-	32,  // 77: openim.group.group.inviteUserToGroup:input_type -> openim.group.InviteUserToGroupReq
-	37,  // 78: openim.group.group.getGroups:input_type -> openim.group.GetGroupsReq
-	40,  // 79: openim.group.group.getGroupMembersCMS:input_type -> openim.group.GetGroupMembersCMSReq
-	42,  // 80: openim.group.group.dismissGroup:input_type -> openim.group.DismissGroupReq
-	44,  // 81: openim.group.group.muteGroupMember:input_type -> openim.group.MuteGroupMemberReq
-	46,  // 82: openim.group.group.cancelMuteGroupMember:input_type -> openim.group.CancelMuteGroupMemberReq
-	48,  // 83: openim.group.group.muteGroup:input_type -> openim.group.MuteGroupReq
-	50,  // 84: openim.group.group.cancelMuteGroup:input_type -> openim.group.CancelMuteGroupReq
-	53,  // 85: openim.group.group.setGroupMemberInfo:input_type -> openim.group.SetGroupMemberInfoReq
-	55,  // 86: openim.group.group.getGroupAbstractInfo:input_type -> openim.group.GetGroupAbstractInfoReq
-	58,  // 87: openim.group.group.getUserInGroupMembers:input_type -> openim.group.GetUserInGroupMembersReq
-	60,  // 88: openim.group.group.getGroupMemberUserIDs:input_type -> openim.group.GetGroupMemberUserIDsReq
-	62,  // 89: openim.group.group.GetGroupMemberRoleLevel:input_type -> openim.group.GetGroupMemberRoleLevelReq
-	64,  // 90: openim.group.group.GetGroupInfoCache:input_type -> openim.group.GetGroupInfoCacheReq
-	66,  // 91: openim.group.group.GetGroupMemberCache:input_type -> openim.group.GetGroupMemberCacheReq
-	68,  // 92: openim.group.group.GroupCreateCount:input_type -> openim.group.GroupCreateCountReq
-	72,  // 93: openim.group.group.NotificationUserInfoUpdate:input_type -> openim.group.notificationUserInfoUpdateReq
-	74,  // 94: openim.group.group.getIncrementalGroupMember:input_type -> openim.group.getIncrementalGroupMemberReq
-	82,  // 95: openim.group.group.BatchGetIncrementalGroupMember:input_type -> openim.group.BatchGetIncrementalGroupMemberReq
-	76,  // 96: openim.group.group.getIncrementalJoinGroup:input_type -> openim.group.getIncrementalJoinGroupReq
-	78,  // 97: openim.group.group.GetFullGroupMemberUserIDs:input_type -> openim.group.GetFullGroupMemberUserIDsReq
-	80,  // 98: openim.group.group.GetFullJoinGroupIDs:input_type -> openim.group.GetFullJoinGroupIDsReq
-	84,  // 99: openim.group.group.getCommonGroupsWithFriend:input_type -> openim.group.GetCommonGroupsWithFriendReq
-	1,   // 100: openim.group.group.createGroup:output_type -> openim.group.CreateGroupResp
-	19,  // 101: openim.group.group.joinGroup:output_type -> openim.group.JoinGroupResp
-	23,  // 102: openim.group.group.quitGroup:output_type -> openim.group.QuitGroupResp
-	3,   // 103: openim.group.group.getGroupsInfo:output_type -> openim.group.GetGroupsInfoResp
-	5,   // 104: openim.group.group.setGroupInfo:output_type -> openim.group.SetGroupInfoResp
-	7,   // 105: openim.group.group.setGroupInfoEx:output_type -> openim.group.SetGroupInfoExResp
-	9,   // 106: openim.group.group.getGroupApplicationList:output_type -> openim.group.GetGroupApplicationListResp
-	11,  // 107: openim.group.group.getGroupApplicationUnhandledCount:output_type -> openim.group.GetGroupApplicationUnhandledCountResp
-	13,  // 108: openim.group.group.getUserReqApplicationList:output_type -> openim.group.GetUserReqApplicationListResp
-	71,  // 109: openim.group.group.getGroupUsersReqApplicationList:output_type -> openim.group.getGroupUsersReqApplicationListResp
-	15,  // 110: openim.group.group.getSpecifiedUserGroupRequestInfo:output_type -> openim.group.GetSpecifiedUserGroupRequestInfoResp
-	17,  // 111: openim.group.group.transferGroupOwner:output_type -> openim.group.TransferGroupOwnerResp
-	21,  // 112: openim.group.group.groupApplicationResponse:output_type -> openim.group.GroupApplicationResponseResp
-	25,  // 113: openim.group.group.getGroupMemberList:output_type -> openim.group.GetGroupMemberListResp
-	27,  // 114: openim.group.group.getGroupMembersInfo:output_type -> openim.group.GetGroupMembersInfoResp
-	29,  // 115: openim.group.group.kickGroupMember:output_type -> openim.group.KickGroupMemberResp
-	31,  // 116: openim.group.group.getJoinedGroupList:output_type -> openim.group.GetJoinedGroupListResp
-	33,  // 117: openim.group.group.inviteUserToGroup:output_type -> openim.group.InviteUserToGroupResp
-	38,  // 118: openim.group.group.getGroups:output_type -> openim.group.GetGroupsResp
-	41,  // 119: openim.group.group.getGroupMembersCMS:output_type -> openim.group.GetGroupMembersCMSResp
-	43,  // 120: openim.group.group.dismissGroup:output_type -> openim.group.DismissGroupResp
-	45,  // 121: openim.group.group.muteGroupMember:output_type -> openim.group.MuteGroupMemberResp
-	47,  // 122: openim.group.group.cancelMuteGroupMember:output_type -> openim.group.CancelMuteGroupMemberResp
-	49,  // 123: openim.group.group.muteGroup:output_type -> openim.group.MuteGroupResp
-	51,  // 124: openim.group.group.cancelMuteGroup:output_type -> openim.group.CancelMuteGroupResp
-	54,  // 125: openim.group.group.setGroupMemberInfo:output_type -> openim.group.SetGroupMemberInfoResp
-	57,  // 126: openim.group.group.getGroupAbstractInfo:output_type -> openim.group.GetGroupAbstractInfoResp
-	59,  // 127: openim.group.group.getUserInGroupMembers:output_type -> openim.group.GetUserInGroupMembersResp
-	61,  // 128: openim.group.group.getGroupMemberUserIDs:output_type -> openim.group.GetGroupMemberUserIDsResp
-	63,  // 129: openim.group.group.GetGroupMemberRoleLevel:output_type -> openim.group.GetGroupMemberRoleLevelResp
-	65,  // 130: openim.group.group.GetGroupInfoCache:output_type -> openim.group.GetGroupInfoCacheResp
-	67,  // 131: openim.group.group.GetGroupMemberCache:output_type -> openim.group.GetGroupMemberCacheResp
-	69,  // 132: openim.group.group.GroupCreateCount:output_type -> openim.group.GroupCreateCountResp
-	73,  // 133: openim.group.group.NotificationUserInfoUpdate:output_type -> openim.group.notificationUserInfoUpdateResp
-	75,  // 134: openim.group.group.getIncrementalGroupMember:output_type -> openim.group.getIncrementalGroupMemberResp
-	83,  // 135: openim.group.group.BatchGetIncrementalGroupMember:output_type -> openim.group.BatchGetIncrementalGroupMemberResp
-	77,  // 136: openim.group.group.getIncrementalJoinGroup:output_type -> openim.group.getIncrementalJoinGroupResp
-	79,  // 137: openim.group.group.GetFullGroupMemberUserIDs:output_type -> openim.group.GetFullGroupMemberUserIDsResp
-	81,  // 138: openim.group.group.GetFullJoinGroupIDs:output_type -> openim.group.GetFullJoinGroupIDsResp
-	85,  // 139: openim.group.group.getCommonGroupsWithFriend:output_type -> openim.group.GetCommonGroupsWithFriendResp
-	100, // [100:140] is the sub-list for method output_type
-	60,  // [60:100] is the sub-list for method input_type
-	60,  // [60:60] is the sub-list for extension type_name
-	60,  // [60:60] is the sub-list for extension extendee
-	0,   // [0:60] is the sub-list for field type_name
+	93,  // 57: openim.group.BatchGetIncrementalGroupMemberResp.respList:type_name -> openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
+	94,  // 58: openim.group.GetCommonGroupsWithFriendResp.groups:type_name -> openim.sdkws.GroupInfo
+	104, // 59: openim.group.PinGroupMessageResp.pinnedMsg:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	104, // 60: openim.group.PinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	104, // 61: openim.group.UnpinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	104, // 62: openim.group.GetGroupPinnedMessagesResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	75,  // 63: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry.value:type_name -> openim.group.getIncrementalGroupMemberResp
+	0,   // 64: openim.group.group.createGroup:input_type -> openim.group.CreateGroupReq
+	18,  // 65: openim.group.group.joinGroup:input_type -> openim.group.JoinGroupReq
+	22,  // 66: openim.group.group.quitGroup:input_type -> openim.group.QuitGroupReq
+	2,   // 67: openim.group.group.getGroupsInfo:input_type -> openim.group.GetGroupsInfoReq
+	4,   // 68: openim.group.group.setGroupInfo:input_type -> openim.group.SetGroupInfoReq
+	6,   // 69: openim.group.group.setGroupInfoEx:input_type -> openim.group.SetGroupInfoExReq
+	8,   // 70: openim.group.group.getGroupApplicationList:input_type -> openim.group.GetGroupApplicationListReq
+	10,  // 71: openim.group.group.getGroupApplicationUnhandledCount:input_type -> openim.group.GetGroupApplicationUnhandledCountReq
+	12,  // 72: openim.group.group.getUserReqApplicationList:input_type -> openim.group.GetUserReqApplicationListReq
+	70,  // 73: openim.group.group.getGroupUsersReqApplicationList:input_type -> openim.group.getGroupUsersReqApplicationListReq
+	14,  // 74: openim.group.group.getSpecifiedUserGroupRequestInfo:input_type -> openim.group.GetSpecifiedUserGroupRequestInfoReq
+	16,  // 75: openim.group.group.transferGroupOwner:input_type -> openim.group.TransferGroupOwnerReq
+	20,  // 76: openim.group.group.groupApplicationResponse:input_type -> openim.group.GroupApplicationResponseReq
+	24,  // 77: openim.group.group.getGroupMemberList:input_type -> openim.group.GetGroupMemberListReq
+	26,  // 78: openim.group.group.getGroupMembersInfo:input_type -> openim.group.GetGroupMembersInfoReq
+	28,  // 79: openim.group.group.kickGroupMember:input_type -> openim.group.KickGroupMemberReq
+	30,  // 80: openim.group.group.getJoinedGroupList:input_type -> openim.group.GetJoinedGroupListReq
+	32,  // 81: openim.group.group.inviteUserToGroup:input_type -> openim.group.InviteUserToGroupReq
+	37,  // 82: openim.group.group.getGroups:input_type -> openim.group.GetGroupsReq
+	40,  // 83: openim.group.group.getGroupMembersCMS:input_type -> openim.group.GetGroupMembersCMSReq
+	42,  // 84: openim.group.group.dismissGroup:input_type -> openim.group.DismissGroupReq
+	44,  // 85: openim.group.group.muteGroupMember:input_type -> openim.group.MuteGroupMemberReq
+	46,  // 86: openim.group.group.cancelMuteGroupMember:input_type -> openim.group.CancelMuteGroupMemberReq
+	48,  // 87: openim.group.group.muteGroup:input_type -> openim.group.MuteGroupReq
+	50,  // 88: openim.group.group.cancelMuteGroup:input_type -> openim.group.CancelMuteGroupReq
+	53,  // 89: openim.group.group.setGroupMemberInfo:input_type -> openim.group.SetGroupMemberInfoReq
+	55,  // 90: openim.group.group.getGroupAbstractInfo:input_type -> openim.group.GetGroupAbstractInfoReq
+	58,  // 91: openim.group.group.getUserInGroupMembers:input_type -> openim.group.GetUserInGroupMembersReq
+	60,  // 92: openim.group.group.getGroupMemberUserIDs:input_type -> openim.group.GetGroupMemberUserIDsReq
+	62,  // 93: openim.group.group.GetGroupMemberRoleLevel:input_type -> openim.group.GetGroupMemberRoleLevelReq
+	64,  // 94: openim.group.group.GetGroupInfoCache:input_type -> openim.group.GetGroupInfoCacheReq
+	66,  // 95: openim.group.group.GetGroupMemberCache:input_type -> openim.group.GetGroupMemberCacheReq
+	68,  // 96: openim.group.group.GroupCreateCount:input_type -> openim.group.GroupCreateCountReq
+	72,  // 97: openim.group.group.NotificationUserInfoUpdate:input_type -> openim.group.notificationUserInfoUpdateReq
+	74,  // 98: openim.group.group.getIncrementalGroupMember:input_type -> openim.group.getIncrementalGroupMemberReq
+	82,  // 99: openim.group.group.BatchGetIncrementalGroupMember:input_type -> openim.group.BatchGetIncrementalGroupMemberReq
+	76,  // 100: openim.group.group.getIncrementalJoinGroup:input_type -> openim.group.getIncrementalJoinGroupReq
+	78,  // 101: openim.group.group.GetFullGroupMemberUserIDs:input_type -> openim.group.GetFullGroupMemberUserIDsReq
+	80,  // 102: openim.group.group.GetFullJoinGroupIDs:input_type -> openim.group.GetFullJoinGroupIDsReq
+	84,  // 103: openim.group.group.getCommonGroupsWithFriend:input_type -> openim.group.GetCommonGroupsWithFriendReq
+	86,  // 104: openim.group.group.pinGroupMessage:input_type -> openim.group.PinGroupMessageReq
+	88,  // 105: openim.group.group.unpinGroupMessage:input_type -> openim.group.UnpinGroupMessageReq
+	90,  // 106: openim.group.group.getGroupPinnedMessages:input_type -> openim.group.GetGroupPinnedMessagesReq
+	1,   // 107: openim.group.group.createGroup:output_type -> openim.group.CreateGroupResp
+	19,  // 108: openim.group.group.joinGroup:output_type -> openim.group.JoinGroupResp
+	23,  // 109: openim.group.group.quitGroup:output_type -> openim.group.QuitGroupResp
+	3,   // 110: openim.group.group.getGroupsInfo:output_type -> openim.group.GetGroupsInfoResp
+	5,   // 111: openim.group.group.setGroupInfo:output_type -> openim.group.SetGroupInfoResp
+	7,   // 112: openim.group.group.setGroupInfoEx:output_type -> openim.group.SetGroupInfoExResp
+	9,   // 113: openim.group.group.getGroupApplicationList:output_type -> openim.group.GetGroupApplicationListResp
+	11,  // 114: openim.group.group.getGroupApplicationUnhandledCount:output_type -> openim.group.GetGroupApplicationUnhandledCountResp
+	13,  // 115: openim.group.group.getUserReqApplicationList:output_type -> openim.group.GetUserReqApplicationListResp
+	71,  // 116: openim.group.group.getGroupUsersReqApplicationList:output_type -> openim.group.getGroupUsersReqApplicationListResp
+	15,  // 117: openim.group.group.getSpecifiedUserGroupRequestInfo:output_type -> openim.group.GetSpecifiedUserGroupRequestInfoResp
+	17,  // 118: openim.group.group.transferGroupOwner:output_type -> openim.group.TransferGroupOwnerResp
+	21,  // 119: openim.group.group.groupApplicationResponse:output_type -> openim.group.GroupApplicationResponseResp
+	25,  // 120: openim.group.group.getGroupMemberList:output_type -> openim.group.GetGroupMemberListResp
+	27,  // 121: openim.group.group.getGroupMembersInfo:output_type -> openim.group.GetGroupMembersInfoResp
+	29,  // 122: openim.group.group.kickGroupMember:output_type -> openim.group.KickGroupMemberResp
+	31,  // 123: openim.group.group.getJoinedGroupList:output_type -> openim.group.GetJoinedGroupListResp
+	33,  // 124: openim.group.group.inviteUserToGroup:output_type -> openim.group.InviteUserToGroupResp
+	38,  // 125: openim.group.group.getGroups:output_type -> openim.group.GetGroupsResp
+	41,  // 126: openim.group.group.getGroupMembersCMS:output_type -> openim.group.GetGroupMembersCMSResp
+	43,  // 127: openim.group.group.dismissGroup:output_type -> openim.group.DismissGroupResp
+	45,  // 128: openim.group.group.muteGroupMember:output_type -> openim.group.MuteGroupMemberResp
+	47,  // 129: openim.group.group.cancelMuteGroupMember:output_type -> openim.group.CancelMuteGroupMemberResp
+	49,  // 130: openim.group.group.muteGroup:output_type -> openim.group.MuteGroupResp
+	51,  // 131: openim.group.group.cancelMuteGroup:output_type -> openim.group.CancelMuteGroupResp
+	54,  // 132: openim.group.group.setGroupMemberInfo:output_type -> openim.group.SetGroupMemberInfoResp
+	57,  // 133: openim.group.group.getGroupAbstractInfo:output_type -> openim.group.GetGroupAbstractInfoResp
+	59,  // 134: openim.group.group.getUserInGroupMembers:output_type -> openim.group.GetUserInGroupMembersResp
+	61,  // 135: openim.group.group.getGroupMemberUserIDs:output_type -> openim.group.GetGroupMemberUserIDsResp
+	63,  // 136: openim.group.group.GetGroupMemberRoleLevel:output_type -> openim.group.GetGroupMemberRoleLevelResp
+	65,  // 137: openim.group.group.GetGroupInfoCache:output_type -> openim.group.GetGroupInfoCacheResp
+	67,  // 138: openim.group.group.GetGroupMemberCache:output_type -> openim.group.GetGroupMemberCacheResp
+	69,  // 139: openim.group.group.GroupCreateCount:output_type -> openim.group.GroupCreateCountResp
+	73,  // 140: openim.group.group.NotificationUserInfoUpdate:output_type -> openim.group.notificationUserInfoUpdateResp
+	75,  // 141: openim.group.group.getIncrementalGroupMember:output_type -> openim.group.getIncrementalGroupMemberResp
+	83,  // 142: openim.group.group.BatchGetIncrementalGroupMember:output_type -> openim.group.BatchGetIncrementalGroupMemberResp
+	77,  // 143: openim.group.group.getIncrementalJoinGroup:output_type -> openim.group.getIncrementalJoinGroupResp
+	79,  // 144: openim.group.group.GetFullGroupMemberUserIDs:output_type -> openim.group.GetFullGroupMemberUserIDsResp
+	81,  // 145: openim.group.group.GetFullJoinGroupIDs:output_type -> openim.group.GetFullJoinGroupIDsResp
+	85,  // 146: openim.group.group.getCommonGroupsWithFriend:output_type -> openim.group.GetCommonGroupsWithFriendResp
+	87,  // 147: openim.group.group.pinGroupMessage:output_type -> openim.group.PinGroupMessageResp
+	89,  // 148: openim.group.group.unpinGroupMessage:output_type -> openim.group.UnpinGroupMessageResp
+	91,  // 149: openim.group.group.getGroupPinnedMessages:output_type -> openim.group.GetGroupPinnedMessagesResp
+	107, // [107:150] is the sub-list for method output_type
+	64,  // [64:107] is the sub-list for method input_type
+	64,  // [64:64] is the sub-list for extension type_name
+	64,  // [64:64] is the sub-list for extension extendee
+	0,   // [0:64] is the sub-list for field type_name
 }
 
 func init() { file_group_group_proto_init() }
@@ -5222,7 +5562,7 @@ func file_group_group_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_group_group_proto_rawDesc), len(file_group_group_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   88,
+			NumMessages:   94,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

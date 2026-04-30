@@ -59,6 +59,9 @@ const (
 	Group_GetFullGroupMemberUserIDs_FullMethodName         = "/openim.group.group/GetFullGroupMemberUserIDs"
 	Group_GetFullJoinGroupIDs_FullMethodName               = "/openim.group.group/GetFullJoinGroupIDs"
 	Group_GetCommonGroupsWithFriend_FullMethodName         = "/openim.group.group/getCommonGroupsWithFriend"
+	Group_PinGroupMessage_FullMethodName                   = "/openim.group.group/pinGroupMessage"
+	Group_UnpinGroupMessage_FullMethodName                 = "/openim.group.group/unpinGroupMessage"
+	Group_GetGroupPinnedMessages_FullMethodName            = "/openim.group.group/getGroupPinnedMessages"
 )
 
 // GroupClient is the client API for Group service.
@@ -130,6 +133,12 @@ type GroupClient interface {
 	GetFullGroupMemberUserIDs(ctx context.Context, in *GetFullGroupMemberUserIDsReq, opts ...grpc.CallOption) (*GetFullGroupMemberUserIDsResp, error)
 	GetFullJoinGroupIDs(ctx context.Context, in *GetFullJoinGroupIDsReq, opts ...grpc.CallOption) (*GetFullJoinGroupIDsResp, error)
 	GetCommonGroupsWithFriend(ctx context.Context, in *GetCommonGroupsWithFriendReq, opts ...grpc.CallOption) (*GetCommonGroupsWithFriendResp, error)
+	// 群置顶单条消息（自动滚动保留最近 3 条置顶消息）
+	PinGroupMessage(ctx context.Context, in *PinGroupMessageReq, opts ...grpc.CallOption) (*PinGroupMessageResp, error)
+	// 取消群置顶消息
+	UnpinGroupMessage(ctx context.Context, in *UnpinGroupMessageReq, opts ...grpc.CallOption) (*UnpinGroupMessageResp, error)
+	// 获取群置顶消息列表（最多 3 条）
+	GetGroupPinnedMessages(ctx context.Context, in *GetGroupPinnedMessagesReq, opts ...grpc.CallOption) (*GetGroupPinnedMessagesResp, error)
 }
 
 type groupClient struct {
@@ -540,6 +549,36 @@ func (c *groupClient) GetCommonGroupsWithFriend(ctx context.Context, in *GetComm
 	return out, nil
 }
 
+func (c *groupClient) PinGroupMessage(ctx context.Context, in *PinGroupMessageReq, opts ...grpc.CallOption) (*PinGroupMessageResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PinGroupMessageResp)
+	err := c.cc.Invoke(ctx, Group_PinGroupMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupClient) UnpinGroupMessage(ctx context.Context, in *UnpinGroupMessageReq, opts ...grpc.CallOption) (*UnpinGroupMessageResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnpinGroupMessageResp)
+	err := c.cc.Invoke(ctx, Group_UnpinGroupMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupClient) GetGroupPinnedMessages(ctx context.Context, in *GetGroupPinnedMessagesReq, opts ...grpc.CallOption) (*GetGroupPinnedMessagesResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGroupPinnedMessagesResp)
+	err := c.cc.Invoke(ctx, Group_GetGroupPinnedMessages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GroupServer is the server API for Group service.
 // All implementations must embed UnimplementedGroupServer
 // for forward compatibility.
@@ -609,6 +648,12 @@ type GroupServer interface {
 	GetFullGroupMemberUserIDs(context.Context, *GetFullGroupMemberUserIDsReq) (*GetFullGroupMemberUserIDsResp, error)
 	GetFullJoinGroupIDs(context.Context, *GetFullJoinGroupIDsReq) (*GetFullJoinGroupIDsResp, error)
 	GetCommonGroupsWithFriend(context.Context, *GetCommonGroupsWithFriendReq) (*GetCommonGroupsWithFriendResp, error)
+	// 群置顶单条消息（自动滚动保留最近 3 条置顶消息）
+	PinGroupMessage(context.Context, *PinGroupMessageReq) (*PinGroupMessageResp, error)
+	// 取消群置顶消息
+	UnpinGroupMessage(context.Context, *UnpinGroupMessageReq) (*UnpinGroupMessageResp, error)
+	// 获取群置顶消息列表（最多 3 条）
+	GetGroupPinnedMessages(context.Context, *GetGroupPinnedMessagesReq) (*GetGroupPinnedMessagesResp, error)
 	mustEmbedUnimplementedGroupServer()
 }
 
@@ -738,6 +783,15 @@ func (UnimplementedGroupServer) GetFullJoinGroupIDs(context.Context, *GetFullJoi
 }
 func (UnimplementedGroupServer) GetCommonGroupsWithFriend(context.Context, *GetCommonGroupsWithFriendReq) (*GetCommonGroupsWithFriendResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCommonGroupsWithFriend not implemented")
+}
+func (UnimplementedGroupServer) PinGroupMessage(context.Context, *PinGroupMessageReq) (*PinGroupMessageResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method PinGroupMessage not implemented")
+}
+func (UnimplementedGroupServer) UnpinGroupMessage(context.Context, *UnpinGroupMessageReq) (*UnpinGroupMessageResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method UnpinGroupMessage not implemented")
+}
+func (UnimplementedGroupServer) GetGroupPinnedMessages(context.Context, *GetGroupPinnedMessagesReq) (*GetGroupPinnedMessagesResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGroupPinnedMessages not implemented")
 }
 func (UnimplementedGroupServer) mustEmbedUnimplementedGroupServer() {}
 func (UnimplementedGroupServer) testEmbeddedByValue()               {}
@@ -1480,6 +1534,60 @@ func _Group_GetCommonGroupsWithFriend_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Group_PinGroupMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PinGroupMessageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).PinGroupMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_PinGroupMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).PinGroupMessage(ctx, req.(*PinGroupMessageReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Group_UnpinGroupMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpinGroupMessageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).UnpinGroupMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_UnpinGroupMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).UnpinGroupMessage(ctx, req.(*UnpinGroupMessageReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Group_GetGroupPinnedMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupPinnedMessagesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).GetGroupPinnedMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_GetGroupPinnedMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).GetGroupPinnedMessages(ctx, req.(*GetGroupPinnedMessagesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Group_ServiceDesc is the grpc.ServiceDesc for Group service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1646,6 +1754,18 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getCommonGroupsWithFriend",
 			Handler:    _Group_GetCommonGroupsWithFriend_Handler,
+		},
+		{
+			MethodName: "pinGroupMessage",
+			Handler:    _Group_PinGroupMessage_Handler,
+		},
+		{
+			MethodName: "unpinGroupMessage",
+			Handler:    _Group_UnpinGroupMessage_Handler,
+		},
+		{
+			MethodName: "getGroupPinnedMessages",
+			Handler:    _Group_GetGroupPinnedMessages_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
