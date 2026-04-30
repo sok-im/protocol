@@ -1,6 +1,8 @@
 PROTO_NAMES=(
     "auth"
+    "captcha"
     "conversation"
+    "crypto"
     "errinfo"
     "relation"
     "group"
@@ -8,6 +10,7 @@ PROTO_NAMES=(
     "msg"
     "msggateway"
     "push"
+    "redpacket"
     "rtc"
     "sdkws"
     "third"

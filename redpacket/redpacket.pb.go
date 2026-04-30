@@ -22,17 +22,23 @@ const (
 )
 
 type CreateOrderReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CreatorUserId string                 `protobuf:"bytes,1,opt,name=creator_user_id,json=creatorUserId,proto3" json:"creator_user_id"`
-	CreatorWallet string                 `protobuf:"bytes,2,opt,name=creator_wallet,json=creatorWallet,proto3" json:"creator_wallet"`
-	PacketType    int32                  `protobuf:"varint,3,opt,name=packet_type,json=packetType,proto3" json:"packet_type"`
-	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token"`
-	TotalAmount   string                 `protobuf:"bytes,5,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount"`
-	TotalShares   int32                  `protobuf:"varint,6,opt,name=total_shares,json=totalShares,proto3" json:"total_shares"`
-	ExpiryAt      int64                  `protobuf:"varint,7,opt,name=expiry_at,json=expiryAt,proto3" json:"expiry_at"`
-	Chain         string                 `protobuf:"bytes,8,opt,name=chain,proto3" json:"chain"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ChainType       string                 `protobuf:"bytes,1,opt,name=chainType,proto3" json:"chainType"`
+	ChainID         int64                  `protobuf:"varint,2,opt,name=chainID,proto3" json:"chainID"`
+	ContractAddress string                 `protobuf:"bytes,3,opt,name=contractAddress,proto3" json:"contractAddress"`
+	CreatorWallet   string                 `protobuf:"bytes,4,opt,name=creatorWallet,proto3" json:"creatorWallet"`
+	GroupID         string                 `protobuf:"bytes,5,opt,name=groupID,proto3" json:"groupID"`
+	ScopeType       string                 `protobuf:"bytes,6,opt,name=scopeType,proto3" json:"scopeType"`
+	ReceiverUserID  string                 `protobuf:"bytes,7,opt,name=receiverUserID,proto3" json:"receiverUserID"`
+	ReceiverUserIDs []string               `protobuf:"bytes,8,rep,name=receiverUserIDs,proto3" json:"receiverUserIDs"`
+	PacketType      int32                  `protobuf:"varint,9,opt,name=packetType,proto3" json:"packetType"`
+	Token           string                 `protobuf:"bytes,10,opt,name=token,proto3" json:"token"`
+	TotalAmount     string                 `protobuf:"bytes,11,opt,name=totalAmount,proto3" json:"totalAmount"`
+	TotalShares     int32                  `protobuf:"varint,12,opt,name=totalShares,proto3" json:"totalShares"`
+	ExpiryAt        int64                  `protobuf:"varint,13,opt,name=expiryAt,proto3" json:"expiryAt"`
+	Remark          string                 `protobuf:"bytes,14,opt,name=remark,proto3" json:"remark"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreateOrderReq) Reset() {
@@ -65,9 +71,23 @@ func (*CreateOrderReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateOrderReq) GetCreatorUserId() string {
+func (x *CreateOrderReq) GetChainType() string {
 	if x != nil {
-		return x.CreatorUserId
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *CreateOrderReq) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
+	}
+	return 0
+}
+
+func (x *CreateOrderReq) GetContractAddress() string {
+	if x != nil {
+		return x.ContractAddress
 	}
 	return ""
 }
@@ -77,6 +97,34 @@ func (x *CreateOrderReq) GetCreatorWallet() string {
 		return x.CreatorWallet
 	}
 	return ""
+}
+
+func (x *CreateOrderReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *CreateOrderReq) GetScopeType() string {
+	if x != nil {
+		return x.ScopeType
+	}
+	return ""
+}
+
+func (x *CreateOrderReq) GetReceiverUserID() string {
+	if x != nil {
+		return x.ReceiverUserID
+	}
+	return ""
+}
+
+func (x *CreateOrderReq) GetReceiverUserIDs() []string {
+	if x != nil {
+		return x.ReceiverUserIDs
+	}
+	return nil
 }
 
 func (x *CreateOrderReq) GetPacketType() int32 {
@@ -114,16 +162,16 @@ func (x *CreateOrderReq) GetExpiryAt() int64 {
 	return 0
 }
 
-func (x *CreateOrderReq) GetChain() string {
+func (x *CreateOrderReq) GetRemark() string {
 	if x != nil {
-		return x.Chain
+		return x.Remark
 	}
 	return ""
 }
 
 type CreateOrderResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BizId         string                 `protobuf:"bytes,1,opt,name=biz_id,json=bizId,proto3" json:"biz_id"`
+	BizID         string                 `protobuf:"bytes,1,opt,name=bizID,proto3" json:"bizID"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -158,20 +206,24 @@ func (*CreateOrderResp) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateOrderResp) GetBizId() string {
+func (x *CreateOrderResp) GetBizID() string {
 	if x != nil {
-		return x.BizId
+		return x.BizID
 	}
 	return ""
 }
 
 type CreatedCallbackReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BizId         string                 `protobuf:"bytes,1,opt,name=biz_id,json=bizId,proto3" json:"biz_id"`
-	TxHash        string                 `protobuf:"bytes,2,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash"`
-	PacketId      string                 `protobuf:"bytes,3,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BizID           string                 `protobuf:"bytes,1,opt,name=bizID,proto3" json:"bizID"`
+	TxHash          string                 `protobuf:"bytes,2,opt,name=txHash,proto3" json:"txHash"`
+	PacketID        string                 `protobuf:"bytes,3,opt,name=packetID,proto3" json:"packetID"`
+	GroupID         string                 `protobuf:"bytes,4,opt,name=groupID,proto3" json:"groupID"`
+	ScopeType       string                 `protobuf:"bytes,5,opt,name=scopeType,proto3" json:"scopeType"`
+	ReceiverUserID  string                 `protobuf:"bytes,6,opt,name=receiverUserID,proto3" json:"receiverUserID"`
+	ReceiverUserIDs []string               `protobuf:"bytes,7,rep,name=receiverUserIDs,proto3" json:"receiverUserIDs"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreatedCallbackReq) Reset() {
@@ -204,9 +256,9 @@ func (*CreatedCallbackReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreatedCallbackReq) GetBizId() string {
+func (x *CreatedCallbackReq) GetBizID() string {
 	if x != nil {
-		return x.BizId
+		return x.BizID
 	}
 	return ""
 }
@@ -218,16 +270,43 @@ func (x *CreatedCallbackReq) GetTxHash() string {
 	return ""
 }
 
-func (x *CreatedCallbackReq) GetPacketId() string {
+func (x *CreatedCallbackReq) GetPacketID() string {
 	if x != nil {
-		return x.PacketId
+		return x.PacketID
 	}
 	return ""
 }
 
+func (x *CreatedCallbackReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *CreatedCallbackReq) GetScopeType() string {
+	if x != nil {
+		return x.ScopeType
+	}
+	return ""
+}
+
+func (x *CreatedCallbackReq) GetReceiverUserID() string {
+	if x != nil {
+		return x.ReceiverUserID
+	}
+	return ""
+}
+
+func (x *CreatedCallbackReq) GetReceiverUserIDs() []string {
+	if x != nil {
+		return x.ReceiverUserIDs
+	}
+	return nil
+}
+
 type CreatedCallbackResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -262,16 +341,9 @@ func (*CreatedCallbackResp) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreatedCallbackResp) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
 type GetDetailReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PacketId      string                 `protobuf:"bytes,1,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
+	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -306,32 +378,37 @@ func (*GetDetailReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetDetailReq) GetPacketId() string {
+func (x *GetDetailReq) GetPacketID() string {
 	if x != nil {
-		return x.PacketId
+		return x.PacketID
 	}
 	return ""
 }
 
 type RedPacketRecord struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	BizId           string                 `protobuf:"bytes,2,opt,name=biz_id,json=bizId,proto3" json:"biz_id"`
-	PacketId        string                 `protobuf:"bytes,3,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
-	ChainId         int64                  `protobuf:"varint,4,opt,name=chain_id,json=chainId,proto3" json:"chain_id"`
-	ContractAddress string                 `protobuf:"bytes,5,opt,name=contract_address,json=contractAddress,proto3" json:"contract_address"`
-	CreatorUserId   string                 `protobuf:"bytes,6,opt,name=creator_user_id,json=creatorUserId,proto3" json:"creator_user_id"`
-	CreatorWallet   string                 `protobuf:"bytes,7,opt,name=creator_wallet,json=creatorWallet,proto3" json:"creator_wallet"`
-	PacketType      int32                  `protobuf:"varint,8,opt,name=packet_type,json=packetType,proto3" json:"packet_type"`
-	Token           string                 `protobuf:"bytes,9,opt,name=token,proto3" json:"token"`
-	TotalAmount     string                 `protobuf:"bytes,10,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount"`
-	TotalShares     int32                  `protobuf:"varint,11,opt,name=total_shares,json=totalShares,proto3" json:"total_shares"`
-	ExpiryAt        int64                  `protobuf:"varint,12,opt,name=expiry_at,json=expiryAt,proto3" json:"expiry_at"`
-	TxHash          string                 `protobuf:"bytes,13,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash"`
-	Status          string                 `protobuf:"bytes,14,opt,name=status,proto3" json:"status"`
-	Chain           string                 `protobuf:"bytes,15,opt,name=chain,proto3" json:"chain"`
-	CreatedAt       int64                  `protobuf:"varint,16,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt       int64                  `protobuf:"varint,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	BizID           string                 `protobuf:"bytes,1,opt,name=bizID,proto3" json:"bizID"`
+	ChainType       string                 `protobuf:"bytes,2,opt,name=chainType,proto3" json:"chainType"`
+	PacketID        string                 `protobuf:"bytes,3,opt,name=packetID,proto3" json:"packetID"`
+	ChainID         int64                  `protobuf:"varint,4,opt,name=chainID,proto3" json:"chainID"`
+	ContractAddress string                 `protobuf:"bytes,5,opt,name=contractAddress,proto3" json:"contractAddress"`
+	CreatorUserID   string                 `protobuf:"bytes,6,opt,name=creatorUserID,proto3" json:"creatorUserID"`
+	CreatorWallet   string                 `protobuf:"bytes,7,opt,name=creatorWallet,proto3" json:"creatorWallet"`
+	GroupID         string                 `protobuf:"bytes,8,opt,name=groupID,proto3" json:"groupID"`
+	ScopeType       string                 `protobuf:"bytes,9,opt,name=scopeType,proto3" json:"scopeType"`
+	ReceiverUserID  string                 `protobuf:"bytes,10,opt,name=receiverUserID,proto3" json:"receiverUserID"`
+	ReceiverUserIDs []string               `protobuf:"bytes,11,rep,name=receiverUserIDs,proto3" json:"receiverUserIDs"`
+	PacketType      int32                  `protobuf:"varint,12,opt,name=packetType,proto3" json:"packetType"`
+	Token           string                 `protobuf:"bytes,13,opt,name=token,proto3" json:"token"`
+	TotalAmount     string                 `protobuf:"bytes,14,opt,name=totalAmount,proto3" json:"totalAmount"`
+	TotalShares     int32                  `protobuf:"varint,15,opt,name=totalShares,proto3" json:"totalShares"`
+	ClaimedAmount   string                 `protobuf:"bytes,16,opt,name=claimedAmount,proto3" json:"claimedAmount"`
+	ClaimedShares   int32                  `protobuf:"varint,17,opt,name=claimedShares,proto3" json:"claimedShares"`
+	ExpiryAt        int64                  `protobuf:"varint,18,opt,name=expiryAt,proto3" json:"expiryAt"`
+	TxHash          string                 `protobuf:"bytes,19,opt,name=txHash,proto3" json:"txHash"`
+	Status          string                 `protobuf:"bytes,20,opt,name=status,proto3" json:"status"`
+	CreatedAt       int64                  `protobuf:"varint,21,opt,name=createdAt,proto3" json:"createdAt"`
+	UpdatedAt       int64                  `protobuf:"varint,22,opt,name=updatedAt,proto3" json:"updatedAt"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -366,30 +443,30 @@ func (*RedPacketRecord) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *RedPacketRecord) GetId() int64 {
+func (x *RedPacketRecord) GetBizID() string {
 	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *RedPacketRecord) GetBizId() string {
-	if x != nil {
-		return x.BizId
+		return x.BizID
 	}
 	return ""
 }
 
-func (x *RedPacketRecord) GetPacketId() string {
+func (x *RedPacketRecord) GetChainType() string {
 	if x != nil {
-		return x.PacketId
+		return x.ChainType
 	}
 	return ""
 }
 
-func (x *RedPacketRecord) GetChainId() int64 {
+func (x *RedPacketRecord) GetPacketID() string {
 	if x != nil {
-		return x.ChainId
+		return x.PacketID
+	}
+	return ""
+}
+
+func (x *RedPacketRecord) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
 	}
 	return 0
 }
@@ -401,9 +478,9 @@ func (x *RedPacketRecord) GetContractAddress() string {
 	return ""
 }
 
-func (x *RedPacketRecord) GetCreatorUserId() string {
+func (x *RedPacketRecord) GetCreatorUserID() string {
 	if x != nil {
-		return x.CreatorUserId
+		return x.CreatorUserID
 	}
 	return ""
 }
@@ -413,6 +490,34 @@ func (x *RedPacketRecord) GetCreatorWallet() string {
 		return x.CreatorWallet
 	}
 	return ""
+}
+
+func (x *RedPacketRecord) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *RedPacketRecord) GetScopeType() string {
+	if x != nil {
+		return x.ScopeType
+	}
+	return ""
+}
+
+func (x *RedPacketRecord) GetReceiverUserID() string {
+	if x != nil {
+		return x.ReceiverUserID
+	}
+	return ""
+}
+
+func (x *RedPacketRecord) GetReceiverUserIDs() []string {
+	if x != nil {
+		return x.ReceiverUserIDs
+	}
+	return nil
 }
 
 func (x *RedPacketRecord) GetPacketType() int32 {
@@ -443,6 +548,20 @@ func (x *RedPacketRecord) GetTotalShares() int32 {
 	return 0
 }
 
+func (x *RedPacketRecord) GetClaimedAmount() string {
+	if x != nil {
+		return x.ClaimedAmount
+	}
+	return ""
+}
+
+func (x *RedPacketRecord) GetClaimedShares() int32 {
+	if x != nil {
+		return x.ClaimedShares
+	}
+	return 0
+}
+
 func (x *RedPacketRecord) GetExpiryAt() int64 {
 	if x != nil {
 		return x.ExpiryAt
@@ -464,13 +583,6 @@ func (x *RedPacketRecord) GetStatus() string {
 	return ""
 }
 
-func (x *RedPacketRecord) GetChain() string {
-	if x != nil {
-		return x.Chain
-	}
-	return ""
-}
-
 func (x *RedPacketRecord) GetCreatedAt() int64 {
 	if x != nil {
 		return x.CreatedAt
@@ -485,36 +597,36 @@ func (x *RedPacketRecord) GetUpdatedAt() int64 {
 	return 0
 }
 
-type ClaimRecord struct {
+type RedPacketClaimRecord struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	PacketId      string                 `protobuf:"bytes,2,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
-	ClaimerWallet string                 `protobuf:"bytes,3,opt,name=claimer_wallet,json=claimerWallet,proto3" json:"claimer_wallet"`
-	AuthNonce     string                 `protobuf:"bytes,4,opt,name=auth_nonce,json=authNonce,proto3" json:"auth_nonce"`
-	ClaimTxHash   string                 `protobuf:"bytes,5,opt,name=claim_tx_hash,json=claimTxHash,proto3" json:"claim_tx_hash"`
-	ClaimedAmount string                 `protobuf:"bytes,6,opt,name=claimed_amount,json=claimedAmount,proto3" json:"claimed_amount"`
-	BlockNumber   int64                  `protobuf:"varint,7,opt,name=block_number,json=blockNumber,proto3" json:"block_number"`
+	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	ClaimerWallet string                 `protobuf:"bytes,3,opt,name=claimerWallet,proto3" json:"claimerWallet"`
+	AuthNonce     string                 `protobuf:"bytes,4,opt,name=authNonce,proto3" json:"authNonce"`
+	ClaimTxHash   string                 `protobuf:"bytes,5,opt,name=claimTxHash,proto3" json:"claimTxHash"`
+	ClaimedAmount string                 `protobuf:"bytes,6,opt,name=claimedAmount,proto3" json:"claimedAmount"`
+	BlockNumber   uint64                 `protobuf:"varint,7,opt,name=blockNumber,proto3" json:"blockNumber"`
 	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status"`
-	CreatedAt     int64                  `protobuf:"varint,9,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt     int64                  `protobuf:"varint,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	CreatedAt     int64                  `protobuf:"varint,9,opt,name=createdAt,proto3" json:"createdAt"`
+	UpdatedAt     int64                  `protobuf:"varint,10,opt,name=updatedAt,proto3" json:"updatedAt"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ClaimRecord) Reset() {
-	*x = ClaimRecord{}
+func (x *RedPacketClaimRecord) Reset() {
+	*x = RedPacketClaimRecord{}
 	mi := &file_redpacket_redpacket_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ClaimRecord) String() string {
+func (x *RedPacketClaimRecord) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ClaimRecord) ProtoMessage() {}
+func (*RedPacketClaimRecord) ProtoMessage() {}
 
-func (x *ClaimRecord) ProtoReflect() protoreflect.Message {
+func (x *RedPacketClaimRecord) ProtoReflect() protoreflect.Message {
 	mi := &file_redpacket_redpacket_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -526,75 +638,75 @@ func (x *ClaimRecord) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ClaimRecord.ProtoReflect.Descriptor instead.
-func (*ClaimRecord) Descriptor() ([]byte, []int) {
+// Deprecated: Use RedPacketClaimRecord.ProtoReflect.Descriptor instead.
+func (*RedPacketClaimRecord) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ClaimRecord) GetId() int64 {
+func (x *RedPacketClaimRecord) GetPacketID() string {
 	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *ClaimRecord) GetPacketId() string {
-	if x != nil {
-		return x.PacketId
+		return x.PacketID
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetClaimerWallet() string {
+func (x *RedPacketClaimRecord) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *RedPacketClaimRecord) GetClaimerWallet() string {
 	if x != nil {
 		return x.ClaimerWallet
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetAuthNonce() string {
+func (x *RedPacketClaimRecord) GetAuthNonce() string {
 	if x != nil {
 		return x.AuthNonce
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetClaimTxHash() string {
+func (x *RedPacketClaimRecord) GetClaimTxHash() string {
 	if x != nil {
 		return x.ClaimTxHash
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetClaimedAmount() string {
+func (x *RedPacketClaimRecord) GetClaimedAmount() string {
 	if x != nil {
 		return x.ClaimedAmount
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetBlockNumber() int64 {
+func (x *RedPacketClaimRecord) GetBlockNumber() uint64 {
 	if x != nil {
 		return x.BlockNumber
 	}
 	return 0
 }
 
-func (x *ClaimRecord) GetStatus() string {
+func (x *RedPacketClaimRecord) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
 	return ""
 }
 
-func (x *ClaimRecord) GetCreatedAt() int64 {
+func (x *RedPacketClaimRecord) GetCreatedAt() int64 {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return 0
 }
 
-func (x *ClaimRecord) GetUpdatedAt() int64 {
+func (x *RedPacketClaimRecord) GetUpdatedAt() int64 {
 	if x != nil {
 		return x.UpdatedAt
 	}
@@ -602,9 +714,9 @@ func (x *ClaimRecord) GetUpdatedAt() int64 {
 }
 
 type GetDetailResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BizRecord     *RedPacketRecord       `protobuf:"bytes,1,opt,name=biz_record,json=bizRecord,proto3" json:"biz_record"`
-	Claims        []*ClaimRecord         `protobuf:"bytes,2,rep,name=claims,proto3" json:"claims"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Record        *RedPacketRecord        `protobuf:"bytes,1,opt,name=record,proto3" json:"record"`
+	Claims        []*RedPacketClaimRecord `protobuf:"bytes,2,rep,name=claims,proto3" json:"claims"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -639,44 +751,43 @@ func (*GetDetailResp) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetDetailResp) GetBizRecord() *RedPacketRecord {
+func (x *GetDetailResp) GetRecord() *RedPacketRecord {
 	if x != nil {
-		return x.BizRecord
+		return x.Record
 	}
 	return nil
 }
 
-func (x *GetDetailResp) GetClaims() []*ClaimRecord {
+func (x *GetDetailResp) GetClaims() []*RedPacketClaimRecord {
 	if x != nil {
 		return x.Claims
 	}
 	return nil
 }
 
-type ClaimSignReq struct {
+type IssueClaimSignReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PacketId      string                 `protobuf:"bytes,1,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
+	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
 	Claimer       string                 `protobuf:"bytes,2,opt,name=claimer,proto3" json:"claimer"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id"`
-	RandomSeed    string                 `protobuf:"bytes,4,opt,name=random_seed,json=randomSeed,proto3" json:"random_seed"`
+	RandomSeed    string                 `protobuf:"bytes,3,opt,name=randomSeed,proto3" json:"randomSeed"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ClaimSignReq) Reset() {
-	*x = ClaimSignReq{}
+func (x *IssueClaimSignReq) Reset() {
+	*x = IssueClaimSignReq{}
 	mi := &file_redpacket_redpacket_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ClaimSignReq) String() string {
+func (x *IssueClaimSignReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ClaimSignReq) ProtoMessage() {}
+func (*IssueClaimSignReq) ProtoMessage() {}
 
-func (x *ClaimSignReq) ProtoReflect() protoreflect.Message {
+func (x *IssueClaimSignReq) ProtoReflect() protoreflect.Message {
 	mi := &file_redpacket_redpacket_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -688,63 +799,56 @@ func (x *ClaimSignReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ClaimSignReq.ProtoReflect.Descriptor instead.
-func (*ClaimSignReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use IssueClaimSignReq.ProtoReflect.Descriptor instead.
+func (*IssueClaimSignReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ClaimSignReq) GetPacketId() string {
+func (x *IssueClaimSignReq) GetPacketID() string {
 	if x != nil {
-		return x.PacketId
+		return x.PacketID
 	}
 	return ""
 }
 
-func (x *ClaimSignReq) GetClaimer() string {
+func (x *IssueClaimSignReq) GetClaimer() string {
 	if x != nil {
 		return x.Claimer
 	}
 	return ""
 }
 
-func (x *ClaimSignReq) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *ClaimSignReq) GetRandomSeed() string {
+func (x *IssueClaimSignReq) GetRandomSeed() string {
 	if x != nil {
 		return x.RandomSeed
 	}
 	return ""
 }
 
-type ClaimSignResp struct {
+type IssueClaimSignResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AuthNonce     string                 `protobuf:"bytes,1,opt,name=auth_nonce,json=authNonce,proto3" json:"auth_nonce"`
+	AuthNonce     string                 `protobuf:"bytes,1,opt,name=authNonce,proto3" json:"authNonce"`
 	Deadline      int64                  `protobuf:"varint,2,opt,name=deadline,proto3" json:"deadline"`
 	Signature     string                 `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature"`
-	RandomSeed    string                 `protobuf:"bytes,4,opt,name=random_seed,json=randomSeed,proto3" json:"random_seed"`
+	RandomSeed    string                 `protobuf:"bytes,4,opt,name=randomSeed,proto3" json:"randomSeed"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ClaimSignResp) Reset() {
-	*x = ClaimSignResp{}
+func (x *IssueClaimSignResp) Reset() {
+	*x = IssueClaimSignResp{}
 	mi := &file_redpacket_redpacket_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ClaimSignResp) String() string {
+func (x *IssueClaimSignResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ClaimSignResp) ProtoMessage() {}
+func (*IssueClaimSignResp) ProtoMessage() {}
 
-func (x *ClaimSignResp) ProtoReflect() protoreflect.Message {
+func (x *IssueClaimSignResp) ProtoReflect() protoreflect.Message {
 	mi := &file_redpacket_redpacket_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -756,33 +860,33 @@ func (x *ClaimSignResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ClaimSignResp.ProtoReflect.Descriptor instead.
-func (*ClaimSignResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use IssueClaimSignResp.ProtoReflect.Descriptor instead.
+func (*IssueClaimSignResp) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ClaimSignResp) GetAuthNonce() string {
+func (x *IssueClaimSignResp) GetAuthNonce() string {
 	if x != nil {
 		return x.AuthNonce
 	}
 	return ""
 }
 
-func (x *ClaimSignResp) GetDeadline() int64 {
+func (x *IssueClaimSignResp) GetDeadline() int64 {
 	if x != nil {
 		return x.Deadline
 	}
 	return 0
 }
 
-func (x *ClaimSignResp) GetSignature() string {
+func (x *IssueClaimSignResp) GetSignature() string {
 	if x != nil {
 		return x.Signature
 	}
 	return ""
 }
 
-func (x *ClaimSignResp) GetRandomSeed() string {
+func (x *IssueClaimSignResp) GetRandomSeed() string {
 	if x != nil {
 		return x.RandomSeed
 	}
@@ -791,10 +895,9 @@ func (x *ClaimSignResp) GetRandomSeed() string {
 
 type ClaimResultReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PacketId      string                 `protobuf:"bytes,1,opt,name=packet_id,json=packetId,proto3" json:"packet_id"`
-	ClaimerWallet string                 `protobuf:"bytes,2,opt,name=claimer_wallet,json=claimerWallet,proto3" json:"claimer_wallet"`
-	TxHash        string                 `protobuf:"bytes,3,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash"`
-	AuthNonce     string                 `protobuf:"bytes,4,opt,name=auth_nonce,json=authNonce,proto3" json:"auth_nonce"`
+	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
+	Claimer       string                 `protobuf:"bytes,2,opt,name=claimer,proto3" json:"claimer"`
+	TxHash        string                 `protobuf:"bytes,3,opt,name=txHash,proto3" json:"txHash"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -829,16 +932,16 @@ func (*ClaimResultReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *ClaimResultReq) GetPacketId() string {
+func (x *ClaimResultReq) GetPacketID() string {
 	if x != nil {
-		return x.PacketId
+		return x.PacketID
 	}
 	return ""
 }
 
-func (x *ClaimResultReq) GetClaimerWallet() string {
+func (x *ClaimResultReq) GetClaimer() string {
 	if x != nil {
-		return x.ClaimerWallet
+		return x.Claimer
 	}
 	return ""
 }
@@ -850,16 +953,8 @@ func (x *ClaimResultReq) GetTxHash() string {
 	return ""
 }
 
-func (x *ClaimResultReq) GetAuthNonce() string {
-	if x != nil {
-		return x.AuthNonce
-	}
-	return ""
-}
-
 type ClaimResultResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -894,34 +989,31 @@ func (*ClaimResultResp) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *ClaimResultResp) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
-type TxResp struct {
+type IssueWalletBindChallengeReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TxHash        string                 `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash"`
+	ChainType     string                 `protobuf:"bytes,1,opt,name=chainType,proto3" json:"chainType"`
+	ChainID       int64                  `protobuf:"varint,2,opt,name=chainID,proto3" json:"chainID"`
+	WalletAddress string                 `protobuf:"bytes,3,opt,name=walletAddress,proto3" json:"walletAddress"`
+	Domain        string                 `protobuf:"bytes,4,opt,name=domain,proto3" json:"domain"`
+	Uri           string                 `protobuf:"bytes,5,opt,name=uri,proto3" json:"uri"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TxResp) Reset() {
-	*x = TxResp{}
+func (x *IssueWalletBindChallengeReq) Reset() {
+	*x = IssueWalletBindChallengeReq{}
 	mi := &file_redpacket_redpacket_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TxResp) String() string {
+func (x *IssueWalletBindChallengeReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TxResp) ProtoMessage() {}
+func (*IssueWalletBindChallengeReq) ProtoMessage() {}
 
-func (x *TxResp) ProtoReflect() protoreflect.Message {
+func (x *IssueWalletBindChallengeReq) ProtoReflect() protoreflect.Message {
 	mi := &file_redpacket_redpacket_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -933,29 +1025,460 @@ func (x *TxResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TxResp.ProtoReflect.Descriptor instead.
-func (*TxResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use IssueWalletBindChallengeReq.ProtoReflect.Descriptor instead.
+func (*IssueWalletBindChallengeReq) Descriptor() ([]byte, []int) {
 	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *TxResp) GetTxHash() string {
+func (x *IssueWalletBindChallengeReq) GetChainType() string {
 	if x != nil {
-		return x.TxHash
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeReq) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
+	}
+	return 0
+}
+
+func (x *IssueWalletBindChallengeReq) GetWalletAddress() string {
+	if x != nil {
+		return x.WalletAddress
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeReq) GetDomain() string {
+	if x != nil {
+		return x.Domain
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeReq) GetUri() string {
+	if x != nil {
+		return x.Uri
+	}
+	return ""
+}
+
+type IssueWalletBindChallengeResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeID   string                 `protobuf:"bytes,1,opt,name=challengeID,proto3" json:"challengeID"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	ChainType     string                 `protobuf:"bytes,3,opt,name=chainType,proto3" json:"chainType"`
+	ChainID       int64                  `protobuf:"varint,4,opt,name=chainID,proto3" json:"chainID"`
+	Wallet        string                 `protobuf:"bytes,5,opt,name=wallet,proto3" json:"wallet"`
+	Protocol      string                 `protobuf:"bytes,6,opt,name=protocol,proto3" json:"protocol"`
+	SignMethod    string                 `protobuf:"bytes,7,opt,name=signMethod,proto3" json:"signMethod"`
+	Nonce         string                 `protobuf:"bytes,8,opt,name=nonce,proto3" json:"nonce"`
+	Message       string                 `protobuf:"bytes,9,opt,name=message,proto3" json:"message"`
+	IssuedAt      string                 `protobuf:"bytes,10,opt,name=issuedAt,proto3" json:"issuedAt"`
+	ExpiresAt     string                 `protobuf:"bytes,11,opt,name=expiresAt,proto3" json:"expiresAt"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IssueWalletBindChallengeResp) Reset() {
+	*x = IssueWalletBindChallengeResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IssueWalletBindChallengeResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IssueWalletBindChallengeResp) ProtoMessage() {}
+
+func (x *IssueWalletBindChallengeResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IssueWalletBindChallengeResp.ProtoReflect.Descriptor instead.
+func (*IssueWalletBindChallengeResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *IssueWalletBindChallengeResp) GetChallengeID() string {
+	if x != nil {
+		return x.ChallengeID
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetChainType() string {
+	if x != nil {
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
+	}
+	return 0
+}
+
+func (x *IssueWalletBindChallengeResp) GetWallet() string {
+	if x != nil {
+		return x.Wallet
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetProtocol() string {
+	if x != nil {
+		return x.Protocol
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetSignMethod() string {
+	if x != nil {
+		return x.SignMethod
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetNonce() string {
+	if x != nil {
+		return x.Nonce
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetIssuedAt() string {
+	if x != nil {
+		return x.IssuedAt
+	}
+	return ""
+}
+
+func (x *IssueWalletBindChallengeResp) GetExpiresAt() string {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return ""
+}
+
+type ConfirmWalletBindReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChallengeID   string                 `protobuf:"bytes,1,opt,name=challengeID,proto3" json:"challengeID"`
+	Signature     string                 `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConfirmWalletBindReq) Reset() {
+	*x = ConfirmWalletBindReq{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConfirmWalletBindReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConfirmWalletBindReq) ProtoMessage() {}
+
+func (x *ConfirmWalletBindReq) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConfirmWalletBindReq.ProtoReflect.Descriptor instead.
+func (*ConfirmWalletBindReq) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ConfirmWalletBindReq) GetChallengeID() string {
+	if x != nil {
+		return x.ChallengeID
+	}
+	return ""
+}
+
+func (x *ConfirmWalletBindReq) GetSignature() string {
+	if x != nil {
+		return x.Signature
+	}
+	return ""
+}
+
+type ConfirmWalletBindResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	ChainType     string                 `protobuf:"bytes,2,opt,name=chainType,proto3" json:"chainType"`
+	ChainID       int64                  `protobuf:"varint,3,opt,name=chainID,proto3" json:"chainID"`
+	WalletAddress string                 `protobuf:"bytes,4,opt,name=walletAddress,proto3" json:"walletAddress"`
+	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status"`
+	VerifiedAt    string                 `protobuf:"bytes,6,opt,name=verifiedAt,proto3" json:"verifiedAt"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConfirmWalletBindResp) Reset() {
+	*x = ConfirmWalletBindResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConfirmWalletBindResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConfirmWalletBindResp) ProtoMessage() {}
+
+func (x *ConfirmWalletBindResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConfirmWalletBindResp.ProtoReflect.Descriptor instead.
+func (*ConfirmWalletBindResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ConfirmWalletBindResp) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *ConfirmWalletBindResp) GetChainType() string {
+	if x != nil {
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *ConfirmWalletBindResp) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
+	}
+	return 0
+}
+
+func (x *ConfirmWalletBindResp) GetWalletAddress() string {
+	if x != nil {
+		return x.WalletAddress
+	}
+	return ""
+}
+
+func (x *ConfirmWalletBindResp) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ConfirmWalletBindResp) GetVerifiedAt() string {
+	if x != nil {
+		return x.VerifiedAt
+	}
+	return ""
+}
+
+type GetWalletBindingReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChainType     string                 `protobuf:"bytes,1,opt,name=chainType,proto3" json:"chainType"`
+	WalletAddress string                 `protobuf:"bytes,2,opt,name=walletAddress,proto3" json:"walletAddress"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWalletBindingReq) Reset() {
+	*x = GetWalletBindingReq{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWalletBindingReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWalletBindingReq) ProtoMessage() {}
+
+func (x *GetWalletBindingReq) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWalletBindingReq.ProtoReflect.Descriptor instead.
+func (*GetWalletBindingReq) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetWalletBindingReq) GetChainType() string {
+	if x != nil {
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *GetWalletBindingReq) GetWalletAddress() string {
+	if x != nil {
+		return x.WalletAddress
+	}
+	return ""
+}
+
+type GetWalletBindingResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	ChainType     string                 `protobuf:"bytes,2,opt,name=chainType,proto3" json:"chainType"`
+	ChainID       int64                  `protobuf:"varint,3,opt,name=chainID,proto3" json:"chainID"`
+	WalletAddress string                 `protobuf:"bytes,4,opt,name=walletAddress,proto3" json:"walletAddress"`
+	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status"`
+	ChallengeID   string                 `protobuf:"bytes,6,opt,name=challengeID,proto3" json:"challengeID"`
+	VerifiedAt    string                 `protobuf:"bytes,7,opt,name=verifiedAt,proto3" json:"verifiedAt"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWalletBindingResp) Reset() {
+	*x = GetWalletBindingResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWalletBindingResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWalletBindingResp) ProtoMessage() {}
+
+func (x *GetWalletBindingResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWalletBindingResp.ProtoReflect.Descriptor instead.
+func (*GetWalletBindingResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *GetWalletBindingResp) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *GetWalletBindingResp) GetChainType() string {
+	if x != nil {
+		return x.ChainType
+	}
+	return ""
+}
+
+func (x *GetWalletBindingResp) GetChainID() int64 {
+	if x != nil {
+		return x.ChainID
+	}
+	return 0
+}
+
+func (x *GetWalletBindingResp) GetWalletAddress() string {
+	if x != nil {
+		return x.WalletAddress
+	}
+	return ""
+}
+
+func (x *GetWalletBindingResp) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *GetWalletBindingResp) GetChallengeID() string {
+	if x != nil {
+		return x.ChallengeID
+	}
+	return ""
+}
+
+func (x *GetWalletBindingResp) GetVerifiedAt() string {
+	if x != nil {
+		return x.VerifiedAt
 	}
 	return ""
 }
 
 type SetSignerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	NewSigner     string                 `protobuf:"bytes,1,opt,name=new_signer,json=newSigner,proto3" json:"new_signer"`
-	Chain         string                 `protobuf:"bytes,2,opt,name=chain,proto3" json:"chain"`
+	SignerAddress string                 `protobuf:"bytes,1,opt,name=signerAddress,proto3" json:"signerAddress"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetSignerReq) Reset() {
 	*x = SetSignerReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[13]
+	mi := &file_redpacket_redpacket_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -967,7 +1490,7 @@ func (x *SetSignerReq) String() string {
 func (*SetSignerReq) ProtoMessage() {}
 
 func (x *SetSignerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[13]
+	mi := &file_redpacket_redpacket_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -980,36 +1503,72 @@ func (x *SetSignerReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSignerReq.ProtoReflect.Descriptor instead.
 func (*SetSignerReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{13}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *SetSignerReq) GetNewSigner() string {
+func (x *SetSignerReq) GetSignerAddress() string {
 	if x != nil {
-		return x.NewSigner
+		return x.SignerAddress
 	}
 	return ""
 }
 
-func (x *SetSignerReq) GetChain() string {
+type SetSignerResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetSignerResp) Reset() {
+	*x = SetSignerResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetSignerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetSignerResp) ProtoMessage() {}
+
+func (x *SetSignerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[19]
 	if x != nil {
-		return x.Chain
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetSignerResp.ProtoReflect.Descriptor instead.
+func (*SetSignerResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *SetSignerResp) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
 
 type SetTokenReq struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Token          string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token"`
-	Allowed        bool                   `protobuf:"varint,2,opt,name=allowed,proto3" json:"allowed"`
-	MinShareAmount string                 `protobuf:"bytes,3,opt,name=min_share_amount,json=minShareAmount,proto3" json:"min_share_amount"`
-	Chain          string                 `protobuf:"bytes,4,opt,name=chain,proto3" json:"chain"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenAddress  string                 `protobuf:"bytes,1,opt,name=tokenAddress,proto3" json:"tokenAddress"`
+	Allowed       bool                   `protobuf:"varint,2,opt,name=allowed,proto3" json:"allowed"`
+	MinAmount     string                 `protobuf:"bytes,3,opt,name=minAmount,proto3" json:"minAmount"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetTokenReq) Reset() {
 	*x = SetTokenReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[14]
+	mi := &file_redpacket_redpacket_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1021,7 +1580,7 @@ func (x *SetTokenReq) String() string {
 func (*SetTokenReq) ProtoMessage() {}
 
 func (x *SetTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[14]
+	mi := &file_redpacket_redpacket_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1034,12 +1593,12 @@ func (x *SetTokenReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetTokenReq.ProtoReflect.Descriptor instead.
 func (*SetTokenReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{14}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *SetTokenReq) GetToken() string {
+func (x *SetTokenReq) GetTokenAddress() string {
 	if x != nil {
-		return x.Token
+		return x.TokenAddress
 	}
 	return ""
 }
@@ -1051,31 +1610,67 @@ func (x *SetTokenReq) GetAllowed() bool {
 	return false
 }
 
-func (x *SetTokenReq) GetMinShareAmount() string {
+func (x *SetTokenReq) GetMinAmount() string {
 	if x != nil {
-		return x.MinShareAmount
+		return x.MinAmount
 	}
 	return ""
 }
 
-func (x *SetTokenReq) GetChain() string {
+type SetTokenResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetTokenResp) Reset() {
+	*x = SetTokenResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetTokenResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetTokenResp) ProtoMessage() {}
+
+func (x *SetTokenResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[21]
 	if x != nil {
-		return x.Chain
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetTokenResp.ProtoReflect.Descriptor instead.
+func (*SetTokenResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *SetTokenResp) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
 
 type SetExpiryReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Duration      string                 `protobuf:"bytes,1,opt,name=duration,proto3" json:"duration"`
-	Chain         string                 `protobuf:"bytes,2,opt,name=chain,proto3" json:"chain"`
+	ExpirySeconds int64                  `protobuf:"varint,1,opt,name=expirySeconds,proto3" json:"expirySeconds"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetExpiryReq) Reset() {
 	*x = SetExpiryReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[15]
+	mi := &file_redpacket_redpacket_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1087,7 +1682,7 @@ func (x *SetExpiryReq) String() string {
 func (*SetExpiryReq) ProtoMessage() {}
 
 func (x *SetExpiryReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[15]
+	mi := &file_redpacket_redpacket_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1100,34 +1695,70 @@ func (x *SetExpiryReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetExpiryReq.ProtoReflect.Descriptor instead.
 func (*SetExpiryReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{15}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *SetExpiryReq) GetDuration() string {
+func (x *SetExpiryReq) GetExpirySeconds() int64 {
 	if x != nil {
-		return x.Duration
+		return x.ExpirySeconds
 	}
-	return ""
+	return 0
 }
 
-func (x *SetExpiryReq) GetChain() string {
+type SetExpiryResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetExpiryResp) Reset() {
+	*x = SetExpiryResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetExpiryResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetExpiryResp) ProtoMessage() {}
+
+func (x *SetExpiryResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[23]
 	if x != nil {
-		return x.Chain
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetExpiryResp.ProtoReflect.Descriptor instead.
+func (*SetExpiryResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *SetExpiryResp) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
 
 type SetAllowAllTokensReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Allow         bool                   `protobuf:"varint,1,opt,name=allow,proto3" json:"allow"`
-	Chain         string                 `protobuf:"bytes,2,opt,name=chain,proto3" json:"chain"`
+	AllowAll      bool                   `protobuf:"varint,1,opt,name=allowAll,proto3" json:"allowAll"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetAllowAllTokensReq) Reset() {
 	*x = SetAllowAllTokensReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[16]
+	mi := &file_redpacket_redpacket_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1139,7 +1770,7 @@ func (x *SetAllowAllTokensReq) String() string {
 func (*SetAllowAllTokensReq) ProtoMessage() {}
 
 func (x *SetAllowAllTokensReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[16]
+	mi := &file_redpacket_redpacket_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1152,46 +1783,38 @@ func (x *SetAllowAllTokensReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAllowAllTokensReq.ProtoReflect.Descriptor instead.
 func (*SetAllowAllTokensReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{16}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *SetAllowAllTokensReq) GetAllow() bool {
+func (x *SetAllowAllTokensReq) GetAllowAll() bool {
 	if x != nil {
-		return x.Allow
+		return x.AllowAll
 	}
 	return false
 }
 
-func (x *SetAllowAllTokensReq) GetChain() string {
-	if x != nil {
-		return x.Chain
-	}
-	return ""
-}
-
-type SetNativeTokenReq struct {
+type SetAllowAllTokensResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Enabled       bool                   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled"`
-	Chain         string                 `protobuf:"bytes,2,opt,name=chain,proto3" json:"chain"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SetNativeTokenReq) Reset() {
-	*x = SetNativeTokenReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[17]
+func (x *SetAllowAllTokensResp) Reset() {
+	*x = SetAllowAllTokensResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SetNativeTokenReq) String() string {
+func (x *SetAllowAllTokensResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SetNativeTokenReq) ProtoMessage() {}
+func (*SetAllowAllTokensResp) ProtoMessage() {}
 
-func (x *SetNativeTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[17]
+func (x *SetAllowAllTokensResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1202,36 +1825,117 @@ func (x *SetNativeTokenReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SetNativeTokenReq.ProtoReflect.Descriptor instead.
-func (*SetNativeTokenReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{17}
+// Deprecated: Use SetAllowAllTokensResp.ProtoReflect.Descriptor instead.
+func (*SetAllowAllTokensResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *SetNativeTokenReq) GetEnabled() bool {
+func (x *SetAllowAllTokensResp) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type SetNativeTokenEnabledReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Enabled       bool                   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetNativeTokenEnabledReq) Reset() {
+	*x = SetNativeTokenEnabledReq{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetNativeTokenEnabledReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetNativeTokenEnabledReq) ProtoMessage() {}
+
+func (x *SetNativeTokenEnabledReq) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetNativeTokenEnabledReq.ProtoReflect.Descriptor instead.
+func (*SetNativeTokenEnabledReq) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *SetNativeTokenEnabledReq) GetEnabled() bool {
 	if x != nil {
 		return x.Enabled
 	}
 	return false
 }
 
-func (x *SetNativeTokenReq) GetChain() string {
+type SetNativeTokenEnabledResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetNativeTokenEnabledResp) Reset() {
+	*x = SetNativeTokenEnabledResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetNativeTokenEnabledResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetNativeTokenEnabledResp) ProtoMessage() {}
+
+func (x *SetNativeTokenEnabledResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[27]
 	if x != nil {
-		return x.Chain
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetNativeTokenEnabledResp.ProtoReflect.Descriptor instead.
+func (*SetNativeTokenEnabledResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SetNativeTokenEnabledResp) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
 
 type ParseTxEventsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Chain         string                 `protobuf:"bytes,1,opt,name=chain,proto3" json:"chain"`
-	TxHash        string                 `protobuf:"bytes,2,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash"`
+	TxHash        string                 `protobuf:"bytes,1,opt,name=txHash,proto3" json:"txHash"`
+	Chain         string                 `protobuf:"bytes,2,opt,name=chain,proto3" json:"chain"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ParseTxEventsReq) Reset() {
 	*x = ParseTxEventsReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[18]
+	mi := &file_redpacket_redpacket_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1243,7 +1947,7 @@ func (x *ParseTxEventsReq) String() string {
 func (*ParseTxEventsReq) ProtoMessage() {}
 
 func (x *ParseTxEventsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[18]
+	mi := &file_redpacket_redpacket_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1256,14 +1960,7 @@ func (x *ParseTxEventsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseTxEventsReq.ProtoReflect.Descriptor instead.
 func (*ParseTxEventsReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *ParseTxEventsReq) GetChain() string {
-	if x != nil {
-		return x.Chain
-	}
-	return ""
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ParseTxEventsReq) GetTxHash() string {
@@ -1273,29 +1970,36 @@ func (x *ParseTxEventsReq) GetTxHash() string {
 	return ""
 }
 
-type TxEvent struct {
+func (x *ParseTxEventsReq) GetChain() string {
+	if x != nil {
+		return x.Chain
+	}
+	return ""
+}
+
+type ParsedEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name"`
-	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Data          map[string]string      `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TxEvent) Reset() {
-	*x = TxEvent{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[19]
+func (x *ParsedEvent) Reset() {
+	*x = ParsedEvent{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TxEvent) String() string {
+func (x *ParsedEvent) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TxEvent) ProtoMessage() {}
+func (*ParsedEvent) ProtoMessage() {}
 
-func (x *TxEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[19]
+func (x *ParsedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1306,19 +2010,19 @@ func (x *TxEvent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TxEvent.ProtoReflect.Descriptor instead.
-func (*TxEvent) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{19}
+// Deprecated: Use ParsedEvent.ProtoReflect.Descriptor instead.
+func (*ParsedEvent) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{29}
 }
 
-func (x *TxEvent) GetName() string {
+func (x *ParsedEvent) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TxEvent) GetData() []byte {
+func (x *ParsedEvent) GetData() map[string]string {
 	if x != nil {
 		return x.Data
 	}
@@ -1327,14 +2031,17 @@ func (x *TxEvent) GetData() []byte {
 
 type ParseTxEventsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Events        []*TxEvent             `protobuf:"bytes,1,rep,name=events,proto3" json:"events"`
+	Chain         string                 `protobuf:"bytes,1,opt,name=chain,proto3" json:"chain"`
+	TxHash        string                 `protobuf:"bytes,2,opt,name=txHash,proto3" json:"txHash"`
+	Events        []*ParsedEvent         `protobuf:"bytes,3,rep,name=events,proto3" json:"events"`
+	Note          string                 `protobuf:"bytes,4,opt,name=note,proto3" json:"note"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ParseTxEventsResp) Reset() {
 	*x = ParseTxEventsResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[20]
+	mi := &file_redpacket_redpacket_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1346,7 +2053,7 @@ func (x *ParseTxEventsResp) String() string {
 func (*ParseTxEventsResp) ProtoMessage() {}
 
 func (x *ParseTxEventsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[20]
+	mi := &file_redpacket_redpacket_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1359,143 +2066,230 @@ func (x *ParseTxEventsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseTxEventsResp.ProtoReflect.Descriptor instead.
 func (*ParseTxEventsResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{20}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{30}
 }
 
-func (x *ParseTxEventsResp) GetEvents() []*TxEvent {
+func (x *ParseTxEventsResp) GetChain() string {
+	if x != nil {
+		return x.Chain
+	}
+	return ""
+}
+
+func (x *ParseTxEventsResp) GetTxHash() string {
+	if x != nil {
+		return x.TxHash
+	}
+	return ""
+}
+
+func (x *ParseTxEventsResp) GetEvents() []*ParsedEvent {
 	if x != nil {
 		return x.Events
 	}
 	return nil
 }
 
+func (x *ParseTxEventsResp) GetNote() string {
+	if x != nil {
+		return x.Note
+	}
+	return ""
+}
+
 var File_redpacket_redpacket_proto protoreflect.FileDescriptor
 
 const file_redpacket_redpacket_proto_rawDesc = "" +
 	"\n" +
-	"\x19redpacket/redpacket.proto\x12\x10openim.redpacket\"\x8f\x02\n" +
-	"\x0ecreateOrderReq\x12&\n" +
-	"\x0fcreator_user_id\x18\x01 \x01(\tR\rcreatorUserId\x12%\n" +
-	"\x0ecreator_wallet\x18\x02 \x01(\tR\rcreatorWallet\x12\x1f\n" +
-	"\vpacket_type\x18\x03 \x01(\x05R\n" +
+	"\x19redpacket/redpacket.proto\x12\x10openim.redpacket\"\xd0\x03\n" +
+	"\x0eCreateOrderReq\x12\x1c\n" +
+	"\tchainType\x18\x01 \x01(\tR\tchainType\x12\x18\n" +
+	"\achainID\x18\x02 \x01(\x03R\achainID\x12(\n" +
+	"\x0fcontractAddress\x18\x03 \x01(\tR\x0fcontractAddress\x12$\n" +
+	"\rcreatorWallet\x18\x04 \x01(\tR\rcreatorWallet\x12\x18\n" +
+	"\agroupID\x18\x05 \x01(\tR\agroupID\x12\x1c\n" +
+	"\tscopeType\x18\x06 \x01(\tR\tscopeType\x12&\n" +
+	"\x0ereceiverUserID\x18\a \x01(\tR\x0ereceiverUserID\x12(\n" +
+	"\x0freceiverUserIDs\x18\b \x03(\tR\x0freceiverUserIDs\x12\x1e\n" +
+	"\n" +
+	"packetType\x18\t \x01(\x05R\n" +
 	"packetType\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05token\x12!\n" +
-	"\ftotal_amount\x18\x05 \x01(\tR\vtotalAmount\x12!\n" +
-	"\ftotal_shares\x18\x06 \x01(\x05R\vtotalShares\x12\x1b\n" +
-	"\texpiry_at\x18\a \x01(\x03R\bexpiryAt\x12\x14\n" +
-	"\x05chain\x18\b \x01(\tR\x05chain\"(\n" +
-	"\x0fcreateOrderResp\x12\x15\n" +
-	"\x06biz_id\x18\x01 \x01(\tR\x05bizId\"a\n" +
-	"\x12createdCallbackReq\x12\x15\n" +
-	"\x06biz_id\x18\x01 \x01(\tR\x05bizId\x12\x17\n" +
-	"\atx_hash\x18\x02 \x01(\tR\x06txHash\x12\x1b\n" +
-	"\tpacket_id\x18\x03 \x01(\tR\bpacketId\"%\n" +
-	"\x13createdCallbackResp\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok\"+\n" +
-	"\fgetDetailReq\x12\x1b\n" +
-	"\tpacket_id\x18\x01 \x01(\tR\bpacketId\"\x89\x04\n" +
-	"\x0fredPacketRecord\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x15\n" +
-	"\x06biz_id\x18\x02 \x01(\tR\x05bizId\x12\x1b\n" +
-	"\tpacket_id\x18\x03 \x01(\tR\bpacketId\x12\x19\n" +
-	"\bchain_id\x18\x04 \x01(\x03R\achainId\x12)\n" +
-	"\x10contract_address\x18\x05 \x01(\tR\x0fcontractAddress\x12&\n" +
-	"\x0fcreator_user_id\x18\x06 \x01(\tR\rcreatorUserId\x12%\n" +
-	"\x0ecreator_wallet\x18\a \x01(\tR\rcreatorWallet\x12\x1f\n" +
-	"\vpacket_type\x18\b \x01(\x05R\n" +
+	"\x05token\x18\n" +
+	" \x01(\tR\x05token\x12 \n" +
+	"\vtotalAmount\x18\v \x01(\tR\vtotalAmount\x12 \n" +
+	"\vtotalShares\x18\f \x01(\x05R\vtotalShares\x12\x1a\n" +
+	"\bexpiryAt\x18\r \x01(\x03R\bexpiryAt\x12\x16\n" +
+	"\x06remark\x18\x0e \x01(\tR\x06remark\"'\n" +
+	"\x0fCreateOrderResp\x12\x14\n" +
+	"\x05bizID\x18\x01 \x01(\tR\x05bizID\"\xe8\x01\n" +
+	"\x12CreatedCallbackReq\x12\x14\n" +
+	"\x05bizID\x18\x01 \x01(\tR\x05bizID\x12\x16\n" +
+	"\x06txHash\x18\x02 \x01(\tR\x06txHash\x12\x1a\n" +
+	"\bpacketID\x18\x03 \x01(\tR\bpacketID\x12\x18\n" +
+	"\agroupID\x18\x04 \x01(\tR\agroupID\x12\x1c\n" +
+	"\tscopeType\x18\x05 \x01(\tR\tscopeType\x12&\n" +
+	"\x0ereceiverUserID\x18\x06 \x01(\tR\x0ereceiverUserID\x12(\n" +
+	"\x0freceiverUserIDs\x18\a \x03(\tR\x0freceiverUserIDs\"\x15\n" +
+	"\x13CreatedCallbackResp\"*\n" +
+	"\fGetDetailReq\x12\x1a\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\"\xc9\x05\n" +
+	"\x0fRedPacketRecord\x12\x14\n" +
+	"\x05bizID\x18\x01 \x01(\tR\x05bizID\x12\x1c\n" +
+	"\tchainType\x18\x02 \x01(\tR\tchainType\x12\x1a\n" +
+	"\bpacketID\x18\x03 \x01(\tR\bpacketID\x12\x18\n" +
+	"\achainID\x18\x04 \x01(\x03R\achainID\x12(\n" +
+	"\x0fcontractAddress\x18\x05 \x01(\tR\x0fcontractAddress\x12$\n" +
+	"\rcreatorUserID\x18\x06 \x01(\tR\rcreatorUserID\x12$\n" +
+	"\rcreatorWallet\x18\a \x01(\tR\rcreatorWallet\x12\x18\n" +
+	"\agroupID\x18\b \x01(\tR\agroupID\x12\x1c\n" +
+	"\tscopeType\x18\t \x01(\tR\tscopeType\x12&\n" +
+	"\x0ereceiverUserID\x18\n" +
+	" \x01(\tR\x0ereceiverUserID\x12(\n" +
+	"\x0freceiverUserIDs\x18\v \x03(\tR\x0freceiverUserIDs\x12\x1e\n" +
+	"\n" +
+	"packetType\x18\f \x01(\x05R\n" +
 	"packetType\x12\x14\n" +
-	"\x05token\x18\t \x01(\tR\x05token\x12!\n" +
-	"\ftotal_amount\x18\n" +
-	" \x01(\tR\vtotalAmount\x12!\n" +
-	"\ftotal_shares\x18\v \x01(\x05R\vtotalShares\x12\x1b\n" +
-	"\texpiry_at\x18\f \x01(\x03R\bexpiryAt\x12\x17\n" +
-	"\atx_hash\x18\r \x01(\tR\x06txHash\x12\x16\n" +
-	"\x06status\x18\x0e \x01(\tR\x06status\x12\x14\n" +
-	"\x05chain\x18\x0f \x01(\tR\x05chain\x12\x1d\n" +
+	"\x05token\x18\r \x01(\tR\x05token\x12 \n" +
+	"\vtotalAmount\x18\x0e \x01(\tR\vtotalAmount\x12 \n" +
+	"\vtotalShares\x18\x0f \x01(\x05R\vtotalShares\x12$\n" +
+	"\rclaimedAmount\x18\x10 \x01(\tR\rclaimedAmount\x12$\n" +
+	"\rclaimedShares\x18\x11 \x01(\x05R\rclaimedShares\x12\x1a\n" +
+	"\bexpiryAt\x18\x12 \x01(\x03R\bexpiryAt\x12\x16\n" +
+	"\x06txHash\x18\x13 \x01(\tR\x06txHash\x12\x16\n" +
+	"\x06status\x18\x14 \x01(\tR\x06status\x12\x1c\n" +
+	"\tcreatedAt\x18\x15 \x01(\x03R\tcreatedAt\x12\x1c\n" +
+	"\tupdatedAt\x18\x16 \x01(\x03R\tupdatedAt\"\xcc\x02\n" +
+	"\x14RedPacketClaimRecord\x12\x1a\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x16\n" +
+	"\x06userID\x18\x02 \x01(\tR\x06userID\x12$\n" +
+	"\rclaimerWallet\x18\x03 \x01(\tR\rclaimerWallet\x12\x1c\n" +
+	"\tauthNonce\x18\x04 \x01(\tR\tauthNonce\x12 \n" +
+	"\vclaimTxHash\x18\x05 \x01(\tR\vclaimTxHash\x12$\n" +
+	"\rclaimedAmount\x18\x06 \x01(\tR\rclaimedAmount\x12 \n" +
+	"\vblockNumber\x18\a \x01(\x04R\vblockNumber\x12\x16\n" +
+	"\x06status\x18\b \x01(\tR\x06status\x12\x1c\n" +
+	"\tcreatedAt\x18\t \x01(\x03R\tcreatedAt\x12\x1c\n" +
+	"\tupdatedAt\x18\n" +
+	" \x01(\x03R\tupdatedAt\"\x8a\x01\n" +
+	"\rGetDetailResp\x129\n" +
+	"\x06record\x18\x01 \x01(\v2!.openim.redpacket.RedPacketRecordR\x06record\x12>\n" +
+	"\x06claims\x18\x02 \x03(\v2&.openim.redpacket.RedPacketClaimRecordR\x06claims\"i\n" +
+	"\x11IssueClaimSignReq\x12\x1a\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x18\n" +
+	"\aclaimer\x18\x02 \x01(\tR\aclaimer\x12\x1e\n" +
 	"\n" +
-	"created_at\x18\x10 \x01(\x03R\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"updated_at\x18\x11 \x01(\x03R\tupdatedAt\"\xc4\x02\n" +
-	"\vclaimRecord\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1b\n" +
-	"\tpacket_id\x18\x02 \x01(\tR\bpacketId\x12%\n" +
-	"\x0eclaimer_wallet\x18\x03 \x01(\tR\rclaimerWallet\x12\x1d\n" +
-	"\n" +
-	"auth_nonce\x18\x04 \x01(\tR\tauthNonce\x12\"\n" +
-	"\rclaim_tx_hash\x18\x05 \x01(\tR\vclaimTxHash\x12%\n" +
-	"\x0eclaimed_amount\x18\x06 \x01(\tR\rclaimedAmount\x12!\n" +
-	"\fblock_number\x18\a \x01(\x03R\vblockNumber\x12\x16\n" +
-	"\x06status\x18\b \x01(\tR\x06status\x12\x1d\n" +
-	"\n" +
-	"created_at\x18\t \x01(\x03R\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"updated_at\x18\n" +
-	" \x01(\x03R\tupdatedAt\"\x88\x01\n" +
-	"\rgetDetailResp\x12@\n" +
-	"\n" +
-	"biz_record\x18\x01 \x01(\v2!.openim.redpacket.redPacketRecordR\tbizRecord\x125\n" +
-	"\x06claims\x18\x02 \x03(\v2\x1d.openim.redpacket.claimRecordR\x06claims\"\x7f\n" +
-	"\fclaimSignReq\x12\x1b\n" +
-	"\tpacket_id\x18\x01 \x01(\tR\bpacketId\x12\x18\n" +
-	"\aclaimer\x18\x02 \x01(\tR\aclaimer\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x1f\n" +
-	"\vrandom_seed\x18\x04 \x01(\tR\n" +
-	"randomSeed\"\x89\x01\n" +
-	"\rclaimSignResp\x12\x1d\n" +
-	"\n" +
-	"auth_nonce\x18\x01 \x01(\tR\tauthNonce\x12\x1a\n" +
-	"\bdeadline\x18\x02 \x01(\x03R\bdeadline\x12\x1c\n" +
-	"\tsignature\x18\x03 \x01(\tR\tsignature\x12\x1f\n" +
-	"\vrandom_seed\x18\x04 \x01(\tR\n" +
+	"randomSeed\x18\x03 \x01(\tR\n" +
 	"randomSeed\"\x8c\x01\n" +
-	"\x0eclaimResultReq\x12\x1b\n" +
-	"\tpacket_id\x18\x01 \x01(\tR\bpacketId\x12%\n" +
-	"\x0eclaimer_wallet\x18\x02 \x01(\tR\rclaimerWallet\x12\x17\n" +
-	"\atx_hash\x18\x03 \x01(\tR\x06txHash\x12\x1d\n" +
+	"\x12IssueClaimSignResp\x12\x1c\n" +
+	"\tauthNonce\x18\x01 \x01(\tR\tauthNonce\x12\x1a\n" +
+	"\bdeadline\x18\x02 \x01(\x03R\bdeadline\x12\x1c\n" +
+	"\tsignature\x18\x03 \x01(\tR\tsignature\x12\x1e\n" +
 	"\n" +
-	"auth_nonce\x18\x04 \x01(\tR\tauthNonce\"!\n" +
-	"\x0fclaimResultResp\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok\"!\n" +
-	"\x06txResp\x12\x17\n" +
-	"\atx_hash\x18\x01 \x01(\tR\x06txHash\"C\n" +
-	"\fsetSignerReq\x12\x1d\n" +
+	"randomSeed\x18\x04 \x01(\tR\n" +
+	"randomSeed\"^\n" +
+	"\x0eClaimResultReq\x12\x1a\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x18\n" +
+	"\aclaimer\x18\x02 \x01(\tR\aclaimer\x12\x16\n" +
+	"\x06txHash\x18\x03 \x01(\tR\x06txHash\"\x11\n" +
+	"\x0fClaimResultResp\"\xa5\x01\n" +
+	"\x1bIssueWalletBindChallengeReq\x12\x1c\n" +
+	"\tchainType\x18\x01 \x01(\tR\tchainType\x12\x18\n" +
+	"\achainID\x18\x02 \x01(\x03R\achainID\x12$\n" +
+	"\rwalletAddress\x18\x03 \x01(\tR\rwalletAddress\x12\x16\n" +
+	"\x06domain\x18\x04 \x01(\tR\x06domain\x12\x10\n" +
+	"\x03uri\x18\x05 \x01(\tR\x03uri\"\xce\x02\n" +
+	"\x1cIssueWalletBindChallengeResp\x12 \n" +
+	"\vchallengeID\x18\x01 \x01(\tR\vchallengeID\x12\x16\n" +
+	"\x06userID\x18\x02 \x01(\tR\x06userID\x12\x1c\n" +
+	"\tchainType\x18\x03 \x01(\tR\tchainType\x12\x18\n" +
+	"\achainID\x18\x04 \x01(\x03R\achainID\x12\x16\n" +
+	"\x06wallet\x18\x05 \x01(\tR\x06wallet\x12\x1a\n" +
+	"\bprotocol\x18\x06 \x01(\tR\bprotocol\x12\x1e\n" +
 	"\n" +
-	"new_signer\x18\x01 \x01(\tR\tnewSigner\x12\x14\n" +
-	"\x05chain\x18\x02 \x01(\tR\x05chain\"}\n" +
-	"\vsetTokenReq\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12\x18\n" +
-	"\aallowed\x18\x02 \x01(\bR\aallowed\x12(\n" +
-	"\x10min_share_amount\x18\x03 \x01(\tR\x0eminShareAmount\x12\x14\n" +
-	"\x05chain\x18\x04 \x01(\tR\x05chain\"@\n" +
-	"\fsetExpiryReq\x12\x1a\n" +
-	"\bduration\x18\x01 \x01(\tR\bduration\x12\x14\n" +
-	"\x05chain\x18\x02 \x01(\tR\x05chain\"B\n" +
-	"\x14setAllowAllTokensReq\x12\x14\n" +
-	"\x05allow\x18\x01 \x01(\bR\x05allow\x12\x14\n" +
-	"\x05chain\x18\x02 \x01(\tR\x05chain\"C\n" +
-	"\x11setNativeTokenReq\x12\x18\n" +
-	"\aenabled\x18\x01 \x01(\bR\aenabled\x12\x14\n" +
-	"\x05chain\x18\x02 \x01(\tR\x05chain\"A\n" +
-	"\x10parseTxEventsReq\x12\x14\n" +
-	"\x05chain\x18\x01 \x01(\tR\x05chain\x12\x17\n" +
-	"\atx_hash\x18\x02 \x01(\tR\x06txHash\"1\n" +
-	"\atxEvent\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data\"F\n" +
-	"\x11parseTxEventsResp\x121\n" +
-	"\x06events\x18\x01 \x03(\v2\x19.openim.redpacket.txEventR\x06events2\x84\a\n" +
+	"signMethod\x18\a \x01(\tR\n" +
+	"signMethod\x12\x14\n" +
+	"\x05nonce\x18\b \x01(\tR\x05nonce\x12\x18\n" +
+	"\amessage\x18\t \x01(\tR\amessage\x12\x1a\n" +
+	"\bissuedAt\x18\n" +
+	" \x01(\tR\bissuedAt\x12\x1c\n" +
+	"\texpiresAt\x18\v \x01(\tR\texpiresAt\"V\n" +
+	"\x14ConfirmWalletBindReq\x12 \n" +
+	"\vchallengeID\x18\x01 \x01(\tR\vchallengeID\x12\x1c\n" +
+	"\tsignature\x18\x02 \x01(\tR\tsignature\"\xc5\x01\n" +
+	"\x15ConfirmWalletBindResp\x12\x16\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
+	"\tchainType\x18\x02 \x01(\tR\tchainType\x12\x18\n" +
+	"\achainID\x18\x03 \x01(\x03R\achainID\x12$\n" +
+	"\rwalletAddress\x18\x04 \x01(\tR\rwalletAddress\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1e\n" +
+	"\n" +
+	"verifiedAt\x18\x06 \x01(\tR\n" +
+	"verifiedAt\"Y\n" +
+	"\x13GetWalletBindingReq\x12\x1c\n" +
+	"\tchainType\x18\x01 \x01(\tR\tchainType\x12$\n" +
+	"\rwalletAddress\x18\x02 \x01(\tR\rwalletAddress\"\xe6\x01\n" +
+	"\x14GetWalletBindingResp\x12\x16\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1c\n" +
+	"\tchainType\x18\x02 \x01(\tR\tchainType\x12\x18\n" +
+	"\achainID\x18\x03 \x01(\x03R\achainID\x12$\n" +
+	"\rwalletAddress\x18\x04 \x01(\tR\rwalletAddress\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12 \n" +
+	"\vchallengeID\x18\x06 \x01(\tR\vchallengeID\x12\x1e\n" +
+	"\n" +
+	"verifiedAt\x18\a \x01(\tR\n" +
+	"verifiedAt\"4\n" +
+	"\fSetSignerReq\x12$\n" +
+	"\rsignerAddress\x18\x01 \x01(\tR\rsignerAddress\")\n" +
+	"\rSetSignerResp\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"i\n" +
+	"\vSetTokenReq\x12\"\n" +
+	"\ftokenAddress\x18\x01 \x01(\tR\ftokenAddress\x12\x18\n" +
+	"\aallowed\x18\x02 \x01(\bR\aallowed\x12\x1c\n" +
+	"\tminAmount\x18\x03 \x01(\tR\tminAmount\"(\n" +
+	"\fSetTokenResp\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"4\n" +
+	"\fSetExpiryReq\x12$\n" +
+	"\rexpirySeconds\x18\x01 \x01(\x03R\rexpirySeconds\")\n" +
+	"\rSetExpiryResp\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"2\n" +
+	"\x14SetAllowAllTokensReq\x12\x1a\n" +
+	"\ballowAll\x18\x01 \x01(\bR\ballowAll\"1\n" +
+	"\x15SetAllowAllTokensResp\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"4\n" +
+	"\x18SetNativeTokenEnabledReq\x12\x18\n" +
+	"\aenabled\x18\x01 \x01(\bR\aenabled\"5\n" +
+	"\x19SetNativeTokenEnabledResp\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"@\n" +
+	"\x10ParseTxEventsReq\x12\x16\n" +
+	"\x06txHash\x18\x01 \x01(\tR\x06txHash\x12\x14\n" +
+	"\x05chain\x18\x02 \x01(\tR\x05chain\"\x97\x01\n" +
+	"\vParsedEvent\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12;\n" +
+	"\x04data\x18\x02 \x03(\v2'.openim.redpacket.ParsedEvent.DataEntryR\x04data\x1a7\n" +
+	"\tDataEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x8c\x01\n" +
+	"\x11ParseTxEventsResp\x12\x14\n" +
+	"\x05chain\x18\x01 \x01(\tR\x05chain\x12\x16\n" +
+	"\x06txHash\x18\x02 \x01(\tR\x06txHash\x125\n" +
+	"\x06events\x18\x03 \x03(\v2\x1d.openim.redpacket.ParsedEventR\x06events\x12\x12\n" +
+	"\x04note\x18\x04 \x01(\tR\x04note2\x9b\n" +
+	"\n" +
 	"\tRedPacket\x12R\n" +
-	"\vcreateOrder\x12 .openim.redpacket.createOrderReq\x1a!.openim.redpacket.createOrderResp\x12^\n" +
-	"\x0fcreatedCallback\x12$.openim.redpacket.createdCallbackReq\x1a%.openim.redpacket.createdCallbackResp\x12L\n" +
-	"\tgetDetail\x12\x1e.openim.redpacket.getDetailReq\x1a\x1f.openim.redpacket.getDetailResp\x12L\n" +
-	"\tclaimSign\x12\x1e.openim.redpacket.claimSignReq\x1a\x1f.openim.redpacket.claimSignResp\x12R\n" +
-	"\vclaimResult\x12 .openim.redpacket.claimResultReq\x1a!.openim.redpacket.claimResultResp\x12E\n" +
-	"\tsetSigner\x12\x1e.openim.redpacket.setSignerReq\x1a\x18.openim.redpacket.txResp\x12C\n" +
-	"\bsetToken\x12\x1d.openim.redpacket.setTokenReq\x1a\x18.openim.redpacket.txResp\x12E\n" +
-	"\tsetExpiry\x12\x1e.openim.redpacket.setExpiryReq\x1a\x18.openim.redpacket.txResp\x12U\n" +
-	"\x11setAllowAllTokens\x12&.openim.redpacket.setAllowAllTokensReq\x1a\x18.openim.redpacket.txResp\x12O\n" +
-	"\x0esetNativeToken\x12#.openim.redpacket.setNativeTokenReq\x1a\x18.openim.redpacket.txResp\x12X\n" +
-	"\rparseTxEvents\x12\".openim.redpacket.parseTxEventsReq\x1a#.openim.redpacket.parseTxEventsRespB)Z'github.com/openimsdk/protocol/redpacketb\x06proto3"
+	"\vCreateOrder\x12 .openim.redpacket.CreateOrderReq\x1a!.openim.redpacket.CreateOrderResp\x12^\n" +
+	"\x0fCreatedCallback\x12$.openim.redpacket.CreatedCallbackReq\x1a%.openim.redpacket.CreatedCallbackResp\x12L\n" +
+	"\tGetDetail\x12\x1e.openim.redpacket.GetDetailReq\x1a\x1f.openim.redpacket.GetDetailResp\x12[\n" +
+	"\x0eIssueClaimSign\x12#.openim.redpacket.IssueClaimSignReq\x1a$.openim.redpacket.IssueClaimSignResp\x12R\n" +
+	"\vClaimResult\x12 .openim.redpacket.ClaimResultReq\x1a!.openim.redpacket.ClaimResultResp\x12y\n" +
+	"\x18IssueWalletBindChallenge\x12-.openim.redpacket.IssueWalletBindChallengeReq\x1a..openim.redpacket.IssueWalletBindChallengeResp\x12d\n" +
+	"\x11ConfirmWalletBind\x12&.openim.redpacket.ConfirmWalletBindReq\x1a'.openim.redpacket.ConfirmWalletBindResp\x12a\n" +
+	"\x10GetWalletBinding\x12%.openim.redpacket.GetWalletBindingReq\x1a&.openim.redpacket.GetWalletBindingResp\x12L\n" +
+	"\tSetSigner\x12\x1e.openim.redpacket.SetSignerReq\x1a\x1f.openim.redpacket.SetSignerResp\x12I\n" +
+	"\bSetToken\x12\x1d.openim.redpacket.SetTokenReq\x1a\x1e.openim.redpacket.SetTokenResp\x12L\n" +
+	"\tSetExpiry\x12\x1e.openim.redpacket.SetExpiryReq\x1a\x1f.openim.redpacket.SetExpiryResp\x12d\n" +
+	"\x11SetAllowAllTokens\x12&.openim.redpacket.SetAllowAllTokensReq\x1a'.openim.redpacket.SetAllowAllTokensResp\x12p\n" +
+	"\x15SetNativeTokenEnabled\x12*.openim.redpacket.SetNativeTokenEnabledReq\x1a+.openim.redpacket.SetNativeTokenEnabledResp\x12X\n" +
+	"\rParseTxEvents\x12\".openim.redpacket.ParseTxEventsReq\x1a#.openim.redpacket.ParseTxEventsRespB)Z'github.com/openimsdk/protocol/redpacketb\x06proto3"
 
 var (
 	file_redpacket_redpacket_proto_rawDescOnce sync.Once
@@ -1509,61 +2303,79 @@ func file_redpacket_redpacket_proto_rawDescGZIP() []byte {
 	return file_redpacket_redpacket_proto_rawDescData
 }
 
-var file_redpacket_redpacket_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_redpacket_redpacket_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
 var file_redpacket_redpacket_proto_goTypes = []any{
-	(*CreateOrderReq)(nil),       // 0: openim.redpacket.createOrderReq
-	(*CreateOrderResp)(nil),      // 1: openim.redpacket.createOrderResp
-	(*CreatedCallbackReq)(nil),   // 2: openim.redpacket.createdCallbackReq
-	(*CreatedCallbackResp)(nil),  // 3: openim.redpacket.createdCallbackResp
-	(*GetDetailReq)(nil),         // 4: openim.redpacket.getDetailReq
-	(*RedPacketRecord)(nil),      // 5: openim.redpacket.redPacketRecord
-	(*ClaimRecord)(nil),          // 6: openim.redpacket.claimRecord
-	(*GetDetailResp)(nil),        // 7: openim.redpacket.getDetailResp
-	(*ClaimSignReq)(nil),         // 8: openim.redpacket.claimSignReq
-	(*ClaimSignResp)(nil),        // 9: openim.redpacket.claimSignResp
-	(*ClaimResultReq)(nil),       // 10: openim.redpacket.claimResultReq
-	(*ClaimResultResp)(nil),      // 11: openim.redpacket.claimResultResp
-	(*TxResp)(nil),               // 12: openim.redpacket.txResp
-	(*SetSignerReq)(nil),         // 13: openim.redpacket.setSignerReq
-	(*SetTokenReq)(nil),          // 14: openim.redpacket.setTokenReq
-	(*SetExpiryReq)(nil),         // 15: openim.redpacket.setExpiryReq
-	(*SetAllowAllTokensReq)(nil), // 16: openim.redpacket.setAllowAllTokensReq
-	(*SetNativeTokenReq)(nil),    // 17: openim.redpacket.setNativeTokenReq
-	(*ParseTxEventsReq)(nil),     // 18: openim.redpacket.parseTxEventsReq
-	(*TxEvent)(nil),              // 19: openim.redpacket.txEvent
-	(*ParseTxEventsResp)(nil),    // 20: openim.redpacket.parseTxEventsResp
+	(*CreateOrderReq)(nil),               // 0: openim.redpacket.CreateOrderReq
+	(*CreateOrderResp)(nil),              // 1: openim.redpacket.CreateOrderResp
+	(*CreatedCallbackReq)(nil),           // 2: openim.redpacket.CreatedCallbackReq
+	(*CreatedCallbackResp)(nil),          // 3: openim.redpacket.CreatedCallbackResp
+	(*GetDetailReq)(nil),                 // 4: openim.redpacket.GetDetailReq
+	(*RedPacketRecord)(nil),              // 5: openim.redpacket.RedPacketRecord
+	(*RedPacketClaimRecord)(nil),         // 6: openim.redpacket.RedPacketClaimRecord
+	(*GetDetailResp)(nil),                // 7: openim.redpacket.GetDetailResp
+	(*IssueClaimSignReq)(nil),            // 8: openim.redpacket.IssueClaimSignReq
+	(*IssueClaimSignResp)(nil),           // 9: openim.redpacket.IssueClaimSignResp
+	(*ClaimResultReq)(nil),               // 10: openim.redpacket.ClaimResultReq
+	(*ClaimResultResp)(nil),              // 11: openim.redpacket.ClaimResultResp
+	(*IssueWalletBindChallengeReq)(nil),  // 12: openim.redpacket.IssueWalletBindChallengeReq
+	(*IssueWalletBindChallengeResp)(nil), // 13: openim.redpacket.IssueWalletBindChallengeResp
+	(*ConfirmWalletBindReq)(nil),         // 14: openim.redpacket.ConfirmWalletBindReq
+	(*ConfirmWalletBindResp)(nil),        // 15: openim.redpacket.ConfirmWalletBindResp
+	(*GetWalletBindingReq)(nil),          // 16: openim.redpacket.GetWalletBindingReq
+	(*GetWalletBindingResp)(nil),         // 17: openim.redpacket.GetWalletBindingResp
+	(*SetSignerReq)(nil),                 // 18: openim.redpacket.SetSignerReq
+	(*SetSignerResp)(nil),                // 19: openim.redpacket.SetSignerResp
+	(*SetTokenReq)(nil),                  // 20: openim.redpacket.SetTokenReq
+	(*SetTokenResp)(nil),                 // 21: openim.redpacket.SetTokenResp
+	(*SetExpiryReq)(nil),                 // 22: openim.redpacket.SetExpiryReq
+	(*SetExpiryResp)(nil),                // 23: openim.redpacket.SetExpiryResp
+	(*SetAllowAllTokensReq)(nil),         // 24: openim.redpacket.SetAllowAllTokensReq
+	(*SetAllowAllTokensResp)(nil),        // 25: openim.redpacket.SetAllowAllTokensResp
+	(*SetNativeTokenEnabledReq)(nil),     // 26: openim.redpacket.SetNativeTokenEnabledReq
+	(*SetNativeTokenEnabledResp)(nil),    // 27: openim.redpacket.SetNativeTokenEnabledResp
+	(*ParseTxEventsReq)(nil),             // 28: openim.redpacket.ParseTxEventsReq
+	(*ParsedEvent)(nil),                  // 29: openim.redpacket.ParsedEvent
+	(*ParseTxEventsResp)(nil),            // 30: openim.redpacket.ParseTxEventsResp
+	nil,                                  // 31: openim.redpacket.ParsedEvent.DataEntry
 }
 var file_redpacket_redpacket_proto_depIdxs = []int32{
-	5,  // 0: openim.redpacket.getDetailResp.biz_record:type_name -> openim.redpacket.redPacketRecord
-	6,  // 1: openim.redpacket.getDetailResp.claims:type_name -> openim.redpacket.claimRecord
-	19, // 2: openim.redpacket.parseTxEventsResp.events:type_name -> openim.redpacket.txEvent
-	0,  // 3: openim.redpacket.RedPacket.createOrder:input_type -> openim.redpacket.createOrderReq
-	2,  // 4: openim.redpacket.RedPacket.createdCallback:input_type -> openim.redpacket.createdCallbackReq
-	4,  // 5: openim.redpacket.RedPacket.getDetail:input_type -> openim.redpacket.getDetailReq
-	8,  // 6: openim.redpacket.RedPacket.claimSign:input_type -> openim.redpacket.claimSignReq
-	10, // 7: openim.redpacket.RedPacket.claimResult:input_type -> openim.redpacket.claimResultReq
-	13, // 8: openim.redpacket.RedPacket.setSigner:input_type -> openim.redpacket.setSignerReq
-	14, // 9: openim.redpacket.RedPacket.setToken:input_type -> openim.redpacket.setTokenReq
-	15, // 10: openim.redpacket.RedPacket.setExpiry:input_type -> openim.redpacket.setExpiryReq
-	16, // 11: openim.redpacket.RedPacket.setAllowAllTokens:input_type -> openim.redpacket.setAllowAllTokensReq
-	17, // 12: openim.redpacket.RedPacket.setNativeToken:input_type -> openim.redpacket.setNativeTokenReq
-	18, // 13: openim.redpacket.RedPacket.parseTxEvents:input_type -> openim.redpacket.parseTxEventsReq
-	1,  // 14: openim.redpacket.RedPacket.createOrder:output_type -> openim.redpacket.createOrderResp
-	3,  // 15: openim.redpacket.RedPacket.createdCallback:output_type -> openim.redpacket.createdCallbackResp
-	7,  // 16: openim.redpacket.RedPacket.getDetail:output_type -> openim.redpacket.getDetailResp
-	9,  // 17: openim.redpacket.RedPacket.claimSign:output_type -> openim.redpacket.claimSignResp
-	11, // 18: openim.redpacket.RedPacket.claimResult:output_type -> openim.redpacket.claimResultResp
-	12, // 19: openim.redpacket.RedPacket.setSigner:output_type -> openim.redpacket.txResp
-	12, // 20: openim.redpacket.RedPacket.setToken:output_type -> openim.redpacket.txResp
-	12, // 21: openim.redpacket.RedPacket.setExpiry:output_type -> openim.redpacket.txResp
-	12, // 22: openim.redpacket.RedPacket.setAllowAllTokens:output_type -> openim.redpacket.txResp
-	12, // 23: openim.redpacket.RedPacket.setNativeToken:output_type -> openim.redpacket.txResp
-	20, // 24: openim.redpacket.RedPacket.parseTxEvents:output_type -> openim.redpacket.parseTxEventsResp
-	14, // [14:25] is the sub-list for method output_type
-	3,  // [3:14] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	5,  // 0: openim.redpacket.GetDetailResp.record:type_name -> openim.redpacket.RedPacketRecord
+	6,  // 1: openim.redpacket.GetDetailResp.claims:type_name -> openim.redpacket.RedPacketClaimRecord
+	31, // 2: openim.redpacket.ParsedEvent.data:type_name -> openim.redpacket.ParsedEvent.DataEntry
+	29, // 3: openim.redpacket.ParseTxEventsResp.events:type_name -> openim.redpacket.ParsedEvent
+	0,  // 4: openim.redpacket.RedPacket.CreateOrder:input_type -> openim.redpacket.CreateOrderReq
+	2,  // 5: openim.redpacket.RedPacket.CreatedCallback:input_type -> openim.redpacket.CreatedCallbackReq
+	4,  // 6: openim.redpacket.RedPacket.GetDetail:input_type -> openim.redpacket.GetDetailReq
+	8,  // 7: openim.redpacket.RedPacket.IssueClaimSign:input_type -> openim.redpacket.IssueClaimSignReq
+	10, // 8: openim.redpacket.RedPacket.ClaimResult:input_type -> openim.redpacket.ClaimResultReq
+	12, // 9: openim.redpacket.RedPacket.IssueWalletBindChallenge:input_type -> openim.redpacket.IssueWalletBindChallengeReq
+	14, // 10: openim.redpacket.RedPacket.ConfirmWalletBind:input_type -> openim.redpacket.ConfirmWalletBindReq
+	16, // 11: openim.redpacket.RedPacket.GetWalletBinding:input_type -> openim.redpacket.GetWalletBindingReq
+	18, // 12: openim.redpacket.RedPacket.SetSigner:input_type -> openim.redpacket.SetSignerReq
+	20, // 13: openim.redpacket.RedPacket.SetToken:input_type -> openim.redpacket.SetTokenReq
+	22, // 14: openim.redpacket.RedPacket.SetExpiry:input_type -> openim.redpacket.SetExpiryReq
+	24, // 15: openim.redpacket.RedPacket.SetAllowAllTokens:input_type -> openim.redpacket.SetAllowAllTokensReq
+	26, // 16: openim.redpacket.RedPacket.SetNativeTokenEnabled:input_type -> openim.redpacket.SetNativeTokenEnabledReq
+	28, // 17: openim.redpacket.RedPacket.ParseTxEvents:input_type -> openim.redpacket.ParseTxEventsReq
+	1,  // 18: openim.redpacket.RedPacket.CreateOrder:output_type -> openim.redpacket.CreateOrderResp
+	3,  // 19: openim.redpacket.RedPacket.CreatedCallback:output_type -> openim.redpacket.CreatedCallbackResp
+	7,  // 20: openim.redpacket.RedPacket.GetDetail:output_type -> openim.redpacket.GetDetailResp
+	9,  // 21: openim.redpacket.RedPacket.IssueClaimSign:output_type -> openim.redpacket.IssueClaimSignResp
+	11, // 22: openim.redpacket.RedPacket.ClaimResult:output_type -> openim.redpacket.ClaimResultResp
+	13, // 23: openim.redpacket.RedPacket.IssueWalletBindChallenge:output_type -> openim.redpacket.IssueWalletBindChallengeResp
+	15, // 24: openim.redpacket.RedPacket.ConfirmWalletBind:output_type -> openim.redpacket.ConfirmWalletBindResp
+	17, // 25: openim.redpacket.RedPacket.GetWalletBinding:output_type -> openim.redpacket.GetWalletBindingResp
+	19, // 26: openim.redpacket.RedPacket.SetSigner:output_type -> openim.redpacket.SetSignerResp
+	21, // 27: openim.redpacket.RedPacket.SetToken:output_type -> openim.redpacket.SetTokenResp
+	23, // 28: openim.redpacket.RedPacket.SetExpiry:output_type -> openim.redpacket.SetExpiryResp
+	25, // 29: openim.redpacket.RedPacket.SetAllowAllTokens:output_type -> openim.redpacket.SetAllowAllTokensResp
+	27, // 30: openim.redpacket.RedPacket.SetNativeTokenEnabled:output_type -> openim.redpacket.SetNativeTokenEnabledResp
+	30, // 31: openim.redpacket.RedPacket.ParseTxEvents:output_type -> openim.redpacket.ParseTxEventsResp
+	18, // [18:32] is the sub-list for method output_type
+	4,  // [4:18] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_redpacket_redpacket_proto_init() }
@@ -1577,7 +2389,7 @@ func file_redpacket_redpacket_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_redpacket_redpacket_proto_rawDesc), len(file_redpacket_redpacket_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   32,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

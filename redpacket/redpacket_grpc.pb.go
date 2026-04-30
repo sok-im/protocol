@@ -19,17 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RedPacket_CreateOrder_FullMethodName       = "/openim.redpacket.RedPacket/createOrder"
-	RedPacket_CreatedCallback_FullMethodName   = "/openim.redpacket.RedPacket/createdCallback"
-	RedPacket_GetDetail_FullMethodName         = "/openim.redpacket.RedPacket/getDetail"
-	RedPacket_ClaimSign_FullMethodName         = "/openim.redpacket.RedPacket/claimSign"
-	RedPacket_ClaimResult_FullMethodName       = "/openim.redpacket.RedPacket/claimResult"
-	RedPacket_SetSigner_FullMethodName         = "/openim.redpacket.RedPacket/setSigner"
-	RedPacket_SetToken_FullMethodName          = "/openim.redpacket.RedPacket/setToken"
-	RedPacket_SetExpiry_FullMethodName         = "/openim.redpacket.RedPacket/setExpiry"
-	RedPacket_SetAllowAllTokens_FullMethodName = "/openim.redpacket.RedPacket/setAllowAllTokens"
-	RedPacket_SetNativeToken_FullMethodName    = "/openim.redpacket.RedPacket/setNativeToken"
-	RedPacket_ParseTxEvents_FullMethodName     = "/openim.redpacket.RedPacket/parseTxEvents"
+	RedPacket_CreateOrder_FullMethodName              = "/openim.redpacket.RedPacket/CreateOrder"
+	RedPacket_CreatedCallback_FullMethodName          = "/openim.redpacket.RedPacket/CreatedCallback"
+	RedPacket_GetDetail_FullMethodName                = "/openim.redpacket.RedPacket/GetDetail"
+	RedPacket_IssueClaimSign_FullMethodName           = "/openim.redpacket.RedPacket/IssueClaimSign"
+	RedPacket_ClaimResult_FullMethodName              = "/openim.redpacket.RedPacket/ClaimResult"
+	RedPacket_IssueWalletBindChallenge_FullMethodName = "/openim.redpacket.RedPacket/IssueWalletBindChallenge"
+	RedPacket_ConfirmWalletBind_FullMethodName        = "/openim.redpacket.RedPacket/ConfirmWalletBind"
+	RedPacket_GetWalletBinding_FullMethodName         = "/openim.redpacket.RedPacket/GetWalletBinding"
+	RedPacket_SetSigner_FullMethodName                = "/openim.redpacket.RedPacket/SetSigner"
+	RedPacket_SetToken_FullMethodName                 = "/openim.redpacket.RedPacket/SetToken"
+	RedPacket_SetExpiry_FullMethodName                = "/openim.redpacket.RedPacket/SetExpiry"
+	RedPacket_SetAllowAllTokens_FullMethodName        = "/openim.redpacket.RedPacket/SetAllowAllTokens"
+	RedPacket_SetNativeTokenEnabled_FullMethodName    = "/openim.redpacket.RedPacket/SetNativeTokenEnabled"
+	RedPacket_ParseTxEvents_FullMethodName            = "/openim.redpacket.RedPacket/ParseTxEvents"
 )
 
 // RedPacketClient is the client API for RedPacket service.
@@ -39,13 +42,16 @@ type RedPacketClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderReq, opts ...grpc.CallOption) (*CreateOrderResp, error)
 	CreatedCallback(ctx context.Context, in *CreatedCallbackReq, opts ...grpc.CallOption) (*CreatedCallbackResp, error)
 	GetDetail(ctx context.Context, in *GetDetailReq, opts ...grpc.CallOption) (*GetDetailResp, error)
-	ClaimSign(ctx context.Context, in *ClaimSignReq, opts ...grpc.CallOption) (*ClaimSignResp, error)
+	IssueClaimSign(ctx context.Context, in *IssueClaimSignReq, opts ...grpc.CallOption) (*IssueClaimSignResp, error)
 	ClaimResult(ctx context.Context, in *ClaimResultReq, opts ...grpc.CallOption) (*ClaimResultResp, error)
-	SetSigner(ctx context.Context, in *SetSignerReq, opts ...grpc.CallOption) (*TxResp, error)
-	SetToken(ctx context.Context, in *SetTokenReq, opts ...grpc.CallOption) (*TxResp, error)
-	SetExpiry(ctx context.Context, in *SetExpiryReq, opts ...grpc.CallOption) (*TxResp, error)
-	SetAllowAllTokens(ctx context.Context, in *SetAllowAllTokensReq, opts ...grpc.CallOption) (*TxResp, error)
-	SetNativeToken(ctx context.Context, in *SetNativeTokenReq, opts ...grpc.CallOption) (*TxResp, error)
+	IssueWalletBindChallenge(ctx context.Context, in *IssueWalletBindChallengeReq, opts ...grpc.CallOption) (*IssueWalletBindChallengeResp, error)
+	ConfirmWalletBind(ctx context.Context, in *ConfirmWalletBindReq, opts ...grpc.CallOption) (*ConfirmWalletBindResp, error)
+	GetWalletBinding(ctx context.Context, in *GetWalletBindingReq, opts ...grpc.CallOption) (*GetWalletBindingResp, error)
+	SetSigner(ctx context.Context, in *SetSignerReq, opts ...grpc.CallOption) (*SetSignerResp, error)
+	SetToken(ctx context.Context, in *SetTokenReq, opts ...grpc.CallOption) (*SetTokenResp, error)
+	SetExpiry(ctx context.Context, in *SetExpiryReq, opts ...grpc.CallOption) (*SetExpiryResp, error)
+	SetAllowAllTokens(ctx context.Context, in *SetAllowAllTokensReq, opts ...grpc.CallOption) (*SetAllowAllTokensResp, error)
+	SetNativeTokenEnabled(ctx context.Context, in *SetNativeTokenEnabledReq, opts ...grpc.CallOption) (*SetNativeTokenEnabledResp, error)
 	ParseTxEvents(ctx context.Context, in *ParseTxEventsReq, opts ...grpc.CallOption) (*ParseTxEventsResp, error)
 }
 
@@ -87,10 +93,10 @@ func (c *redPacketClient) GetDetail(ctx context.Context, in *GetDetailReq, opts 
 	return out, nil
 }
 
-func (c *redPacketClient) ClaimSign(ctx context.Context, in *ClaimSignReq, opts ...grpc.CallOption) (*ClaimSignResp, error) {
+func (c *redPacketClient) IssueClaimSign(ctx context.Context, in *IssueClaimSignReq, opts ...grpc.CallOption) (*IssueClaimSignResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ClaimSignResp)
-	err := c.cc.Invoke(ctx, RedPacket_ClaimSign_FullMethodName, in, out, cOpts...)
+	out := new(IssueClaimSignResp)
+	err := c.cc.Invoke(ctx, RedPacket_IssueClaimSign_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -107,9 +113,39 @@ func (c *redPacketClient) ClaimResult(ctx context.Context, in *ClaimResultReq, o
 	return out, nil
 }
 
-func (c *redPacketClient) SetSigner(ctx context.Context, in *SetSignerReq, opts ...grpc.CallOption) (*TxResp, error) {
+func (c *redPacketClient) IssueWalletBindChallenge(ctx context.Context, in *IssueWalletBindChallengeReq, opts ...grpc.CallOption) (*IssueWalletBindChallengeResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TxResp)
+	out := new(IssueWalletBindChallengeResp)
+	err := c.cc.Invoke(ctx, RedPacket_IssueWalletBindChallenge_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redPacketClient) ConfirmWalletBind(ctx context.Context, in *ConfirmWalletBindReq, opts ...grpc.CallOption) (*ConfirmWalletBindResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ConfirmWalletBindResp)
+	err := c.cc.Invoke(ctx, RedPacket_ConfirmWalletBind_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redPacketClient) GetWalletBinding(ctx context.Context, in *GetWalletBindingReq, opts ...grpc.CallOption) (*GetWalletBindingResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWalletBindingResp)
+	err := c.cc.Invoke(ctx, RedPacket_GetWalletBinding_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redPacketClient) SetSigner(ctx context.Context, in *SetSignerReq, opts ...grpc.CallOption) (*SetSignerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetSignerResp)
 	err := c.cc.Invoke(ctx, RedPacket_SetSigner_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -117,9 +153,9 @@ func (c *redPacketClient) SetSigner(ctx context.Context, in *SetSignerReq, opts 
 	return out, nil
 }
 
-func (c *redPacketClient) SetToken(ctx context.Context, in *SetTokenReq, opts ...grpc.CallOption) (*TxResp, error) {
+func (c *redPacketClient) SetToken(ctx context.Context, in *SetTokenReq, opts ...grpc.CallOption) (*SetTokenResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TxResp)
+	out := new(SetTokenResp)
 	err := c.cc.Invoke(ctx, RedPacket_SetToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -127,9 +163,9 @@ func (c *redPacketClient) SetToken(ctx context.Context, in *SetTokenReq, opts ..
 	return out, nil
 }
 
-func (c *redPacketClient) SetExpiry(ctx context.Context, in *SetExpiryReq, opts ...grpc.CallOption) (*TxResp, error) {
+func (c *redPacketClient) SetExpiry(ctx context.Context, in *SetExpiryReq, opts ...grpc.CallOption) (*SetExpiryResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TxResp)
+	out := new(SetExpiryResp)
 	err := c.cc.Invoke(ctx, RedPacket_SetExpiry_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -137,9 +173,9 @@ func (c *redPacketClient) SetExpiry(ctx context.Context, in *SetExpiryReq, opts 
 	return out, nil
 }
 
-func (c *redPacketClient) SetAllowAllTokens(ctx context.Context, in *SetAllowAllTokensReq, opts ...grpc.CallOption) (*TxResp, error) {
+func (c *redPacketClient) SetAllowAllTokens(ctx context.Context, in *SetAllowAllTokensReq, opts ...grpc.CallOption) (*SetAllowAllTokensResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TxResp)
+	out := new(SetAllowAllTokensResp)
 	err := c.cc.Invoke(ctx, RedPacket_SetAllowAllTokens_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -147,10 +183,10 @@ func (c *redPacketClient) SetAllowAllTokens(ctx context.Context, in *SetAllowAll
 	return out, nil
 }
 
-func (c *redPacketClient) SetNativeToken(ctx context.Context, in *SetNativeTokenReq, opts ...grpc.CallOption) (*TxResp, error) {
+func (c *redPacketClient) SetNativeTokenEnabled(ctx context.Context, in *SetNativeTokenEnabledReq, opts ...grpc.CallOption) (*SetNativeTokenEnabledResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TxResp)
-	err := c.cc.Invoke(ctx, RedPacket_SetNativeToken_FullMethodName, in, out, cOpts...)
+	out := new(SetNativeTokenEnabledResp)
+	err := c.cc.Invoke(ctx, RedPacket_SetNativeTokenEnabled_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -174,13 +210,16 @@ type RedPacketServer interface {
 	CreateOrder(context.Context, *CreateOrderReq) (*CreateOrderResp, error)
 	CreatedCallback(context.Context, *CreatedCallbackReq) (*CreatedCallbackResp, error)
 	GetDetail(context.Context, *GetDetailReq) (*GetDetailResp, error)
-	ClaimSign(context.Context, *ClaimSignReq) (*ClaimSignResp, error)
+	IssueClaimSign(context.Context, *IssueClaimSignReq) (*IssueClaimSignResp, error)
 	ClaimResult(context.Context, *ClaimResultReq) (*ClaimResultResp, error)
-	SetSigner(context.Context, *SetSignerReq) (*TxResp, error)
-	SetToken(context.Context, *SetTokenReq) (*TxResp, error)
-	SetExpiry(context.Context, *SetExpiryReq) (*TxResp, error)
-	SetAllowAllTokens(context.Context, *SetAllowAllTokensReq) (*TxResp, error)
-	SetNativeToken(context.Context, *SetNativeTokenReq) (*TxResp, error)
+	IssueWalletBindChallenge(context.Context, *IssueWalletBindChallengeReq) (*IssueWalletBindChallengeResp, error)
+	ConfirmWalletBind(context.Context, *ConfirmWalletBindReq) (*ConfirmWalletBindResp, error)
+	GetWalletBinding(context.Context, *GetWalletBindingReq) (*GetWalletBindingResp, error)
+	SetSigner(context.Context, *SetSignerReq) (*SetSignerResp, error)
+	SetToken(context.Context, *SetTokenReq) (*SetTokenResp, error)
+	SetExpiry(context.Context, *SetExpiryReq) (*SetExpiryResp, error)
+	SetAllowAllTokens(context.Context, *SetAllowAllTokensReq) (*SetAllowAllTokensResp, error)
+	SetNativeTokenEnabled(context.Context, *SetNativeTokenEnabledReq) (*SetNativeTokenEnabledResp, error)
 	ParseTxEvents(context.Context, *ParseTxEventsReq) (*ParseTxEventsResp, error)
 	mustEmbedUnimplementedRedPacketServer()
 }
@@ -201,26 +240,35 @@ func (UnimplementedRedPacketServer) CreatedCallback(context.Context, *CreatedCal
 func (UnimplementedRedPacketServer) GetDetail(context.Context, *GetDetailReq) (*GetDetailResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDetail not implemented")
 }
-func (UnimplementedRedPacketServer) ClaimSign(context.Context, *ClaimSignReq) (*ClaimSignResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method ClaimSign not implemented")
+func (UnimplementedRedPacketServer) IssueClaimSign(context.Context, *IssueClaimSignReq) (*IssueClaimSignResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method IssueClaimSign not implemented")
 }
 func (UnimplementedRedPacketServer) ClaimResult(context.Context, *ClaimResultReq) (*ClaimResultResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ClaimResult not implemented")
 }
-func (UnimplementedRedPacketServer) SetSigner(context.Context, *SetSignerReq) (*TxResp, error) {
+func (UnimplementedRedPacketServer) IssueWalletBindChallenge(context.Context, *IssueWalletBindChallengeReq) (*IssueWalletBindChallengeResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method IssueWalletBindChallenge not implemented")
+}
+func (UnimplementedRedPacketServer) ConfirmWalletBind(context.Context, *ConfirmWalletBindReq) (*ConfirmWalletBindResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method ConfirmWalletBind not implemented")
+}
+func (UnimplementedRedPacketServer) GetWalletBinding(context.Context, *GetWalletBindingReq) (*GetWalletBindingResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetWalletBinding not implemented")
+}
+func (UnimplementedRedPacketServer) SetSigner(context.Context, *SetSignerReq) (*SetSignerResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetSigner not implemented")
 }
-func (UnimplementedRedPacketServer) SetToken(context.Context, *SetTokenReq) (*TxResp, error) {
+func (UnimplementedRedPacketServer) SetToken(context.Context, *SetTokenReq) (*SetTokenResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetToken not implemented")
 }
-func (UnimplementedRedPacketServer) SetExpiry(context.Context, *SetExpiryReq) (*TxResp, error) {
+func (UnimplementedRedPacketServer) SetExpiry(context.Context, *SetExpiryReq) (*SetExpiryResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetExpiry not implemented")
 }
-func (UnimplementedRedPacketServer) SetAllowAllTokens(context.Context, *SetAllowAllTokensReq) (*TxResp, error) {
+func (UnimplementedRedPacketServer) SetAllowAllTokens(context.Context, *SetAllowAllTokensReq) (*SetAllowAllTokensResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetAllowAllTokens not implemented")
 }
-func (UnimplementedRedPacketServer) SetNativeToken(context.Context, *SetNativeTokenReq) (*TxResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method SetNativeToken not implemented")
+func (UnimplementedRedPacketServer) SetNativeTokenEnabled(context.Context, *SetNativeTokenEnabledReq) (*SetNativeTokenEnabledResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetNativeTokenEnabled not implemented")
 }
 func (UnimplementedRedPacketServer) ParseTxEvents(context.Context, *ParseTxEventsReq) (*ParseTxEventsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ParseTxEvents not implemented")
@@ -300,20 +348,20 @@ func _RedPacket_GetDetail_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RedPacket_ClaimSign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClaimSignReq)
+func _RedPacket_IssueClaimSign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IssueClaimSignReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RedPacketServer).ClaimSign(ctx, in)
+		return srv.(RedPacketServer).IssueClaimSign(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RedPacket_ClaimSign_FullMethodName,
+		FullMethod: RedPacket_IssueClaimSign_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedPacketServer).ClaimSign(ctx, req.(*ClaimSignReq))
+		return srv.(RedPacketServer).IssueClaimSign(ctx, req.(*IssueClaimSignReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -332,6 +380,60 @@ func _RedPacket_ClaimResult_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RedPacketServer).ClaimResult(ctx, req.(*ClaimResultReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedPacket_IssueWalletBindChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IssueWalletBindChallengeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedPacketServer).IssueWalletBindChallenge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedPacket_IssueWalletBindChallenge_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedPacketServer).IssueWalletBindChallenge(ctx, req.(*IssueWalletBindChallengeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedPacket_ConfirmWalletBind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfirmWalletBindReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedPacketServer).ConfirmWalletBind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedPacket_ConfirmWalletBind_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedPacketServer).ConfirmWalletBind(ctx, req.(*ConfirmWalletBindReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedPacket_GetWalletBinding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWalletBindingReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedPacketServer).GetWalletBinding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedPacket_GetWalletBinding_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedPacketServer).GetWalletBinding(ctx, req.(*GetWalletBindingReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -408,20 +510,20 @@ func _RedPacket_SetAllowAllTokens_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RedPacket_SetNativeToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetNativeTokenReq)
+func _RedPacket_SetNativeTokenEnabled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNativeTokenEnabledReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RedPacketServer).SetNativeToken(ctx, in)
+		return srv.(RedPacketServer).SetNativeTokenEnabled(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RedPacket_SetNativeToken_FullMethodName,
+		FullMethod: RedPacket_SetNativeTokenEnabled_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedPacketServer).SetNativeToken(ctx, req.(*SetNativeTokenReq))
+		return srv.(RedPacketServer).SetNativeTokenEnabled(ctx, req.(*SetNativeTokenEnabledReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -452,47 +554,59 @@ var RedPacket_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RedPacketServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "createOrder",
+			MethodName: "CreateOrder",
 			Handler:    _RedPacket_CreateOrder_Handler,
 		},
 		{
-			MethodName: "createdCallback",
+			MethodName: "CreatedCallback",
 			Handler:    _RedPacket_CreatedCallback_Handler,
 		},
 		{
-			MethodName: "getDetail",
+			MethodName: "GetDetail",
 			Handler:    _RedPacket_GetDetail_Handler,
 		},
 		{
-			MethodName: "claimSign",
-			Handler:    _RedPacket_ClaimSign_Handler,
+			MethodName: "IssueClaimSign",
+			Handler:    _RedPacket_IssueClaimSign_Handler,
 		},
 		{
-			MethodName: "claimResult",
+			MethodName: "ClaimResult",
 			Handler:    _RedPacket_ClaimResult_Handler,
 		},
 		{
-			MethodName: "setSigner",
+			MethodName: "IssueWalletBindChallenge",
+			Handler:    _RedPacket_IssueWalletBindChallenge_Handler,
+		},
+		{
+			MethodName: "ConfirmWalletBind",
+			Handler:    _RedPacket_ConfirmWalletBind_Handler,
+		},
+		{
+			MethodName: "GetWalletBinding",
+			Handler:    _RedPacket_GetWalletBinding_Handler,
+		},
+		{
+			MethodName: "SetSigner",
 			Handler:    _RedPacket_SetSigner_Handler,
 		},
 		{
-			MethodName: "setToken",
+			MethodName: "SetToken",
 			Handler:    _RedPacket_SetToken_Handler,
 		},
 		{
-			MethodName: "setExpiry",
+			MethodName: "SetExpiry",
 			Handler:    _RedPacket_SetExpiry_Handler,
 		},
 		{
-			MethodName: "setAllowAllTokens",
+			MethodName: "SetAllowAllTokens",
 			Handler:    _RedPacket_SetAllowAllTokens_Handler,
 		},
 		{
-			MethodName: "setNativeToken",
-			Handler:    _RedPacket_SetNativeToken_Handler,
+			MethodName: "SetNativeTokenEnabled",
+			Handler:    _RedPacket_SetNativeTokenEnabled_Handler,
 		},
 		{
-			MethodName: "parseTxEvents",
+			MethodName: "ParseTxEvents",
 			Handler:    _RedPacket_ParseTxEvents_Handler,
 		},
 	},
