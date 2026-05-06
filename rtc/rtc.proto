@@ -71,6 +71,8 @@ message InvitationInfo  {
   int32 sessionType = 9;
   int64 initiateTime = 10;
   repeated string busyLineUserIDList = 11;
+  // callerRingtoneURL 主叫方的来电铃声 URL；服务端从主叫用户资料填充，被叫客户端用于播放铃声
+  string callerRingtoneURL = 12;
 }
 
 message SignalInviteReq {
@@ -85,6 +87,8 @@ message SignalInviteResp {
   string roomID = 2;
   string liveURL = 3;
   repeated string busyLineUserIDList = 4;
+  // calleeRingtoneURL 被叫方设置的来电铃声 URL；主叫方在等待接听时播放此铃声
+  string calleeRingtoneURL = 5;
 }
 
 message SignalInviteInGroupReq {
@@ -99,6 +103,8 @@ message SignalInviteInGroupResp {
   string roomID = 2;
   string liveURL = 3;
   repeated string busyLineUserIDList = 4;
+  // calleeRingtoneURL 被叫方设置的来电铃声 URL（1v1 时为对方铃声，群聊时取第一位被叫）
+  string calleeRingtoneURL = 5;
 }
 
 message SignalCancelReq {
