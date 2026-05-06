@@ -91,6 +91,8 @@ message UserInfo {
   int32 globalRecvMsgOpt = 7;
   // phone 仅对有权限的 viewer 下发，无权限时为空字符串
   string phone = 8;
+  // areaCode 手机国际区号（如 +86）
+  string areaCode = 15;
   // phoneVisibility 0=所有人 1=仅好友 2=隐藏
   int32 phoneVisibility = 9;
   // callAcceptSetting 0=所有人可发起 1=仅好友可发起 2=不接受任何通话
@@ -112,6 +114,7 @@ message UserInfoWithEx {
   openim.protobuf.StringValue lastName = 6;
   openim.protobuf.Int32Value globalRecvMsgOpt = 7;
   openim.protobuf.StringValue phone = 8;
+  openim.protobuf.StringValue areaCode = 13;
   openim.protobuf.Int32Value phoneVisibility = 9;
   openim.protobuf.Int32Value callAcceptSetting = 10;
   openim.protobuf.Int32Value msgReceiveSetting = 11;
