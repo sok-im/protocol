@@ -387,6 +387,13 @@ message setMsgReceiveSettingReq {
 }
 message setMsgReceiveSettingResp {}
 
+message setGroupInviteSettingReq {
+  string userID = 1;
+  // groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
+  int32 groupInviteSetting = 2;
+}
+message setGroupInviteSettingResp {}
+
 message getUserByPhoneReq {
   // phone 精确手机号，纯数字 5-20 位，可选 + 前缀（如 13800138000 或 +8613800138000）
   string phone = 1;
@@ -471,6 +478,9 @@ service user {
 
   // 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
   rpc setMsgReceiveSetting(setMsgReceiveSettingReq) returns (setMsgReceiveSettingResp);
+
+  // 设置群邀请权限（所有人/仅好友/所有人不可邀请）
+  rpc setGroupInviteSetting(setGroupInviteSettingReq) returns (setGroupInviteSettingResp);
 
   // 根据手机号精确查询用户，自动尊重 phone_visibility 设置
   rpc getUserByPhone(getUserByPhoneReq) returns (getUserByPhoneResp);

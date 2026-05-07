@@ -52,6 +52,7 @@ const (
 	User_SetPhoneVisibility_FullMethodName            = "/openim.user.user/setPhoneVisibility"
 	User_SetCallAcceptSetting_FullMethodName          = "/openim.user.user/setCallAcceptSetting"
 	User_SetMsgReceiveSetting_FullMethodName          = "/openim.user.user/setMsgReceiveSetting"
+	User_SetGroupInviteSetting_FullMethodName         = "/openim.user.user/setGroupInviteSetting"
 	User_GetUserByPhone_FullMethodName                = "/openim.user.user/getUserByPhone"
 	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
 )
@@ -119,6 +120,8 @@ type UserClient interface {
 	SetCallAcceptSetting(ctx context.Context, in *SetCallAcceptSettingReq, opts ...grpc.CallOption) (*SetCallAcceptSettingResp, error)
 	// 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
 	SetMsgReceiveSetting(ctx context.Context, in *SetMsgReceiveSettingReq, opts ...grpc.CallOption) (*SetMsgReceiveSettingResp, error)
+	// 设置群邀请权限（所有人/仅好友/所有人不可邀请）
+	SetGroupInviteSetting(ctx context.Context, in *SetGroupInviteSettingReq, opts ...grpc.CallOption) (*SetGroupInviteSettingResp, error)
 	// 根据手机号精确查询用户，自动尊重 phone_visibility 设置
 	GetUserByPhone(ctx context.Context, in *GetUserByPhoneReq, opts ...grpc.CallOption) (*GetUserByPhoneResp, error)
 	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
@@ -463,6 +466,16 @@ func (c *userClient) SetMsgReceiveSetting(ctx context.Context, in *SetMsgReceive
 	return out, nil
 }
 
+func (c *userClient) SetGroupInviteSetting(ctx context.Context, in *SetGroupInviteSettingReq, opts ...grpc.CallOption) (*SetGroupInviteSettingResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetGroupInviteSettingResp)
+	err := c.cc.Invoke(ctx, User_SetGroupInviteSetting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) GetUserByPhone(ctx context.Context, in *GetUserByPhoneReq, opts ...grpc.CallOption) (*GetUserByPhoneResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserByPhoneResp)
@@ -546,6 +559,8 @@ type UserServer interface {
 	SetCallAcceptSetting(context.Context, *SetCallAcceptSettingReq) (*SetCallAcceptSettingResp, error)
 	// 设置会话消息接收权限（所有人/仅好友/所有人不可发送）
 	SetMsgReceiveSetting(context.Context, *SetMsgReceiveSettingReq) (*SetMsgReceiveSettingResp, error)
+	// 设置群邀请权限（所有人/仅好友/所有人不可邀请）
+	SetGroupInviteSetting(context.Context, *SetGroupInviteSettingReq) (*SetGroupInviteSettingResp, error)
 	// 根据手机号精确查询用户，自动尊重 phone_visibility 设置
 	GetUserByPhone(context.Context, *GetUserByPhoneReq) (*GetUserByPhoneResp, error)
 	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
@@ -658,6 +673,9 @@ func (UnimplementedUserServer) SetCallAcceptSetting(context.Context, *SetCallAcc
 }
 func (UnimplementedUserServer) SetMsgReceiveSetting(context.Context, *SetMsgReceiveSettingReq) (*SetMsgReceiveSettingResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetMsgReceiveSetting not implemented")
+}
+func (UnimplementedUserServer) SetGroupInviteSetting(context.Context, *SetGroupInviteSettingReq) (*SetGroupInviteSettingResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetGroupInviteSetting not implemented")
 }
 func (UnimplementedUserServer) GetUserByPhone(context.Context, *GetUserByPhoneReq) (*GetUserByPhoneResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserByPhone not implemented")
@@ -1280,6 +1298,24 @@ func _User_SetMsgReceiveSetting_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SetGroupInviteSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetGroupInviteSettingReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetGroupInviteSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetGroupInviteSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetGroupInviteSetting(ctx, req.(*SetGroupInviteSettingReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_GetUserByPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserByPhoneReq)
 	if err := dec(in); err != nil {
@@ -1454,6 +1490,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "setMsgReceiveSetting",
 			Handler:    _User_SetMsgReceiveSetting_Handler,
+		},
+		{
+			MethodName: "setGroupInviteSetting",
+			Handler:    _User_SetGroupInviteSetting_Handler,
 		},
 		{
 			MethodName: "getUserByPhone",
