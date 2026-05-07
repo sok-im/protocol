@@ -409,6 +409,13 @@ message getUsersByNicknameResp {
   repeated sdkws.UserInfo usersInfo = 1;
 }
 
+message setUserMsgBurnDurationReq {
+  string userID = 1;
+  // msgBurnDuration 阅后即焚时长，单位秒；0 表示关闭，必须 >= 0
+  int32 msgBurnDuration = 2;
+}
+message setUserMsgBurnDurationResp {}
+
 service user {
   //Get the specified user information full field
   rpc getDesignateUsers(getDesignateUsersReq) returns (getDesignateUsersResp);
@@ -487,5 +494,8 @@ service user {
 
   // 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
   rpc getUsersByNickname(getUsersByNicknameReq) returns (getUsersByNicknameResp);
+
+  // 设置用户全局消息阅后即焚时长（秒），0 表示关闭
+  rpc setUserMsgBurnDuration(setUserMsgBurnDurationReq) returns (setUserMsgBurnDurationResp);
 
 }

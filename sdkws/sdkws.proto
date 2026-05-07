@@ -105,6 +105,8 @@ message UserInfo {
   string callRingtoneURL = 14;
   // groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
   int32 groupInviteSetting = 16;
+  // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
+  int32 msgBurnDuration = 17;
 }
 
 message UserInfoWithEx {
@@ -124,6 +126,8 @@ message UserInfoWithEx {
   openim.protobuf.StringValue callRingtoneURL = 12;
   // groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
   openim.protobuf.Int32Value groupInviteSetting = 14;
+  // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
+  openim.protobuf.Int32Value msgBurnDuration = 15;
 }
 
 message FriendInfo {

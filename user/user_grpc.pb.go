@@ -55,6 +55,7 @@ const (
 	User_SetGroupInviteSetting_FullMethodName         = "/openim.user.user/setGroupInviteSetting"
 	User_GetUserByPhone_FullMethodName                = "/openim.user.user/getUserByPhone"
 	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
+	User_SetUserMsgBurnDuration_FullMethodName        = "/openim.user.user/setUserMsgBurnDuration"
 )
 
 // UserClient is the client API for User service.
@@ -126,6 +127,8 @@ type UserClient interface {
 	GetUserByPhone(ctx context.Context, in *GetUserByPhoneReq, opts ...grpc.CallOption) (*GetUserByPhoneResp, error)
 	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
 	GetUsersByNickname(ctx context.Context, in *GetUsersByNicknameReq, opts ...grpc.CallOption) (*GetUsersByNicknameResp, error)
+	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
+	SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error)
 }
 
 type userClient struct {
@@ -496,6 +499,16 @@ func (c *userClient) GetUsersByNickname(ctx context.Context, in *GetUsersByNickn
 	return out, nil
 }
 
+func (c *userClient) SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetUserMsgBurnDurationResp)
+	err := c.cc.Invoke(ctx, User_SetUserMsgBurnDuration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -565,6 +578,8 @@ type UserServer interface {
 	GetUserByPhone(context.Context, *GetUserByPhoneReq) (*GetUserByPhoneResp, error)
 	// 根据用户昵称精确查询普通用户（可多结果，与 getPaginationUsers 模糊搜索不同）
 	GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error)
+	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
+	SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -682,6 +697,9 @@ func (UnimplementedUserServer) GetUserByPhone(context.Context, *GetUserByPhoneRe
 }
 func (UnimplementedUserServer) GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUsersByNickname not implemented")
+}
+func (UnimplementedUserServer) SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetUserMsgBurnDuration not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -1352,6 +1370,24 @@ func _User_GetUsersByNickname_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SetUserMsgBurnDuration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetUserMsgBurnDurationReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetUserMsgBurnDuration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetUserMsgBurnDuration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetUserMsgBurnDuration(ctx, req.(*SetUserMsgBurnDurationReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1502,6 +1538,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getUsersByNickname",
 			Handler:    _User_GetUsersByNickname_Handler,
+		},
+		{
+			MethodName: "setUserMsgBurnDuration",
+			Handler:    _User_SetUserMsgBurnDuration_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
