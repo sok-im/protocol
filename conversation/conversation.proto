@@ -296,6 +296,17 @@ message ClearUserConversationMsgResp {
   int32 count = 1;
 }
 
+message ClearBurnExpiredMsgsReq {
+  // timestamp 当前任务执行的毫秒时间戳；deadline_ms <= timestamp 视为过期
+  int64 timestamp = 1;
+  // limit 单次最多处理多少个 (userID, conversationID) 分组
+  int32 limit = 2;
+}
+message ClearBurnExpiredMsgsResp {
+  // count 本次处理的分组数（即推进了 min_seq 的会话个数）
+  int32 count = 1;
+}
+
 message UpdateConversationsByUserReq {
   string userID = 1;
   openim.protobuf.StringValue ex = 2;
@@ -337,4 +348,7 @@ service conversation {
   rpc ClearUserConversationMsg(ClearUserConversationMsgReq) returns (ClearUserConversationMsgResp);
   rpc UpdateConversationsByUser(UpdateConversationsByUserReq) returns (UpdateConversationsByUserResp);
   rpc DeleteConversations(DeleteConversationsReq) returns (DeleteConversationsResp);
+
+  // 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
+  rpc ClearBurnExpiredMsgs(ClearBurnExpiredMsgsReq) returns (ClearBurnExpiredMsgsResp);
 }

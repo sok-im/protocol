@@ -45,6 +45,7 @@ const (
 	Conversation_ClearUserConversationMsg_FullMethodName                = "/openim.conversation.conversation/ClearUserConversationMsg"
 	Conversation_UpdateConversationsByUser_FullMethodName               = "/openim.conversation.conversation/UpdateConversationsByUser"
 	Conversation_DeleteConversations_FullMethodName                     = "/openim.conversation.conversation/DeleteConversations"
+	Conversation_ClearBurnExpiredMsgs_FullMethodName                    = "/openim.conversation.conversation/ClearBurnExpiredMsgs"
 )
 
 // ConversationClient is the client API for Conversation service.
@@ -77,6 +78,8 @@ type ConversationClient interface {
 	ClearUserConversationMsg(ctx context.Context, in *ClearUserConversationMsgReq, opts ...grpc.CallOption) (*ClearUserConversationMsgResp, error)
 	UpdateConversationsByUser(ctx context.Context, in *UpdateConversationsByUserReq, opts ...grpc.CallOption) (*UpdateConversationsByUserResp, error)
 	DeleteConversations(ctx context.Context, in *DeleteConversationsReq, opts ...grpc.CallOption) (*DeleteConversationsResp, error)
+	// 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
+	ClearBurnExpiredMsgs(ctx context.Context, in *ClearBurnExpiredMsgsReq, opts ...grpc.CallOption) (*ClearBurnExpiredMsgsResp, error)
 }
 
 type conversationClient struct {
@@ -347,6 +350,16 @@ func (c *conversationClient) DeleteConversations(ctx context.Context, in *Delete
 	return out, nil
 }
 
+func (c *conversationClient) ClearBurnExpiredMsgs(ctx context.Context, in *ClearBurnExpiredMsgsReq, opts ...grpc.CallOption) (*ClearBurnExpiredMsgsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ClearBurnExpiredMsgsResp)
+	err := c.cc.Invoke(ctx, Conversation_ClearBurnExpiredMsgs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConversationServer is the server API for Conversation service.
 // All implementations must embed UnimplementedConversationServer
 // for forward compatibility.
@@ -377,6 +390,8 @@ type ConversationServer interface {
 	ClearUserConversationMsg(context.Context, *ClearUserConversationMsgReq) (*ClearUserConversationMsgResp, error)
 	UpdateConversationsByUser(context.Context, *UpdateConversationsByUserReq) (*UpdateConversationsByUserResp, error)
 	DeleteConversations(context.Context, *DeleteConversationsReq) (*DeleteConversationsResp, error)
+	// 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
+	ClearBurnExpiredMsgs(context.Context, *ClearBurnExpiredMsgsReq) (*ClearBurnExpiredMsgsResp, error)
 	mustEmbedUnimplementedConversationServer()
 }
 
@@ -464,6 +479,9 @@ func (UnimplementedConversationServer) UpdateConversationsByUser(context.Context
 }
 func (UnimplementedConversationServer) DeleteConversations(context.Context, *DeleteConversationsReq) (*DeleteConversationsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteConversations not implemented")
+}
+func (UnimplementedConversationServer) ClearBurnExpiredMsgs(context.Context, *ClearBurnExpiredMsgsReq) (*ClearBurnExpiredMsgsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method ClearBurnExpiredMsgs not implemented")
 }
 func (UnimplementedConversationServer) mustEmbedUnimplementedConversationServer() {}
 func (UnimplementedConversationServer) testEmbeddedByValue()                      {}
@@ -954,6 +972,24 @@ func _Conversation_DeleteConversations_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Conversation_ClearBurnExpiredMsgs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClearBurnExpiredMsgsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationServer).ClearBurnExpiredMsgs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Conversation_ClearBurnExpiredMsgs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationServer).ClearBurnExpiredMsgs(ctx, req.(*ClearBurnExpiredMsgsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Conversation_ServiceDesc is the grpc.ServiceDesc for Conversation service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1064,6 +1100,10 @@ var Conversation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteConversations",
 			Handler:    _Conversation_DeleteConversations_Handler,
+		},
+		{
+			MethodName: "ClearBurnExpiredMsgs",
+			Handler:    _Conversation_ClearBurnExpiredMsgs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
