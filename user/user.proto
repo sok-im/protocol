@@ -432,6 +432,14 @@ message getUserPrivacySettingsResp {
   int32 groupInviteSetting = 6;
 }
 
+// userLogin 记录用户登录时间；userID 取自上下文 opUserID
+message userLoginReq {}
+message userLoginResp {}
+
+// userLogout 记录用户登出时间；userID 取自上下文 opUserID
+message userLogoutReq {}
+message userLogoutResp {}
+
 service user {
   //Get the specified user information full field
   rpc getDesignateUsers(getDesignateUsersReq) returns (getDesignateUsersResp);
@@ -516,5 +524,11 @@ service user {
 
   // 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
   rpc getUserPrivacySettings(getUserPrivacySettingsReq) returns (getUserPrivacySettingsResp);
+
+  // 记录用户登录时间；userID 取自上下文 opUserID
+  rpc userLogin(userLoginReq) returns (userLoginResp);
+
+  // 记录用户登出时间；userID 取自上下文 opUserID
+  rpc userLogout(userLogoutReq) returns (userLogoutResp);
 
 }
