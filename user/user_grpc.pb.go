@@ -57,8 +57,6 @@ const (
 	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
 	User_SetUserMsgBurnDuration_FullMethodName        = "/openim.user.user/setUserMsgBurnDuration"
 	User_GetUserPrivacySettings_FullMethodName        = "/openim.user.user/getUserPrivacySettings"
-	User_UserLogin_FullMethodName                     = "/openim.user.user/userLogin"
-	User_UserLogout_FullMethodName                    = "/openim.user.user/userLogout"
 )
 
 // UserClient is the client API for User service.
@@ -134,10 +132,6 @@ type UserClient interface {
 	SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error)
 	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
 	GetUserPrivacySettings(ctx context.Context, in *GetUserPrivacySettingsReq, opts ...grpc.CallOption) (*GetUserPrivacySettingsResp, error)
-	// 记录用户登录时间；userID 取自上下文 opUserID
-	UserLogin(ctx context.Context, in *UserLoginReq, opts ...grpc.CallOption) (*UserLoginResp, error)
-	// 记录用户登出时间；userID 取自上下文 opUserID
-	UserLogout(ctx context.Context, in *UserLogoutReq, opts ...grpc.CallOption) (*UserLogoutResp, error)
 }
 
 type userClient struct {
@@ -528,26 +522,6 @@ func (c *userClient) GetUserPrivacySettings(ctx context.Context, in *GetUserPriv
 	return out, nil
 }
 
-func (c *userClient) UserLogin(ctx context.Context, in *UserLoginReq, opts ...grpc.CallOption) (*UserLoginResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserLoginResp)
-	err := c.cc.Invoke(ctx, User_UserLogin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) UserLogout(ctx context.Context, in *UserLogoutReq, opts ...grpc.CallOption) (*UserLogoutResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserLogoutResp)
-	err := c.cc.Invoke(ctx, User_UserLogout_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -621,10 +595,6 @@ type UserServer interface {
 	SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error)
 	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
 	GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error)
-	// 记录用户登录时间；userID 取自上下文 opUserID
-	UserLogin(context.Context, *UserLoginReq) (*UserLoginResp, error)
-	// 记录用户登出时间；userID 取自上下文 opUserID
-	UserLogout(context.Context, *UserLogoutReq) (*UserLogoutResp, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -748,12 +718,6 @@ func (UnimplementedUserServer) SetUserMsgBurnDuration(context.Context, *SetUserM
 }
 func (UnimplementedUserServer) GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserPrivacySettings not implemented")
-}
-func (UnimplementedUserServer) UserLogin(context.Context, *UserLoginReq) (*UserLoginResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method UserLogin not implemented")
-}
-func (UnimplementedUserServer) UserLogout(context.Context, *UserLogoutReq) (*UserLogoutResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method UserLogout not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -1460,42 +1424,6 @@ func _User_GetUserPrivacySettings_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_UserLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserLoginReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).UserLogin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_UserLogin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UserLogin(ctx, req.(*UserLoginReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_UserLogout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserLogoutReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).UserLogout(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_UserLogout_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UserLogout(ctx, req.(*UserLogoutReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1654,14 +1582,6 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getUserPrivacySettings",
 			Handler:    _User_GetUserPrivacySettings_Handler,
-		},
-		{
-			MethodName: "userLogin",
-			Handler:    _User_UserLogin_Handler,
-		},
-		{
-			MethodName: "userLogout",
-			Handler:    _User_UserLogout_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

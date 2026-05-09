@@ -4716,152 +4716,6 @@ func (x *GetUserPrivacySettingsResp) GetGroupInviteSetting() int32 {
 	return 0
 }
 
-// userLogin 记录用户登录时间；userID 取自上下文 opUserID
-type UserLoginReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserLoginReq) Reset() {
-	*x = UserLoginReq{}
-	mi := &file_user_user_proto_msgTypes[94]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserLoginReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserLoginReq) ProtoMessage() {}
-
-func (x *UserLoginReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[94]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserLoginReq.ProtoReflect.Descriptor instead.
-func (*UserLoginReq) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{94}
-}
-
-type UserLoginResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserLoginResp) Reset() {
-	*x = UserLoginResp{}
-	mi := &file_user_user_proto_msgTypes[95]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserLoginResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserLoginResp) ProtoMessage() {}
-
-func (x *UserLoginResp) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[95]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserLoginResp.ProtoReflect.Descriptor instead.
-func (*UserLoginResp) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{95}
-}
-
-// userLogout 记录用户登出时间；userID 取自上下文 opUserID
-type UserLogoutReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserLogoutReq) Reset() {
-	*x = UserLogoutReq{}
-	mi := &file_user_user_proto_msgTypes[96]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserLogoutReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserLogoutReq) ProtoMessage() {}
-
-func (x *UserLogoutReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[96]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserLogoutReq.ProtoReflect.Descriptor instead.
-func (*UserLogoutReq) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{96}
-}
-
-type UserLogoutResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserLogoutResp) Reset() {
-	*x = UserLogoutResp{}
-	mi := &file_user_user_proto_msgTypes[97]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserLogoutResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserLogoutResp) ProtoMessage() {}
-
-func (x *UserLogoutResp) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[97]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserLogoutResp.ProtoReflect.Descriptor instead.
-func (*UserLogoutResp) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{97}
-}
-
 type AccountCheckRespSingleUserStatus struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
@@ -4872,7 +4726,7 @@ type AccountCheckRespSingleUserStatus struct {
 
 func (x *AccountCheckRespSingleUserStatus) Reset() {
 	*x = AccountCheckRespSingleUserStatus{}
-	mi := &file_user_user_proto_msgTypes[98]
+	mi := &file_user_user_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4884,7 +4738,7 @@ func (x *AccountCheckRespSingleUserStatus) String() string {
 func (*AccountCheckRespSingleUserStatus) ProtoMessage() {}
 
 func (x *AccountCheckRespSingleUserStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[98]
+	mi := &file_user_user_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5219,11 +5073,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\x11callAcceptSetting\x18\x03 \x01(\x05R\x11callAcceptSetting\x12*\n" +
 	"\x10globalRecvMsgOpt\x18\x04 \x01(\x05R\x10globalRecvMsgOpt\x12,\n" +
 	"\x11msgReceiveSetting\x18\x05 \x01(\x05R\x11msgReceiveSetting\x12.\n" +
-	"\x12groupInviteSetting\x18\x06 \x01(\x05R\x12groupInviteSetting\"\x0e\n" +
-	"\fuserLoginReq\"\x0f\n" +
-	"\ruserLoginResp\"\x0f\n" +
-	"\ruserLogoutReq\"\x10\n" +
-	"\x0euserLogoutResp2\xb5\x1e\n" +
+	"\x12groupInviteSetting\x18\x06 \x01(\x05R\x12groupInviteSetting2\xaa\x1d\n" +
 	"\x04user\x12Z\n" +
 	"\x11getDesignateUsers\x12!.openim.user.getDesignateUsersReq\x1a\".openim.user.getDesignateUsersResp\x12Q\n" +
 	"\x0eupdateUserInfo\x12\x1e.openim.user.updateUserInfoReq\x1a\x1f.openim.user.updateUserInfoResp\x12W\n" +
@@ -5262,10 +5112,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\x0egetUserByPhone\x12\x1e.openim.user.getUserByPhoneReq\x1a\x1f.openim.user.getUserByPhoneResp\x12]\n" +
 	"\x12getUsersByNickname\x12\".openim.user.getUsersByNicknameReq\x1a#.openim.user.getUsersByNicknameResp\x12i\n" +
 	"\x16setUserMsgBurnDuration\x12&.openim.user.setUserMsgBurnDurationReq\x1a'.openim.user.setUserMsgBurnDurationResp\x12i\n" +
-	"\x16getUserPrivacySettings\x12&.openim.user.getUserPrivacySettingsReq\x1a'.openim.user.getUserPrivacySettingsResp\x12B\n" +
-	"\tuserLogin\x12\x19.openim.user.userLoginReq\x1a\x1a.openim.user.userLoginResp\x12E\n" +
-	"\n" +
-	"userLogout\x12\x1a.openim.user.userLogoutReq\x1a\x1b.openim.user.userLogoutRespB$Z\"github.com/openimsdk/protocol/userb\x06proto3"
+	"\x16getUserPrivacySettings\x12&.openim.user.getUserPrivacySettingsReq\x1a'.openim.user.getUserPrivacySettingsRespB$Z\"github.com/openimsdk/protocol/userb\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once
@@ -5279,7 +5126,7 @@ func file_user_user_proto_rawDescGZIP() []byte {
 	return file_user_user_proto_rawDescData
 }
 
-var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 103)
+var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 99)
 var file_user_user_proto_goTypes = []any{
 	(*GetAllUserIDReq)(nil),                   // 0: openim.user.getAllUserIDReq
 	(*GetAllUserIDResp)(nil),                  // 1: openim.user.getAllUserIDResp
@@ -5375,58 +5222,54 @@ var file_user_user_proto_goTypes = []any{
 	(*SetUserMsgBurnDurationResp)(nil),        // 91: openim.user.setUserMsgBurnDurationResp
 	(*GetUserPrivacySettingsReq)(nil),         // 92: openim.user.getUserPrivacySettingsReq
 	(*GetUserPrivacySettingsResp)(nil),        // 93: openim.user.getUserPrivacySettingsResp
-	(*UserLoginReq)(nil),                      // 94: openim.user.userLoginReq
-	(*UserLoginResp)(nil),                     // 95: openim.user.userLoginResp
-	(*UserLogoutReq)(nil),                     // 96: openim.user.userLogoutReq
-	(*UserLogoutResp)(nil),                    // 97: openim.user.userLogoutResp
-	(*AccountCheckRespSingleUserStatus)(nil),  // 98: openim.user.accountCheckResp.singleUserStatus
-	nil,                                       // 99: openim.user.userRegisterCountResp.CountEntry
-	nil,                                       // 100: openim.user.sortQueryReq.UserIDNameEntry
-	nil,                                       // 101: openim.user.getUserClientConfigResp.ConfigsEntry
-	nil,                                       // 102: openim.user.setUserClientConfigReq.ConfigsEntry
-	(*sdkws.RequestPagination)(nil),           // 103: openim.sdkws.RequestPagination
-	(*sdkws.UserInfo)(nil),                    // 104: openim.sdkws.UserInfo
-	(*sdkws.UserInfoWithEx)(nil),              // 105: openim.sdkws.UserInfoWithEx
-	(*conversation.Conversation)(nil),         // 106: openim.conversation.Conversation
-	(*wrapperspb.StringValue)(nil),            // 107: openim.protobuf.StringValue
+	(*AccountCheckRespSingleUserStatus)(nil),  // 94: openim.user.accountCheckResp.singleUserStatus
+	nil,                                       // 95: openim.user.userRegisterCountResp.CountEntry
+	nil,                                       // 96: openim.user.sortQueryReq.UserIDNameEntry
+	nil,                                       // 97: openim.user.getUserClientConfigResp.ConfigsEntry
+	nil,                                       // 98: openim.user.setUserClientConfigReq.ConfigsEntry
+	(*sdkws.RequestPagination)(nil),           // 99: openim.sdkws.RequestPagination
+	(*sdkws.UserInfo)(nil),                    // 100: openim.sdkws.UserInfo
+	(*sdkws.UserInfoWithEx)(nil),              // 101: openim.sdkws.UserInfoWithEx
+	(*conversation.Conversation)(nil),         // 102: openim.conversation.Conversation
+	(*wrapperspb.StringValue)(nil),            // 103: openim.protobuf.StringValue
 }
 var file_user_user_proto_depIdxs = []int32{
-	103, // 0: openim.user.getAllUserIDReq.pagination:type_name -> openim.sdkws.RequestPagination
-	98,  // 1: openim.user.accountCheckResp.results:type_name -> openim.user.accountCheckResp.singleUserStatus
-	104, // 2: openim.user.getDesignateUsersResp.usersInfo:type_name -> openim.sdkws.UserInfo
-	104, // 3: openim.user.updateUserInfoReq.userInfo:type_name -> openim.sdkws.UserInfo
-	105, // 4: openim.user.updateUserInfoExReq.userInfo:type_name -> openim.sdkws.UserInfoWithEx
-	106, // 5: openim.user.setConversationReq.conversation:type_name -> openim.conversation.Conversation
-	106, // 6: openim.user.getConversationResp.conversation:type_name -> openim.conversation.Conversation
-	106, // 7: openim.user.getConversationsResp.conversations:type_name -> openim.conversation.Conversation
-	106, // 8: openim.user.getAllConversationsResp.conversations:type_name -> openim.conversation.Conversation
-	106, // 9: openim.user.batchSetConversationsReq.conversations:type_name -> openim.conversation.Conversation
-	103, // 10: openim.user.getPaginationUsersReq.pagination:type_name -> openim.sdkws.RequestPagination
-	104, // 11: openim.user.getPaginationUsersResp.users:type_name -> openim.sdkws.UserInfo
-	104, // 12: openim.user.userRegisterReq.users:type_name -> openim.sdkws.UserInfo
-	99,  // 13: openim.user.userRegisterCountResp.count:type_name -> openim.user.userRegisterCountResp.CountEntry
+	99,  // 0: openim.user.getAllUserIDReq.pagination:type_name -> openim.sdkws.RequestPagination
+	94,  // 1: openim.user.accountCheckResp.results:type_name -> openim.user.accountCheckResp.singleUserStatus
+	100, // 2: openim.user.getDesignateUsersResp.usersInfo:type_name -> openim.sdkws.UserInfo
+	100, // 3: openim.user.updateUserInfoReq.userInfo:type_name -> openim.sdkws.UserInfo
+	101, // 4: openim.user.updateUserInfoExReq.userInfo:type_name -> openim.sdkws.UserInfoWithEx
+	102, // 5: openim.user.setConversationReq.conversation:type_name -> openim.conversation.Conversation
+	102, // 6: openim.user.getConversationResp.conversation:type_name -> openim.conversation.Conversation
+	102, // 7: openim.user.getConversationsResp.conversations:type_name -> openim.conversation.Conversation
+	102, // 8: openim.user.getAllConversationsResp.conversations:type_name -> openim.conversation.Conversation
+	102, // 9: openim.user.batchSetConversationsReq.conversations:type_name -> openim.conversation.Conversation
+	99,  // 10: openim.user.getPaginationUsersReq.pagination:type_name -> openim.sdkws.RequestPagination
+	100, // 11: openim.user.getPaginationUsersResp.users:type_name -> openim.sdkws.UserInfo
+	100, // 12: openim.user.userRegisterReq.users:type_name -> openim.sdkws.UserInfo
+	95,  // 13: openim.user.userRegisterCountResp.count:type_name -> openim.user.userRegisterCountResp.CountEntry
 	36,  // 14: openim.user.subscribeOrCancelUsersStatusResp.statusList:type_name -> openim.user.onlineStatus
 	36,  // 15: openim.user.getSubscribeUsersStatusResp.statusList:type_name -> openim.user.onlineStatus
 	36,  // 16: openim.user.getUserStatusResp.statusList:type_name -> openim.user.onlineStatus
 	41,  // 17: openim.user.setUserOnlineStatusReq.status:type_name -> openim.user.userOnlineStatus
-	107, // 18: openim.user.processUserCommandAddReq.value:type_name -> openim.protobuf.StringValue
-	107, // 19: openim.user.processUserCommandAddReq.ex:type_name -> openim.protobuf.StringValue
-	107, // 20: openim.user.processUserCommandUpdateReq.value:type_name -> openim.protobuf.StringValue
-	107, // 21: openim.user.processUserCommandUpdateReq.ex:type_name -> openim.protobuf.StringValue
+	103, // 18: openim.user.processUserCommandAddReq.value:type_name -> openim.protobuf.StringValue
+	103, // 19: openim.user.processUserCommandAddReq.ex:type_name -> openim.protobuf.StringValue
+	103, // 20: openim.user.processUserCommandUpdateReq.value:type_name -> openim.protobuf.StringValue
+	103, // 21: openim.user.processUserCommandUpdateReq.ex:type_name -> openim.protobuf.StringValue
 	51,  // 22: openim.user.processUserCommandGetResp.CommandResp:type_name -> openim.user.CommandInfoResp
 	54,  // 23: openim.user.processUserCommandGetAllResp.CommandResp:type_name -> openim.user.AllCommandInfoResp
-	103, // 24: openim.user.searchNotificationAccountReq.pagination:type_name -> openim.sdkws.RequestPagination
+	99,  // 24: openim.user.searchNotificationAccountReq.pagination:type_name -> openim.sdkws.RequestPagination
 	61,  // 25: openim.user.searchNotificationAccountResp.notificationAccounts:type_name -> openim.user.notificationAccountInfo
 	61,  // 26: openim.user.getNotificationAccountResp.account:type_name -> openim.user.notificationAccountInfo
-	100, // 27: openim.user.sortQueryReq.userIDName:type_name -> openim.user.sortQueryReq.UserIDNameEntry
-	104, // 28: openim.user.sortQueryResp.users:type_name -> openim.sdkws.UserInfo
+	96,  // 27: openim.user.sortQueryReq.userIDName:type_name -> openim.user.sortQueryReq.UserIDNameEntry
+	100, // 28: openim.user.sortQueryResp.users:type_name -> openim.sdkws.UserInfo
 	36,  // 29: openim.user.getAllOnlineUsersResp.StatusList:type_name -> openim.user.onlineStatus
-	101, // 30: openim.user.getUserClientConfigResp.configs:type_name -> openim.user.getUserClientConfigResp.ConfigsEntry
-	102, // 31: openim.user.setUserClientConfigReq.configs:type_name -> openim.user.setUserClientConfigReq.ConfigsEntry
-	103, // 32: openim.user.pageUserClientConfigReq.pagination:type_name -> openim.sdkws.RequestPagination
+	97,  // 30: openim.user.getUserClientConfigResp.configs:type_name -> openim.user.getUserClientConfigResp.ConfigsEntry
+	98,  // 31: openim.user.setUserClientConfigReq.configs:type_name -> openim.user.setUserClientConfigReq.ConfigsEntry
+	99,  // 32: openim.user.pageUserClientConfigReq.pagination:type_name -> openim.sdkws.RequestPagination
 	77,  // 33: openim.user.pageUserClientConfigResp.configs:type_name -> openim.user.clientConfig
-	104, // 34: openim.user.getUserByPhoneResp.userInfo:type_name -> openim.sdkws.UserInfo
-	104, // 35: openim.user.getUsersByNicknameResp.usersInfo:type_name -> openim.sdkws.UserInfo
+	100, // 34: openim.user.getUserByPhoneResp.userInfo:type_name -> openim.sdkws.UserInfo
+	100, // 35: openim.user.getUsersByNicknameResp.usersInfo:type_name -> openim.sdkws.UserInfo
 	4,   // 36: openim.user.user.getDesignateUsers:input_type -> openim.user.getDesignateUsersReq
 	6,   // 37: openim.user.user.updateUserInfo:input_type -> openim.user.updateUserInfoReq
 	8,   // 38: openim.user.user.updateUserInfoEx:input_type -> openim.user.updateUserInfoExReq
@@ -5465,50 +5308,46 @@ var file_user_user_proto_depIdxs = []int32{
 	88,  // 71: openim.user.user.getUsersByNickname:input_type -> openim.user.getUsersByNicknameReq
 	90,  // 72: openim.user.user.setUserMsgBurnDuration:input_type -> openim.user.setUserMsgBurnDurationReq
 	92,  // 73: openim.user.user.getUserPrivacySettings:input_type -> openim.user.getUserPrivacySettingsReq
-	94,  // 74: openim.user.user.userLogin:input_type -> openim.user.userLoginReq
-	96,  // 75: openim.user.user.userLogout:input_type -> openim.user.userLogoutReq
-	5,   // 76: openim.user.user.getDesignateUsers:output_type -> openim.user.getDesignateUsersResp
-	7,   // 77: openim.user.user.updateUserInfo:output_type -> openim.user.updateUserInfoResp
-	9,   // 78: openim.user.user.updateUserInfoEx:output_type -> openim.user.updateUserInfoExResp
-	11,  // 79: openim.user.user.setGlobalRecvMessageOpt:output_type -> openim.user.setGlobalRecvMessageOptResp
-	29,  // 80: openim.user.user.getGlobalRecvMessageOpt:output_type -> openim.user.getGlobalRecvMessageOptResp
-	3,   // 81: openim.user.user.accountCheck:output_type -> openim.user.accountCheckResp
-	25,  // 82: openim.user.user.getPaginationUsers:output_type -> openim.user.getPaginationUsersResp
-	27,  // 83: openim.user.user.userRegister:output_type -> openim.user.userRegisterResp
-	1,   // 84: openim.user.user.getAllUserID:output_type -> openim.user.getAllUserIDResp
-	31,  // 85: openim.user.user.userRegisterCount:output_type -> openim.user.userRegisterCountResp
-	33,  // 86: openim.user.user.subscribeOrCancelUsersStatus:output_type -> openim.user.subscribeOrCancelUsersStatusResp
-	35,  // 87: openim.user.user.getSubscribeUsersStatus:output_type -> openim.user.getSubscribeUsersStatusResp
-	38,  // 88: openim.user.user.getUserStatus:output_type -> openim.user.getUserStatusResp
-	40,  // 89: openim.user.user.setUserStatus:output_type -> openim.user.setUserStatusResp
-	45,  // 90: openim.user.user.processUserCommandAdd:output_type -> openim.user.processUserCommandAddResp
-	49,  // 91: openim.user.user.processUserCommandUpdate:output_type -> openim.user.processUserCommandUpdateResp
-	47,  // 92: openim.user.user.processUserCommandDelete:output_type -> openim.user.processUserCommandDeleteResp
-	52,  // 93: openim.user.user.processUserCommandGet:output_type -> openim.user.processUserCommandGetResp
-	55,  // 94: openim.user.user.processUserCommandGetAll:output_type -> openim.user.processUserCommandGetAllResp
-	57,  // 95: openim.user.user.addNotificationAccount:output_type -> openim.user.addNotificationAccountResp
-	59,  // 96: openim.user.user.updateNotificationAccountInfo:output_type -> openim.user.updateNotificationAccountInfoResp
-	62,  // 97: openim.user.user.searchNotificationAccount:output_type -> openim.user.searchNotificationAccountResp
-	64,  // 98: openim.user.user.getNotificationAccount:output_type -> openim.user.getNotificationAccountResp
-	66,  // 99: openim.user.user.sortQuery:output_type -> openim.user.sortQueryResp
-	43,  // 100: openim.user.user.setUserOnlineStatus:output_type -> openim.user.setUserOnlineStatusResp
-	68,  // 101: openim.user.user.getAllOnlineUsers:output_type -> openim.user.getAllOnlineUsersResp
-	70,  // 102: openim.user.user.getUserClientConfig:output_type -> openim.user.getUserClientConfigResp
-	72,  // 103: openim.user.user.setUserClientConfig:output_type -> openim.user.setUserClientConfigResp
-	74,  // 104: openim.user.user.delUserClientConfig:output_type -> openim.user.delUserClientConfigResp
-	76,  // 105: openim.user.user.pageUserClientConfig:output_type -> openim.user.pageUserClientConfigResp
-	79,  // 106: openim.user.user.setPhoneVisibility:output_type -> openim.user.setPhoneVisibilityResp
-	81,  // 107: openim.user.user.setCallAcceptSetting:output_type -> openim.user.setCallAcceptSettingResp
-	83,  // 108: openim.user.user.setMsgReceiveSetting:output_type -> openim.user.setMsgReceiveSettingResp
-	85,  // 109: openim.user.user.setGroupInviteSetting:output_type -> openim.user.setGroupInviteSettingResp
-	87,  // 110: openim.user.user.getUserByPhone:output_type -> openim.user.getUserByPhoneResp
-	89,  // 111: openim.user.user.getUsersByNickname:output_type -> openim.user.getUsersByNicknameResp
-	91,  // 112: openim.user.user.setUserMsgBurnDuration:output_type -> openim.user.setUserMsgBurnDurationResp
-	93,  // 113: openim.user.user.getUserPrivacySettings:output_type -> openim.user.getUserPrivacySettingsResp
-	95,  // 114: openim.user.user.userLogin:output_type -> openim.user.userLoginResp
-	97,  // 115: openim.user.user.userLogout:output_type -> openim.user.userLogoutResp
-	76,  // [76:116] is the sub-list for method output_type
-	36,  // [36:76] is the sub-list for method input_type
+	5,   // 74: openim.user.user.getDesignateUsers:output_type -> openim.user.getDesignateUsersResp
+	7,   // 75: openim.user.user.updateUserInfo:output_type -> openim.user.updateUserInfoResp
+	9,   // 76: openim.user.user.updateUserInfoEx:output_type -> openim.user.updateUserInfoExResp
+	11,  // 77: openim.user.user.setGlobalRecvMessageOpt:output_type -> openim.user.setGlobalRecvMessageOptResp
+	29,  // 78: openim.user.user.getGlobalRecvMessageOpt:output_type -> openim.user.getGlobalRecvMessageOptResp
+	3,   // 79: openim.user.user.accountCheck:output_type -> openim.user.accountCheckResp
+	25,  // 80: openim.user.user.getPaginationUsers:output_type -> openim.user.getPaginationUsersResp
+	27,  // 81: openim.user.user.userRegister:output_type -> openim.user.userRegisterResp
+	1,   // 82: openim.user.user.getAllUserID:output_type -> openim.user.getAllUserIDResp
+	31,  // 83: openim.user.user.userRegisterCount:output_type -> openim.user.userRegisterCountResp
+	33,  // 84: openim.user.user.subscribeOrCancelUsersStatus:output_type -> openim.user.subscribeOrCancelUsersStatusResp
+	35,  // 85: openim.user.user.getSubscribeUsersStatus:output_type -> openim.user.getSubscribeUsersStatusResp
+	38,  // 86: openim.user.user.getUserStatus:output_type -> openim.user.getUserStatusResp
+	40,  // 87: openim.user.user.setUserStatus:output_type -> openim.user.setUserStatusResp
+	45,  // 88: openim.user.user.processUserCommandAdd:output_type -> openim.user.processUserCommandAddResp
+	49,  // 89: openim.user.user.processUserCommandUpdate:output_type -> openim.user.processUserCommandUpdateResp
+	47,  // 90: openim.user.user.processUserCommandDelete:output_type -> openim.user.processUserCommandDeleteResp
+	52,  // 91: openim.user.user.processUserCommandGet:output_type -> openim.user.processUserCommandGetResp
+	55,  // 92: openim.user.user.processUserCommandGetAll:output_type -> openim.user.processUserCommandGetAllResp
+	57,  // 93: openim.user.user.addNotificationAccount:output_type -> openim.user.addNotificationAccountResp
+	59,  // 94: openim.user.user.updateNotificationAccountInfo:output_type -> openim.user.updateNotificationAccountInfoResp
+	62,  // 95: openim.user.user.searchNotificationAccount:output_type -> openim.user.searchNotificationAccountResp
+	64,  // 96: openim.user.user.getNotificationAccount:output_type -> openim.user.getNotificationAccountResp
+	66,  // 97: openim.user.user.sortQuery:output_type -> openim.user.sortQueryResp
+	43,  // 98: openim.user.user.setUserOnlineStatus:output_type -> openim.user.setUserOnlineStatusResp
+	68,  // 99: openim.user.user.getAllOnlineUsers:output_type -> openim.user.getAllOnlineUsersResp
+	70,  // 100: openim.user.user.getUserClientConfig:output_type -> openim.user.getUserClientConfigResp
+	72,  // 101: openim.user.user.setUserClientConfig:output_type -> openim.user.setUserClientConfigResp
+	74,  // 102: openim.user.user.delUserClientConfig:output_type -> openim.user.delUserClientConfigResp
+	76,  // 103: openim.user.user.pageUserClientConfig:output_type -> openim.user.pageUserClientConfigResp
+	79,  // 104: openim.user.user.setPhoneVisibility:output_type -> openim.user.setPhoneVisibilityResp
+	81,  // 105: openim.user.user.setCallAcceptSetting:output_type -> openim.user.setCallAcceptSettingResp
+	83,  // 106: openim.user.user.setMsgReceiveSetting:output_type -> openim.user.setMsgReceiveSettingResp
+	85,  // 107: openim.user.user.setGroupInviteSetting:output_type -> openim.user.setGroupInviteSettingResp
+	87,  // 108: openim.user.user.getUserByPhone:output_type -> openim.user.getUserByPhoneResp
+	89,  // 109: openim.user.user.getUsersByNickname:output_type -> openim.user.getUsersByNicknameResp
+	91,  // 110: openim.user.user.setUserMsgBurnDuration:output_type -> openim.user.setUserMsgBurnDurationResp
+	93,  // 111: openim.user.user.getUserPrivacySettings:output_type -> openim.user.getUserPrivacySettingsResp
+	74,  // [74:112] is the sub-list for method output_type
+	36,  // [36:74] is the sub-list for method input_type
 	36,  // [36:36] is the sub-list for extension type_name
 	36,  // [36:36] is the sub-list for extension extendee
 	0,   // [0:36] is the sub-list for field type_name
@@ -5526,7 +5365,7 @@ func file_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_user_proto_rawDesc), len(file_user_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   103,
+			NumMessages:   99,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
