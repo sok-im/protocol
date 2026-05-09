@@ -56,6 +56,7 @@ const (
 	User_GetUserByPhone_FullMethodName                = "/openim.user.user/getUserByPhone"
 	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
 	User_SetUserMsgBurnDuration_FullMethodName        = "/openim.user.user/setUserMsgBurnDuration"
+	User_GetUserPrivacySettings_FullMethodName        = "/openim.user.user/getUserPrivacySettings"
 )
 
 // UserClient is the client API for User service.
@@ -129,6 +130,8 @@ type UserClient interface {
 	GetUsersByNickname(ctx context.Context, in *GetUsersByNicknameReq, opts ...grpc.CallOption) (*GetUsersByNicknameResp, error)
 	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
 	SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error)
+	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
+	GetUserPrivacySettings(ctx context.Context, in *GetUserPrivacySettingsReq, opts ...grpc.CallOption) (*GetUserPrivacySettingsResp, error)
 }
 
 type userClient struct {
@@ -509,6 +512,16 @@ func (c *userClient) SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgB
 	return out, nil
 }
 
+func (c *userClient) GetUserPrivacySettings(ctx context.Context, in *GetUserPrivacySettingsReq, opts ...grpc.CallOption) (*GetUserPrivacySettingsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserPrivacySettingsResp)
+	err := c.cc.Invoke(ctx, User_GetUserPrivacySettings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -580,6 +593,8 @@ type UserServer interface {
 	GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error)
 	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
 	SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error)
+	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
+	GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -700,6 +715,9 @@ func (UnimplementedUserServer) GetUsersByNickname(context.Context, *GetUsersByNi
 }
 func (UnimplementedUserServer) SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetUserMsgBurnDuration not implemented")
+}
+func (UnimplementedUserServer) GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserPrivacySettings not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -1388,6 +1406,24 @@ func _User_SetUserMsgBurnDuration_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_GetUserPrivacySettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPrivacySettingsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserPrivacySettings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserPrivacySettings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserPrivacySettings(ctx, req.(*GetUserPrivacySettingsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1542,6 +1578,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "setUserMsgBurnDuration",
 			Handler:    _User_SetUserMsgBurnDuration_Handler,
+		},
+		{
+			MethodName: "getUserPrivacySettings",
+			Handler:    _User_GetUserPrivacySettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
