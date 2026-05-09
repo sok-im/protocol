@@ -416,6 +416,13 @@ message setUserMsgBurnDurationReq {
 }
 message setUserMsgBurnDurationResp {}
 
+message setDeleteAccountIntervalReq {
+  string userID = 1;
+  // deleteAccountInterval 删除账号等待间隔（秒）；0 表示使用系统默认（18个月）；必须 >= 0
+  int32 deleteAccountInterval = 2;
+}
+message setDeleteAccountIntervalResp {}
+
 message getUserPrivacySettingsReq {}
 message getUserPrivacySettingsResp {
   // msgBurnDuration 阅后即焚时长（秒），0 表示关闭
@@ -430,6 +437,8 @@ message getUserPrivacySettingsResp {
   int32 msgReceiveSetting = 5;
   // groupInviteSetting 群邀请权限：0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
   int32 groupInviteSetting = 6;
+  // deleteAccountInterval 删除账号等待间隔（秒）；0 表示使用系统默认（18个月）
+  int32 deleteAccountInterval = 7;
 }
 
 
@@ -514,6 +523,9 @@ service user {
 
   // 设置用户全局消息阅后即焚时长（秒），0 表示关闭
   rpc setUserMsgBurnDuration(setUserMsgBurnDurationReq) returns (setUserMsgBurnDurationResp);
+
+  // 设置删除账号等待间隔（秒），0 表示使用系统默认（18个月）
+  rpc setDeleteAccountInterval(setDeleteAccountIntervalReq) returns (setDeleteAccountIntervalResp);
 
   // 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
   rpc getUserPrivacySettings(getUserPrivacySettingsReq) returns (getUserPrivacySettingsResp);
