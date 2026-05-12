@@ -235,3 +235,26 @@ func (x *GetPaginationFriendsResp) Format() any {
 	}
 	return x
 }
+
+func (x *SetMuteReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.TargetUserID == "" {
+		return errors.New("targetUserID is empty")
+	}
+	if x.Duration < -1 {
+		return errors.New("duration must be -1 (permanent), 0 (unmute), or a positive number of seconds")
+	}
+	return nil
+}
+
+func (x *GetMuteReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.TargetUserID == "" {
+		return errors.New("targetUserID is empty")
+	}
+	return nil
+}

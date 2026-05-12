@@ -376,4 +376,27 @@ service friend {
 
   // Get pinned friend user IDs
   rpc GetPinnedFriendIDs(GetPinnedFriendIDsReq) returns (GetPinnedFriendIDsResp);
+
+  // Mute or unmute a user (friend or stranger)
+  rpc SetMute(setMuteReq) returns (setMuteResp);
+  // Query mute status for a target user
+  rpc GetMute(getMuteReq) returns (getMuteResp);
+}
+
+message setMuteReq {
+  string ownerUserID  = 1;
+  string targetUserID = 2;
+  int64  duration     = 3; // seconds; -1 = permanent; 0 = unmute
+}
+
+message setMuteResp {}
+
+message getMuteReq {
+  string ownerUserID  = 1;
+  string targetUserID = 2;
+}
+
+message getMuteResp {
+  bool  muted       = 1;
+  int64 muteEndTime = 2; // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
 }
