@@ -62,6 +62,8 @@ const (
 	Group_PinGroupMessage_FullMethodName                   = "/openim.group.group/pinGroupMessage"
 	Group_UnpinGroupMessage_FullMethodName                 = "/openim.group.group/unpinGroupMessage"
 	Group_GetGroupPinnedMessages_FullMethodName            = "/openim.group.group/getGroupPinnedMessages"
+	Group_SetGroupMute_FullMethodName                      = "/openim.group.group/setGroupMute"
+	Group_GetGroupMute_FullMethodName                      = "/openim.group.group/getGroupMute"
 )
 
 // GroupClient is the client API for Group service.
@@ -139,6 +141,10 @@ type GroupClient interface {
 	UnpinGroupMessage(ctx context.Context, in *UnpinGroupMessageReq, opts ...grpc.CallOption) (*UnpinGroupMessageResp, error)
 	// 获取群置顶消息列表（最多 3 条）
 	GetGroupPinnedMessages(ctx context.Context, in *GetGroupPinnedMessagesReq, opts ...grpc.CallOption) (*GetGroupPinnedMessagesResp, error)
+	// 当前用户对该群的离线推送等静音（写入 group_mute）
+	SetGroupMute(ctx context.Context, in *SetGroupMuteReq, opts ...grpc.CallOption) (*SetGroupMuteResp, error)
+	// 查询当前用户对该群的静音状态
+	GetGroupMute(ctx context.Context, in *GetGroupMuteReq, opts ...grpc.CallOption) (*GetGroupMuteResp, error)
 }
 
 type groupClient struct {
@@ -579,6 +585,26 @@ func (c *groupClient) GetGroupPinnedMessages(ctx context.Context, in *GetGroupPi
 	return out, nil
 }
 
+func (c *groupClient) SetGroupMute(ctx context.Context, in *SetGroupMuteReq, opts ...grpc.CallOption) (*SetGroupMuteResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetGroupMuteResp)
+	err := c.cc.Invoke(ctx, Group_SetGroupMute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupClient) GetGroupMute(ctx context.Context, in *GetGroupMuteReq, opts ...grpc.CallOption) (*GetGroupMuteResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGroupMuteResp)
+	err := c.cc.Invoke(ctx, Group_GetGroupMute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GroupServer is the server API for Group service.
 // All implementations must embed UnimplementedGroupServer
 // for forward compatibility.
@@ -654,6 +680,10 @@ type GroupServer interface {
 	UnpinGroupMessage(context.Context, *UnpinGroupMessageReq) (*UnpinGroupMessageResp, error)
 	// 获取群置顶消息列表（最多 3 条）
 	GetGroupPinnedMessages(context.Context, *GetGroupPinnedMessagesReq) (*GetGroupPinnedMessagesResp, error)
+	// 当前用户对该群的离线推送等静音（写入 group_mute）
+	SetGroupMute(context.Context, *SetGroupMuteReq) (*SetGroupMuteResp, error)
+	// 查询当前用户对该群的静音状态
+	GetGroupMute(context.Context, *GetGroupMuteReq) (*GetGroupMuteResp, error)
 	mustEmbedUnimplementedGroupServer()
 }
 
@@ -792,6 +822,12 @@ func (UnimplementedGroupServer) UnpinGroupMessage(context.Context, *UnpinGroupMe
 }
 func (UnimplementedGroupServer) GetGroupPinnedMessages(context.Context, *GetGroupPinnedMessagesReq) (*GetGroupPinnedMessagesResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupPinnedMessages not implemented")
+}
+func (UnimplementedGroupServer) SetGroupMute(context.Context, *SetGroupMuteReq) (*SetGroupMuteResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetGroupMute not implemented")
+}
+func (UnimplementedGroupServer) GetGroupMute(context.Context, *GetGroupMuteReq) (*GetGroupMuteResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGroupMute not implemented")
 }
 func (UnimplementedGroupServer) mustEmbedUnimplementedGroupServer() {}
 func (UnimplementedGroupServer) testEmbeddedByValue()               {}
@@ -1588,6 +1624,42 @@ func _Group_GetGroupPinnedMessages_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Group_SetGroupMute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetGroupMuteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).SetGroupMute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_SetGroupMute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).SetGroupMute(ctx, req.(*SetGroupMuteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Group_GetGroupMute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupMuteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).GetGroupMute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_GetGroupMute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).GetGroupMute(ctx, req.(*GetGroupMuteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Group_ServiceDesc is the grpc.ServiceDesc for Group service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1766,6 +1838,14 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getGroupPinnedMessages",
 			Handler:    _Group_GetGroupPinnedMessages_Handler,
+		},
+		{
+			MethodName: "setGroupMute",
+			Handler:    _Group_SetGroupMute_Handler,
+		},
+		{
+			MethodName: "getGroupMute",
+			Handler:    _Group_GetGroupMute_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

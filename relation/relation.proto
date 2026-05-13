@@ -399,4 +399,6 @@ message getMuteReq {
 message getMuteResp {
   bool  muted       = 1;
   int64 muteEndTime = 2; // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
+  // Configured mute interval when set: -1 = permanent, >0 = seconds; 0 when not muted or legacy doc without field
+  int64 duration = 3;
 }

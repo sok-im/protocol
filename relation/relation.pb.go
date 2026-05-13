@@ -3553,9 +3553,11 @@ func (x *GetMuteReq) GetTargetUserID() string {
 }
 
 type GetMuteResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Muted         bool                   `protobuf:"varint,1,opt,name=muted,proto3" json:"muted"`
-	MuteEndTime   int64                  `protobuf:"varint,2,opt,name=muteEndTime,proto3" json:"muteEndTime"` // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Muted       bool                   `protobuf:"varint,1,opt,name=muted,proto3" json:"muted"`
+	MuteEndTime int64                  `protobuf:"varint,2,opt,name=muteEndTime,proto3" json:"muteEndTime"` // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
+	// Configured mute interval when set: -1 = permanent, >0 = seconds; 0 when not muted or legacy doc without field
+	Duration      int64 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3600,6 +3602,13 @@ func (x *GetMuteResp) GetMuted() bool {
 func (x *GetMuteResp) GetMuteEndTime() int64 {
 	if x != nil {
 		return x.MuteEndTime
+	}
+	return 0
+}
+
+func (x *GetMuteResp) GetDuration() int64 {
+	if x != nil {
+		return x.Duration
 	}
 	return 0
 }
@@ -3863,10 +3872,11 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\n" +
 	"getMuteReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
-	"\ftargetUserID\x18\x02 \x01(\tR\ftargetUserID\"E\n" +
+	"\ftargetUserID\x18\x02 \x01(\tR\ftargetUserID\"a\n" +
 	"\vgetMuteResp\x12\x14\n" +
 	"\x05muted\x18\x01 \x01(\bR\x05muted\x12 \n" +
-	"\vmuteEndTime\x18\x02 \x01(\x03R\vmuteEndTime2\xde\x18\n" +
+	"\vmuteEndTime\x18\x02 \x01(\x03R\vmuteEndTime\x12\x1a\n" +
+	"\bduration\x18\x03 \x01(\x03R\bduration2\xde\x18\n" +
 	"\x06friend\x12_\n" +
 	"\x10applyToAddFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12^\n" +
 	"\x0faddOnewayFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12\x80\x01\n" +

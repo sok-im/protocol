@@ -455,6 +455,26 @@ message GetGroupPinnedMessagesResp {
   repeated openim.sdkws.GroupPinnedMsgInfo pinnedList = 1;
 }
 
+// Per-user group notification mute (stored in MongoDB group_mute).
+// duration: -1 = permanent, 0 = cancel mute for the operator, >0 = seconds from now.
+message SetGroupMuteReq {
+  string groupID = 1;
+  int64 duration = 2;
+}
+
+message SetGroupMuteResp {}
+
+message GetGroupMuteReq {
+  string groupID = 1;
+}
+
+message GetGroupMuteResp {
+  bool  muted       = 1;
+  int64 muteEndTime = 2; // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
+  // Configured mute interval when set: -1 = permanent, >0 = seconds; 0 when not muted or legacy doc
+  int64 duration = 3;
+}
+
 service group {
   // Create group
   rpc createGroup(CreateGroupReq) returns (CreateGroupResp);
@@ -540,4 +560,9 @@ service group {
   rpc unpinGroupMessage(UnpinGroupMessageReq) returns (UnpinGroupMessageResp);
   // 获取群置顶消息列表（最多 3 条）
   rpc getGroupPinnedMessages(GetGroupPinnedMessagesReq) returns (GetGroupPinnedMessagesResp);
+
+  // 当前用户对该群的离线推送等静音（写入 group_mute）
+  rpc setGroupMute(SetGroupMuteReq) returns (SetGroupMuteResp);
+  // 查询当前用户对该群的静音状态
+  rpc getGroupMute(GetGroupMuteReq) returns (GetGroupMuteResp);
 }

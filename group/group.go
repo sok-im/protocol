@@ -428,3 +428,20 @@ func (x *GetUserReqApplicationListResp) Format() any {
 	}
 	return x
 }
+
+func (x *SetGroupMuteReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	if x.Duration < -1 {
+		return errors.New("duration must be -1 (permanent), 0 (cancel mute), or a positive number of seconds")
+	}
+	return nil
+}
+
+func (x *GetGroupMuteReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	return nil
+}
