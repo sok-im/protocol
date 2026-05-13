@@ -96,6 +96,8 @@ type GroupInfo struct {
 	AllowAddMember int32 `protobuf:"varint,20,opt,name=allowAddMember,proto3" json:"allowAddMember"`
 	// allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
 	AllowEditGroupInfo int32 `protobuf:"varint,21,opt,name=allowEditGroupInfo,proto3" json:"allowEditGroupInfo"`
+	// msgBurnDuration 群消息阅后即焚时长（秒）；0 表示未开启
+	MsgBurnDuration    int32 `protobuf:"varint,22,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -273,6 +275,13 @@ func (x *GroupInfo) GetAllowAddMember() int32 {
 func (x *GroupInfo) GetAllowEditGroupInfo() int32 {
 	if x != nil {
 		return x.AllowEditGroupInfo
+	}
+	return 0
+}
+
+func (x *GroupInfo) GetMsgBurnDuration() int32 {
+	if x != nil {
+		return x.MsgBurnDuration
 	}
 	return 0
 }

@@ -296,6 +296,17 @@ message ClearUserConversationMsgResp {
   int32 count = 1;
 }
 
+message ClearGroupBurnExpiredMsgsReq {
+  // timestamp 当前任务执行的毫秒时间戳；burn_end_time <= timestamp 视为过期
+  int64 timestamp = 1;
+  // limit 单次最多处理多少个 group_id 分组
+  int32 limit = 2;
+}
+message ClearGroupBurnExpiredMsgsResp {
+  // count 本次处理的分组数
+  int32 count = 1;
+}
+
 message ClearBurnExpiredMsgsReq {
   // timestamp 当前任务执行的毫秒时间戳；deadline_ms <= timestamp 视为过期
   int64 timestamp = 1;
@@ -351,4 +362,6 @@ service conversation {
 
   // 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
   rpc ClearBurnExpiredMsgs(ClearBurnExpiredMsgsReq) returns (ClearBurnExpiredMsgsResp);
+  // 清理群消息阅后即焚：当 read_count >= member_count 且 burn_end_time 过期时推进所有成员 min_seq 并通知。
+  rpc ClearGroupBurnExpiredMsgs(ClearGroupBurnExpiredMsgsReq) returns (ClearGroupBurnExpiredMsgsResp);
 }

@@ -47,6 +47,8 @@ message SetGroupInfoExReq {
   openim.protobuf.Int32Value allowAddMember = 12;
   // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
   openim.protobuf.Int32Value allowEditGroupInfo = 13;
+  // msgBurnDuration 群消息阅后即焚时长（秒）；0 表示关闭
+  openim.protobuf.Int32Value msgBurnDuration = 14;
 }
 message SetGroupInfoExResp {}
 

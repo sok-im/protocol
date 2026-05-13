@@ -33,6 +33,8 @@ message GroupInfo {
   int32 allowAddMember = 20;
   // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
   int32 allowEditGroupInfo = 21;
+  // msgBurnDuration 群消息阅后即焚时长（秒）；0 表示未开启
+  int32 msgBurnDuration = 22;
 }
 
 message GroupInfoForSet {
