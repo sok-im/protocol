@@ -258,3 +258,29 @@ func (x *GetMuteReq) Check() error {
 	}
 	return nil
 }
+
+func (x *PinFriendReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.FriendUserID == "" {
+		return errors.New("friendUserID is empty")
+	}
+	if x.OwnerUserID == x.FriendUserID {
+		return errors.New("ownerUserID and friendUserID must be different")
+	}
+	return nil
+}
+
+func (x *UnpinFriendReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.FriendUserID == "" {
+		return errors.New("friendUserID is empty")
+	}
+	if x.OwnerUserID == x.FriendUserID {
+		return errors.New("ownerUserID and friendUserID must be different")
+	}
+	return nil
+}

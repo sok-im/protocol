@@ -50,6 +50,8 @@ const (
 	Friend_GetPinnedFriendIDs_FullMethodName             = "/openim.relation.friend/GetPinnedFriendIDs"
 	Friend_SetMute_FullMethodName                        = "/openim.relation.friend/SetMute"
 	Friend_GetMute_FullMethodName                        = "/openim.relation.friend/GetMute"
+	Friend_PinFriend_FullMethodName                      = "/openim.relation.friend/pinFriend"
+	Friend_UnpinFriend_FullMethodName                    = "/openim.relation.friend/unpinFriend"
 )
 
 // FriendClient is the client API for Friend service.
@@ -115,6 +117,10 @@ type FriendClient interface {
 	SetMute(ctx context.Context, in *SetMuteReq, opts ...grpc.CallOption) (*SetMuteResp, error)
 	// Query mute status for a target user
 	GetMute(ctx context.Context, in *GetMuteReq, opts ...grpc.CallOption) (*GetMuteResp, error)
+	// 好友会话置顶（同步写入 friend.is_pinned = true 与 conversation.isPinned = true）
+	PinFriend(ctx context.Context, in *PinFriendReq, opts ...grpc.CallOption) (*PinFriendResp, error)
+	// 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
+	UnpinFriend(ctx context.Context, in *UnpinFriendReq, opts ...grpc.CallOption) (*UnpinFriendResp, error)
 }
 
 type friendClient struct {
@@ -435,6 +441,26 @@ func (c *friendClient) GetMute(ctx context.Context, in *GetMuteReq, opts ...grpc
 	return out, nil
 }
 
+func (c *friendClient) PinFriend(ctx context.Context, in *PinFriendReq, opts ...grpc.CallOption) (*PinFriendResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PinFriendResp)
+	err := c.cc.Invoke(ctx, Friend_PinFriend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) UnpinFriend(ctx context.Context, in *UnpinFriendReq, opts ...grpc.CallOption) (*UnpinFriendResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnpinFriendResp)
+	err := c.cc.Invoke(ctx, Friend_UnpinFriend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendServer is the server API for Friend service.
 // All implementations must embed UnimplementedFriendServer
 // for forward compatibility.
@@ -498,6 +524,10 @@ type FriendServer interface {
 	SetMute(context.Context, *SetMuteReq) (*SetMuteResp, error)
 	// Query mute status for a target user
 	GetMute(context.Context, *GetMuteReq) (*GetMuteResp, error)
+	// 好友会话置顶（同步写入 friend.is_pinned = true 与 conversation.isPinned = true）
+	PinFriend(context.Context, *PinFriendReq) (*PinFriendResp, error)
+	// 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
+	UnpinFriend(context.Context, *UnpinFriendReq) (*UnpinFriendResp, error)
 	mustEmbedUnimplementedFriendServer()
 }
 
@@ -600,6 +630,12 @@ func (UnimplementedFriendServer) SetMute(context.Context, *SetMuteReq) (*SetMute
 }
 func (UnimplementedFriendServer) GetMute(context.Context, *GetMuteReq) (*GetMuteResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMute not implemented")
+}
+func (UnimplementedFriendServer) PinFriend(context.Context, *PinFriendReq) (*PinFriendResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method PinFriend not implemented")
+}
+func (UnimplementedFriendServer) UnpinFriend(context.Context, *UnpinFriendReq) (*UnpinFriendResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method UnpinFriend not implemented")
 }
 func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
 func (UnimplementedFriendServer) testEmbeddedByValue()                {}
@@ -1180,6 +1216,42 @@ func _Friend_GetMute_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_PinFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PinFriendReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).PinFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_PinFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).PinFriend(ctx, req.(*PinFriendReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_UnpinFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpinFriendReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).UnpinFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_UnpinFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).UnpinFriend(ctx, req.(*UnpinFriendReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1310,6 +1382,14 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMute",
 			Handler:    _Friend_GetMute_Handler,
+		},
+		{
+			MethodName: "pinFriend",
+			Handler:    _Friend_PinFriend_Handler,
+		},
+		{
+			MethodName: "unpinFriend",
+			Handler:    _Friend_UnpinFriend_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

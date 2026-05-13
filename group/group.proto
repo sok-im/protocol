@@ -475,6 +475,19 @@ message GetGroupMuteResp {
   int64 duration = 3;
 }
 
+// 群会话置顶 / 取消置顶（针对当前用户在该群会话的 isPinned 标记）
+message PinGroupReq {
+  string groupID = 1;
+}
+
+message PinGroupResp {}
+
+message UnpinGroupReq {
+  string groupID = 1;
+}
+
+message UnpinGroupResp {}
+
 service group {
   // Create group
   rpc createGroup(CreateGroupReq) returns (CreateGroupResp);
@@ -565,4 +578,9 @@ service group {
   rpc setGroupMute(SetGroupMuteReq) returns (SetGroupMuteResp);
   // 查询当前用户对该群的静音状态
   rpc getGroupMute(GetGroupMuteReq) returns (GetGroupMuteResp);
+
+  // 当前用户置顶该群会话（同步写入 conversation.isPinned = true）
+  rpc pinGroup(PinGroupReq) returns (PinGroupResp);
+  // 当前用户取消置顶该群会话（同步写入 conversation.isPinned = false）
+  rpc unpinGroup(UnpinGroupReq) returns (UnpinGroupResp);
 }

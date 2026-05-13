@@ -381,6 +381,11 @@ service friend {
   rpc SetMute(setMuteReq) returns (setMuteResp);
   // Query mute status for a target user
   rpc GetMute(getMuteReq) returns (getMuteResp);
+
+  // 好友会话置顶（同步写入 friend.is_pinned = true 与 conversation.isPinned = true）
+  rpc pinFriend(pinFriendReq) returns (pinFriendResp);
+  // 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
+  rpc unpinFriend(unpinFriendReq) returns (unpinFriendResp);
 }
 
 message setMuteReq {
@@ -402,3 +407,18 @@ message getMuteResp {
   // Configured mute interval when set: -1 = permanent, >0 = seconds; 0 when not muted or legacy doc without field
   int64 duration = 3;
 }
+
+// 好友会话置顶 / 取消置顶（同步更新 friend.is_pinned 与 conversation.isPinned）
+message pinFriendReq {
+  string ownerUserID  = 1;
+  string friendUserID = 2;
+}
+
+message pinFriendResp {}
+
+message unpinFriendReq {
+  string ownerUserID  = 1;
+  string friendUserID = 2;
+}
+
+message unpinFriendResp {}

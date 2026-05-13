@@ -445,3 +445,17 @@ func (x *GetGroupMuteReq) Check() error {
 	}
 	return nil
 }
+
+func (x *PinGroupReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	return nil
+}
+
+func (x *UnpinGroupReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	return nil
+}
