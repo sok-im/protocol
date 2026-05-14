@@ -26,6 +26,8 @@ message Conversation {
   bool isMsgDestruct = 17;
   int32 muteDuration = 18;
   int64 muteEndTime = 19;
+  // 是否静音（单聊：owner 对 userID 的 user_mute；与 muteDuration/muteEndTime 一致便于客户端直接使用）
+  bool isMuted = 20;
 }
 
 message ConversationReq {
@@ -81,6 +83,9 @@ message ConversationElem {
   int64 unreadCount = 3;
   bool IsPinned = 4;
   MsgInfo msgInfo = 5;
+  bool isMuted = 6;
+  int32 muteDuration = 7;
+  int64 muteEndTime = 8;
 }
 
 message MsgInfo {

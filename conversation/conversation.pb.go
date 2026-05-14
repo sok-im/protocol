@@ -44,8 +44,10 @@ type Conversation struct {
 	IsMsgDestruct         bool                   `protobuf:"varint,17,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
 	MuteDuration          int32                  `protobuf:"varint,18,opt,name=muteDuration,proto3" json:"muteDuration"`
 	MuteEndTime           int64                  `protobuf:"varint,19,opt,name=muteEndTime,proto3" json:"muteEndTime"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	// 是否静音（单聊：owner 对 userID 的 user_mute；与 muteDuration/muteEndTime 一致便于客户端直接使用）
+	IsMuted       bool `protobuf:"varint,20,opt,name=isMuted,proto3" json:"isMuted"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Conversation) Reset() {
@@ -209,6 +211,13 @@ func (x *Conversation) GetMuteEndTime() int64 {
 		return x.MuteEndTime
 	}
 	return 0
+}
+
+func (x *Conversation) GetIsMuted() bool {
+	if x != nil {
+		return x.IsMuted
+	}
+	return false
 }
 
 type ConversationReq struct {
@@ -686,6 +695,9 @@ type ConversationElem struct {
 	UnreadCount    int64                  `protobuf:"varint,3,opt,name=unreadCount,proto3" json:"unreadCount"`
 	IsPinned       bool                   `protobuf:"varint,4,opt,name=IsPinned,proto3" json:"IsPinned"`
 	MsgInfo        *MsgInfo               `protobuf:"bytes,5,opt,name=msgInfo,proto3" json:"msgInfo"`
+	IsMuted        bool                   `protobuf:"varint,6,opt,name=isMuted,proto3" json:"isMuted"`
+	MuteDuration   int32                  `protobuf:"varint,7,opt,name=muteDuration,proto3" json:"muteDuration"`
+	MuteEndTime    int64                  `protobuf:"varint,8,opt,name=muteEndTime,proto3" json:"muteEndTime"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -753,6 +765,27 @@ func (x *ConversationElem) GetMsgInfo() *MsgInfo {
 		return x.MsgInfo
 	}
 	return nil
+}
+
+func (x *ConversationElem) GetIsMuted() bool {
+	if x != nil {
+		return x.IsMuted
+	}
+	return false
+}
+
+func (x *ConversationElem) GetMuteDuration() int32 {
+	if x != nil {
+		return x.MuteDuration
+	}
+	return 0
+}
+
+func (x *ConversationElem) GetMuteEndTime() int64 {
+	if x != nil {
+		return x.MuteEndTime
+	}
+	return 0
 }
 
 type MsgInfo struct {
@@ -3425,7 +3458,7 @@ var File_conversation_conversation_proto protoreflect.FileDescriptor
 
 const file_conversation_conversation_proto_rawDesc = "" +
 	"\n" +
-	"\x1fconversation/conversation.proto\x12\x13openim.conversation\x1a\x11sdkws/sdkws.proto\x1a\x1bwrapperspb/wrapperspb.proto\"\x8e\x05\n" +
+	"\x1fconversation/conversation.proto\x12\x13openim.conversation\x1a\x11sdkws/sdkws.proto\x1a\x1bwrapperspb/wrapperspb.proto\"\xa8\x05\n" +
 	"\fConversation\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12&\n" +
 	"\x0econversationID\x18\x02 \x01(\tR\x0econversationID\x12\x1e\n" +
@@ -3448,7 +3481,8 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\x15latestMsgDestructTime\x18\x10 \x01(\x03R\x15latestMsgDestructTime\x12$\n" +
 	"\risMsgDestruct\x18\x11 \x01(\bR\risMsgDestruct\x12\"\n" +
 	"\fmuteDuration\x18\x12 \x01(\x05R\fmuteDuration\x12 \n" +
-	"\vmuteEndTime\x18\x13 \x01(\x03R\vmuteEndTime\"\xb1\a\n" +
+	"\vmuteEndTime\x18\x13 \x01(\x03R\vmuteEndTime\x12\x18\n" +
+	"\aisMuted\x18\x14 \x01(\bR\aisMuted\"\xb1\a\n" +
 	"\x0fConversationReq\x12&\n" +
 	"\x0econversationID\x18\x01 \x01(\tR\x0econversationID\x12*\n" +
 	"\x10conversationType\x18\x02 \x01(\x05R\x10conversationType\x12\x16\n" +
@@ -3487,7 +3521,7 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\x1dGetSortedConversationListResp\x12,\n" +
 	"\x11conversationTotal\x18\x01 \x01(\x03R\x11conversationTotal\x12 \n" +
 	"\vunreadTotal\x18\x02 \x01(\x03R\vunreadTotal\x12S\n" +
-	"\x11conversationElems\x18\x03 \x03(\v2%.openim.conversation.ConversationElemR\x11conversationElems\"\xd0\x01\n" +
+	"\x11conversationElems\x18\x03 \x03(\v2%.openim.conversation.ConversationElemR\x11conversationElems\"\xb0\x02\n" +
 	"\x10ConversationElem\x12&\n" +
 	"\x0econversationID\x18\x01 \x01(\tR\x0econversationID\x12\x1e\n" +
 	"\n" +
@@ -3495,7 +3529,10 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"recvMsgOpt\x12 \n" +
 	"\vunreadCount\x18\x03 \x01(\x03R\vunreadCount\x12\x1a\n" +
 	"\bIsPinned\x18\x04 \x01(\bR\bIsPinned\x126\n" +
-	"\amsgInfo\x18\x05 \x01(\v2\x1c.openim.conversation.MsgInfoR\amsgInfo\"\x93\x04\n" +
+	"\amsgInfo\x18\x05 \x01(\v2\x1c.openim.conversation.MsgInfoR\amsgInfo\x12\x18\n" +
+	"\aisMuted\x18\x06 \x01(\bR\aisMuted\x12\"\n" +
+	"\fmuteDuration\x18\a \x01(\x05R\fmuteDuration\x12 \n" +
+	"\vmuteEndTime\x18\b \x01(\x03R\vmuteEndTime\"\x93\x04\n" +
 	"\aMsgInfo\x12 \n" +
 	"\vserverMsgID\x18\x01 \x01(\tR\vserverMsgID\x12 \n" +
 	"\vclientMsgID\x18\x02 \x01(\tR\vclientMsgID\x12 \n" +
