@@ -347,6 +347,9 @@ service friend {
   rpc GetSpecifiedBlacks(GetSpecifiedBlacksReq) returns (GetSpecifiedBlacksResp);
   // Delete friend
   rpc deleteFriend(deleteFriendReq) returns (deleteFriendResp);
+  // One-way delete: remove only ownerUserID's friend row; peer keeps owner in their list.
+  // Notifies owner only (friends list sync); does not send FriendDeletedNotification to peer.
+  rpc deleteFriendOneway(deleteFriendReq) returns (deleteFriendResp);
   // Respond to friend request (Accept or Decline)
   rpc respondFriendApply(respondFriendApplyReq) returns (respondFriendApplyResp);
   //Favorited friend

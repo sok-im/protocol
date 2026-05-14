@@ -25,8 +25,8 @@ const (
 
 type GetPaginationFriendsReq struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Pagination    *sdkws.RequestPagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination"`
-	UserID        string                   `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	Pagination    *sdkws.RequestPagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	UserID        string                   `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -77,8 +77,8 @@ func (x *GetPaginationFriendsReq) GetUserID() string {
 
 type GetPaginationFriendsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FriendsInfo   []*sdkws.FriendInfo    `protobuf:"bytes,1,rep,name=friendsInfo,proto3" json:"friendsInfo"`
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	FriendsInfo   []*sdkws.FriendInfo    `protobuf:"bytes,1,rep,name=friendsInfo,proto3" json:"friendsInfo,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,11 +129,11 @@ func (x *GetPaginationFriendsResp) GetTotal() int32 {
 
 type ApplyToAddFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
-	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg"`
-	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
-	Remark        string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
+	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg,omitempty"`
+	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex,omitempty"`
+	Remark        string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -241,19 +241,19 @@ func (*ApplyToAddFriendResp) Descriptor() ([]byte, []int) {
 
 type FriendInfo struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID   string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
-	FriendNickname string                 `protobuf:"bytes,3,opt,name=friendNickname,proto3" json:"friendNickname"`
-	FriendFaceURL  string                 `protobuf:"bytes,4,opt,name=friendFaceURL,proto3" json:"friendFaceURL"`
-	Remark         string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
-	CreateTime     int64                  `protobuf:"varint,6,opt,name=createTime,proto3" json:"createTime"`
-	AddSource      int32                  `protobuf:"varint,7,opt,name=addSource,proto3" json:"addSource"`
-	OperatorUserID string                 `protobuf:"bytes,8,opt,name=operatorUserID,proto3" json:"operatorUserID"`
-	Ex             string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex"`
-	IsPinned       bool                   `protobuf:"varint,10,opt,name=isPinned,proto3" json:"isPinned"`
-	IsMute         bool                   `protobuf:"varint,11,opt,name=isMute,proto3" json:"isMute"`
-	MuteDuration   int64                  `protobuf:"varint,12,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime    int64                  `protobuf:"varint,13,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID   string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
+	FriendNickname string                 `protobuf:"bytes,3,opt,name=friendNickname,proto3" json:"friendNickname,omitempty"`
+	FriendFaceURL  string                 `protobuf:"bytes,4,opt,name=friendFaceURL,proto3" json:"friendFaceURL,omitempty"`
+	Remark         string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark,omitempty"`
+	CreateTime     int64                  `protobuf:"varint,6,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	AddSource      int32                  `protobuf:"varint,7,opt,name=addSource,proto3" json:"addSource,omitempty"`
+	OperatorUserID string                 `protobuf:"bytes,8,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	Ex             string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex,omitempty"`
+	IsPinned       bool                   `protobuf:"varint,10,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	IsMute         bool                   `protobuf:"varint,11,opt,name=isMute,proto3" json:"isMute,omitempty"`
+	MuteDuration   int64                  `protobuf:"varint,12,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime    int64                  `protobuf:"varint,13,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -381,8 +381,8 @@ func (x *FriendInfo) GetMuteEndTime() int64 {
 
 type ImportFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -469,9 +469,9 @@ func (*ImportFriendResp) Descriptor() ([]byte, []int) {
 
 type GetPaginationFriendsApplyToReq struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
-	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination"`
-	HandleResults []int32                  `protobuf:"varint,3,rep,packed,name=handleResults,proto3" json:"handleResults"`
+	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	HandleResults []int32                  `protobuf:"varint,3,rep,packed,name=handleResults,proto3" json:"handleResults,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -529,8 +529,8 @@ func (x *GetPaginationFriendsApplyToReq) GetHandleResults() []int32 {
 
 type GetPaginationFriendsApplyToResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=FriendRequests,proto3" json:"FriendRequests"`
-	Total          int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=FriendRequests,proto3" json:"FriendRequests,omitempty"`
+	Total          int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -581,8 +581,8 @@ func (x *GetPaginationFriendsApplyToResp) GetTotal() int32 {
 
 type GetDesignatedFriendsApplyReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -633,7 +633,7 @@ func (x *GetDesignatedFriendsApplyReq) GetToUserID() string {
 
 type GetDesignatedFriendsApplyResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=friendRequests,proto3" json:"friendRequests"`
+	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=friendRequests,proto3" json:"friendRequests,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -677,8 +677,8 @@ func (x *GetDesignatedFriendsApplyResp) GetFriendRequests() []*sdkws.FriendReque
 
 type GetSelfUnhandledApplyCountReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Time          int64                  `protobuf:"varint,2,opt,name=time,proto3" json:"time"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Time          int64                  `protobuf:"varint,2,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -729,7 +729,7 @@ func (x *GetSelfUnhandledApplyCountReq) GetTime() int64 {
 
 type GetSelfUnhandledApplyCountResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
+	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -773,9 +773,9 @@ func (x *GetSelfUnhandledApplyCountResp) GetCount() int64 {
 
 type GetIncrementalFriendsApplyToReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -833,11 +833,11 @@ func (x *GetIncrementalFriendsApplyToReq) GetVersion() uint64 {
 
 type GetIncrementalFriendsApplyToResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full"`
-	DeleteUserIds []string               `protobuf:"bytes,4,rep,name=deleteUserIds,proto3" json:"deleteUserIds"`
-	Changes       []*sdkws.FriendRequest `protobuf:"bytes,5,rep,name=changes,proto3" json:"changes"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full,omitempty"`
+	DeleteUserIds []string               `protobuf:"bytes,4,rep,name=deleteUserIds,proto3" json:"deleteUserIds,omitempty"`
+	Changes       []*sdkws.FriendRequest `protobuf:"bytes,5,rep,name=changes,proto3" json:"changes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -909,9 +909,9 @@ func (x *GetIncrementalFriendsApplyToResp) GetChanges() []*sdkws.FriendRequest {
 
 type GetIncrementalFriendsApplyFromReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -969,11 +969,11 @@ func (x *GetIncrementalFriendsApplyFromReq) GetVersion() uint64 {
 
 type GetIncrementalFriendsApplyFromResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full"`
-	DeleteUserIds []string               `protobuf:"bytes,4,rep,name=deleteUserIds,proto3" json:"deleteUserIds"`
-	Changes       []*sdkws.FriendRequest `protobuf:"bytes,5,rep,name=changes,proto3" json:"changes"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full,omitempty"`
+	DeleteUserIds []string               `protobuf:"bytes,4,rep,name=deleteUserIds,proto3" json:"deleteUserIds,omitempty"`
+	Changes       []*sdkws.FriendRequest `protobuf:"bytes,5,rep,name=changes,proto3" json:"changes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1045,8 +1045,8 @@ func (x *GetIncrementalFriendsApplyFromResp) GetChanges() []*sdkws.FriendRequest
 
 type GetDesignatedFriendsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1097,7 +1097,7 @@ func (x *GetDesignatedFriendsReq) GetFriendUserIDs() []string {
 
 type GetDesignatedFriendsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FriendsInfo   []*sdkws.FriendInfo    `protobuf:"bytes,1,rep,name=friendsInfo,proto3" json:"friendsInfo"`
+	FriendsInfo   []*sdkws.FriendInfo    `protobuf:"bytes,1,rep,name=friendsInfo,proto3" json:"friendsInfo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1141,9 +1141,9 @@ func (x *GetDesignatedFriendsResp) GetFriendsInfo() []*sdkws.FriendInfo {
 
 type AddBlackReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	BlackUserID   string                 `protobuf:"bytes,2,opt,name=blackUserID,proto3" json:"blackUserID"`
-	Ex            string                 `protobuf:"bytes,3,opt,name=ex,proto3" json:"ex"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	BlackUserID   string                 `protobuf:"bytes,2,opt,name=blackUserID,proto3" json:"blackUserID,omitempty"`
+	Ex            string                 `protobuf:"bytes,3,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1237,8 +1237,8 @@ func (*AddBlackResp) Descriptor() ([]byte, []int) {
 
 type RemoveBlackReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	BlackUserID   string                 `protobuf:"bytes,2,opt,name=blackUserID,proto3" json:"blackUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	BlackUserID   string                 `protobuf:"bytes,2,opt,name=blackUserID,proto3" json:"blackUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1325,8 +1325,8 @@ func (*RemoveBlackResp) Descriptor() ([]byte, []int) {
 
 type GetPaginationBlacksReq struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
-	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination"`
+	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1377,8 +1377,8 @@ func (x *GetPaginationBlacksReq) GetPagination() *sdkws.RequestPagination {
 
 type GetPaginationBlacksResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Blacks        []*sdkws.BlackInfo     `protobuf:"bytes,1,rep,name=blacks,proto3" json:"blacks"`
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	Blacks        []*sdkws.BlackInfo     `protobuf:"bytes,1,rep,name=blacks,proto3" json:"blacks,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1429,8 +1429,8 @@ func (x *GetPaginationBlacksResp) GetTotal() int32 {
 
 type IsFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID1       string                 `protobuf:"bytes,1,opt,name=userID1,proto3" json:"userID1"`
-	UserID2       string                 `protobuf:"bytes,2,opt,name=userID2,proto3" json:"userID2"`
+	UserID1       string                 `protobuf:"bytes,1,opt,name=userID1,proto3" json:"userID1,omitempty"`
+	UserID2       string                 `protobuf:"bytes,2,opt,name=userID2,proto3" json:"userID2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1481,8 +1481,8 @@ func (x *IsFriendReq) GetUserID2() string {
 
 type IsFriendResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	InUser1Friends bool                   `protobuf:"varint,1,opt,name=inUser1Friends,proto3" json:"inUser1Friends"` // If userID2 is in userID1’s friend list, return true
-	InUser2Friends bool                   `protobuf:"varint,2,opt,name=inUser2Friends,proto3" json:"inUser2Friends"` // If userID1 is in userID2’s friend list, return true
+	InUser1Friends bool                   `protobuf:"varint,1,opt,name=inUser1Friends,proto3" json:"inUser1Friends,omitempty"` // If userID2 is in userID1’s friend list, return true
+	InUser2Friends bool                   `protobuf:"varint,2,opt,name=inUser2Friends,proto3" json:"inUser2Friends,omitempty"` // If userID1 is in userID2’s friend list, return true
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1533,8 +1533,8 @@ func (x *IsFriendResp) GetInUser2Friends() bool {
 
 type IsBlackReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID1       string                 `protobuf:"bytes,1,opt,name=userID1,proto3" json:"userID1"`
-	UserID2       string                 `protobuf:"bytes,2,opt,name=userID2,proto3" json:"userID2"`
+	UserID1       string                 `protobuf:"bytes,1,opt,name=userID1,proto3" json:"userID1,omitempty"`
+	UserID2       string                 `protobuf:"bytes,2,opt,name=userID2,proto3" json:"userID2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1585,8 +1585,8 @@ func (x *IsBlackReq) GetUserID2() string {
 
 type IsBlackResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	InUser1Blacks bool                   `protobuf:"varint,1,opt,name=inUser1Blacks,proto3" json:"inUser1Blacks"` // If userID2 is in userID1's blacklist, true
-	InUser2Blacks bool                   `protobuf:"varint,2,opt,name=inUser2Blacks,proto3" json:"inUser2Blacks"` // If userID1 is in userID2's blacklist, true
+	InUser1Blacks bool                   `protobuf:"varint,1,opt,name=inUser1Blacks,proto3" json:"inUser1Blacks,omitempty"` // If userID2 is in userID1's blacklist, true
+	InUser2Blacks bool                   `protobuf:"varint,2,opt,name=inUser2Blacks,proto3" json:"inUser2Blacks,omitempty"` // If userID1 is in userID2's blacklist, true
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1637,8 +1637,8 @@ func (x *IsBlackResp) GetInUser2Blacks() bool {
 
 type DeleteFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1726,10 +1726,10 @@ func (*DeleteFriendResp) Descriptor() ([]byte, []int) {
 // process
 type RespondFriendApplyReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"` // ID of the user initiating the friend request
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`     // ID of the user receiving the friend request
-	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult"`
-	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"` // ID of the user initiating the friend request
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`     // ID of the user receiving the friend request
+	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult,omitempty"`
+	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1830,17 +1830,17 @@ func (*RespondFriendApplyResp) Descriptor() ([]byte, []int) {
 
 type UpdateFriendsReq struct {
 	state           protoimpl.MessageState  `protogen:"open.v1"`
-	OwnerUserID     string                  `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserIDs   []string                `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs"`
-	IsPinned        *wrapperspb.BoolValue   `protobuf:"bytes,3,opt,name=isPinned,proto3" json:"isPinned"`
-	Remark          *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=remark,proto3" json:"remark"`
-	Ex              *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=ex,proto3" json:"ex"`
-	IsMsgDestruct   *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MsgDestructTime *wrapperspb.Int64Value  `protobuf:"bytes,7,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	BurnDuration    *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=burnDuration,proto3" json:"burnDuration"`
-	IsMute          *wrapperspb.BoolValue   `protobuf:"bytes,9,opt,name=isMute,proto3" json:"isMute"`
-	MuteDuration    *wrapperspb.Int64Value  `protobuf:"bytes,10,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime     *wrapperspb.Int64Value  `protobuf:"bytes,11,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	OwnerUserID     string                  `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserIDs   []string                `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs,omitempty"`
+	IsPinned        *wrapperspb.BoolValue   `protobuf:"bytes,3,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	Remark          *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=remark,proto3" json:"remark,omitempty"`
+	Ex              *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=ex,proto3" json:"ex,omitempty"`
+	IsMsgDestruct   *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MsgDestructTime *wrapperspb.Int64Value  `protobuf:"bytes,7,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	BurnDuration    *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	IsMute          *wrapperspb.BoolValue   `protobuf:"bytes,9,opt,name=isMute,proto3" json:"isMute,omitempty"`
+	MuteDuration    *wrapperspb.Int64Value  `protobuf:"bytes,10,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime     *wrapperspb.Int64Value  `protobuf:"bytes,11,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1990,9 +1990,9 @@ func (*UpdateFriendsResp) Descriptor() ([]byte, []int) {
 
 type SetFriendRemarkReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
-	Remark        string                 `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
+	Remark        string                 `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2086,9 +2086,9 @@ func (*SetFriendRemarkResp) Descriptor() ([]byte, []int) {
 
 type GetPaginationFriendsApplyFromReq struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
-	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination"`
-	HandleResults []int32                  `protobuf:"varint,3,rep,packed,name=handleResults,proto3" json:"handleResults"`
+	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	HandleResults []int32                  `protobuf:"varint,3,rep,packed,name=handleResults,proto3" json:"handleResults,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2146,8 +2146,8 @@ func (x *GetPaginationFriendsApplyFromReq) GetHandleResults() []int32 {
 
 type GetPaginationFriendsApplyFromResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=friendRequests,proto3" json:"friendRequests"`
-	Total          int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	FriendRequests []*sdkws.FriendRequest `protobuf:"bytes,1,rep,name=friendRequests,proto3" json:"friendRequests,omitempty"`
+	Total          int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2198,7 +2198,7 @@ func (x *GetPaginationFriendsApplyFromResp) GetTotal() int32 {
 
 type GetFriendIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2242,7 +2242,7 @@ func (x *GetFriendIDsReq) GetUserID() string {
 
 type GetFriendIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FriendIDs     []string               `protobuf:"bytes,1,rep,name=friendIDs,proto3" json:"friendIDs"`
+	FriendIDs     []string               `protobuf:"bytes,1,rep,name=friendIDs,proto3" json:"friendIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2286,8 +2286,8 @@ func (x *GetFriendIDsResp) GetFriendIDs() []string {
 
 type GetSpecifiedFriendsInfoReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	UserIDList    []string               `protobuf:"bytes,2,rep,name=userIDList,proto3" json:"userIDList"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	UserIDList    []string               `protobuf:"bytes,2,rep,name=userIDList,proto3" json:"userIDList,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2338,9 +2338,9 @@ func (x *GetSpecifiedFriendsInfoReq) GetUserIDList() []string {
 
 type GetSpecifiedFriendsInfoInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserInfo      *sdkws.UserInfo        `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo"`
-	FriendInfo    *sdkws.FriendInfo      `protobuf:"bytes,2,opt,name=friendInfo,proto3" json:"friendInfo"`
-	BlackInfo     *sdkws.BlackInfo       `protobuf:"bytes,3,opt,name=blackInfo,proto3" json:"blackInfo"`
+	UserInfo      *sdkws.UserInfo        `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo,omitempty"`
+	FriendInfo    *sdkws.FriendInfo      `protobuf:"bytes,2,opt,name=friendInfo,proto3" json:"friendInfo,omitempty"`
+	BlackInfo     *sdkws.BlackInfo       `protobuf:"bytes,3,opt,name=blackInfo,proto3" json:"blackInfo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2398,7 +2398,7 @@ func (x *GetSpecifiedFriendsInfoInfo) GetBlackInfo() *sdkws.BlackInfo {
 
 type GetSpecifiedFriendsInfoResp struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
-	Infos         []*GetSpecifiedFriendsInfoInfo `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos"`
+	Infos         []*GetSpecifiedFriendsInfoInfo `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2442,9 +2442,9 @@ func (x *GetSpecifiedFriendsInfoResp) GetInfos() []*GetSpecifiedFriendsInfoInfo 
 
 type GetIncrementalFriendsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2502,13 +2502,13 @@ func (x *GetIncrementalFriendsReq) GetVersion() uint64 {
 
 type GetIncrementalFriendsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full"`
-	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete"`
-	Insert        []*sdkws.FriendInfo    `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert"`
-	Update        []*sdkws.FriendInfo    `protobuf:"bytes,6,rep,name=update,proto3" json:"update"`
-	SortVersion   uint64                 `protobuf:"varint,7,opt,name=sortVersion,proto3" json:"sortVersion"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full,omitempty"`
+	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete,omitempty"`
+	Insert        []*sdkws.FriendInfo    `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert,omitempty"`
+	Update        []*sdkws.FriendInfo    `protobuf:"bytes,6,rep,name=update,proto3" json:"update,omitempty"`
+	SortVersion   uint64                 `protobuf:"varint,7,opt,name=sortVersion,proto3" json:"sortVersion,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2594,9 +2594,9 @@ func (x *GetIncrementalFriendsResp) GetSortVersion() uint64 {
 
 type GetIncrementalBlacksReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2654,12 +2654,12 @@ func (x *GetIncrementalBlacksReq) GetVersion() uint64 {
 
 type GetIncrementalBlacksResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full"`
-	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete"`
-	Insert        []*sdkws.BlackInfo     `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert"`
-	Update        []*sdkws.BlackInfo     `protobuf:"bytes,6,rep,name=update,proto3" json:"update"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full,omitempty"`
+	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete,omitempty"`
+	Insert        []*sdkws.BlackInfo     `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert,omitempty"`
+	Update        []*sdkws.BlackInfo     `protobuf:"bytes,6,rep,name=update,proto3" json:"update,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2738,8 +2738,8 @@ func (x *GetIncrementalBlacksResp) GetUpdate() []*sdkws.BlackInfo {
 
 type GetSpecifiedBlacksReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	UserIDList    []string               `protobuf:"bytes,2,rep,name=userIDList,proto3" json:"userIDList"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	UserIDList    []string               `protobuf:"bytes,2,rep,name=userIDList,proto3" json:"userIDList,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2790,8 +2790,8 @@ func (x *GetSpecifiedBlacksReq) GetUserIDList() []string {
 
 type GetSpecifiedBlacksResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Blacks        []*sdkws.BlackInfo     `protobuf:"bytes,1,rep,name=blacks,proto3" json:"blacks"`
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	Blacks        []*sdkws.BlackInfo     `protobuf:"bytes,1,rep,name=blacks,proto3" json:"blacks,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2842,8 +2842,8 @@ func (x *GetSpecifiedBlacksResp) GetTotal() int32 {
 
 type GetFullFriendUserIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IdHash        uint64                 `protobuf:"varint,1,opt,name=idHash,proto3" json:"idHash"`
-	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	IdHash        uint64                 `protobuf:"varint,1,opt,name=idHash,proto3" json:"idHash,omitempty"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2894,10 +2894,10 @@ func (x *GetFullFriendUserIDsReq) GetUserID() string {
 
 type GetFullFriendUserIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Equal         bool                   `protobuf:"varint,3,opt,name=equal,proto3" json:"equal"`
-	UserIDs       []string               `protobuf:"bytes,4,rep,name=userIDs,proto3" json:"userIDs"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Equal         bool                   `protobuf:"varint,3,opt,name=equal,proto3" json:"equal,omitempty"`
+	UserIDs       []string               `protobuf:"bytes,4,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2962,9 +2962,9 @@ func (x *GetFullFriendUserIDsResp) GetUserIDs() []string {
 
 type NotificationUserInfoUpdateReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	OldUserInfo   *sdkws.UserInfo        `protobuf:"bytes,2,opt,name=oldUserInfo,proto3" json:"oldUserInfo"`
-	NewUserInfo   *sdkws.UserInfo        `protobuf:"bytes,3,opt,name=newUserInfo,proto3" json:"newUserInfo"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	OldUserInfo   *sdkws.UserInfo        `protobuf:"bytes,2,opt,name=oldUserInfo,proto3" json:"oldUserInfo,omitempty"`
+	NewUserInfo   *sdkws.UserInfo        `protobuf:"bytes,3,opt,name=newUserInfo,proto3" json:"newUserInfo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3058,22 +3058,22 @@ func (*NotificationUserInfoUpdateResp) Descriptor() ([]byte, []int) {
 
 type FriendInfoOnly struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID    string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
-	Remark          string                 `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark"`
-	CreateTime      int64                  `protobuf:"varint,4,opt,name=createTime,proto3" json:"createTime"`
-	AddSource       int32                  `protobuf:"varint,5,opt,name=addSource,proto3" json:"addSource"`
-	OperatorUserID  string                 `protobuf:"bytes,6,opt,name=operatorUserID,proto3" json:"operatorUserID"`
-	Ex              string                 `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex"`
-	IsPinned        bool                   `protobuf:"varint,8,opt,name=isPinned,proto3" json:"isPinned"`
-	IsMsgDestruct   bool                   `protobuf:"varint,9,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MsgDestructTime int64                  `protobuf:"varint,10,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	BurnDuration    int32                  `protobuf:"varint,11,opt,name=burnDuration,proto3" json:"burnDuration"`
-	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute"`
-	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime"`
-	FirstName       string                 `protobuf:"bytes,15,opt,name=firstName,proto3" json:"firstName"`
-	LastName        string                 `protobuf:"bytes,16,opt,name=lastName,proto3" json:"lastName"`
+	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID    string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
+	Remark          string                 `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark,omitempty"`
+	CreateTime      int64                  `protobuf:"varint,4,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	AddSource       int32                  `protobuf:"varint,5,opt,name=addSource,proto3" json:"addSource,omitempty"`
+	OperatorUserID  string                 `protobuf:"bytes,6,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	Ex              string                 `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex,omitempty"`
+	IsPinned        bool                   `protobuf:"varint,8,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	IsMsgDestruct   bool                   `protobuf:"varint,9,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MsgDestructTime int64                  `protobuf:"varint,10,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	BurnDuration    int32                  `protobuf:"varint,11,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute,omitempty"`
+	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
+	FirstName       string                 `protobuf:"bytes,15,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	LastName        string                 `protobuf:"bytes,16,opt,name=lastName,proto3" json:"lastName,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -3222,8 +3222,8 @@ func (x *FriendInfoOnly) GetLastName() string {
 
 type GetFriendInfoReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserIDs []string               `protobuf:"bytes,2,rep,name=friendUserIDs,proto3" json:"friendUserIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3274,7 +3274,7 @@ func (x *GetFriendInfoReq) GetFriendUserIDs() []string {
 
 type GetFriendInfoResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FriendInfos   []*FriendInfoOnly      `protobuf:"bytes,1,rep,name=friendInfos,proto3" json:"friendInfos"`
+	FriendInfos   []*FriendInfoOnly      `protobuf:"bytes,1,rep,name=friendInfos,proto3" json:"friendInfos,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3318,7 +3318,7 @@ func (x *GetFriendInfoResp) GetFriendInfos() []*FriendInfoOnly {
 
 type GetPinnedFriendIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3362,7 +3362,7 @@ func (x *GetPinnedFriendIDsReq) GetUserID() string {
 
 type GetPinnedFriendIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FriendUserIDs []string               `protobuf:"bytes,1,rep,name=friendUserIDs,proto3" json:"friendUserIDs"`
+	FriendUserIDs []string               `protobuf:"bytes,1,rep,name=friendUserIDs,proto3" json:"friendUserIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3406,9 +3406,9 @@ func (x *GetPinnedFriendIDsResp) GetFriendUserIDs() []string {
 
 type SetMuteReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID"`
-	Duration      int64                  `protobuf:"varint,3,opt,name=duration,proto3" json:"duration"` // seconds; -1 = permanent; 0 = unmute
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID,omitempty"`
+	Duration      int64                  `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"` // seconds; -1 = permanent; 0 = unmute
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3502,8 +3502,8 @@ func (*SetMuteResp) Descriptor() ([]byte, []int) {
 
 type GetMuteReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	TargetUserID  string                 `protobuf:"bytes,2,opt,name=targetUserID,proto3" json:"targetUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3554,10 +3554,10 @@ func (x *GetMuteReq) GetTargetUserID() string {
 
 type GetMuteResp struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Muted       bool                   `protobuf:"varint,1,opt,name=muted,proto3" json:"muted"`
-	MuteEndTime int64                  `protobuf:"varint,2,opt,name=muteEndTime,proto3" json:"muteEndTime"` // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
+	Muted       bool                   `protobuf:"varint,1,opt,name=muted,proto3" json:"muted,omitempty"`
+	MuteEndTime int64                  `protobuf:"varint,2,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"` // Unix seconds; 0 when not muted or permanent (muted==true && 0 => permanent)
 	// Configured mute interval when set: -1 = permanent, >0 = seconds; 0 when not muted or legacy doc without field
-	Duration      int64 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration"`
+	Duration      int64 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3616,8 +3616,8 @@ func (x *GetMuteResp) GetDuration() int64 {
 // 好友会话置顶 / 取消置顶（同步更新 friend.is_pinned 与 conversation.isPinned）
 type PinFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3704,8 +3704,8 @@ func (*PinFriendResp) Descriptor() ([]byte, []int) {
 
 type UnpinFriendReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4061,7 +4061,7 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x0eunpinFriendReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
 	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\"\x11\n" +
-	"\x0funpinFriendResp2\xfc\x19\n" +
+	"\x0funpinFriendResp2\xd7\x1a\n" +
 	"\x06friend\x12_\n" +
 	"\x10applyToAddFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12^\n" +
 	"\x0faddOnewayFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12\x80\x01\n" +
@@ -4077,7 +4077,8 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\aisBlack\x12\x1b.openim.relation.isBlackReq\x1a\x1c.openim.relation.isBlackResp\x12h\n" +
 	"\x13getPaginationBlacks\x12'.openim.relation.getPaginationBlacksReq\x1a(.openim.relation.getPaginationBlacksResp\x12e\n" +
 	"\x12GetSpecifiedBlacks\x12&.openim.relation.GetSpecifiedBlacksReq\x1a'.openim.relation.GetSpecifiedBlacksResp\x12S\n" +
-	"\fdeleteFriend\x12 .openim.relation.deleteFriendReq\x1a!.openim.relation.deleteFriendResp\x12e\n" +
+	"\fdeleteFriend\x12 .openim.relation.deleteFriendReq\x1a!.openim.relation.deleteFriendResp\x12Y\n" +
+	"\x12deleteFriendOneway\x12 .openim.relation.deleteFriendReq\x1a!.openim.relation.deleteFriendResp\x12e\n" +
 	"\x12respondFriendApply\x12&.openim.relation.respondFriendApplyReq\x1a'.openim.relation.respondFriendApplyResp\x12V\n" +
 	"\rupdateFriends\x12!.openim.relation.updateFriendsReq\x1a\".openim.relation.updateFriendsResp\x12\\\n" +
 	"\x0fsetFriendRemark\x12#.openim.relation.setFriendRemarkReq\x1a$.openim.relation.setFriendRemarkResp\x12T\n" +
@@ -4237,59 +4238,61 @@ var file_relation_relation_proto_depIdxs = []int32{
 	23, // 45: openim.relation.friend.getPaginationBlacks:input_type -> openim.relation.getPaginationBlacksReq
 	48, // 46: openim.relation.friend.GetSpecifiedBlacks:input_type -> openim.relation.GetSpecifiedBlacksReq
 	29, // 47: openim.relation.friend.deleteFriend:input_type -> openim.relation.deleteFriendReq
-	31, // 48: openim.relation.friend.respondFriendApply:input_type -> openim.relation.respondFriendApplyReq
-	33, // 49: openim.relation.friend.updateFriends:input_type -> openim.relation.updateFriendsReq
-	35, // 50: openim.relation.friend.setFriendRemark:input_type -> openim.relation.setFriendRemarkReq
-	5,  // 51: openim.relation.friend.importFriends:input_type -> openim.relation.importFriendReq
-	17, // 52: openim.relation.friend.getDesignatedFriends:input_type -> openim.relation.getDesignatedFriendsReq
-	0,  // 53: openim.relation.friend.getPaginationFriends:input_type -> openim.relation.getPaginationFriendsReq
-	39, // 54: openim.relation.friend.getFriendIDs:input_type -> openim.relation.getFriendIDsReq
-	41, // 55: openim.relation.friend.GetSpecifiedFriendsInfo:input_type -> openim.relation.getSpecifiedFriendsInfoReq
-	44, // 56: openim.relation.friend.getIncrementalFriends:input_type -> openim.relation.getIncrementalFriendsReq
-	46, // 57: openim.relation.friend.getIncrementalBlacks:input_type -> openim.relation.getIncrementalBlacksReq
-	50, // 58: openim.relation.friend.getFullFriendUserIDs:input_type -> openim.relation.getFullFriendUserIDsReq
-	52, // 59: openim.relation.friend.NotificationUserInfoUpdate:input_type -> openim.relation.notificationUserInfoUpdateReq
-	55, // 60: openim.relation.friend.getFriendInfo:input_type -> openim.relation.getFriendInfoReq
-	57, // 61: openim.relation.friend.GetPinnedFriendIDs:input_type -> openim.relation.GetPinnedFriendIDsReq
-	59, // 62: openim.relation.friend.SetMute:input_type -> openim.relation.setMuteReq
-	61, // 63: openim.relation.friend.GetMute:input_type -> openim.relation.getMuteReq
-	63, // 64: openim.relation.friend.pinFriend:input_type -> openim.relation.pinFriendReq
-	65, // 65: openim.relation.friend.unpinFriend:input_type -> openim.relation.unpinFriendReq
-	3,  // 66: openim.relation.friend.applyToAddFriend:output_type -> openim.relation.applyToAddFriendResp
-	3,  // 67: openim.relation.friend.addOnewayFriend:output_type -> openim.relation.applyToAddFriendResp
-	8,  // 68: openim.relation.friend.getPaginationFriendsApplyTo:output_type -> openim.relation.getPaginationFriendsApplyToResp
-	38, // 69: openim.relation.friend.getPaginationFriendsApplyFrom:output_type -> openim.relation.getPaginationFriendsApplyFromResp
-	12, // 70: openim.relation.friend.getSelfUnhandledApplyCount:output_type -> openim.relation.getSelfUnhandledApplyCountResp
-	10, // 71: openim.relation.friend.getDesignatedFriendsApply:output_type -> openim.relation.getDesignatedFriendsApplyResp
-	14, // 72: openim.relation.friend.getIncrementalFriendsApplyTo:output_type -> openim.relation.getIncrementalFriendsApplyToResp
-	16, // 73: openim.relation.friend.getIncrementalFriendsApplyFrom:output_type -> openim.relation.getIncrementalFriendsApplyFromResp
-	20, // 74: openim.relation.friend.addBlack:output_type -> openim.relation.addBlackResp
-	22, // 75: openim.relation.friend.removeBlack:output_type -> openim.relation.removeBlackResp
-	26, // 76: openim.relation.friend.isFriend:output_type -> openim.relation.isFriendResp
-	28, // 77: openim.relation.friend.isBlack:output_type -> openim.relation.isBlackResp
-	24, // 78: openim.relation.friend.getPaginationBlacks:output_type -> openim.relation.getPaginationBlacksResp
-	49, // 79: openim.relation.friend.GetSpecifiedBlacks:output_type -> openim.relation.GetSpecifiedBlacksResp
-	30, // 80: openim.relation.friend.deleteFriend:output_type -> openim.relation.deleteFriendResp
-	32, // 81: openim.relation.friend.respondFriendApply:output_type -> openim.relation.respondFriendApplyResp
-	34, // 82: openim.relation.friend.updateFriends:output_type -> openim.relation.updateFriendsResp
-	36, // 83: openim.relation.friend.setFriendRemark:output_type -> openim.relation.setFriendRemarkResp
-	6,  // 84: openim.relation.friend.importFriends:output_type -> openim.relation.importFriendResp
-	18, // 85: openim.relation.friend.getDesignatedFriends:output_type -> openim.relation.getDesignatedFriendsResp
-	1,  // 86: openim.relation.friend.getPaginationFriends:output_type -> openim.relation.getPaginationFriendsResp
-	40, // 87: openim.relation.friend.getFriendIDs:output_type -> openim.relation.getFriendIDsResp
-	43, // 88: openim.relation.friend.GetSpecifiedFriendsInfo:output_type -> openim.relation.getSpecifiedFriendsInfoResp
-	45, // 89: openim.relation.friend.getIncrementalFriends:output_type -> openim.relation.getIncrementalFriendsResp
-	47, // 90: openim.relation.friend.getIncrementalBlacks:output_type -> openim.relation.getIncrementalBlacksResp
-	51, // 91: openim.relation.friend.getFullFriendUserIDs:output_type -> openim.relation.getFullFriendUserIDsResp
-	53, // 92: openim.relation.friend.NotificationUserInfoUpdate:output_type -> openim.relation.notificationUserInfoUpdateResp
-	56, // 93: openim.relation.friend.getFriendInfo:output_type -> openim.relation.getFriendInfoResp
-	58, // 94: openim.relation.friend.GetPinnedFriendIDs:output_type -> openim.relation.GetPinnedFriendIDsResp
-	60, // 95: openim.relation.friend.SetMute:output_type -> openim.relation.setMuteResp
-	62, // 96: openim.relation.friend.GetMute:output_type -> openim.relation.getMuteResp
-	64, // 97: openim.relation.friend.pinFriend:output_type -> openim.relation.pinFriendResp
-	66, // 98: openim.relation.friend.unpinFriend:output_type -> openim.relation.unpinFriendResp
-	66, // [66:99] is the sub-list for method output_type
-	33, // [33:66] is the sub-list for method input_type
+	29, // 48: openim.relation.friend.deleteFriendOneway:input_type -> openim.relation.deleteFriendReq
+	31, // 49: openim.relation.friend.respondFriendApply:input_type -> openim.relation.respondFriendApplyReq
+	33, // 50: openim.relation.friend.updateFriends:input_type -> openim.relation.updateFriendsReq
+	35, // 51: openim.relation.friend.setFriendRemark:input_type -> openim.relation.setFriendRemarkReq
+	5,  // 52: openim.relation.friend.importFriends:input_type -> openim.relation.importFriendReq
+	17, // 53: openim.relation.friend.getDesignatedFriends:input_type -> openim.relation.getDesignatedFriendsReq
+	0,  // 54: openim.relation.friend.getPaginationFriends:input_type -> openim.relation.getPaginationFriendsReq
+	39, // 55: openim.relation.friend.getFriendIDs:input_type -> openim.relation.getFriendIDsReq
+	41, // 56: openim.relation.friend.GetSpecifiedFriendsInfo:input_type -> openim.relation.getSpecifiedFriendsInfoReq
+	44, // 57: openim.relation.friend.getIncrementalFriends:input_type -> openim.relation.getIncrementalFriendsReq
+	46, // 58: openim.relation.friend.getIncrementalBlacks:input_type -> openim.relation.getIncrementalBlacksReq
+	50, // 59: openim.relation.friend.getFullFriendUserIDs:input_type -> openim.relation.getFullFriendUserIDsReq
+	52, // 60: openim.relation.friend.NotificationUserInfoUpdate:input_type -> openim.relation.notificationUserInfoUpdateReq
+	55, // 61: openim.relation.friend.getFriendInfo:input_type -> openim.relation.getFriendInfoReq
+	57, // 62: openim.relation.friend.GetPinnedFriendIDs:input_type -> openim.relation.GetPinnedFriendIDsReq
+	59, // 63: openim.relation.friend.SetMute:input_type -> openim.relation.setMuteReq
+	61, // 64: openim.relation.friend.GetMute:input_type -> openim.relation.getMuteReq
+	63, // 65: openim.relation.friend.pinFriend:input_type -> openim.relation.pinFriendReq
+	65, // 66: openim.relation.friend.unpinFriend:input_type -> openim.relation.unpinFriendReq
+	3,  // 67: openim.relation.friend.applyToAddFriend:output_type -> openim.relation.applyToAddFriendResp
+	3,  // 68: openim.relation.friend.addOnewayFriend:output_type -> openim.relation.applyToAddFriendResp
+	8,  // 69: openim.relation.friend.getPaginationFriendsApplyTo:output_type -> openim.relation.getPaginationFriendsApplyToResp
+	38, // 70: openim.relation.friend.getPaginationFriendsApplyFrom:output_type -> openim.relation.getPaginationFriendsApplyFromResp
+	12, // 71: openim.relation.friend.getSelfUnhandledApplyCount:output_type -> openim.relation.getSelfUnhandledApplyCountResp
+	10, // 72: openim.relation.friend.getDesignatedFriendsApply:output_type -> openim.relation.getDesignatedFriendsApplyResp
+	14, // 73: openim.relation.friend.getIncrementalFriendsApplyTo:output_type -> openim.relation.getIncrementalFriendsApplyToResp
+	16, // 74: openim.relation.friend.getIncrementalFriendsApplyFrom:output_type -> openim.relation.getIncrementalFriendsApplyFromResp
+	20, // 75: openim.relation.friend.addBlack:output_type -> openim.relation.addBlackResp
+	22, // 76: openim.relation.friend.removeBlack:output_type -> openim.relation.removeBlackResp
+	26, // 77: openim.relation.friend.isFriend:output_type -> openim.relation.isFriendResp
+	28, // 78: openim.relation.friend.isBlack:output_type -> openim.relation.isBlackResp
+	24, // 79: openim.relation.friend.getPaginationBlacks:output_type -> openim.relation.getPaginationBlacksResp
+	49, // 80: openim.relation.friend.GetSpecifiedBlacks:output_type -> openim.relation.GetSpecifiedBlacksResp
+	30, // 81: openim.relation.friend.deleteFriend:output_type -> openim.relation.deleteFriendResp
+	30, // 82: openim.relation.friend.deleteFriendOneway:output_type -> openim.relation.deleteFriendResp
+	32, // 83: openim.relation.friend.respondFriendApply:output_type -> openim.relation.respondFriendApplyResp
+	34, // 84: openim.relation.friend.updateFriends:output_type -> openim.relation.updateFriendsResp
+	36, // 85: openim.relation.friend.setFriendRemark:output_type -> openim.relation.setFriendRemarkResp
+	6,  // 86: openim.relation.friend.importFriends:output_type -> openim.relation.importFriendResp
+	18, // 87: openim.relation.friend.getDesignatedFriends:output_type -> openim.relation.getDesignatedFriendsResp
+	1,  // 88: openim.relation.friend.getPaginationFriends:output_type -> openim.relation.getPaginationFriendsResp
+	40, // 89: openim.relation.friend.getFriendIDs:output_type -> openim.relation.getFriendIDsResp
+	43, // 90: openim.relation.friend.GetSpecifiedFriendsInfo:output_type -> openim.relation.getSpecifiedFriendsInfoResp
+	45, // 91: openim.relation.friend.getIncrementalFriends:output_type -> openim.relation.getIncrementalFriendsResp
+	47, // 92: openim.relation.friend.getIncrementalBlacks:output_type -> openim.relation.getIncrementalBlacksResp
+	51, // 93: openim.relation.friend.getFullFriendUserIDs:output_type -> openim.relation.getFullFriendUserIDsResp
+	53, // 94: openim.relation.friend.NotificationUserInfoUpdate:output_type -> openim.relation.notificationUserInfoUpdateResp
+	56, // 95: openim.relation.friend.getFriendInfo:output_type -> openim.relation.getFriendInfoResp
+	58, // 96: openim.relation.friend.GetPinnedFriendIDs:output_type -> openim.relation.GetPinnedFriendIDsResp
+	60, // 97: openim.relation.friend.SetMute:output_type -> openim.relation.setMuteResp
+	62, // 98: openim.relation.friend.GetMute:output_type -> openim.relation.getMuteResp
+	64, // 99: openim.relation.friend.pinFriend:output_type -> openim.relation.pinFriendResp
+	66, // 100: openim.relation.friend.unpinFriend:output_type -> openim.relation.unpinFriendResp
+	67, // [67:101] is the sub-list for method output_type
+	33, // [33:67] is the sub-list for method input_type
 	33, // [33:33] is the sub-list for extension type_name
 	33, // [33:33] is the sub-list for extension extendee
 	0,  // [0:33] is the sub-list for field type_name

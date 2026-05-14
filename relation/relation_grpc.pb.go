@@ -34,6 +34,7 @@ const (
 	Friend_GetPaginationBlacks_FullMethodName            = "/openim.relation.friend/getPaginationBlacks"
 	Friend_GetSpecifiedBlacks_FullMethodName             = "/openim.relation.friend/GetSpecifiedBlacks"
 	Friend_DeleteFriend_FullMethodName                   = "/openim.relation.friend/deleteFriend"
+	Friend_DeleteFriendOneway_FullMethodName             = "/openim.relation.friend/deleteFriendOneway"
 	Friend_RespondFriendApply_FullMethodName             = "/openim.relation.friend/respondFriendApply"
 	Friend_UpdateFriends_FullMethodName                  = "/openim.relation.friend/updateFriends"
 	Friend_SetFriendRemark_FullMethodName                = "/openim.relation.friend/setFriendRemark"
@@ -88,6 +89,9 @@ type FriendClient interface {
 	GetSpecifiedBlacks(ctx context.Context, in *GetSpecifiedBlacksReq, opts ...grpc.CallOption) (*GetSpecifiedBlacksResp, error)
 	// Delete friend
 	DeleteFriend(ctx context.Context, in *DeleteFriendReq, opts ...grpc.CallOption) (*DeleteFriendResp, error)
+	// One-way delete: remove only ownerUserID's friend row; peer keeps owner in their list.
+	// Notifies owner only (friends list sync); does not send FriendDeletedNotification to peer.
+	DeleteFriendOneway(ctx context.Context, in *DeleteFriendReq, opts ...grpc.CallOption) (*DeleteFriendResp, error)
 	// Respond to friend request (Accept or Decline)
 	RespondFriendApply(ctx context.Context, in *RespondFriendApplyReq, opts ...grpc.CallOption) (*RespondFriendApplyResp, error)
 	// Favorited friend
@@ -275,6 +279,16 @@ func (c *friendClient) DeleteFriend(ctx context.Context, in *DeleteFriendReq, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFriendResp)
 	err := c.cc.Invoke(ctx, Friend_DeleteFriend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) DeleteFriendOneway(ctx context.Context, in *DeleteFriendReq, opts ...grpc.CallOption) (*DeleteFriendResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteFriendResp)
+	err := c.cc.Invoke(ctx, Friend_DeleteFriendOneway_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -495,6 +509,9 @@ type FriendServer interface {
 	GetSpecifiedBlacks(context.Context, *GetSpecifiedBlacksReq) (*GetSpecifiedBlacksResp, error)
 	// Delete friend
 	DeleteFriend(context.Context, *DeleteFriendReq) (*DeleteFriendResp, error)
+	// One-way delete: remove only ownerUserID's friend row; peer keeps owner in their list.
+	// Notifies owner only (friends list sync); does not send FriendDeletedNotification to peer.
+	DeleteFriendOneway(context.Context, *DeleteFriendReq) (*DeleteFriendResp, error)
 	// Respond to friend request (Accept or Decline)
 	RespondFriendApply(context.Context, *RespondFriendApplyReq) (*RespondFriendApplyResp, error)
 	// Favorited friend
@@ -582,6 +599,9 @@ func (UnimplementedFriendServer) GetSpecifiedBlacks(context.Context, *GetSpecifi
 }
 func (UnimplementedFriendServer) DeleteFriend(context.Context, *DeleteFriendReq) (*DeleteFriendResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteFriend not implemented")
+}
+func (UnimplementedFriendServer) DeleteFriendOneway(context.Context, *DeleteFriendReq) (*DeleteFriendResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteFriendOneway not implemented")
 }
 func (UnimplementedFriendServer) RespondFriendApply(context.Context, *RespondFriendApplyReq) (*RespondFriendApplyResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method RespondFriendApply not implemented")
@@ -924,6 +944,24 @@ func _Friend_DeleteFriend_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FriendServer).DeleteFriend(ctx, req.(*DeleteFriendReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_DeleteFriendOneway_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFriendReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).DeleteFriendOneway(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_DeleteFriendOneway_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).DeleteFriendOneway(ctx, req.(*DeleteFriendReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1318,6 +1356,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deleteFriend",
 			Handler:    _Friend_DeleteFriend_Handler,
+		},
+		{
+			MethodName: "deleteFriendOneway",
+			Handler:    _Friend_DeleteFriendOneway_Handler,
 		},
 		{
 			MethodName: "respondFriendApply",
