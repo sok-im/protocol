@@ -337,6 +337,14 @@ message DeleteConversationsReq {
 }
 message DeleteConversationsResp {}
 
+message SetConversationMuteReq {
+  string ownerUserID = 1;
+  string conversationID = 2;
+  // 0=取消静音，-1=永久静音，>0=静音秒数
+  int32 duration = 3;
+}
+message SetConversationMuteResp {}
+
 service conversation {
   rpc GetConversation(GetConversationReq) returns (GetConversationResp);
   rpc GetSortedConversationList(GetSortedConversationListReq) returns (GetSortedConversationListResp);
@@ -364,6 +372,7 @@ service conversation {
   rpc ClearUserConversationMsg(ClearUserConversationMsgReq) returns (ClearUserConversationMsgResp);
   rpc UpdateConversationsByUser(UpdateConversationsByUserReq) returns (UpdateConversationsByUserResp);
   rpc DeleteConversations(DeleteConversationsReq) returns (DeleteConversationsResp);
+  rpc SetConversationMute(SetConversationMuteReq) returns (SetConversationMuteResp);
 
   // 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
   rpc ClearBurnExpiredMsgs(ClearBurnExpiredMsgsReq) returns (ClearBurnExpiredMsgsResp);

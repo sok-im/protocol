@@ -3454,6 +3454,103 @@ func (*DeleteConversationsResp) Descriptor() ([]byte, []int) {
 	return file_conversation_conversation_proto_rawDescGZIP(), []int{59}
 }
 
+type SetConversationMuteReq struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
+	// 0=取消静音，-1=永久静音，>0=静音秒数
+	Duration      int32 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetConversationMuteReq) Reset() {
+	*x = SetConversationMuteReq{}
+	mi := &file_conversation_conversation_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetConversationMuteReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetConversationMuteReq) ProtoMessage() {}
+
+func (x *SetConversationMuteReq) ProtoReflect() protoreflect.Message {
+	mi := &file_conversation_conversation_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetConversationMuteReq.ProtoReflect.Descriptor instead.
+func (*SetConversationMuteReq) Descriptor() ([]byte, []int) {
+	return file_conversation_conversation_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *SetConversationMuteReq) GetOwnerUserID() string {
+	if x != nil {
+		return x.OwnerUserID
+	}
+	return ""
+}
+
+func (x *SetConversationMuteReq) GetConversationID() string {
+	if x != nil {
+		return x.ConversationID
+	}
+	return ""
+}
+
+func (x *SetConversationMuteReq) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+type SetConversationMuteResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetConversationMuteResp) Reset() {
+	*x = SetConversationMuteResp{}
+	mi := &file_conversation_conversation_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetConversationMuteResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetConversationMuteResp) ProtoMessage() {}
+
+func (x *SetConversationMuteResp) ProtoReflect() protoreflect.Message {
+	mi := &file_conversation_conversation_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetConversationMuteResp.ProtoReflect.Descriptor instead.
+func (*SetConversationMuteResp) Descriptor() ([]byte, []int) {
+	return file_conversation_conversation_proto_rawDescGZIP(), []int{61}
+}
+
 var File_conversation_conversation_proto protoreflect.FileDescriptor
 
 const file_conversation_conversation_proto_rawDesc = "" +
@@ -3694,7 +3791,12 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12&\n" +
 	"\x0eneedDeleteTime\x18\x02 \x01(\x03R\x0eneedDeleteTime\x12(\n" +
 	"\x0fconversationIDs\x18\x03 \x03(\tR\x0fconversationIDs\"\x19\n" +
-	"\x17DeleteConversationsResp2\x9a\x1c\n" +
+	"\x17DeleteConversationsResp\"~\n" +
+	"\x16SetConversationMuteReq\x12 \n" +
+	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12&\n" +
+	"\x0econversationID\x18\x02 \x01(\tR\x0econversationID\x12\x1a\n" +
+	"\bduration\x18\x03 \x01(\x05R\bduration\"\x19\n" +
+	"\x17SetConversationMuteResp2\x8c\x1d\n" +
 	"\fconversation\x12d\n" +
 	"\x0fGetConversation\x12'.openim.conversation.GetConversationReq\x1a(.openim.conversation.GetConversationResp\x12\x82\x01\n" +
 	"\x19GetSortedConversationList\x121.openim.conversation.GetSortedConversationListReq\x1a2.openim.conversation.GetSortedConversationListResp\x12p\n" +
@@ -3721,7 +3823,8 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\x18GetPinnedConversationIDs\x120.openim.conversation.GetPinnedConversationIDsReq\x1a1.openim.conversation.GetPinnedConversationIDsResp\x12\x7f\n" +
 	"\x18ClearUserConversationMsg\x120.openim.conversation.ClearUserConversationMsgReq\x1a1.openim.conversation.ClearUserConversationMsgResp\x12\x82\x01\n" +
 	"\x19UpdateConversationsByUser\x121.openim.conversation.UpdateConversationsByUserReq\x1a2.openim.conversation.UpdateConversationsByUserResp\x12p\n" +
-	"\x13DeleteConversations\x12+.openim.conversation.DeleteConversationsReq\x1a,.openim.conversation.DeleteConversationsResp\x12s\n" +
+	"\x13DeleteConversations\x12+.openim.conversation.DeleteConversationsReq\x1a,.openim.conversation.DeleteConversationsResp\x12p\n" +
+	"\x13SetConversationMute\x12+.openim.conversation.SetConversationMuteReq\x1a,.openim.conversation.SetConversationMuteResp\x12s\n" +
 	"\x14ClearBurnExpiredMsgs\x12,.openim.conversation.ClearBurnExpiredMsgsReq\x1a-.openim.conversation.ClearBurnExpiredMsgsResp\x12\x82\x01\n" +
 	"\x19ClearGroupBurnExpiredMsgs\x121.openim.conversation.ClearGroupBurnExpiredMsgsReq\x1a2.openim.conversation.ClearGroupBurnExpiredMsgsRespB,Z*github.com/openimsdk/protocol/conversationb\x06proto3"
 
@@ -3737,7 +3840,7 @@ func file_conversation_conversation_proto_rawDescGZIP() []byte {
 	return file_conversation_conversation_proto_rawDescData
 }
 
-var file_conversation_conversation_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
+var file_conversation_conversation_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
 var file_conversation_conversation_proto_goTypes = []any{
 	(*Conversation)(nil),                                // 0: openim.conversation.Conversation
 	(*ConversationReq)(nil),                             // 1: openim.conversation.ConversationReq
@@ -3799,55 +3902,57 @@ var file_conversation_conversation_proto_goTypes = []any{
 	(*UpdateConversationsByUserResp)(nil),               // 57: openim.conversation.UpdateConversationsByUserResp
 	(*DeleteConversationsReq)(nil),                      // 58: openim.conversation.DeleteConversationsReq
 	(*DeleteConversationsResp)(nil),                     // 59: openim.conversation.DeleteConversationsResp
-	(*wrapperspb.Int32Value)(nil),                       // 60: openim.protobuf.Int32Value
-	(*wrapperspb.BoolValue)(nil),                        // 61: openim.protobuf.BoolValue
-	(*wrapperspb.StringValue)(nil),                      // 62: openim.protobuf.StringValue
-	(*wrapperspb.Int64Value)(nil),                       // 63: openim.protobuf.Int64Value
-	(*sdkws.RequestPagination)(nil),                     // 64: openim.sdkws.RequestPagination
+	(*SetConversationMuteReq)(nil),                      // 60: openim.conversation.SetConversationMuteReq
+	(*SetConversationMuteResp)(nil),                     // 61: openim.conversation.SetConversationMuteResp
+	(*wrapperspb.Int32Value)(nil),                       // 62: openim.protobuf.Int32Value
+	(*wrapperspb.BoolValue)(nil),                        // 63: openim.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil),                      // 64: openim.protobuf.StringValue
+	(*wrapperspb.Int64Value)(nil),                       // 65: openim.protobuf.Int64Value
+	(*sdkws.RequestPagination)(nil),                     // 66: openim.sdkws.RequestPagination
 }
 var file_conversation_conversation_proto_depIdxs = []int32{
-	60, // 0: openim.conversation.ConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
-	61, // 1: openim.conversation.ConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
-	62, // 2: openim.conversation.ConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
-	61, // 3: openim.conversation.ConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
-	62, // 4: openim.conversation.ConversationReq.ex:type_name -> openim.protobuf.StringValue
-	60, // 5: openim.conversation.ConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
-	63, // 6: openim.conversation.ConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
-	63, // 7: openim.conversation.ConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
-	60, // 8: openim.conversation.ConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
-	63, // 9: openim.conversation.ConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	61, // 10: openim.conversation.ConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	60, // 11: openim.conversation.ConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
-	63, // 12: openim.conversation.ConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
+	62, // 0: openim.conversation.ConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
+	63, // 1: openim.conversation.ConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
+	64, // 2: openim.conversation.ConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
+	63, // 3: openim.conversation.ConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
+	64, // 4: openim.conversation.ConversationReq.ex:type_name -> openim.protobuf.StringValue
+	62, // 5: openim.conversation.ConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
+	65, // 6: openim.conversation.ConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
+	65, // 7: openim.conversation.ConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
+	62, // 8: openim.conversation.ConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
+	65, // 9: openim.conversation.ConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	63, // 10: openim.conversation.ConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	62, // 11: openim.conversation.ConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
+	65, // 12: openim.conversation.ConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
 	0,  // 13: openim.conversation.SetConversationReq.conversation:type_name -> openim.conversation.Conversation
 	0,  // 14: openim.conversation.GetConversationResp.conversation:type_name -> openim.conversation.Conversation
-	64, // 15: openim.conversation.GetSortedConversationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	66, // 15: openim.conversation.GetSortedConversationListReq.pagination:type_name -> openim.sdkws.RequestPagination
 	8,  // 16: openim.conversation.GetSortedConversationListResp.conversationElems:type_name -> openim.conversation.ConversationElem
 	9,  // 17: openim.conversation.ConversationElem.msgInfo:type_name -> openim.conversation.MsgInfo
 	0,  // 18: openim.conversation.GetConversationsResp.conversations:type_name -> openim.conversation.Conversation
 	0,  // 19: openim.conversation.GetAllConversationsResp.conversations:type_name -> openim.conversation.Conversation
 	1,  // 20: openim.conversation.SetConversationsReq.conversation:type_name -> openim.conversation.ConversationReq
 	0,  // 21: openim.conversation.GetConversationsByConversationIDResp.conversations:type_name -> openim.conversation.Conversation
-	60, // 22: openim.conversation.UpdateConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
-	61, // 23: openim.conversation.UpdateConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
-	62, // 24: openim.conversation.UpdateConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
-	61, // 25: openim.conversation.UpdateConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
-	62, // 26: openim.conversation.UpdateConversationReq.ex:type_name -> openim.protobuf.StringValue
-	60, // 27: openim.conversation.UpdateConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
-	63, // 28: openim.conversation.UpdateConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
-	63, // 29: openim.conversation.UpdateConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
-	60, // 30: openim.conversation.UpdateConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
-	63, // 31: openim.conversation.UpdateConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	61, // 32: openim.conversation.UpdateConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	63, // 33: openim.conversation.UpdateConversationReq.latestMsgDestructTime:type_name -> openim.protobuf.Int64Value
-	60, // 34: openim.conversation.UpdateConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
-	63, // 35: openim.conversation.UpdateConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
+	62, // 22: openim.conversation.UpdateConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
+	63, // 23: openim.conversation.UpdateConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
+	64, // 24: openim.conversation.UpdateConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
+	63, // 25: openim.conversation.UpdateConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
+	64, // 26: openim.conversation.UpdateConversationReq.ex:type_name -> openim.protobuf.StringValue
+	62, // 27: openim.conversation.UpdateConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
+	65, // 28: openim.conversation.UpdateConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
+	65, // 29: openim.conversation.UpdateConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
+	62, // 30: openim.conversation.UpdateConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
+	65, // 31: openim.conversation.UpdateConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	63, // 32: openim.conversation.UpdateConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	65, // 33: openim.conversation.UpdateConversationReq.latestMsgDestructTime:type_name -> openim.protobuf.Int64Value
+	62, // 34: openim.conversation.UpdateConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
+	65, // 35: openim.conversation.UpdateConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
 	0,  // 36: openim.conversation.GetIncrementalConversationResp.insert:type_name -> openim.conversation.Conversation
 	0,  // 37: openim.conversation.GetIncrementalConversationResp.update:type_name -> openim.conversation.Conversation
-	64, // 38: openim.conversation.GetOwnerConversationReq.pagination:type_name -> openim.sdkws.RequestPagination
+	66, // 38: openim.conversation.GetOwnerConversationReq.pagination:type_name -> openim.sdkws.RequestPagination
 	0,  // 39: openim.conversation.GetOwnerConversationResp.conversations:type_name -> openim.conversation.Conversation
 	0,  // 40: openim.conversation.GetConversationsNeedClearMsgResp.conversations:type_name -> openim.conversation.Conversation
-	62, // 41: openim.conversation.UpdateConversationsByUserReq.ex:type_name -> openim.protobuf.StringValue
+	64, // 41: openim.conversation.UpdateConversationsByUserReq.ex:type_name -> openim.protobuf.StringValue
 	4,  // 42: openim.conversation.conversation.GetConversation:input_type -> openim.conversation.GetConversationReq
 	6,  // 43: openim.conversation.conversation.GetSortedConversationList:input_type -> openim.conversation.GetSortedConversationListReq
 	12, // 44: openim.conversation.conversation.GetAllConversations:input_type -> openim.conversation.GetAllConversationsReq
@@ -3874,38 +3979,40 @@ var file_conversation_conversation_proto_depIdxs = []int32{
 	50, // 65: openim.conversation.conversation.ClearUserConversationMsg:input_type -> openim.conversation.ClearUserConversationMsgReq
 	56, // 66: openim.conversation.conversation.UpdateConversationsByUser:input_type -> openim.conversation.UpdateConversationsByUserReq
 	58, // 67: openim.conversation.conversation.DeleteConversations:input_type -> openim.conversation.DeleteConversationsReq
-	54, // 68: openim.conversation.conversation.ClearBurnExpiredMsgs:input_type -> openim.conversation.ClearBurnExpiredMsgsReq
-	52, // 69: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:input_type -> openim.conversation.ClearGroupBurnExpiredMsgsReq
-	5,  // 70: openim.conversation.conversation.GetConversation:output_type -> openim.conversation.GetConversationResp
-	7,  // 71: openim.conversation.conversation.GetSortedConversationList:output_type -> openim.conversation.GetSortedConversationListResp
-	13, // 72: openim.conversation.conversation.GetAllConversations:output_type -> openim.conversation.GetAllConversationsResp
-	11, // 73: openim.conversation.conversation.GetConversations:output_type -> openim.conversation.GetConversationsResp
-	3,  // 74: openim.conversation.conversation.SetConversation:output_type -> openim.conversation.SetConversationResp
-	15, // 75: openim.conversation.conversation.GetRecvMsgNotNotifyUserIDs:output_type -> openim.conversation.GetRecvMsgNotNotifyUserIDsResp
-	17, // 76: openim.conversation.conversation.CreateSingleChatConversations:output_type -> openim.conversation.CreateSingleChatConversationsResp
-	19, // 77: openim.conversation.conversation.CreateGroupChatConversations:output_type -> openim.conversation.CreateGroupChatConversationsResp
-	21, // 78: openim.conversation.conversation.SetConversationMaxSeq:output_type -> openim.conversation.SetConversationMaxSeqResp
-	23, // 79: openim.conversation.conversation.SetConversationMinSeq:output_type -> openim.conversation.SetConversationMinSeqResp
-	25, // 80: openim.conversation.conversation.GetConversationIDs:output_type -> openim.conversation.GetConversationIDsResp
-	27, // 81: openim.conversation.conversation.SetConversations:output_type -> openim.conversation.SetConversationsResp
-	29, // 82: openim.conversation.conversation.GetUserConversationIDsHash:output_type -> openim.conversation.GetUserConversationIDsHashResp
-	31, // 83: openim.conversation.conversation.GetConversationsByConversationID:output_type -> openim.conversation.GetConversationsByConversationIDResp
-	33, // 84: openim.conversation.conversation.GetConversationOfflinePushUserIDs:output_type -> openim.conversation.GetConversationOfflinePushUserIDsResp
-	35, // 85: openim.conversation.conversation.GetConversationNotReceiveMessageUserIDs:output_type -> openim.conversation.GetConversationNotReceiveMessageUserIDsResp
-	37, // 86: openim.conversation.conversation.UpdateConversation:output_type -> openim.conversation.UpdateConversationResp
-	39, // 87: openim.conversation.conversation.GetFullOwnerConversationIDs:output_type -> openim.conversation.GetFullOwnerConversationIDsResp
-	41, // 88: openim.conversation.conversation.GetIncrementalConversation:output_type -> openim.conversation.GetIncrementalConversationResp
-	43, // 89: openim.conversation.conversation.GetOwnerConversation:output_type -> openim.conversation.GetOwnerConversationResp
-	45, // 90: openim.conversation.conversation.GetConversationsNeedClearMsg:output_type -> openim.conversation.GetConversationsNeedClearMsgResp
-	47, // 91: openim.conversation.conversation.GetNotNotifyConversationIDs:output_type -> openim.conversation.GetNotNotifyConversationIDsResp
-	49, // 92: openim.conversation.conversation.GetPinnedConversationIDs:output_type -> openim.conversation.GetPinnedConversationIDsResp
-	51, // 93: openim.conversation.conversation.ClearUserConversationMsg:output_type -> openim.conversation.ClearUserConversationMsgResp
-	57, // 94: openim.conversation.conversation.UpdateConversationsByUser:output_type -> openim.conversation.UpdateConversationsByUserResp
-	59, // 95: openim.conversation.conversation.DeleteConversations:output_type -> openim.conversation.DeleteConversationsResp
-	55, // 96: openim.conversation.conversation.ClearBurnExpiredMsgs:output_type -> openim.conversation.ClearBurnExpiredMsgsResp
-	53, // 97: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:output_type -> openim.conversation.ClearGroupBurnExpiredMsgsResp
-	70, // [70:98] is the sub-list for method output_type
-	42, // [42:70] is the sub-list for method input_type
+	60, // 68: openim.conversation.conversation.SetConversationMute:input_type -> openim.conversation.SetConversationMuteReq
+	54, // 69: openim.conversation.conversation.ClearBurnExpiredMsgs:input_type -> openim.conversation.ClearBurnExpiredMsgsReq
+	52, // 70: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:input_type -> openim.conversation.ClearGroupBurnExpiredMsgsReq
+	5,  // 71: openim.conversation.conversation.GetConversation:output_type -> openim.conversation.GetConversationResp
+	7,  // 72: openim.conversation.conversation.GetSortedConversationList:output_type -> openim.conversation.GetSortedConversationListResp
+	13, // 73: openim.conversation.conversation.GetAllConversations:output_type -> openim.conversation.GetAllConversationsResp
+	11, // 74: openim.conversation.conversation.GetConversations:output_type -> openim.conversation.GetConversationsResp
+	3,  // 75: openim.conversation.conversation.SetConversation:output_type -> openim.conversation.SetConversationResp
+	15, // 76: openim.conversation.conversation.GetRecvMsgNotNotifyUserIDs:output_type -> openim.conversation.GetRecvMsgNotNotifyUserIDsResp
+	17, // 77: openim.conversation.conversation.CreateSingleChatConversations:output_type -> openim.conversation.CreateSingleChatConversationsResp
+	19, // 78: openim.conversation.conversation.CreateGroupChatConversations:output_type -> openim.conversation.CreateGroupChatConversationsResp
+	21, // 79: openim.conversation.conversation.SetConversationMaxSeq:output_type -> openim.conversation.SetConversationMaxSeqResp
+	23, // 80: openim.conversation.conversation.SetConversationMinSeq:output_type -> openim.conversation.SetConversationMinSeqResp
+	25, // 81: openim.conversation.conversation.GetConversationIDs:output_type -> openim.conversation.GetConversationIDsResp
+	27, // 82: openim.conversation.conversation.SetConversations:output_type -> openim.conversation.SetConversationsResp
+	29, // 83: openim.conversation.conversation.GetUserConversationIDsHash:output_type -> openim.conversation.GetUserConversationIDsHashResp
+	31, // 84: openim.conversation.conversation.GetConversationsByConversationID:output_type -> openim.conversation.GetConversationsByConversationIDResp
+	33, // 85: openim.conversation.conversation.GetConversationOfflinePushUserIDs:output_type -> openim.conversation.GetConversationOfflinePushUserIDsResp
+	35, // 86: openim.conversation.conversation.GetConversationNotReceiveMessageUserIDs:output_type -> openim.conversation.GetConversationNotReceiveMessageUserIDsResp
+	37, // 87: openim.conversation.conversation.UpdateConversation:output_type -> openim.conversation.UpdateConversationResp
+	39, // 88: openim.conversation.conversation.GetFullOwnerConversationIDs:output_type -> openim.conversation.GetFullOwnerConversationIDsResp
+	41, // 89: openim.conversation.conversation.GetIncrementalConversation:output_type -> openim.conversation.GetIncrementalConversationResp
+	43, // 90: openim.conversation.conversation.GetOwnerConversation:output_type -> openim.conversation.GetOwnerConversationResp
+	45, // 91: openim.conversation.conversation.GetConversationsNeedClearMsg:output_type -> openim.conversation.GetConversationsNeedClearMsgResp
+	47, // 92: openim.conversation.conversation.GetNotNotifyConversationIDs:output_type -> openim.conversation.GetNotNotifyConversationIDsResp
+	49, // 93: openim.conversation.conversation.GetPinnedConversationIDs:output_type -> openim.conversation.GetPinnedConversationIDsResp
+	51, // 94: openim.conversation.conversation.ClearUserConversationMsg:output_type -> openim.conversation.ClearUserConversationMsgResp
+	57, // 95: openim.conversation.conversation.UpdateConversationsByUser:output_type -> openim.conversation.UpdateConversationsByUserResp
+	59, // 96: openim.conversation.conversation.DeleteConversations:output_type -> openim.conversation.DeleteConversationsResp
+	61, // 97: openim.conversation.conversation.SetConversationMute:output_type -> openim.conversation.SetConversationMuteResp
+	55, // 98: openim.conversation.conversation.ClearBurnExpiredMsgs:output_type -> openim.conversation.ClearBurnExpiredMsgsResp
+	53, // 99: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:output_type -> openim.conversation.ClearGroupBurnExpiredMsgsResp
+	71, // [71:100] is the sub-list for method output_type
+	42, // [42:71] is the sub-list for method input_type
 	42, // [42:42] is the sub-list for extension type_name
 	42, // [42:42] is the sub-list for extension extendee
 	0,  // [0:42] is the sub-list for field type_name
@@ -3922,7 +4029,7 @@ func file_conversation_conversation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conversation_conversation_proto_rawDesc), len(file_conversation_conversation_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   60,
+			NumMessages:   62,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

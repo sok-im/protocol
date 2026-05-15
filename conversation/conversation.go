@@ -210,3 +210,16 @@ func (x *ClearUserConversationMsgReq) Check() error {
 	}
 	return nil
 }
+
+func (x *SetConversationMuteReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if x.Duration < -1 {
+		return errors.New("duration is invalid")
+	}
+	return nil
+}

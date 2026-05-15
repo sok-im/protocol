@@ -45,6 +45,7 @@ const (
 	Conversation_ClearUserConversationMsg_FullMethodName                = "/openim.conversation.conversation/ClearUserConversationMsg"
 	Conversation_UpdateConversationsByUser_FullMethodName               = "/openim.conversation.conversation/UpdateConversationsByUser"
 	Conversation_DeleteConversations_FullMethodName                     = "/openim.conversation.conversation/DeleteConversations"
+	Conversation_SetConversationMute_FullMethodName                     = "/openim.conversation.conversation/SetConversationMute"
 	Conversation_ClearBurnExpiredMsgs_FullMethodName                    = "/openim.conversation.conversation/ClearBurnExpiredMsgs"
 	Conversation_ClearGroupBurnExpiredMsgs_FullMethodName               = "/openim.conversation.conversation/ClearGroupBurnExpiredMsgs"
 )
@@ -79,6 +80,7 @@ type ConversationClient interface {
 	ClearUserConversationMsg(ctx context.Context, in *ClearUserConversationMsgReq, opts ...grpc.CallOption) (*ClearUserConversationMsgResp, error)
 	UpdateConversationsByUser(ctx context.Context, in *UpdateConversationsByUserReq, opts ...grpc.CallOption) (*UpdateConversationsByUserResp, error)
 	DeleteConversations(ctx context.Context, in *DeleteConversationsReq, opts ...grpc.CallOption) (*DeleteConversationsResp, error)
+	SetConversationMute(ctx context.Context, in *SetConversationMuteReq, opts ...grpc.CallOption) (*SetConversationMuteResp, error)
 	// 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
 	ClearBurnExpiredMsgs(ctx context.Context, in *ClearBurnExpiredMsgsReq, opts ...grpc.CallOption) (*ClearBurnExpiredMsgsResp, error)
 	// 清理群消息阅后即焚：当 read_count >= member_count 且 burn_end_time 过期时推进所有成员 min_seq 并通知。
@@ -353,6 +355,16 @@ func (c *conversationClient) DeleteConversations(ctx context.Context, in *Delete
 	return out, nil
 }
 
+func (c *conversationClient) SetConversationMute(ctx context.Context, in *SetConversationMuteReq, opts ...grpc.CallOption) (*SetConversationMuteResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetConversationMuteResp)
+	err := c.cc.Invoke(ctx, Conversation_SetConversationMute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *conversationClient) ClearBurnExpiredMsgs(ctx context.Context, in *ClearBurnExpiredMsgsReq, opts ...grpc.CallOption) (*ClearBurnExpiredMsgsResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ClearBurnExpiredMsgsResp)
@@ -403,6 +415,7 @@ type ConversationServer interface {
 	ClearUserConversationMsg(context.Context, *ClearUserConversationMsgReq) (*ClearUserConversationMsgResp, error)
 	UpdateConversationsByUser(context.Context, *UpdateConversationsByUserReq) (*UpdateConversationsByUserResp, error)
 	DeleteConversations(context.Context, *DeleteConversationsReq) (*DeleteConversationsResp, error)
+	SetConversationMute(context.Context, *SetConversationMuteReq) (*SetConversationMuteResp, error)
 	// 清理已到达「阅后即焚截止时间」的消息：按 (userID, conversationID) 推进 user min_seq 并通知。
 	ClearBurnExpiredMsgs(context.Context, *ClearBurnExpiredMsgsReq) (*ClearBurnExpiredMsgsResp, error)
 	// 清理群消息阅后即焚：当 read_count >= member_count 且 burn_end_time 过期时推进所有成员 min_seq 并通知。
@@ -494,6 +507,9 @@ func (UnimplementedConversationServer) UpdateConversationsByUser(context.Context
 }
 func (UnimplementedConversationServer) DeleteConversations(context.Context, *DeleteConversationsReq) (*DeleteConversationsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteConversations not implemented")
+}
+func (UnimplementedConversationServer) SetConversationMute(context.Context, *SetConversationMuteReq) (*SetConversationMuteResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetConversationMute not implemented")
 }
 func (UnimplementedConversationServer) ClearBurnExpiredMsgs(context.Context, *ClearBurnExpiredMsgsReq) (*ClearBurnExpiredMsgsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ClearBurnExpiredMsgs not implemented")
@@ -990,6 +1006,24 @@ func _Conversation_DeleteConversations_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Conversation_SetConversationMute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetConversationMuteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationServer).SetConversationMute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Conversation_SetConversationMute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationServer).SetConversationMute(ctx, req.(*SetConversationMuteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Conversation_ClearBurnExpiredMsgs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClearBurnExpiredMsgsReq)
 	if err := dec(in); err != nil {
@@ -1136,6 +1170,10 @@ var Conversation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteConversations",
 			Handler:    _Conversation_DeleteConversations_Handler,
+		},
+		{
+			MethodName: "SetConversationMute",
+			Handler:    _Conversation_SetConversationMute_Handler,
 		},
 		{
 			MethodName: "ClearBurnExpiredMsgs",
