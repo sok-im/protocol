@@ -25,27 +25,27 @@ const (
 
 type Conversation struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID           string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	ConversationID        string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
-	RecvMsgOpt            int32                  `protobuf:"varint,3,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt"`
-	ConversationType      int32                  `protobuf:"varint,4,opt,name=conversationType,proto3" json:"conversationType"`
-	UserID                string                 `protobuf:"bytes,5,opt,name=userID,proto3" json:"userID"`
-	GroupID               string                 `protobuf:"bytes,6,opt,name=groupID,proto3" json:"groupID"`
-	IsPinned              bool                   `protobuf:"varint,7,opt,name=isPinned,proto3" json:"isPinned"`
-	AttachedInfo          string                 `protobuf:"bytes,8,opt,name=attachedInfo,proto3" json:"attachedInfo"`
-	IsPrivateChat         bool                   `protobuf:"varint,9,opt,name=isPrivateChat,proto3" json:"isPrivateChat"`
-	GroupAtType           int32                  `protobuf:"varint,10,opt,name=groupAtType,proto3" json:"groupAtType"`
-	Ex                    string                 `protobuf:"bytes,11,opt,name=ex,proto3" json:"ex"`
-	BurnDuration          int32                  `protobuf:"varint,12,opt,name=burnDuration,proto3" json:"burnDuration"`
-	MinSeq                int64                  `protobuf:"varint,13,opt,name=minSeq,proto3" json:"minSeq"`
-	MaxSeq                int64                  `protobuf:"varint,14,opt,name=maxSeq,proto3" json:"maxSeq"`
-	MsgDestructTime       int64                  `protobuf:"varint,15,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	LatestMsgDestructTime int64                  `protobuf:"varint,16,opt,name=latestMsgDestructTime,proto3" json:"latestMsgDestructTime"`
-	IsMsgDestruct         bool                   `protobuf:"varint,17,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MuteDuration          int32                  `protobuf:"varint,18,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime           int64                  `protobuf:"varint,19,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	OwnerUserID           string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	ConversationID        string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	RecvMsgOpt            int32                  `protobuf:"varint,3,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt,omitempty"`
+	ConversationType      int32                  `protobuf:"varint,4,opt,name=conversationType,proto3" json:"conversationType,omitempty"`
+	UserID                string                 `protobuf:"bytes,5,opt,name=userID,proto3" json:"userID,omitempty"`
+	GroupID               string                 `protobuf:"bytes,6,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	IsPinned              bool                   `protobuf:"varint,7,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	AttachedInfo          string                 `protobuf:"bytes,8,opt,name=attachedInfo,proto3" json:"attachedInfo,omitempty"`
+	IsPrivateChat         bool                   `protobuf:"varint,9,opt,name=isPrivateChat,proto3" json:"isPrivateChat,omitempty"`
+	GroupAtType           int32                  `protobuf:"varint,10,opt,name=groupAtType,proto3" json:"groupAtType,omitempty"`
+	Ex                    string                 `protobuf:"bytes,11,opt,name=ex,proto3" json:"ex,omitempty"`
+	BurnDuration          int32                  `protobuf:"varint,12,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	MinSeq                int64                  `protobuf:"varint,13,opt,name=minSeq,proto3" json:"minSeq,omitempty"`
+	MaxSeq                int64                  `protobuf:"varint,14,opt,name=maxSeq,proto3" json:"maxSeq,omitempty"`
+	MsgDestructTime       int64                  `protobuf:"varint,15,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	LatestMsgDestructTime int64                  `protobuf:"varint,16,opt,name=latestMsgDestructTime,proto3" json:"latestMsgDestructTime,omitempty"`
+	IsMsgDestruct         bool                   `protobuf:"varint,17,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MuteDuration          int32                  `protobuf:"varint,18,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime           int64                  `protobuf:"varint,19,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	// 是否静音（单聊：owner 对 userID 的 user_mute；与 muteDuration/muteEndTime 一致便于客户端直接使用）
-	IsMuted       bool `protobuf:"varint,20,opt,name=isMuted,proto3" json:"isMuted"`
+	IsMuted       bool `protobuf:"varint,20,opt,name=isMuted,proto3" json:"isMuted,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -222,23 +222,23 @@ func (x *Conversation) GetIsMuted() bool {
 
 type ConversationReq struct {
 	state            protoimpl.MessageState  `protogen:"open.v1"`
-	ConversationID   string                  `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	ConversationType int32                   `protobuf:"varint,2,opt,name=conversationType,proto3" json:"conversationType"`
-	UserID           string                  `protobuf:"bytes,3,opt,name=userID,proto3" json:"userID"`
-	GroupID          string                  `protobuf:"bytes,4,opt,name=groupID,proto3" json:"groupID"`
-	RecvMsgOpt       *wrapperspb.Int32Value  `protobuf:"bytes,5,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt"`
-	IsPinned         *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isPinned,proto3" json:"isPinned"`
-	AttachedInfo     *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=attachedInfo,proto3" json:"attachedInfo"`
-	IsPrivateChat    *wrapperspb.BoolValue   `protobuf:"bytes,8,opt,name=isPrivateChat,proto3" json:"isPrivateChat"`
-	Ex               *wrapperspb.StringValue `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex"`
-	BurnDuration     *wrapperspb.Int32Value  `protobuf:"bytes,10,opt,name=burnDuration,proto3" json:"burnDuration"`
-	MinSeq           *wrapperspb.Int64Value  `protobuf:"bytes,11,opt,name=minSeq,proto3" json:"minSeq"`
-	MaxSeq           *wrapperspb.Int64Value  `protobuf:"bytes,12,opt,name=maxSeq,proto3" json:"maxSeq"`
-	GroupAtType      *wrapperspb.Int32Value  `protobuf:"bytes,13,opt,name=groupAtType,proto3" json:"groupAtType"`
-	MsgDestructTime  *wrapperspb.Int64Value  `protobuf:"bytes,14,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	IsMsgDestruct    *wrapperspb.BoolValue   `protobuf:"bytes,15,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MuteDuration     *wrapperspb.Int32Value  `protobuf:"bytes,16,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime      *wrapperspb.Int64Value  `protobuf:"bytes,17,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	ConversationID   string                  `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	ConversationType int32                   `protobuf:"varint,2,opt,name=conversationType,proto3" json:"conversationType,omitempty"`
+	UserID           string                  `protobuf:"bytes,3,opt,name=userID,proto3" json:"userID,omitempty"`
+	GroupID          string                  `protobuf:"bytes,4,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	RecvMsgOpt       *wrapperspb.Int32Value  `protobuf:"bytes,5,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt,omitempty"`
+	IsPinned         *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	AttachedInfo     *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=attachedInfo,proto3" json:"attachedInfo,omitempty"`
+	IsPrivateChat    *wrapperspb.BoolValue   `protobuf:"bytes,8,opt,name=isPrivateChat,proto3" json:"isPrivateChat,omitempty"`
+	Ex               *wrapperspb.StringValue `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex,omitempty"`
+	BurnDuration     *wrapperspb.Int32Value  `protobuf:"bytes,10,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	MinSeq           *wrapperspb.Int64Value  `protobuf:"bytes,11,opt,name=minSeq,proto3" json:"minSeq,omitempty"`
+	MaxSeq           *wrapperspb.Int64Value  `protobuf:"bytes,12,opt,name=maxSeq,proto3" json:"maxSeq,omitempty"`
+	GroupAtType      *wrapperspb.Int32Value  `protobuf:"bytes,13,opt,name=groupAtType,proto3" json:"groupAtType,omitempty"`
+	MsgDestructTime  *wrapperspb.Int64Value  `protobuf:"bytes,14,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	IsMsgDestruct    *wrapperspb.BoolValue   `protobuf:"bytes,15,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MuteDuration     *wrapperspb.Int32Value  `protobuf:"bytes,16,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime      *wrapperspb.Int64Value  `protobuf:"bytes,17,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -394,7 +394,7 @@ func (x *ConversationReq) GetMuteEndTime() *wrapperspb.Int64Value {
 
 type SetConversationReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversation  *Conversation          `protobuf:"bytes,1,opt,name=conversation,proto3" json:"conversation"`
+	Conversation  *Conversation          `protobuf:"bytes,1,opt,name=conversation,proto3" json:"conversation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -474,8 +474,8 @@ func (*SetConversationResp) Descriptor() ([]byte, []int) {
 
 type GetConversationReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	OwnerUserID    string                 `protobuf:"bytes,2,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	OwnerUserID    string                 `protobuf:"bytes,2,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -526,7 +526,7 @@ func (x *GetConversationReq) GetOwnerUserID() string {
 
 type GetConversationResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversation  *Conversation          `protobuf:"bytes,2,opt,name=conversation,proto3" json:"conversation"`
+	Conversation  *Conversation          `protobuf:"bytes,2,opt,name=conversation,proto3" json:"conversation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -570,9 +570,9 @@ func (x *GetConversationResp) GetConversation() *Conversation {
 
 type GetSortedConversationListReq struct {
 	state           protoimpl.MessageState   `protogen:"open.v1"`
-	UserID          string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationIDs []string                 `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs"`
-	Pagination      *sdkws.RequestPagination `protobuf:"bytes,3,opt,name=pagination,proto3" json:"pagination"`
+	UserID          string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationIDs []string                 `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
+	Pagination      *sdkws.RequestPagination `protobuf:"bytes,3,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -630,9 +630,9 @@ func (x *GetSortedConversationListReq) GetPagination() *sdkws.RequestPagination 
 
 type GetSortedConversationListResp struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	ConversationTotal int64                  `protobuf:"varint,1,opt,name=conversationTotal,proto3" json:"conversationTotal"`
-	UnreadTotal       int64                  `protobuf:"varint,2,opt,name=unreadTotal,proto3" json:"unreadTotal"`
-	ConversationElems []*ConversationElem    `protobuf:"bytes,3,rep,name=conversationElems,proto3" json:"conversationElems"`
+	ConversationTotal int64                  `protobuf:"varint,1,opt,name=conversationTotal,proto3" json:"conversationTotal,omitempty"`
+	UnreadTotal       int64                  `protobuf:"varint,2,opt,name=unreadTotal,proto3" json:"unreadTotal,omitempty"`
+	ConversationElems []*ConversationElem    `protobuf:"bytes,3,rep,name=conversationElems,proto3" json:"conversationElems,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -690,14 +690,14 @@ func (x *GetSortedConversationListResp) GetConversationElems() []*ConversationEl
 
 type ConversationElem struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	RecvMsgOpt     int32                  `protobuf:"varint,2,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt"`
-	UnreadCount    int64                  `protobuf:"varint,3,opt,name=unreadCount,proto3" json:"unreadCount"`
-	IsPinned       bool                   `protobuf:"varint,4,opt,name=IsPinned,proto3" json:"IsPinned"`
-	MsgInfo        *MsgInfo               `protobuf:"bytes,5,opt,name=msgInfo,proto3" json:"msgInfo"`
-	IsMuted        bool                   `protobuf:"varint,6,opt,name=isMuted,proto3" json:"isMuted"`
-	MuteDuration   int32                  `protobuf:"varint,7,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime    int64                  `protobuf:"varint,8,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	RecvMsgOpt     int32                  `protobuf:"varint,2,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt,omitempty"`
+	UnreadCount    int64                  `protobuf:"varint,3,opt,name=unreadCount,proto3" json:"unreadCount,omitempty"`
+	IsPinned       bool                   `protobuf:"varint,4,opt,name=IsPinned,proto3" json:"IsPinned,omitempty"`
+	MsgInfo        *MsgInfo               `protobuf:"bytes,5,opt,name=msgInfo,proto3" json:"msgInfo,omitempty"`
+	IsMuted        bool                   `protobuf:"varint,6,opt,name=isMuted,proto3" json:"isMuted,omitempty"`
+	MuteDuration   int32                  `protobuf:"varint,7,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime    int64                  `protobuf:"varint,8,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -790,23 +790,23 @@ func (x *ConversationElem) GetMuteEndTime() int64 {
 
 type MsgInfo struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	ServerMsgID       string                 `protobuf:"bytes,1,opt,name=serverMsgID,proto3" json:"serverMsgID"`
-	ClientMsgID       string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	SessionType       int32                  `protobuf:"varint,3,opt,name=sessionType,proto3" json:"sessionType"`
-	SendID            string                 `protobuf:"bytes,4,opt,name=sendID,proto3" json:"sendID"`
-	RecvID            string                 `protobuf:"bytes,5,opt,name=recvID,proto3" json:"recvID"`
-	SenderName        string                 `protobuf:"bytes,6,opt,name=senderName,proto3" json:"senderName"`
-	FaceURL           string                 `protobuf:"bytes,7,opt,name=faceURL,proto3" json:"faceURL"`
-	GroupID           string                 `protobuf:"bytes,8,opt,name=groupID,proto3" json:"groupID"`
-	GroupName         string                 `protobuf:"bytes,9,opt,name=groupName,proto3" json:"groupName"`
-	GroupFaceURL      string                 `protobuf:"bytes,10,opt,name=groupFaceURL,proto3" json:"groupFaceURL"`
-	GroupType         int32                  `protobuf:"varint,11,opt,name=groupType,proto3" json:"groupType"`
-	GroupMemberCount  uint32                 `protobuf:"varint,12,opt,name=groupMemberCount,proto3" json:"groupMemberCount"`
-	LatestMsgRecvTime int64                  `protobuf:"varint,13,opt,name=LatestMsgRecvTime,proto3" json:"LatestMsgRecvTime"`
-	MsgFrom           int32                  `protobuf:"varint,14,opt,name=msgFrom,proto3" json:"msgFrom"`
-	ContentType       int32                  `protobuf:"varint,15,opt,name=contentType,proto3" json:"contentType"`
-	Content           string                 `protobuf:"bytes,16,opt,name=content,proto3" json:"content"`
-	Ex                string                 `protobuf:"bytes,17,opt,name=ex,proto3" json:"ex"`
+	ServerMsgID       string                 `protobuf:"bytes,1,opt,name=serverMsgID,proto3" json:"serverMsgID,omitempty"`
+	ClientMsgID       string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	SessionType       int32                  `protobuf:"varint,3,opt,name=sessionType,proto3" json:"sessionType,omitempty"`
+	SendID            string                 `protobuf:"bytes,4,opt,name=sendID,proto3" json:"sendID,omitempty"`
+	RecvID            string                 `protobuf:"bytes,5,opt,name=recvID,proto3" json:"recvID,omitempty"`
+	SenderName        string                 `protobuf:"bytes,6,opt,name=senderName,proto3" json:"senderName,omitempty"`
+	FaceURL           string                 `protobuf:"bytes,7,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	GroupID           string                 `protobuf:"bytes,8,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	GroupName         string                 `protobuf:"bytes,9,opt,name=groupName,proto3" json:"groupName,omitempty"`
+	GroupFaceURL      string                 `protobuf:"bytes,10,opt,name=groupFaceURL,proto3" json:"groupFaceURL,omitempty"`
+	GroupType         int32                  `protobuf:"varint,11,opt,name=groupType,proto3" json:"groupType,omitempty"`
+	GroupMemberCount  uint32                 `protobuf:"varint,12,opt,name=groupMemberCount,proto3" json:"groupMemberCount,omitempty"`
+	LatestMsgRecvTime int64                  `protobuf:"varint,13,opt,name=LatestMsgRecvTime,proto3" json:"LatestMsgRecvTime,omitempty"`
+	MsgFrom           int32                  `protobuf:"varint,14,opt,name=msgFrom,proto3" json:"msgFrom,omitempty"`
+	ContentType       int32                  `protobuf:"varint,15,opt,name=contentType,proto3" json:"contentType,omitempty"`
+	Content           string                 `protobuf:"bytes,16,opt,name=content,proto3" json:"content,omitempty"`
+	Ex                string                 `protobuf:"bytes,17,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -962,8 +962,8 @@ func (x *MsgInfo) GetEx() string {
 
 type GetConversationsReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1014,7 +1014,7 @@ func (x *GetConversationsReq) GetConversationIDs() []string {
 
 type GetConversationsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations"`
+	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1058,7 +1058,7 @@ func (x *GetConversationsResp) GetConversations() []*Conversation {
 
 type GetAllConversationsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1102,7 +1102,7 @@ func (x *GetAllConversationsReq) GetOwnerUserID() string {
 
 type GetAllConversationsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations"`
+	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1146,7 +1146,7 @@ func (x *GetAllConversationsResp) GetConversations() []*Conversation {
 
 type GetRecvMsgNotNotifyUserIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1190,7 +1190,7 @@ func (x *GetRecvMsgNotNotifyUserIDsReq) GetGroupID() string {
 
 type GetRecvMsgNotNotifyUserIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs"`
+	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1234,10 +1234,10 @@ func (x *GetRecvMsgNotNotifyUserIDsResp) GetUserIDs() []string {
 
 type CreateSingleChatConversationsReq struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	RecvID           string                 `protobuf:"bytes,1,opt,name=recvID,proto3" json:"recvID"`
-	SendID           string                 `protobuf:"bytes,2,opt,name=sendID,proto3" json:"sendID"`
-	ConversationID   string                 `protobuf:"bytes,3,opt,name=conversationID,proto3" json:"conversationID"`
-	ConversationType int32                  `protobuf:"varint,4,opt,name=conversationType,proto3" json:"conversationType"`
+	RecvID           string                 `protobuf:"bytes,1,opt,name=recvID,proto3" json:"recvID,omitempty"`
+	SendID           string                 `protobuf:"bytes,2,opt,name=sendID,proto3" json:"sendID,omitempty"`
+	ConversationID   string                 `protobuf:"bytes,3,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	ConversationType int32                  `protobuf:"varint,4,opt,name=conversationType,proto3" json:"conversationType,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1338,8 +1338,8 @@ func (*CreateSingleChatConversationsResp) Descriptor() ([]byte, []int) {
 
 type CreateGroupChatConversationsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs"`
-	GroupID       string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID"`
+	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
+	GroupID       string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1426,9 +1426,9 @@ func (*CreateGroupChatConversationsResp) Descriptor() ([]byte, []int) {
 
 type SetConversationMaxSeqReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	OwnerUserID    []string               `protobuf:"bytes,2,rep,name=ownerUserID,proto3" json:"ownerUserID"`
-	MaxSeq         int64                  `protobuf:"varint,3,opt,name=maxSeq,proto3" json:"maxSeq"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	OwnerUserID    []string               `protobuf:"bytes,2,rep,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	MaxSeq         int64                  `protobuf:"varint,3,opt,name=maxSeq,proto3" json:"maxSeq,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1522,9 +1522,9 @@ func (*SetConversationMaxSeqResp) Descriptor() ([]byte, []int) {
 
 type SetConversationMinSeqReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	OwnerUserID    []string               `protobuf:"bytes,2,rep,name=ownerUserID,proto3" json:"ownerUserID"`
-	MinSeq         int64                  `protobuf:"varint,3,opt,name=minSeq,proto3" json:"minSeq"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	OwnerUserID    []string               `protobuf:"bytes,2,rep,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	MinSeq         int64                  `protobuf:"varint,3,opt,name=minSeq,proto3" json:"minSeq,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1618,7 +1618,7 @@ func (*SetConversationMinSeqResp) Descriptor() ([]byte, []int) {
 
 type GetConversationIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1662,7 +1662,7 @@ func (x *GetConversationIDsReq) GetUserID() string {
 
 type GetConversationIDsResp struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1706,8 +1706,8 @@ func (x *GetConversationIDsResp) GetConversationIDs() []string {
 
 type SetConversationsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs"`
-	Conversation  *ConversationReq       `protobuf:"bytes,2,opt,name=conversation,proto3" json:"conversation"`
+	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
+	Conversation  *ConversationReq       `protobuf:"bytes,2,opt,name=conversation,proto3" json:"conversation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1794,7 +1794,7 @@ func (*SetConversationsResp) Descriptor() ([]byte, []int) {
 
 type GetUserConversationIDsHashReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1838,7 +1838,7 @@ func (x *GetUserConversationIDsHashReq) GetOwnerUserID() string {
 
 type GetUserConversationIDsHashResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Hash          uint64                 `protobuf:"varint,1,opt,name=hash,proto3" json:"hash"`
+	Hash          uint64                 `protobuf:"varint,1,opt,name=hash,proto3" json:"hash,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1882,7 +1882,7 @@ func (x *GetUserConversationIDsHashResp) GetHash() uint64 {
 
 type GetConversationsByConversationIDReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1926,7 +1926,7 @@ func (x *GetConversationsByConversationIDReq) GetConversationIDs() []string {
 
 type GetConversationsByConversationIDResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversations []*Conversation        `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations"`
+	Conversations []*Conversation        `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1970,8 +1970,8 @@ func (x *GetConversationsByConversationIDResp) GetConversations() []*Conversatio
 
 type GetConversationOfflinePushUserIDsReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	UserIDs        []string               `protobuf:"bytes,2,rep,name=userIDs,proto3" json:"userIDs"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	UserIDs        []string               `protobuf:"bytes,2,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2022,7 +2022,7 @@ func (x *GetConversationOfflinePushUserIDsReq) GetUserIDs() []string {
 
 type GetConversationOfflinePushUserIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs"`
+	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2066,7 +2066,7 @@ func (x *GetConversationOfflinePushUserIDsResp) GetUserIDs() []string {
 
 type GetConversationNotReceiveMessageUserIDsReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2110,7 +2110,7 @@ func (x *GetConversationNotReceiveMessageUserIDsReq) GetConversationID() string 
 
 type GetConversationNotReceiveMessageUserIDsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs"`
+	UserIDs       []string               `protobuf:"bytes,1,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2154,22 +2154,22 @@ func (x *GetConversationNotReceiveMessageUserIDsResp) GetUserIDs() []string {
 
 type UpdateConversationReq struct {
 	state                 protoimpl.MessageState  `protogen:"open.v1"`
-	ConversationID        string                  `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	UserIDs               []string                `protobuf:"bytes,2,rep,name=userIDs,proto3" json:"userIDs"`
-	RecvMsgOpt            *wrapperspb.Int32Value  `protobuf:"bytes,3,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt"`
-	IsPinned              *wrapperspb.BoolValue   `protobuf:"bytes,4,opt,name=isPinned,proto3" json:"isPinned"`
-	AttachedInfo          *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=attachedInfo,proto3" json:"attachedInfo"`
-	IsPrivateChat         *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isPrivateChat,proto3" json:"isPrivateChat"`
-	Ex                    *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex"`
-	BurnDuration          *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=burnDuration,proto3" json:"burnDuration"`
-	MinSeq                *wrapperspb.Int64Value  `protobuf:"bytes,9,opt,name=minSeq,proto3" json:"minSeq"`
-	MaxSeq                *wrapperspb.Int64Value  `protobuf:"bytes,10,opt,name=maxSeq,proto3" json:"maxSeq"`
-	GroupAtType           *wrapperspb.Int32Value  `protobuf:"bytes,11,opt,name=groupAtType,proto3" json:"groupAtType"`
-	MsgDestructTime       *wrapperspb.Int64Value  `protobuf:"bytes,12,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	IsMsgDestruct         *wrapperspb.BoolValue   `protobuf:"bytes,13,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	LatestMsgDestructTime *wrapperspb.Int64Value  `protobuf:"bytes,14,opt,name=latestMsgDestructTime,proto3" json:"latestMsgDestructTime"`
-	MuteDuration          *wrapperspb.Int32Value  `protobuf:"bytes,15,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime           *wrapperspb.Int64Value  `protobuf:"bytes,16,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	ConversationID        string                  `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	UserIDs               []string                `protobuf:"bytes,2,rep,name=userIDs,proto3" json:"userIDs,omitempty"`
+	RecvMsgOpt            *wrapperspb.Int32Value  `protobuf:"bytes,3,opt,name=recvMsgOpt,proto3" json:"recvMsgOpt,omitempty"`
+	IsPinned              *wrapperspb.BoolValue   `protobuf:"bytes,4,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	AttachedInfo          *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=attachedInfo,proto3" json:"attachedInfo,omitempty"`
+	IsPrivateChat         *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=isPrivateChat,proto3" json:"isPrivateChat,omitempty"`
+	Ex                    *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex,omitempty"`
+	BurnDuration          *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	MinSeq                *wrapperspb.Int64Value  `protobuf:"bytes,9,opt,name=minSeq,proto3" json:"minSeq,omitempty"`
+	MaxSeq                *wrapperspb.Int64Value  `protobuf:"bytes,10,opt,name=maxSeq,proto3" json:"maxSeq,omitempty"`
+	GroupAtType           *wrapperspb.Int32Value  `protobuf:"bytes,11,opt,name=groupAtType,proto3" json:"groupAtType,omitempty"`
+	MsgDestructTime       *wrapperspb.Int64Value  `protobuf:"bytes,12,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	IsMsgDestruct         *wrapperspb.BoolValue   `protobuf:"bytes,13,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	LatestMsgDestructTime *wrapperspb.Int64Value  `protobuf:"bytes,14,opt,name=latestMsgDestructTime,proto3" json:"latestMsgDestructTime,omitempty"`
+	MuteDuration          *wrapperspb.Int32Value  `protobuf:"bytes,15,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime           *wrapperspb.Int64Value  `protobuf:"bytes,16,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -2354,8 +2354,8 @@ func (*UpdateConversationResp) Descriptor() ([]byte, []int) {
 
 type GetFullOwnerConversationIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IdHash        uint64                 `protobuf:"varint,1,opt,name=idHash,proto3" json:"idHash"`
-	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	IdHash        uint64                 `protobuf:"varint,1,opt,name=idHash,proto3" json:"idHash,omitempty"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2406,10 +2406,10 @@ func (x *GetFullOwnerConversationIDsReq) GetUserID() string {
 
 type GetFullOwnerConversationIDsResp struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	Version         uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID       string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Equal           bool                   `protobuf:"varint,3,opt,name=equal,proto3" json:"equal"`
-	ConversationIDs []string               `protobuf:"bytes,4,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	Version         uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID       string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Equal           bool                   `protobuf:"varint,3,opt,name=equal,proto3" json:"equal,omitempty"`
+	ConversationIDs []string               `protobuf:"bytes,4,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2474,9 +2474,9 @@ func (x *GetFullOwnerConversationIDsResp) GetConversationIDs() []string {
 
 type GetIncrementalConversationReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Version       uint64                 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2534,12 +2534,12 @@ func (x *GetIncrementalConversationReq) GetVersion() uint64 {
 
 type GetIncrementalConversationResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version"`
-	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID"`
-	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full"`
-	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete"`
-	Insert        []*Conversation        `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert"`
-	Update        []*Conversation        `protobuf:"bytes,6,rep,name=update,proto3" json:"update"`
+	Version       uint64                 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	VersionID     string                 `protobuf:"bytes,2,opt,name=versionID,proto3" json:"versionID,omitempty"`
+	Full          bool                   `protobuf:"varint,3,opt,name=full,proto3" json:"full,omitempty"`
+	Delete        []string               `protobuf:"bytes,4,rep,name=delete,proto3" json:"delete,omitempty"`
+	Insert        []*Conversation        `protobuf:"bytes,5,rep,name=insert,proto3" json:"insert,omitempty"`
+	Update        []*Conversation        `protobuf:"bytes,6,rep,name=update,proto3" json:"update,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2618,8 +2618,8 @@ func (x *GetIncrementalConversationResp) GetUpdate() []*Conversation {
 
 type GetOwnerConversationReq struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
-	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination"`
+	UserID        string                   `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Pagination    *sdkws.RequestPagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2670,8 +2670,8 @@ func (x *GetOwnerConversationReq) GetPagination() *sdkws.RequestPagination {
 
 type GetOwnerConversationResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Total         int64                  `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
-	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations"`
+	Total         int64                  `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Conversations []*Conversation        `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2758,7 +2758,7 @@ func (*GetConversationsNeedClearMsgReq) Descriptor() ([]byte, []int) {
 
 type GetConversationsNeedClearMsgResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Conversations []*Conversation        `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations"`
+	Conversations []*Conversation        `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2802,7 +2802,7 @@ func (x *GetConversationsNeedClearMsgResp) GetConversations() []*Conversation {
 
 type GetNotNotifyConversationIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2846,7 +2846,7 @@ func (x *GetNotNotifyConversationIDsReq) GetUserID() string {
 
 type GetNotNotifyConversationIDsResp struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2890,7 +2890,7 @@ func (x *GetNotNotifyConversationIDsResp) GetConversationIDs() []string {
 
 type GetPinnedConversationIDsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2934,7 +2934,7 @@ func (x *GetPinnedConversationIDsReq) GetUserID() string {
 
 type GetPinnedConversationIDsResp struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2978,8 +2978,8 @@ func (x *GetPinnedConversationIDsResp) GetConversationIDs() []string {
 
 type ClearUserConversationMsgReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Timestamp     int64                  `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	Timestamp     int64                  `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3030,7 +3030,7 @@ func (x *ClearUserConversationMsgReq) GetLimit() int32 {
 
 type ClearUserConversationMsgResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
+	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3075,9 +3075,9 @@ func (x *ClearUserConversationMsgResp) GetCount() int32 {
 type ClearGroupBurnExpiredMsgsReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// timestamp 当前任务执行的毫秒时间戳；burn_end_time <= timestamp 视为过期
-	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp"`
+	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// limit 单次最多处理多少个 group_id 分组
-	Limit         int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	Limit         int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3129,7 +3129,7 @@ func (x *ClearGroupBurnExpiredMsgsReq) GetLimit() int32 {
 type ClearGroupBurnExpiredMsgsResp struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// count 本次处理的分组数
-	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
+	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3174,9 +3174,9 @@ func (x *ClearGroupBurnExpiredMsgsResp) GetCount() int32 {
 type ClearBurnExpiredMsgsReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// timestamp 当前任务执行的毫秒时间戳；deadline_ms <= timestamp 视为过期
-	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp"`
+	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// limit 单次最多处理多少个 (userID, conversationID) 分组
-	Limit         int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	Limit         int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3228,7 +3228,7 @@ func (x *ClearBurnExpiredMsgsReq) GetLimit() int32 {
 type ClearBurnExpiredMsgsResp struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// count 本次处理的分组数（即推进了 min_seq 的会话个数）
-	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
+	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3272,8 +3272,8 @@ func (x *ClearBurnExpiredMsgsResp) GetCount() int32 {
 
 type UpdateConversationsByUserReq struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
-	UserID        string                  `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Ex            *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=ex,proto3" json:"ex"`
+	UserID        string                  `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Ex            *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3360,9 +3360,9 @@ func (*UpdateConversationsByUserResp) Descriptor() ([]byte, []int) {
 
 type DeleteConversationsReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	NeedDeleteTime  int64                  `protobuf:"varint,2,opt,name=needDeleteTime,proto3" json:"needDeleteTime"`
-	ConversationIDs []string               `protobuf:"bytes,3,rep,name=conversationIDs,proto3" json:"conversationIDs"` // optional
+	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	NeedDeleteTime  int64                  `protobuf:"varint,2,opt,name=needDeleteTime,proto3" json:"needDeleteTime,omitempty"`
+	ConversationIDs []string               `protobuf:"bytes,3,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"` // optional
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -3456,10 +3456,10 @@ func (*DeleteConversationsResp) Descriptor() ([]byte, []int) {
 
 type SetConversationMuteReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
+	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
 	// 0=取消静音，-1=永久静音，>0=静音秒数
-	Duration      int32 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration"`
+	Duration      int32 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3549,6 +3549,103 @@ func (x *SetConversationMuteResp) ProtoReflect() protoreflect.Message {
 // Deprecated: Use SetConversationMuteResp.ProtoReflect.Descriptor instead.
 func (*SetConversationMuteResp) Descriptor() ([]byte, []int) {
 	return file_conversation_conversation_proto_rawDescGZIP(), []int{61}
+}
+
+type SetConversationBurnReq struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	// 0=关闭阅后即焚，>0=阅后多少秒销毁（仅单聊）
+	BurnDuration  int32 `protobuf:"varint,3,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetConversationBurnReq) Reset() {
+	*x = SetConversationBurnReq{}
+	mi := &file_conversation_conversation_proto_msgTypes[62]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetConversationBurnReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetConversationBurnReq) ProtoMessage() {}
+
+func (x *SetConversationBurnReq) ProtoReflect() protoreflect.Message {
+	mi := &file_conversation_conversation_proto_msgTypes[62]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetConversationBurnReq.ProtoReflect.Descriptor instead.
+func (*SetConversationBurnReq) Descriptor() ([]byte, []int) {
+	return file_conversation_conversation_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *SetConversationBurnReq) GetOwnerUserID() string {
+	if x != nil {
+		return x.OwnerUserID
+	}
+	return ""
+}
+
+func (x *SetConversationBurnReq) GetConversationID() string {
+	if x != nil {
+		return x.ConversationID
+	}
+	return ""
+}
+
+func (x *SetConversationBurnReq) GetBurnDuration() int32 {
+	if x != nil {
+		return x.BurnDuration
+	}
+	return 0
+}
+
+type SetConversationBurnResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetConversationBurnResp) Reset() {
+	*x = SetConversationBurnResp{}
+	mi := &file_conversation_conversation_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetConversationBurnResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetConversationBurnResp) ProtoMessage() {}
+
+func (x *SetConversationBurnResp) ProtoReflect() protoreflect.Message {
+	mi := &file_conversation_conversation_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetConversationBurnResp.ProtoReflect.Descriptor instead.
+func (*SetConversationBurnResp) Descriptor() ([]byte, []int) {
+	return file_conversation_conversation_proto_rawDescGZIP(), []int{63}
 }
 
 var File_conversation_conversation_proto protoreflect.FileDescriptor
@@ -3796,7 +3893,12 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12&\n" +
 	"\x0econversationID\x18\x02 \x01(\tR\x0econversationID\x12\x1a\n" +
 	"\bduration\x18\x03 \x01(\x05R\bduration\"\x19\n" +
-	"\x17SetConversationMuteResp2\x8c\x1d\n" +
+	"\x17SetConversationMuteResp\"\x86\x01\n" +
+	"\x16SetConversationBurnReq\x12 \n" +
+	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12&\n" +
+	"\x0econversationID\x18\x02 \x01(\tR\x0econversationID\x12\"\n" +
+	"\fburnDuration\x18\x03 \x01(\x05R\fburnDuration\"\x19\n" +
+	"\x17SetConversationBurnResp2\xfe\x1d\n" +
 	"\fconversation\x12d\n" +
 	"\x0fGetConversation\x12'.openim.conversation.GetConversationReq\x1a(.openim.conversation.GetConversationResp\x12\x82\x01\n" +
 	"\x19GetSortedConversationList\x121.openim.conversation.GetSortedConversationListReq\x1a2.openim.conversation.GetSortedConversationListResp\x12p\n" +
@@ -3826,7 +3928,8 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\x13DeleteConversations\x12+.openim.conversation.DeleteConversationsReq\x1a,.openim.conversation.DeleteConversationsResp\x12p\n" +
 	"\x13SetConversationMute\x12+.openim.conversation.SetConversationMuteReq\x1a,.openim.conversation.SetConversationMuteResp\x12s\n" +
 	"\x14ClearBurnExpiredMsgs\x12,.openim.conversation.ClearBurnExpiredMsgsReq\x1a-.openim.conversation.ClearBurnExpiredMsgsResp\x12\x82\x01\n" +
-	"\x19ClearGroupBurnExpiredMsgs\x121.openim.conversation.ClearGroupBurnExpiredMsgsReq\x1a2.openim.conversation.ClearGroupBurnExpiredMsgsRespB,Z*github.com/openimsdk/protocol/conversationb\x06proto3"
+	"\x19ClearGroupBurnExpiredMsgs\x121.openim.conversation.ClearGroupBurnExpiredMsgsReq\x1a2.openim.conversation.ClearGroupBurnExpiredMsgsResp\x12p\n" +
+	"\x13SetConversationBurn\x12+.openim.conversation.SetConversationBurnReq\x1a,.openim.conversation.SetConversationBurnRespB,Z*github.com/openimsdk/protocol/conversationb\x06proto3"
 
 var (
 	file_conversation_conversation_proto_rawDescOnce sync.Once
@@ -3840,7 +3943,7 @@ func file_conversation_conversation_proto_rawDescGZIP() []byte {
 	return file_conversation_conversation_proto_rawDescData
 }
 
-var file_conversation_conversation_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
+var file_conversation_conversation_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
 var file_conversation_conversation_proto_goTypes = []any{
 	(*Conversation)(nil),                                // 0: openim.conversation.Conversation
 	(*ConversationReq)(nil),                             // 1: openim.conversation.ConversationReq
@@ -3904,55 +4007,57 @@ var file_conversation_conversation_proto_goTypes = []any{
 	(*DeleteConversationsResp)(nil),                     // 59: openim.conversation.DeleteConversationsResp
 	(*SetConversationMuteReq)(nil),                      // 60: openim.conversation.SetConversationMuteReq
 	(*SetConversationMuteResp)(nil),                     // 61: openim.conversation.SetConversationMuteResp
-	(*wrapperspb.Int32Value)(nil),                       // 62: openim.protobuf.Int32Value
-	(*wrapperspb.BoolValue)(nil),                        // 63: openim.protobuf.BoolValue
-	(*wrapperspb.StringValue)(nil),                      // 64: openim.protobuf.StringValue
-	(*wrapperspb.Int64Value)(nil),                       // 65: openim.protobuf.Int64Value
-	(*sdkws.RequestPagination)(nil),                     // 66: openim.sdkws.RequestPagination
+	(*SetConversationBurnReq)(nil),                      // 62: openim.conversation.SetConversationBurnReq
+	(*SetConversationBurnResp)(nil),                     // 63: openim.conversation.SetConversationBurnResp
+	(*wrapperspb.Int32Value)(nil),                       // 64: openim.protobuf.Int32Value
+	(*wrapperspb.BoolValue)(nil),                        // 65: openim.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil),                      // 66: openim.protobuf.StringValue
+	(*wrapperspb.Int64Value)(nil),                       // 67: openim.protobuf.Int64Value
+	(*sdkws.RequestPagination)(nil),                     // 68: openim.sdkws.RequestPagination
 }
 var file_conversation_conversation_proto_depIdxs = []int32{
-	62, // 0: openim.conversation.ConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
-	63, // 1: openim.conversation.ConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
-	64, // 2: openim.conversation.ConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
-	63, // 3: openim.conversation.ConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
-	64, // 4: openim.conversation.ConversationReq.ex:type_name -> openim.protobuf.StringValue
-	62, // 5: openim.conversation.ConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
-	65, // 6: openim.conversation.ConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
-	65, // 7: openim.conversation.ConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
-	62, // 8: openim.conversation.ConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
-	65, // 9: openim.conversation.ConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	63, // 10: openim.conversation.ConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	62, // 11: openim.conversation.ConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
-	65, // 12: openim.conversation.ConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
+	64, // 0: openim.conversation.ConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
+	65, // 1: openim.conversation.ConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
+	66, // 2: openim.conversation.ConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
+	65, // 3: openim.conversation.ConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
+	66, // 4: openim.conversation.ConversationReq.ex:type_name -> openim.protobuf.StringValue
+	64, // 5: openim.conversation.ConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
+	67, // 6: openim.conversation.ConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
+	67, // 7: openim.conversation.ConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
+	64, // 8: openim.conversation.ConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
+	67, // 9: openim.conversation.ConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	65, // 10: openim.conversation.ConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	64, // 11: openim.conversation.ConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
+	67, // 12: openim.conversation.ConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
 	0,  // 13: openim.conversation.SetConversationReq.conversation:type_name -> openim.conversation.Conversation
 	0,  // 14: openim.conversation.GetConversationResp.conversation:type_name -> openim.conversation.Conversation
-	66, // 15: openim.conversation.GetSortedConversationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	68, // 15: openim.conversation.GetSortedConversationListReq.pagination:type_name -> openim.sdkws.RequestPagination
 	8,  // 16: openim.conversation.GetSortedConversationListResp.conversationElems:type_name -> openim.conversation.ConversationElem
 	9,  // 17: openim.conversation.ConversationElem.msgInfo:type_name -> openim.conversation.MsgInfo
 	0,  // 18: openim.conversation.GetConversationsResp.conversations:type_name -> openim.conversation.Conversation
 	0,  // 19: openim.conversation.GetAllConversationsResp.conversations:type_name -> openim.conversation.Conversation
 	1,  // 20: openim.conversation.SetConversationsReq.conversation:type_name -> openim.conversation.ConversationReq
 	0,  // 21: openim.conversation.GetConversationsByConversationIDResp.conversations:type_name -> openim.conversation.Conversation
-	62, // 22: openim.conversation.UpdateConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
-	63, // 23: openim.conversation.UpdateConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
-	64, // 24: openim.conversation.UpdateConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
-	63, // 25: openim.conversation.UpdateConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
-	64, // 26: openim.conversation.UpdateConversationReq.ex:type_name -> openim.protobuf.StringValue
-	62, // 27: openim.conversation.UpdateConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
-	65, // 28: openim.conversation.UpdateConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
-	65, // 29: openim.conversation.UpdateConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
-	62, // 30: openim.conversation.UpdateConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
-	65, // 31: openim.conversation.UpdateConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	63, // 32: openim.conversation.UpdateConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	65, // 33: openim.conversation.UpdateConversationReq.latestMsgDestructTime:type_name -> openim.protobuf.Int64Value
-	62, // 34: openim.conversation.UpdateConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
-	65, // 35: openim.conversation.UpdateConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
+	64, // 22: openim.conversation.UpdateConversationReq.recvMsgOpt:type_name -> openim.protobuf.Int32Value
+	65, // 23: openim.conversation.UpdateConversationReq.isPinned:type_name -> openim.protobuf.BoolValue
+	66, // 24: openim.conversation.UpdateConversationReq.attachedInfo:type_name -> openim.protobuf.StringValue
+	65, // 25: openim.conversation.UpdateConversationReq.isPrivateChat:type_name -> openim.protobuf.BoolValue
+	66, // 26: openim.conversation.UpdateConversationReq.ex:type_name -> openim.protobuf.StringValue
+	64, // 27: openim.conversation.UpdateConversationReq.burnDuration:type_name -> openim.protobuf.Int32Value
+	67, // 28: openim.conversation.UpdateConversationReq.minSeq:type_name -> openim.protobuf.Int64Value
+	67, // 29: openim.conversation.UpdateConversationReq.maxSeq:type_name -> openim.protobuf.Int64Value
+	64, // 30: openim.conversation.UpdateConversationReq.groupAtType:type_name -> openim.protobuf.Int32Value
+	67, // 31: openim.conversation.UpdateConversationReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	65, // 32: openim.conversation.UpdateConversationReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	67, // 33: openim.conversation.UpdateConversationReq.latestMsgDestructTime:type_name -> openim.protobuf.Int64Value
+	64, // 34: openim.conversation.UpdateConversationReq.muteDuration:type_name -> openim.protobuf.Int32Value
+	67, // 35: openim.conversation.UpdateConversationReq.muteEndTime:type_name -> openim.protobuf.Int64Value
 	0,  // 36: openim.conversation.GetIncrementalConversationResp.insert:type_name -> openim.conversation.Conversation
 	0,  // 37: openim.conversation.GetIncrementalConversationResp.update:type_name -> openim.conversation.Conversation
-	66, // 38: openim.conversation.GetOwnerConversationReq.pagination:type_name -> openim.sdkws.RequestPagination
+	68, // 38: openim.conversation.GetOwnerConversationReq.pagination:type_name -> openim.sdkws.RequestPagination
 	0,  // 39: openim.conversation.GetOwnerConversationResp.conversations:type_name -> openim.conversation.Conversation
 	0,  // 40: openim.conversation.GetConversationsNeedClearMsgResp.conversations:type_name -> openim.conversation.Conversation
-	64, // 41: openim.conversation.UpdateConversationsByUserReq.ex:type_name -> openim.protobuf.StringValue
+	66, // 41: openim.conversation.UpdateConversationsByUserReq.ex:type_name -> openim.protobuf.StringValue
 	4,  // 42: openim.conversation.conversation.GetConversation:input_type -> openim.conversation.GetConversationReq
 	6,  // 43: openim.conversation.conversation.GetSortedConversationList:input_type -> openim.conversation.GetSortedConversationListReq
 	12, // 44: openim.conversation.conversation.GetAllConversations:input_type -> openim.conversation.GetAllConversationsReq
@@ -3982,37 +4087,39 @@ var file_conversation_conversation_proto_depIdxs = []int32{
 	60, // 68: openim.conversation.conversation.SetConversationMute:input_type -> openim.conversation.SetConversationMuteReq
 	54, // 69: openim.conversation.conversation.ClearBurnExpiredMsgs:input_type -> openim.conversation.ClearBurnExpiredMsgsReq
 	52, // 70: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:input_type -> openim.conversation.ClearGroupBurnExpiredMsgsReq
-	5,  // 71: openim.conversation.conversation.GetConversation:output_type -> openim.conversation.GetConversationResp
-	7,  // 72: openim.conversation.conversation.GetSortedConversationList:output_type -> openim.conversation.GetSortedConversationListResp
-	13, // 73: openim.conversation.conversation.GetAllConversations:output_type -> openim.conversation.GetAllConversationsResp
-	11, // 74: openim.conversation.conversation.GetConversations:output_type -> openim.conversation.GetConversationsResp
-	3,  // 75: openim.conversation.conversation.SetConversation:output_type -> openim.conversation.SetConversationResp
-	15, // 76: openim.conversation.conversation.GetRecvMsgNotNotifyUserIDs:output_type -> openim.conversation.GetRecvMsgNotNotifyUserIDsResp
-	17, // 77: openim.conversation.conversation.CreateSingleChatConversations:output_type -> openim.conversation.CreateSingleChatConversationsResp
-	19, // 78: openim.conversation.conversation.CreateGroupChatConversations:output_type -> openim.conversation.CreateGroupChatConversationsResp
-	21, // 79: openim.conversation.conversation.SetConversationMaxSeq:output_type -> openim.conversation.SetConversationMaxSeqResp
-	23, // 80: openim.conversation.conversation.SetConversationMinSeq:output_type -> openim.conversation.SetConversationMinSeqResp
-	25, // 81: openim.conversation.conversation.GetConversationIDs:output_type -> openim.conversation.GetConversationIDsResp
-	27, // 82: openim.conversation.conversation.SetConversations:output_type -> openim.conversation.SetConversationsResp
-	29, // 83: openim.conversation.conversation.GetUserConversationIDsHash:output_type -> openim.conversation.GetUserConversationIDsHashResp
-	31, // 84: openim.conversation.conversation.GetConversationsByConversationID:output_type -> openim.conversation.GetConversationsByConversationIDResp
-	33, // 85: openim.conversation.conversation.GetConversationOfflinePushUserIDs:output_type -> openim.conversation.GetConversationOfflinePushUserIDsResp
-	35, // 86: openim.conversation.conversation.GetConversationNotReceiveMessageUserIDs:output_type -> openim.conversation.GetConversationNotReceiveMessageUserIDsResp
-	37, // 87: openim.conversation.conversation.UpdateConversation:output_type -> openim.conversation.UpdateConversationResp
-	39, // 88: openim.conversation.conversation.GetFullOwnerConversationIDs:output_type -> openim.conversation.GetFullOwnerConversationIDsResp
-	41, // 89: openim.conversation.conversation.GetIncrementalConversation:output_type -> openim.conversation.GetIncrementalConversationResp
-	43, // 90: openim.conversation.conversation.GetOwnerConversation:output_type -> openim.conversation.GetOwnerConversationResp
-	45, // 91: openim.conversation.conversation.GetConversationsNeedClearMsg:output_type -> openim.conversation.GetConversationsNeedClearMsgResp
-	47, // 92: openim.conversation.conversation.GetNotNotifyConversationIDs:output_type -> openim.conversation.GetNotNotifyConversationIDsResp
-	49, // 93: openim.conversation.conversation.GetPinnedConversationIDs:output_type -> openim.conversation.GetPinnedConversationIDsResp
-	51, // 94: openim.conversation.conversation.ClearUserConversationMsg:output_type -> openim.conversation.ClearUserConversationMsgResp
-	57, // 95: openim.conversation.conversation.UpdateConversationsByUser:output_type -> openim.conversation.UpdateConversationsByUserResp
-	59, // 96: openim.conversation.conversation.DeleteConversations:output_type -> openim.conversation.DeleteConversationsResp
-	61, // 97: openim.conversation.conversation.SetConversationMute:output_type -> openim.conversation.SetConversationMuteResp
-	55, // 98: openim.conversation.conversation.ClearBurnExpiredMsgs:output_type -> openim.conversation.ClearBurnExpiredMsgsResp
-	53, // 99: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:output_type -> openim.conversation.ClearGroupBurnExpiredMsgsResp
-	71, // [71:100] is the sub-list for method output_type
-	42, // [42:71] is the sub-list for method input_type
+	62, // 71: openim.conversation.conversation.SetConversationBurn:input_type -> openim.conversation.SetConversationBurnReq
+	5,  // 72: openim.conversation.conversation.GetConversation:output_type -> openim.conversation.GetConversationResp
+	7,  // 73: openim.conversation.conversation.GetSortedConversationList:output_type -> openim.conversation.GetSortedConversationListResp
+	13, // 74: openim.conversation.conversation.GetAllConversations:output_type -> openim.conversation.GetAllConversationsResp
+	11, // 75: openim.conversation.conversation.GetConversations:output_type -> openim.conversation.GetConversationsResp
+	3,  // 76: openim.conversation.conversation.SetConversation:output_type -> openim.conversation.SetConversationResp
+	15, // 77: openim.conversation.conversation.GetRecvMsgNotNotifyUserIDs:output_type -> openim.conversation.GetRecvMsgNotNotifyUserIDsResp
+	17, // 78: openim.conversation.conversation.CreateSingleChatConversations:output_type -> openim.conversation.CreateSingleChatConversationsResp
+	19, // 79: openim.conversation.conversation.CreateGroupChatConversations:output_type -> openim.conversation.CreateGroupChatConversationsResp
+	21, // 80: openim.conversation.conversation.SetConversationMaxSeq:output_type -> openim.conversation.SetConversationMaxSeqResp
+	23, // 81: openim.conversation.conversation.SetConversationMinSeq:output_type -> openim.conversation.SetConversationMinSeqResp
+	25, // 82: openim.conversation.conversation.GetConversationIDs:output_type -> openim.conversation.GetConversationIDsResp
+	27, // 83: openim.conversation.conversation.SetConversations:output_type -> openim.conversation.SetConversationsResp
+	29, // 84: openim.conversation.conversation.GetUserConversationIDsHash:output_type -> openim.conversation.GetUserConversationIDsHashResp
+	31, // 85: openim.conversation.conversation.GetConversationsByConversationID:output_type -> openim.conversation.GetConversationsByConversationIDResp
+	33, // 86: openim.conversation.conversation.GetConversationOfflinePushUserIDs:output_type -> openim.conversation.GetConversationOfflinePushUserIDsResp
+	35, // 87: openim.conversation.conversation.GetConversationNotReceiveMessageUserIDs:output_type -> openim.conversation.GetConversationNotReceiveMessageUserIDsResp
+	37, // 88: openim.conversation.conversation.UpdateConversation:output_type -> openim.conversation.UpdateConversationResp
+	39, // 89: openim.conversation.conversation.GetFullOwnerConversationIDs:output_type -> openim.conversation.GetFullOwnerConversationIDsResp
+	41, // 90: openim.conversation.conversation.GetIncrementalConversation:output_type -> openim.conversation.GetIncrementalConversationResp
+	43, // 91: openim.conversation.conversation.GetOwnerConversation:output_type -> openim.conversation.GetOwnerConversationResp
+	45, // 92: openim.conversation.conversation.GetConversationsNeedClearMsg:output_type -> openim.conversation.GetConversationsNeedClearMsgResp
+	47, // 93: openim.conversation.conversation.GetNotNotifyConversationIDs:output_type -> openim.conversation.GetNotNotifyConversationIDsResp
+	49, // 94: openim.conversation.conversation.GetPinnedConversationIDs:output_type -> openim.conversation.GetPinnedConversationIDsResp
+	51, // 95: openim.conversation.conversation.ClearUserConversationMsg:output_type -> openim.conversation.ClearUserConversationMsgResp
+	57, // 96: openim.conversation.conversation.UpdateConversationsByUser:output_type -> openim.conversation.UpdateConversationsByUserResp
+	59, // 97: openim.conversation.conversation.DeleteConversations:output_type -> openim.conversation.DeleteConversationsResp
+	61, // 98: openim.conversation.conversation.SetConversationMute:output_type -> openim.conversation.SetConversationMuteResp
+	55, // 99: openim.conversation.conversation.ClearBurnExpiredMsgs:output_type -> openim.conversation.ClearBurnExpiredMsgsResp
+	53, // 100: openim.conversation.conversation.ClearGroupBurnExpiredMsgs:output_type -> openim.conversation.ClearGroupBurnExpiredMsgsResp
+	63, // 101: openim.conversation.conversation.SetConversationBurn:output_type -> openim.conversation.SetConversationBurnResp
+	72, // [72:102] is the sub-list for method output_type
+	42, // [42:72] is the sub-list for method input_type
 	42, // [42:42] is the sub-list for extension type_name
 	42, // [42:42] is the sub-list for extension extendee
 	0,  // [0:42] is the sub-list for field type_name
@@ -4029,7 +4136,7 @@ func file_conversation_conversation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conversation_conversation_proto_rawDesc), len(file_conversation_conversation_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   62,
+			NumMessages:   64,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -345,6 +345,14 @@ message SetConversationMuteReq {
 }
 message SetConversationMuteResp {}
 
+message SetConversationBurnReq {
+  string ownerUserID = 1;
+  string conversationID = 2;
+  // 0=关闭阅后即焚，>0=阅后多少秒销毁（仅单聊）
+  int32 burnDuration = 3;
+}
+message SetConversationBurnResp {}
+
 service conversation {
   rpc GetConversation(GetConversationReq) returns (GetConversationResp);
   rpc GetSortedConversationList(GetSortedConversationListReq) returns (GetSortedConversationListResp);
@@ -378,4 +386,6 @@ service conversation {
   rpc ClearBurnExpiredMsgs(ClearBurnExpiredMsgsReq) returns (ClearBurnExpiredMsgsResp);
   // 清理群消息阅后即焚：当 read_count >= member_count 且 burn_end_time 过期时推进所有成员 min_seq 并通知。
   rpc ClearGroupBurnExpiredMsgs(ClearGroupBurnExpiredMsgsReq) returns (ClearGroupBurnExpiredMsgsResp);
+  // 设置会话阅后即焚时长（仅单聊）：0 表示关闭，>0 为阅后销毁秒数。
+  rpc SetConversationBurn(SetConversationBurnReq) returns (SetConversationBurnResp);
 }

@@ -223,3 +223,16 @@ func (x *SetConversationMuteReq) Check() error {
 	}
 	return nil
 }
+
+func (x *SetConversationBurnReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if x.BurnDuration < 0 {
+		return errors.New("burnDuration must be >= 0")
+	}
+	return nil
+}
