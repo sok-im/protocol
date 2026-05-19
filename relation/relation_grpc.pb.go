@@ -48,6 +48,7 @@ const (
 	Friend_GetFullFriendUserIDs_FullMethodName           = "/openim.relation.friend/getFullFriendUserIDs"
 	Friend_NotificationUserInfoUpdate_FullMethodName     = "/openim.relation.friend/NotificationUserInfoUpdate"
 	Friend_GetFriendInfo_FullMethodName                  = "/openim.relation.friend/getFriendInfo"
+	Friend_GetFriendPhone_FullMethodName                 = "/openim.relation.friend/getFriendPhone"
 	Friend_GetPinnedFriendIDs_FullMethodName             = "/openim.relation.friend/GetPinnedFriendIDs"
 	Friend_SetMute_FullMethodName                        = "/openim.relation.friend/SetMute"
 	Friend_GetMute_FullMethodName                        = "/openim.relation.friend/GetMute"
@@ -115,6 +116,8 @@ type FriendClient interface {
 	GetFullFriendUserIDs(ctx context.Context, in *GetFullFriendUserIDsReq, opts ...grpc.CallOption) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(ctx context.Context, in *NotificationUserInfoUpdateReq, opts ...grpc.CallOption) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, opts ...grpc.CallOption) (*GetFriendInfoResp, error)
+	// 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
+	GetFriendPhone(ctx context.Context, in *GetFriendPhoneReq, opts ...grpc.CallOption) (*GetFriendPhoneResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error)
 	// Mute or unmute a user (friend or stranger)
@@ -425,6 +428,16 @@ func (c *friendClient) GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, 
 	return out, nil
 }
 
+func (c *friendClient) GetFriendPhone(ctx context.Context, in *GetFriendPhoneReq, opts ...grpc.CallOption) (*GetFriendPhoneResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFriendPhoneResp)
+	err := c.cc.Invoke(ctx, Friend_GetFriendPhone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *friendClient) GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPinnedFriendIDsResp)
@@ -535,6 +548,8 @@ type FriendServer interface {
 	GetFullFriendUserIDs(context.Context, *GetFullFriendUserIDsReq) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(context.Context, *NotificationUserInfoUpdateReq) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error)
+	// 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
+	GetFriendPhone(context.Context, *GetFriendPhoneReq) (*GetFriendPhoneResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error)
 	// Mute or unmute a user (friend or stranger)
@@ -641,6 +656,9 @@ func (UnimplementedFriendServer) NotificationUserInfoUpdate(context.Context, *No
 }
 func (UnimplementedFriendServer) GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFriendInfo not implemented")
+}
+func (UnimplementedFriendServer) GetFriendPhone(context.Context, *GetFriendPhoneReq) (*GetFriendPhoneResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFriendPhone not implemented")
 }
 func (UnimplementedFriendServer) GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPinnedFriendIDs not implemented")
@@ -1200,6 +1218,24 @@ func _Friend_GetFriendInfo_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_GetFriendPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFriendPhoneReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).GetFriendPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_GetFriendPhone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).GetFriendPhone(ctx, req.(*GetFriendPhoneReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Friend_GetPinnedFriendIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPinnedFriendIDsReq)
 	if err := dec(in); err != nil {
@@ -1412,6 +1448,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getFriendInfo",
 			Handler:    _Friend_GetFriendInfo_Handler,
+		},
+		{
+			MethodName: "getFriendPhone",
+			Handler:    _Friend_GetFriendPhone_Handler,
 		},
 		{
 			MethodName: "GetPinnedFriendIDs",

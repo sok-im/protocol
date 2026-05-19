@@ -173,6 +173,16 @@ func (x *GetFriendIDsReq) Check() error {
 	}
 	return nil
 }
+
+func (x *GetFriendPhoneReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.FriendUserID == "" {
+		return errors.New("friendUserID is empty")
+	}
+	return nil
+}
 func (x *GetDesignatedFriendsApplyReq) Check() error {
 	if x.FromUserID == "" {
 		return errors.New("ownerUserID is empty")

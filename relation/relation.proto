@@ -308,6 +308,18 @@ message getFriendInfoResp {
   repeated FriendInfoOnly friendInfos = 1;
 }
 
+// 查询用户 friendUserID 的手机号与区号（HTTP JSON 字段名为 Phone、AreaCode）。
+// 是否下发明文仅由该用户（friendUserID）设置的 phone_visibility 决定，规则与 User.GetDesignateUsers 一致（viewer 为当前操作者 opUserID）。
+message getFriendPhoneReq {
+  string ownerUserID = 1;
+  string friendUserID = 2;
+}
+
+message getFriendPhoneResp {
+  string phone = 1 [json_name = "Phone"];
+  string areaCode = 2 [json_name = "AreaCode"];
+}
+
 message GetPinnedFriendIDsReq {
   string userID = 1;
 }
@@ -376,6 +388,8 @@ service friend {
   rpc NotificationUserInfoUpdate(notificationUserInfoUpdateReq) returns (notificationUserInfoUpdateResp);
 
   rpc getFriendInfo(getFriendInfoReq) returns (getFriendInfoResp);
+  // 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
+  rpc getFriendPhone(getFriendPhoneReq) returns (getFriendPhoneResp);
 
   // Get pinned friend user IDs
   rpc GetPinnedFriendIDs(GetPinnedFriendIDsReq) returns (GetPinnedFriendIDsResp);
