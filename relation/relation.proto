@@ -388,7 +388,7 @@ service friend {
   rpc NotificationUserInfoUpdate(notificationUserInfoUpdateReq) returns (notificationUserInfoUpdateResp);
 
   rpc getFriendInfo(getFriendInfoReq) returns (getFriendInfoResp);
-  // 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
+
   rpc getFriendPhone(getFriendPhoneReq) returns (getFriendPhoneResp);
 
   // Get pinned friend user IDs
