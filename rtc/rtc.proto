@@ -73,6 +73,8 @@ message InvitationInfo  {
   repeated string busyLineUserIDList = 11;
   // callerRingtoneURL 主叫方的来电铃声 URL；服务端从主叫用户资料填充，被叫客户端用于播放铃声
   string callerRingtoneURL = 12;
+  // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+  repeated string notAllowUserIDList = 13;
 }
 
 message SignalInviteReq {
@@ -89,6 +91,8 @@ message SignalInviteResp {
   repeated string busyLineUserIDList = 4;
   // calleeRingtoneURL 被叫方设置的来电铃声 URL；主叫方在等待接听时播放此铃声
   string calleeRingtoneURL = 5;
+  // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+  repeated string notAllowUserIDList = 6;
 }
 
 message SignalInviteInGroupReq {
@@ -105,6 +109,8 @@ message SignalInviteInGroupResp {
   repeated string busyLineUserIDList = 4;
   // calleeRingtoneURL 被叫方设置的来电铃声 URL（1v1 时为对方铃声，群聊时取第一位被叫）
   string calleeRingtoneURL = 5;
+  // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+  repeated string notAllowUserIDList = 6;
 }
 
 message SignalCancelReq {

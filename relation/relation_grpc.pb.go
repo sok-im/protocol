@@ -116,7 +116,6 @@ type FriendClient interface {
 	GetFullFriendUserIDs(ctx context.Context, in *GetFullFriendUserIDsReq, opts ...grpc.CallOption) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(ctx context.Context, in *NotificationUserInfoUpdateReq, opts ...grpc.CallOption) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(ctx context.Context, in *GetFriendInfoReq, opts ...grpc.CallOption) (*GetFriendInfoResp, error)
-	// 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
 	GetFriendPhone(ctx context.Context, in *GetFriendPhoneReq, opts ...grpc.CallOption) (*GetFriendPhoneResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(ctx context.Context, in *GetPinnedFriendIDsReq, opts ...grpc.CallOption) (*GetPinnedFriendIDsResp, error)
@@ -548,7 +547,6 @@ type FriendServer interface {
 	GetFullFriendUserIDs(context.Context, *GetFullFriendUserIDsReq) (*GetFullFriendUserIDsResp, error)
 	NotificationUserInfoUpdate(context.Context, *NotificationUserInfoUpdateReq) (*NotificationUserInfoUpdateResp, error)
 	GetFriendInfo(context.Context, *GetFriendInfoReq) (*GetFriendInfoResp, error)
-	// 根据对方手机号可见性返回 phone、areaCode（无权限时为空字符串）
 	GetFriendPhone(context.Context, *GetFriendPhoneReq) (*GetFriendPhoneResp, error)
 	// Get pinned friend user IDs
 	GetPinnedFriendIDs(context.Context, *GetPinnedFriendIDsReq) (*GetPinnedFriendIDsResp, error)

@@ -681,8 +681,10 @@ type InvitationInfo struct {
 	BusyLineUserIDList []string               `protobuf:"bytes,11,rep,name=busyLineUserIDList,proto3" json:"busyLineUserIDList"`
 	// callerRingtoneURL 主叫方的来电铃声 URL；服务端从主叫用户资料填充，被叫客户端用于播放铃声
 	CallerRingtoneURL string `protobuf:"bytes,12,opt,name=callerRingtoneURL,proto3" json:"callerRingtoneURL"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+	NotAllowUserIDList []string `protobuf:"bytes,13,rep,name=notAllowUserIDList,proto3" json:"notAllowUserIDList"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *InvitationInfo) Reset() {
@@ -799,6 +801,13 @@ func (x *InvitationInfo) GetCallerRingtoneURL() string {
 	return ""
 }
 
+func (x *InvitationInfo) GetNotAllowUserIDList() []string {
+	if x != nil {
+		return x.NotAllowUserIDList
+	}
+	return nil
+}
+
 type SignalInviteReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Invitation      *InvitationInfo        `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation"`
@@ -875,8 +884,10 @@ type SignalInviteResp struct {
 	BusyLineUserIDList []string               `protobuf:"bytes,4,rep,name=busyLineUserIDList,proto3" json:"busyLineUserIDList"`
 	// calleeRingtoneURL 被叫方设置的来电铃声 URL；主叫方在等待接听时播放此铃声
 	CalleeRingtoneURL string `protobuf:"bytes,5,opt,name=calleeRingtoneURL,proto3" json:"calleeRingtoneURL"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+	NotAllowUserIDList []string `protobuf:"bytes,6,rep,name=notAllowUserIDList,proto3" json:"notAllowUserIDList"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SignalInviteResp) Reset() {
@@ -942,6 +953,13 @@ func (x *SignalInviteResp) GetCalleeRingtoneURL() string {
 		return x.CalleeRingtoneURL
 	}
 	return ""
+}
+
+func (x *SignalInviteResp) GetNotAllowUserIDList() []string {
+	if x != nil {
+		return x.NotAllowUserIDList
+	}
+	return nil
 }
 
 type SignalInviteInGroupReq struct {
@@ -1020,8 +1038,10 @@ type SignalInviteInGroupResp struct {
 	BusyLineUserIDList []string               `protobuf:"bytes,4,rep,name=busyLineUserIDList,proto3" json:"busyLineUserIDList"`
 	// calleeRingtoneURL 被叫方设置的来电铃声 URL（1v1 时为对方铃声，群聊时取第一位被叫）
 	CalleeRingtoneURL string `protobuf:"bytes,5,opt,name=calleeRingtoneURL,proto3" json:"calleeRingtoneURL"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
+	NotAllowUserIDList []string `protobuf:"bytes,6,rep,name=notAllowUserIDList,proto3" json:"notAllowUserIDList"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SignalInviteInGroupResp) Reset() {
@@ -1087,6 +1107,13 @@ func (x *SignalInviteInGroupResp) GetCalleeRingtoneURL() string {
 		return x.CalleeRingtoneURL
 	}
 	return ""
+}
+
+func (x *SignalInviteInGroupResp) GetNotAllowUserIDList() []string {
+	if x != nil {
+		return x.NotAllowUserIDList
+	}
+	return nil
 }
 
 type SignalCancelReq struct {
@@ -2772,7 +2799,7 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x06hungUp\x18\x05 \x01(\v2\x1c.openim.rtc.SignalHungUpRespH\x00R\x06hungUp\x126\n" +
 	"\x06reject\x18\x06 \x01(\v2\x1c.openim.rtc.SignalRejectRespH\x00R\x06reject\x12T\n" +
 	"\x10getTokenByRoomID\x18\a \x01(\v2&.openim.rtc.SignalGetTokenByRoomIDRespH\x00R\x10getTokenByRoomIDB\t\n" +
-	"\apayload\"\xb2\x03\n" +
+	"\apayload\"\xe2\x03\n" +
 	"\x0eInvitationInfo\x12$\n" +
 	"\rinviterUserID\x18\x01 \x01(\tR\rinviterUserID\x12,\n" +
 	"\x11inviteeUserIDList\x18\x02 \x03(\tR\x11inviteeUserIDList\x12\x1e\n" +
@@ -2790,33 +2817,36 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\finitiateTime\x18\n" +
 	" \x01(\x03R\finitiateTime\x12.\n" +
 	"\x12busyLineUserIDList\x18\v \x03(\tR\x12busyLineUserIDList\x12,\n" +
-	"\x11callerRingtoneURL\x18\f \x01(\tR\x11callerRingtoneURL\"\xf1\x01\n" +
+	"\x11callerRingtoneURL\x18\f \x01(\tR\x11callerRingtoneURL\x12.\n" +
+	"\x12notAllowUserIDList\x18\r \x03(\tR\x12notAllowUserIDList\"\xf1\x01\n" +
 	"\x0fSignalInviteReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
 	"invitation\x12G\n" +
 	"\x0fofflinePushInfo\x18\x02 \x01(\v2\x1d.openim.sdkws.OfflinePushInfoR\x0fofflinePushInfo\x12A\n" +
 	"\vparticipant\x18\x03 \x01(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12\x16\n" +
-	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xb8\x01\n" +
+	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xe8\x01\n" +
 	"\x10SignalInviteResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
 	"\aliveURL\x18\x03 \x01(\tR\aliveURL\x12.\n" +
 	"\x12busyLineUserIDList\x18\x04 \x03(\tR\x12busyLineUserIDList\x12,\n" +
-	"\x11calleeRingtoneURL\x18\x05 \x01(\tR\x11calleeRingtoneURL\"\xf8\x01\n" +
+	"\x11calleeRingtoneURL\x18\x05 \x01(\tR\x11calleeRingtoneURL\x12.\n" +
+	"\x12notAllowUserIDList\x18\x06 \x03(\tR\x12notAllowUserIDList\"\xf8\x01\n" +
 	"\x16SignalInviteInGroupReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
 	"invitation\x12G\n" +
 	"\x0fofflinePushInfo\x18\x02 \x01(\v2\x1d.openim.sdkws.OfflinePushInfoR\x0fofflinePushInfo\x12A\n" +
 	"\vparticipant\x18\x03 \x01(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12\x16\n" +
-	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xbf\x01\n" +
+	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xef\x01\n" +
 	"\x17SignalInviteInGroupResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
 	"\aliveURL\x18\x03 \x01(\tR\aliveURL\x12.\n" +
 	"\x12busyLineUserIDList\x18\x04 \x03(\tR\x12busyLineUserIDList\x12,\n" +
-	"\x11calleeRingtoneURL\x18\x05 \x01(\tR\x11calleeRingtoneURL\"\xf1\x01\n" +
+	"\x11calleeRingtoneURL\x18\x05 \x01(\tR\x11calleeRingtoneURL\x12.\n" +
+	"\x12notAllowUserIDList\x18\x06 \x03(\tR\x12notAllowUserIDList\"\xf1\x01\n" +
 	"\x0fSignalCancelReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
