@@ -738,11 +738,13 @@ func (x *GetActiveDevicesReq) GetUserID() string {
 }
 
 type DeviceInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlatformID    int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
-	PlatformName  string                 `protobuf:"bytes,2,opt,name=platformName,proto3" json:"platformName"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	PlatformID   int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
+	PlatformName string                 `protobuf:"bytes,2,opt,name=platformName,proto3" json:"platformName"`
+	// 该端上有效会话 token 的签发时间（Unix 秒），近似本次登录时间；多会话时取最晚签发
+	LoginTimeSeconds int64 `protobuf:"varint,3,opt,name=loginTimeSeconds,proto3" json:"loginTimeSeconds"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DeviceInfo) Reset() {
@@ -787,6 +789,13 @@ func (x *DeviceInfo) GetPlatformName() string {
 		return x.PlatformName
 	}
 	return ""
+}
+
+func (x *DeviceInfo) GetLoginTimeSeconds() int64 {
+	if x != nil {
+		return x.LoginTimeSeconds
+	}
+	return 0
 }
 
 type GetActiveDevicesResp struct {
@@ -975,13 +984,14 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"-\n" +
 	"\x13getActiveDevicesReq\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"P\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\"|\n" +
 	"\n" +
 	"deviceInfo\x12\x1e\n" +
 	"\n" +
 	"platformID\x18\x01 \x01(\x05R\n" +
 	"platformID\x12\"\n" +
-	"\fplatformName\x18\x02 \x01(\tR\fplatformName\"I\n" +
+	"\fplatformName\x18\x02 \x01(\tR\fplatformName\x12*\n" +
+	"\x10loginTimeSeconds\x18\x03 \x01(\x03R\x10loginTimeSeconds\"I\n" +
 	"\x14getActiveDevicesResp\x121\n" +
 	"\adevices\x18\x01 \x03(\v2\x17.openim.auth.deviceInfoR\adevices\"G\n" +
 	"\rkickDeviceReq\x12\x16\n" +

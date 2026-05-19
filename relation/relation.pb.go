@@ -3316,7 +3316,7 @@ func (x *GetFriendInfoResp) GetFriendInfos() []*FriendInfoOnly {
 	return nil
 }
 
-// 查询用户 friendUserID 的手机号与区号。
+// 查询用户 friendUserID 的手机号与区号（HTTP JSON 字段名为 Phone、AreaCode）。
 // 是否下发明文仅由该用户（friendUserID）设置的 phone_visibility 决定，规则与 User.GetDesignateUsers 一致（viewer 为当前操作者 opUserID）。
 type GetFriendPhoneReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`

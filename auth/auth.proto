@@ -65,6 +65,8 @@ message getActiveDevicesReq {
 message deviceInfo {
   int32  platformID   = 1;
   string platformName = 2;
+  // 该端上有效会话 token 的签发时间（Unix 秒），近似本次登录时间；多会话时取最晚签发
+  int64 loginTimeSeconds = 3;
 }
 
 message getActiveDevicesResp {
