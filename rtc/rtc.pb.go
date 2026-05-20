@@ -1609,10 +1609,13 @@ func (x *SignalGetRoomByGroupIDReq) GetGroupID() string {
 }
 
 type SignalGetRoomByGroupIDResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Invitation    *InvitationInfo        `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation"`
-	Participant   []*ParticipantMetaData `protobuf:"bytes,2,rep,name=participant,proto3" json:"participant"`
-	RoomID        string                 `protobuf:"bytes,3,opt,name=roomID,proto3" json:"roomID"`
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	Invitation *InvitationInfo        `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation"`
+	// participant 当前已连接 LiveKit 房间的用户（正在通话中的成员）；仅含 userInfo 等元数据。
+	Participant []*ParticipantMetaData `protobuf:"bytes,2,rep,name=participant,proto3" json:"participant"`
+	RoomID      string                 `protobuf:"bytes,3,opt,name=roomID,proto3" json:"roomID"`
+	// inCall 为 true 表示房间内至少有一名用户已接通（LiveKit 侧有 participant）。
+	InCall        bool `protobuf:"varint,4,opt,name=inCall,proto3" json:"inCall"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1666,6 +1669,13 @@ func (x *SignalGetRoomByGroupIDResp) GetRoomID() string {
 		return x.RoomID
 	}
 	return ""
+}
+
+func (x *SignalGetRoomByGroupIDResp) GetInCall() bool {
+	if x != nil {
+		return x.InCall
+	}
+	return false
 }
 
 type SignalOnRoomParticipantConnectedReq struct {
@@ -2884,13 +2894,14 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x06userID\x18\x05 \x01(\tR\x06userID\"\x12\n" +
 	"\x10SignalRejectResp\"5\n" +
 	"\x19SignalGetRoomByGroupIDReq\x12\x18\n" +
-	"\agroupID\x18\x01 \x01(\tR\agroupID\"\xb3\x01\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\"\xcb\x01\n" +
 	"\x1aSignalGetRoomByGroupIDResp\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
 	"invitation\x12A\n" +
 	"\vparticipant\x18\x02 \x03(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12\x16\n" +
-	"\x06roomID\x18\x03 \x01(\tR\x06roomID\"\xbe\x01\n" +
+	"\x06roomID\x18\x03 \x01(\tR\x06roomID\x12\x16\n" +
+	"\x06inCall\x18\x04 \x01(\bR\x06inCall\"\xbe\x01\n" +
 	"#SignalOnRoomParticipantConnectedReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
