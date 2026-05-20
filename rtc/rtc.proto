@@ -167,8 +167,11 @@ message SignalGetRoomByGroupIDReq {
 
 message SignalGetRoomByGroupIDResp {
   InvitationInfo invitation = 1;
+  // participant 当前已连接 LiveKit 房间的用户（正在通话中的成员）；仅含 userInfo 等元数据。
   repeated ParticipantMetaData participant = 2;
   string roomID = 3;
+  // inCall 为 true 表示房间内至少有一名用户已接通（LiveKit 侧有 participant）。
+  bool inCall = 4;
 }
 
 message SignalOnRoomParticipantConnectedReq {
