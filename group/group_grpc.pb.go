@@ -53,6 +53,7 @@ const (
 	Group_GetGroupMemberCache_FullMethodName               = "/openim.group.group/GetGroupMemberCache"
 	Group_GroupCreateCount_FullMethodName                  = "/openim.group.group/GroupCreateCount"
 	Group_NotificationUserInfoUpdate_FullMethodName        = "/openim.group.group/NotificationUserInfoUpdate"
+	Group_NotificationFriendRemarkUpdate_FullMethodName    = "/openim.group.group/NotificationFriendRemarkUpdate"
 	Group_GetIncrementalGroupMember_FullMethodName         = "/openim.group.group/getIncrementalGroupMember"
 	Group_BatchGetIncrementalGroupMember_FullMethodName    = "/openim.group.group/BatchGetIncrementalGroupMember"
 	Group_GetIncrementalJoinGroup_FullMethodName           = "/openim.group.group/getIncrementalJoinGroup"
@@ -131,6 +132,7 @@ type GroupClient interface {
 	GetGroupMemberCache(ctx context.Context, in *GetGroupMemberCacheReq, opts ...grpc.CallOption) (*GetGroupMemberCacheResp, error)
 	GroupCreateCount(ctx context.Context, in *GroupCreateCountReq, opts ...grpc.CallOption) (*GroupCreateCountResp, error)
 	NotificationUserInfoUpdate(ctx context.Context, in *NotificationUserInfoUpdateReq, opts ...grpc.CallOption) (*NotificationUserInfoUpdateResp, error)
+	NotificationFriendRemarkUpdate(ctx context.Context, in *NotificationFriendRemarkUpdateReq, opts ...grpc.CallOption) (*NotificationFriendRemarkUpdateResp, error)
 	GetIncrementalGroupMember(ctx context.Context, in *GetIncrementalGroupMemberReq, opts ...grpc.CallOption) (*GetIncrementalGroupMemberResp, error)
 	BatchGetIncrementalGroupMember(ctx context.Context, in *BatchGetIncrementalGroupMemberReq, opts ...grpc.CallOption) (*BatchGetIncrementalGroupMemberResp, error)
 	GetIncrementalJoinGroup(ctx context.Context, in *GetIncrementalJoinGroupReq, opts ...grpc.CallOption) (*GetIncrementalJoinGroupResp, error)
@@ -501,6 +503,16 @@ func (c *groupClient) NotificationUserInfoUpdate(ctx context.Context, in *Notifi
 	return out, nil
 }
 
+func (c *groupClient) NotificationFriendRemarkUpdate(ctx context.Context, in *NotificationFriendRemarkUpdateReq, opts ...grpc.CallOption) (*NotificationFriendRemarkUpdateResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NotificationFriendRemarkUpdateResp)
+	err := c.cc.Invoke(ctx, Group_NotificationFriendRemarkUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *groupClient) GetIncrementalGroupMember(ctx context.Context, in *GetIncrementalGroupMemberReq, opts ...grpc.CallOption) (*GetIncrementalGroupMemberResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetIncrementalGroupMemberResp)
@@ -694,6 +706,7 @@ type GroupServer interface {
 	GetGroupMemberCache(context.Context, *GetGroupMemberCacheReq) (*GetGroupMemberCacheResp, error)
 	GroupCreateCount(context.Context, *GroupCreateCountReq) (*GroupCreateCountResp, error)
 	NotificationUserInfoUpdate(context.Context, *NotificationUserInfoUpdateReq) (*NotificationUserInfoUpdateResp, error)
+	NotificationFriendRemarkUpdate(context.Context, *NotificationFriendRemarkUpdateReq) (*NotificationFriendRemarkUpdateResp, error)
 	GetIncrementalGroupMember(context.Context, *GetIncrementalGroupMemberReq) (*GetIncrementalGroupMemberResp, error)
 	BatchGetIncrementalGroupMember(context.Context, *BatchGetIncrementalGroupMemberReq) (*BatchGetIncrementalGroupMemberResp, error)
 	GetIncrementalJoinGroup(context.Context, *GetIncrementalJoinGroupReq) (*GetIncrementalJoinGroupResp, error)
@@ -825,6 +838,9 @@ func (UnimplementedGroupServer) GroupCreateCount(context.Context, *GroupCreateCo
 }
 func (UnimplementedGroupServer) NotificationUserInfoUpdate(context.Context, *NotificationUserInfoUpdateReq) (*NotificationUserInfoUpdateResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method NotificationUserInfoUpdate not implemented")
+}
+func (UnimplementedGroupServer) NotificationFriendRemarkUpdate(context.Context, *NotificationFriendRemarkUpdateReq) (*NotificationFriendRemarkUpdateResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method NotificationFriendRemarkUpdate not implemented")
 }
 func (UnimplementedGroupServer) GetIncrementalGroupMember(context.Context, *GetIncrementalGroupMemberReq) (*GetIncrementalGroupMemberResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetIncrementalGroupMember not implemented")
@@ -1498,6 +1514,24 @@ func _Group_NotificationUserInfoUpdate_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Group_NotificationFriendRemarkUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationFriendRemarkUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).NotificationFriendRemarkUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_NotificationFriendRemarkUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).NotificationFriendRemarkUpdate(ctx, req.(*NotificationFriendRemarkUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Group_GetIncrementalGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetIncrementalGroupMemberReq)
 	if err := dec(in); err != nil {
@@ -1874,6 +1908,10 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "NotificationUserInfoUpdate",
 			Handler:    _Group_NotificationUserInfoUpdate_Handler,
+		},
+		{
+			MethodName: "NotificationFriendRemarkUpdate",
+			Handler:    _Group_NotificationFriendRemarkUpdate_Handler,
 		},
 		{
 			MethodName: "getIncrementalGroupMember",

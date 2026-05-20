@@ -352,6 +352,15 @@ message notificationUserInfoUpdateReq {
 
 message notificationUserInfoUpdateResp {}
 
+// notificationFriendRemarkUpdateReq is sent from relation when owner updates a friend's remark.
+// Group service notifies member-info change in shared groups so clients refresh member list display.
+message notificationFriendRemarkUpdateReq {
+  string ownerUserID = 1;
+  string friendUserID = 2;
+}
+
+message notificationFriendRemarkUpdateResp {}
+
 message getIncrementalGroupMemberReq {
   string groupID = 1;
   string versionID = 2;
@@ -558,6 +567,7 @@ service group {
   rpc GroupCreateCount(GroupCreateCountReq) returns (GroupCreateCountResp);
 
   rpc NotificationUserInfoUpdate(notificationUserInfoUpdateReq) returns (notificationUserInfoUpdateResp);
+  rpc NotificationFriendRemarkUpdate(notificationFriendRemarkUpdateReq) returns (notificationFriendRemarkUpdateResp);
 
   rpc getIncrementalGroupMember(getIncrementalGroupMemberReq) returns (getIncrementalGroupMemberResp);
   rpc BatchGetIncrementalGroupMember(BatchGetIncrementalGroupMemberReq) returns (BatchGetIncrementalGroupMemberResp);
