@@ -30,6 +30,7 @@ message SignalReq {
     SignalHungUpReq hungUp = 5;
     SignalRejectReq reject = 6;
     SignalGetTokenByRoomIDReq getTokenByRoomID = 7;
+    SignalTimeoutReq timeout = 8;
   }
 }
 
@@ -56,6 +57,7 @@ message SignalResp {
     SignalHungUpResp hungUp = 5;
     SignalRejectResp reject = 6;
     SignalGetTokenByRoomIDResp getTokenByRoomID = 7;
+    SignalTimeoutResp timeout = 8;
   }
 }
 
@@ -159,6 +161,14 @@ message SignalRejectReq {
 
 message SignalRejectResp {
 
+}
+
+message SignalTimeoutReq {
+  InvitationInfo invitation = 1;
+  string userID = 2;
+}
+
+message SignalTimeoutResp {
 }
 
 message SignalGetRoomByGroupIDReq {

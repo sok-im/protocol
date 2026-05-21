@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v6.33.0
-// source: rtc/rtc.proto
+// source: rtc.proto
 
 package rtc
 
@@ -425,5 +425,5 @@ var RtcService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "rtc/rtc.proto",
+	Metadata: "rtc.proto",
 }
