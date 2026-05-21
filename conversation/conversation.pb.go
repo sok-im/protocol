@@ -698,6 +698,8 @@ type ConversationElem struct {
 	IsMuted        bool                   `protobuf:"varint,6,opt,name=isMuted,proto3" json:"isMuted"`
 	MuteDuration   int32                  `protobuf:"varint,7,opt,name=muteDuration,proto3" json:"muteDuration"`
 	MuteEndTime    int64                  `protobuf:"varint,8,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	IsPrivateChat  bool                   `protobuf:"varint,9,opt,name=isPrivateChat,proto3" json:"isPrivateChat"`
+	BurnDuration   int32                  `protobuf:"varint,10,opt,name=burnDuration,proto3" json:"burnDuration"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -784,6 +786,20 @@ func (x *ConversationElem) GetMuteDuration() int32 {
 func (x *ConversationElem) GetMuteEndTime() int64 {
 	if x != nil {
 		return x.MuteEndTime
+	}
+	return 0
+}
+
+func (x *ConversationElem) GetIsPrivateChat() bool {
+	if x != nil {
+		return x.IsPrivateChat
+	}
+	return false
+}
+
+func (x *ConversationElem) GetBurnDuration() int32 {
+	if x != nil {
+		return x.BurnDuration
 	}
 	return 0
 }
@@ -3715,7 +3731,7 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\x1dGetSortedConversationListResp\x12,\n" +
 	"\x11conversationTotal\x18\x01 \x01(\x03R\x11conversationTotal\x12 \n" +
 	"\vunreadTotal\x18\x02 \x01(\x03R\vunreadTotal\x12S\n" +
-	"\x11conversationElems\x18\x03 \x03(\v2%.openim.conversation.ConversationElemR\x11conversationElems\"\xb0\x02\n" +
+	"\x11conversationElems\x18\x03 \x03(\v2%.openim.conversation.ConversationElemR\x11conversationElems\"\xfa\x02\n" +
 	"\x10ConversationElem\x12&\n" +
 	"\x0econversationID\x18\x01 \x01(\tR\x0econversationID\x12\x1e\n" +
 	"\n" +
@@ -3726,7 +3742,10 @@ const file_conversation_conversation_proto_rawDesc = "" +
 	"\amsgInfo\x18\x05 \x01(\v2\x1c.openim.conversation.MsgInfoR\amsgInfo\x12\x18\n" +
 	"\aisMuted\x18\x06 \x01(\bR\aisMuted\x12\"\n" +
 	"\fmuteDuration\x18\a \x01(\x05R\fmuteDuration\x12 \n" +
-	"\vmuteEndTime\x18\b \x01(\x03R\vmuteEndTime\"\x93\x04\n" +
+	"\vmuteEndTime\x18\b \x01(\x03R\vmuteEndTime\x12$\n" +
+	"\risPrivateChat\x18\t \x01(\bR\risPrivateChat\x12\"\n" +
+	"\fburnDuration\x18\n" +
+	" \x01(\x05R\fburnDuration\"\x93\x04\n" +
 	"\aMsgInfo\x12 \n" +
 	"\vserverMsgID\x18\x01 \x01(\tR\vserverMsgID\x12 \n" +
 	"\vclientMsgID\x18\x02 \x01(\tR\vclientMsgID\x12 \n" +

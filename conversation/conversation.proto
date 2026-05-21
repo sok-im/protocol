@@ -86,6 +86,8 @@ message ConversationElem {
   bool isMuted = 6;
   int32 muteDuration = 7;
   int64 muteEndTime = 8;
+  bool isPrivateChat = 9;
+  int32 burnDuration = 10;
 }
 
 message MsgInfo {
