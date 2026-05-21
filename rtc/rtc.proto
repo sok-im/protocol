@@ -312,6 +312,8 @@ message CallRecordItem {
   string groupName = 13;
   // direction: 1=outgoing(主叫), 2=incoming(被叫); computed per querying user
   int32 direction = 14;
+  // role: 1=outgoing(主叫), 2=incoming(被叫); 与 direction 对齐的简化字段
+  int32 role = 17;
   // dial_duration: 拨打时长（秒）= 发起→接通 for answered; 发起→结束 for not connected
   int64 dialDuration = 15;
   // call_duration: 通话时长（秒）= 接通→挂断 for answered; 0 for not connected
