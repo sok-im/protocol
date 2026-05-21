@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v6.33.0
-// source: rtc.proto
+// source: rtc/rtc.proto
 
 package rtc
 
@@ -28,6 +28,7 @@ const (
 	RtcService_SignalSendCustomSignal_FullMethodName          = "/openim.rtc.RtcService/SignalSendCustomSignal"
 	RtcService_GetSignalInvitationRecords_FullMethodName      = "/openim.rtc.RtcService/GetSignalInvitationRecords"
 	RtcService_DeleteSignalRecords_FullMethodName             = "/openim.rtc.RtcService/DeleteSignalRecords"
+	RtcService_GetCallRecords_FullMethodName                  = "/openim.rtc.RtcService/GetCallRecords"
 )
 
 // RtcServiceClient is the client API for RtcService service.
@@ -45,6 +46,8 @@ type RtcServiceClient interface {
 	// rtc cms
 	GetSignalInvitationRecords(ctx context.Context, in *GetSignalInvitationRecordsReq, opts ...grpc.CallOption) (*GetSignalInvitationRecordsResp, error)
 	DeleteSignalRecords(ctx context.Context, in *DeleteSignalRecordsReq, opts ...grpc.CallOption) (*DeleteSignalRecordsResp, error)
+	// call record history
+	GetCallRecords(ctx context.Context, in *GetCallRecordsReq, opts ...grpc.CallOption) (*GetCallRecordsResp, error)
 }
 
 type rtcServiceClient struct {
@@ -145,6 +148,16 @@ func (c *rtcServiceClient) DeleteSignalRecords(ctx context.Context, in *DeleteSi
 	return out, nil
 }
 
+func (c *rtcServiceClient) GetCallRecords(ctx context.Context, in *GetCallRecordsReq, opts ...grpc.CallOption) (*GetCallRecordsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCallRecordsResp)
+	err := c.cc.Invoke(ctx, RtcService_GetCallRecords_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RtcServiceServer is the server API for RtcService service.
 // All implementations must embed UnimplementedRtcServiceServer
 // for forward compatibility.
@@ -160,6 +173,8 @@ type RtcServiceServer interface {
 	// rtc cms
 	GetSignalInvitationRecords(context.Context, *GetSignalInvitationRecordsReq) (*GetSignalInvitationRecordsResp, error)
 	DeleteSignalRecords(context.Context, *DeleteSignalRecordsReq) (*DeleteSignalRecordsResp, error)
+	// call record history
+	GetCallRecords(context.Context, *GetCallRecordsReq) (*GetCallRecordsResp, error)
 	mustEmbedUnimplementedRtcServiceServer()
 }
 
@@ -196,6 +211,9 @@ func (UnimplementedRtcServiceServer) GetSignalInvitationRecords(context.Context,
 }
 func (UnimplementedRtcServiceServer) DeleteSignalRecords(context.Context, *DeleteSignalRecordsReq) (*DeleteSignalRecordsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteSignalRecords not implemented")
+}
+func (UnimplementedRtcServiceServer) GetCallRecords(context.Context, *GetCallRecordsReq) (*GetCallRecordsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCallRecords not implemented")
 }
 func (UnimplementedRtcServiceServer) mustEmbedUnimplementedRtcServiceServer() {}
 func (UnimplementedRtcServiceServer) testEmbeddedByValue()                    {}
@@ -380,6 +398,24 @@ func _RtcService_DeleteSignalRecords_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RtcService_GetCallRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCallRecordsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RtcServiceServer).GetCallRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RtcService_GetCallRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RtcServiceServer).GetCallRecords(ctx, req.(*GetCallRecordsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RtcService_ServiceDesc is the grpc.ServiceDesc for RtcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -423,7 +459,11 @@ var RtcService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteSignalRecords",
 			Handler:    _RtcService_DeleteSignalRecords_Handler,
 		},
+		{
+			MethodName: "GetCallRecords",
+			Handler:    _RtcService_GetCallRecords_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "rtc.proto",
+	Metadata: "rtc/rtc.proto",
 }

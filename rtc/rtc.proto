@@ -163,13 +163,15 @@ message SignalRejectResp {
 
 }
 
+// SignalTimeoutReq is sent by the inviter when no invitee answers within Timeout seconds.
+// Server notifies invitees (missed-call UI), deletes the invitation, and writes a call record.
 message SignalTimeoutReq {
   InvitationInfo invitation = 1;
-  string userID = 2;
+  sdkws.OfflinePushInfo offlinePushInfo = 2;
+  string userID = 3;
 }
 
-message SignalTimeoutResp {
-}
+message SignalTimeoutResp {}
 
 message SignalGetRoomByGroupIDReq {
   string groupID = 1;
@@ -292,6 +294,46 @@ message DeleteSignalRecordsReq {
 message DeleteSignalRecordsResp {
 }
 
+// CallRecordItem represents one completed call event stored in the call_record table.
+message CallRecordItem {
+  string sid = 1;
+  string roomID = 2;
+  // status: 1=answered(已接听), 2=not_connected(未接通)
+  int32 status = 3;
+  int64 duration = 4;        // call duration in seconds; 0 if not connected
+  int64 createTime = 5;      // Unix ms, when the call was initiated
+  string mediaType = 6;
+  int32 sessionType = 7;
+  string inviterUserID = 8;
+  string inviterUserNickname = 9;
+  string inviterUserFaceURL = 10;
+  repeated string inviteeUserIDList = 11;
+  string groupID = 12;
+  string groupName = 13;
+  // direction: 1=outgoing(主叫), 2=incoming(被叫); computed per querying user
+  int32 direction = 14;
+  // dial_duration: 拨打时长（秒）= 发起→接通 for answered; 发起→结束 for not connected
+  int64 dialDuration = 15;
+  // call_duration: 通话时长（秒）= 接通→挂断 for answered; 0 for not connected
+  int64 callDuration = 16;
+}
+
+message GetCallRecordsReq {
+  string userID = 1;
+  // status: 0=all, 1=answered, 2=not_connected
+  int32 status = 2;
+  int64 startTime = 3;
+  int64 endTime = 4;
+  sdkws.RequestPagination pagination = 5;
+  // keyword: fuzzy match against InviterUserNickname (empty = no filter)
+  string keyword = 6;
+}
+
+message GetCallRecordsResp {
+  int32 total = 1;
+  repeated CallRecordItem records = 2;
+}
+
 service RtcService {
   rpc SignalMessageAssemble(SignalMessageAssembleReq) returns(SignalMessageAssembleResp);
   rpc SignalGetRoomByGroupID(SignalGetRoomByGroupIDReq) returns(SignalGetRoomByGroupIDResp);
@@ -307,4 +349,7 @@ service RtcService {
   // rtc cms
   rpc GetSignalInvitationRecords(GetSignalInvitationRecordsReq) returns(GetSignalInvitationRecordsResp);
   rpc DeleteSignalRecords(DeleteSignalRecordsReq) returns(DeleteSignalRecordsResp);
+
+  // call record history
+  rpc GetCallRecords(GetCallRecordsReq) returns(GetCallRecordsResp);
 }

@@ -1849,7 +1849,7 @@ func (x *GetHasReadSeqsReq) GetConversationIDs() []string {
 
 type SeqsInfoResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1894,7 +1894,7 @@ func (x *SeqsInfoResp) GetMaxSeqs() map[string]int64 {
 type GetMsgByConversationIDsReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	ConversationIDs []string               `protobuf:"bytes,1,rep,name=conversationIDs,proto3" json:"conversationIDs"`
-	MaxSeqs         map[string]int64       `protobuf:"bytes,2,rep,name=maxSeqs,proto3" json:"maxSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MaxSeqs         map[string]int64       `protobuf:"bytes,2,rep,name=maxSeqs,proto3" json:"maxSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1945,7 +1945,7 @@ func (x *GetMsgByConversationIDsReq) GetMaxSeqs() map[string]int64 {
 
 type GetMsgByConversationIDsResp struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
-	MsgDatas      map[string]*sdkws.MsgData `protobuf:"bytes,1,rep,name=msgDatas,proto3" json:"msgDatas" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	MsgDatas      map[string]*sdkws.MsgData `protobuf:"bytes,1,rep,name=msgDatas,proto3" json:"msgDatas,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2197,7 +2197,7 @@ func (x *Seqs) GetMaxSeqTime() int64 {
 
 type GetConversationsHasReadAndMaxSeqResp struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Seqs                  map[string]*Seqs       `protobuf:"bytes,1,rep,name=seqs,proto3" json:"seqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Seqs                  map[string]*Seqs       `protobuf:"bytes,1,rep,name=seqs,proto3" json:"seqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	PinnedConversationIDs []string               `protobuf:"bytes,2,rep,name=pinnedConversationIDs,proto3" json:"pinnedConversationIDs"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
@@ -2379,7 +2379,7 @@ type GetActiveUserResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MsgCount      int64                  `protobuf:"varint,1,opt,name=msgCount,proto3" json:"msgCount"`
 	UserCount     int64                  `protobuf:"varint,2,opt,name=userCount,proto3" json:"userCount"`
-	DateCount     map[string]int64       `protobuf:"bytes,3,rep,name=dateCount,proto3" json:"dateCount" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	DateCount     map[string]int64       `protobuf:"bytes,3,rep,name=dateCount,proto3" json:"dateCount,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	Users         []*ActiveUser          `protobuf:"bytes,4,rep,name=users,proto3" json:"users"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2567,7 +2567,7 @@ type GetActiveGroupResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MsgCount      int64                  `protobuf:"varint,1,opt,name=msgCount,proto3" json:"msgCount"`
 	GroupCount    int64                  `protobuf:"varint,2,opt,name=groupCount,proto3" json:"groupCount"`
-	DateCount     map[string]int64       `protobuf:"bytes,3,rep,name=dateCount,proto3" json:"dateCount" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	DateCount     map[string]int64       `protobuf:"bytes,3,rep,name=dateCount,proto3" json:"dateCount,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	Groups        []*ActiveGroup         `protobuf:"bytes,4,rep,name=groups,proto3" json:"groups"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3645,8 +3645,8 @@ func (x *GetSeqMessageReq) GetOrder() sdkws.PullOrder {
 
 type GetSeqMessageResp struct {
 	state            protoimpl.MessageState     `protogen:"open.v1"`
-	Msgs             map[string]*sdkws.PullMsgs `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NotificationMsgs map[string]*sdkws.PullMsgs `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs             map[string]*sdkws.PullMsgs `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	NotificationMsgs map[string]*sdkws.PullMsgs `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -4193,7 +4193,7 @@ func (x *GetLastMessageReq) GetConversationIDs() []string {
 
 type GetLastMessageResp struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
-	Msgs          map[string]*sdkws.MsgData `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs          map[string]*sdkws.MsgData `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
