@@ -2911,6 +2911,8 @@ type CallRecordItem struct {
 	GroupName           string   `protobuf:"bytes,13,opt,name=groupName,proto3" json:"groupName"`
 	// direction: 1=outgoing(主叫), 2=incoming(被叫); computed per querying user
 	Direction int32 `protobuf:"varint,14,opt,name=direction,proto3" json:"direction"`
+	// role: 1=outgoing(主叫), 2=incoming(被叫); 与 direction 对齐的简化字段
+	Role int32 `protobuf:"varint,17,opt,name=role,proto3" json:"role"`
 	// dial_duration: 拨打时长（秒）= 发起→接通 for answered; 发起→结束 for not connected
 	DialDuration int64 `protobuf:"varint,15,opt,name=dialDuration,proto3" json:"dialDuration"`
 	// call_duration: 通话时长（秒）= 接通→挂断 for answered; 0 for not connected
@@ -3043,6 +3045,13 @@ func (x *CallRecordItem) GetGroupName() string {
 func (x *CallRecordItem) GetDirection() int32 {
 	if x != nil {
 		return x.Direction
+	}
+	return 0
+}
+
+func (x *CallRecordItem) GetRole() int32 {
+	if x != nil {
+		return x.Role
 	}
 	return 0
 }
@@ -3431,7 +3440,7 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\rsignalRecords\x18\x02 \x03(\v2\x18.openim.rtc.SignalRecordR\rsignalRecords\",\n" +
 	"\x16DeleteSignalRecordsReq\x12\x12\n" +
 	"\x04sIDs\x18\x01 \x03(\tR\x04sIDs\"\x19\n" +
-	"\x17DeleteSignalRecordsResp\"\xa2\x04\n" +
+	"\x17DeleteSignalRecordsResp\"\xb6\x04\n" +
 	"\x0eCallRecordItem\x12\x10\n" +
 	"\x03sid\x18\x01 \x01(\tR\x03sid\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x16\n" +
@@ -3449,7 +3458,8 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x11inviteeUserIDList\x18\v \x03(\tR\x11inviteeUserIDList\x12\x18\n" +
 	"\agroupID\x18\f \x01(\tR\agroupID\x12\x1c\n" +
 	"\tgroupName\x18\r \x01(\tR\tgroupName\x12\x1c\n" +
-	"\tdirection\x18\x0e \x01(\x05R\tdirection\x12\"\n" +
+	"\tdirection\x18\x0e \x01(\x05R\tdirection\x12\x12\n" +
+	"\x04role\x18\x11 \x01(\x05R\x04role\x12\"\n" +
 	"\fdialDuration\x18\x0f \x01(\x03R\fdialDuration\x12\"\n" +
 	"\fcallDuration\x18\x10 \x01(\x03R\fcallDuration\"\xd6\x01\n" +
 	"\x11GetCallRecordsReq\x12\x16\n" +

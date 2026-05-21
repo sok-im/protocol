@@ -49,6 +49,8 @@ message SetGroupInfoExReq {
   openim.protobuf.Int32Value allowEditGroupInfo = 13;
   // msgBurnDuration 群消息阅后即焚时长（秒）；0 表示关闭
   openim.protobuf.Int32Value msgBurnDuration = 14;
+  // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
+  openim.protobuf.Int32Value allowBurn = 15;
 }
 message SetGroupInfoExResp {}
 

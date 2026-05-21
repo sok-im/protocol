@@ -35,6 +35,8 @@ message GroupInfo {
   int32 allowEditGroupInfo = 21;
   // msgBurnDuration 群消息阅后即焚时长（秒）；0 表示未开启
   int32 msgBurnDuration = 22;
+  // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
+  int32 allowBurn = 23;
 }
 
 message GroupInfoForSet {
@@ -55,6 +57,8 @@ message GroupInfoForSet {
   openim.protobuf.Int32Value allowAddMember = 12;
   // allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
   openim.protobuf.Int32Value allowEditGroupInfo = 13;
+  // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
+  openim.protobuf.Int32Value allowBurn = 14;
 }
 
 message GroupMemberFullInfo {
