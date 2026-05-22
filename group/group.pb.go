@@ -5359,15 +5359,17 @@ func (*UnpinGroupResp) Descriptor() ([]byte, []int) {
 }
 
 type GroupInviteLinkInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LinkID        string                 `protobuf:"bytes,1,opt,name=linkID,proto3" json:"linkID"`
-	GroupID       string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID"`
-	CreatorID     string                 `protobuf:"bytes,3,opt,name=creatorID,proto3" json:"creatorID"`
-	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`       // unix ms；0=永不过期
-	MaxUseCount   int32                  `protobuf:"varint,5,opt,name=maxUseCount,proto3" json:"maxUseCount"` // 0=不限次数
-	UsedCount     int32                  `protobuf:"varint,6,opt,name=usedCount,proto3" json:"usedCount"`
-	Revoked       bool                   `protobuf:"varint,7,opt,name=revoked,proto3" json:"revoked"`
-	CreatedAt     int64                  `protobuf:"varint,8,opt,name=createdAt,proto3" json:"createdAt"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	LinkID      string                 `protobuf:"bytes,1,opt,name=linkID,proto3" json:"linkID"`
+	GroupID     string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID"`
+	CreatorID   string                 `protobuf:"bytes,3,opt,name=creatorID,proto3" json:"creatorID"`
+	ExpireAt    int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`       // unix ms；0=永不过期
+	MaxUseCount int32                  `protobuf:"varint,5,opt,name=maxUseCount,proto3" json:"maxUseCount"` // 0=不限次数
+	UsedCount   int32                  `protobuf:"varint,6,opt,name=usedCount,proto3" json:"usedCount"`
+	Revoked     bool                   `protobuf:"varint,7,opt,name=revoked,proto3" json:"revoked"`
+	CreatedAt   int64                  `protobuf:"varint,8,opt,name=createdAt,proto3" json:"createdAt"`
+	// shareURL 完整分享链接，由配置 shareLinkBaseURL + linkID 拼接；未配置时为空
+	ShareURL      string `protobuf:"bytes,9,opt,name=shareURL,proto3" json:"shareURL"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5456,6 +5458,13 @@ func (x *GroupInviteLinkInfo) GetCreatedAt() int64 {
 		return x.CreatedAt
 	}
 	return 0
+}
+
+func (x *GroupInviteLinkInfo) GetShareURL() string {
+	if x != nil {
+		return x.ShareURL
+	}
+	return ""
 }
 
 type CreateGroupInviteLinkReq struct {
@@ -6307,7 +6316,7 @@ const file_group_group_proto_rawDesc = "" +
 	"\fPinGroupResp\")\n" +
 	"\rUnpinGroupReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\"\x10\n" +
-	"\x0eUnpinGroupResp\"\xf9\x01\n" +
+	"\x0eUnpinGroupResp\"\x95\x02\n" +
 	"\x13GroupInviteLinkInfo\x12\x16\n" +
 	"\x06linkID\x18\x01 \x01(\tR\x06linkID\x12\x18\n" +
 	"\agroupID\x18\x02 \x01(\tR\agroupID\x12\x1c\n" +
@@ -6316,7 +6325,8 @@ const file_group_group_proto_rawDesc = "" +
 	"\vmaxUseCount\x18\x05 \x01(\x05R\vmaxUseCount\x12\x1c\n" +
 	"\tusedCount\x18\x06 \x01(\x05R\tusedCount\x12\x18\n" +
 	"\arevoked\x18\a \x01(\bR\arevoked\x12\x1c\n" +
-	"\tcreatedAt\x18\b \x01(\x03R\tcreatedAt\"|\n" +
+	"\tcreatedAt\x18\b \x01(\x03R\tcreatedAt\x12\x1a\n" +
+	"\bshareURL\x18\t \x01(\tR\bshareURL\"|\n" +
 	"\x18CreateGroupInviteLinkReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12$\n" +
 	"\rexpireSeconds\x18\x02 \x01(\x03R\rexpireSeconds\x12 \n" +

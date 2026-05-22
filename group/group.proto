@@ -514,6 +514,8 @@ message GroupInviteLinkInfo {
   int32  usedCount   = 6;
   bool   revoked     = 7;
   int64  createdAt   = 8;
+  // shareURL 完整分享链接，由配置 shareLinkBaseURL + linkID 拼接；未配置时为空
+  string shareURL    = 9;
 }
 
 message CreateGroupInviteLinkReq {
