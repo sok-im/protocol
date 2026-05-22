@@ -37,6 +37,8 @@ message GroupInfo {
   int32 msgBurnDuration = 22;
   // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
   int32 allowBurn = 23;
+  // enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
+  int32 enableInviteLink = 24;
 }
 
 message GroupInfoForSet {
@@ -59,6 +61,8 @@ message GroupInfoForSet {
   openim.protobuf.Int32Value allowEditGroupInfo = 13;
   // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
   openim.protobuf.Int32Value allowBurn = 14;
+  // enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
+  openim.protobuf.Int32Value enableInviteLink = 15;
 }
 
 message GroupMemberFullInfo {

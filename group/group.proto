@@ -51,6 +51,8 @@ message SetGroupInfoExReq {
   openim.protobuf.Int32Value msgBurnDuration = 14;
   // allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
   openim.protobuf.Int32Value allowBurn = 15;
+  // enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
+  openim.protobuf.Int32Value enableInviteLink = 16;
 }
 message SetGroupInfoExResp {}
 
@@ -501,6 +503,58 @@ message UnpinGroupReq {
 
 message UnpinGroupResp {}
 
+// ─── Invite Link ─────────────────────────────────────────────────────────────
+
+message GroupInviteLinkInfo {
+  string linkID      = 1;
+  string groupID     = 2;
+  string creatorID   = 3;
+  int64  expireAt    = 4;   // unix ms；0=永不过期
+  int32  maxUseCount = 5;   // 0=不限次数
+  int32  usedCount   = 6;
+  bool   revoked     = 7;
+  int64  createdAt   = 8;
+}
+
+message CreateGroupInviteLinkReq {
+  string groupID       = 1;
+  int64  expireSeconds = 2;  // 0=使用配置默认值
+  int32  maxUseCount   = 3;  // 0=使用配置默认值
+}
+message CreateGroupInviteLinkResp {
+  GroupInviteLinkInfo link = 1;
+}
+
+message GetGroupInviteLinkReq {
+  string linkID = 1;
+}
+message GetGroupInviteLinkResp {
+  GroupInviteLinkInfo           link      = 1;
+  openim.sdkws.GroupInfo        groupInfo = 2;
+  bool                          valid     = 3;  // false=已过期/已吊销/已超次
+}
+
+message JoinGroupByInviteLinkReq {
+  string linkID      = 1;
+  string reqMessage  = 2;
+}
+message JoinGroupByInviteLinkResp {}
+
+message RevokeGroupInviteLinkReq {
+  string linkID  = 1;
+  string groupID = 2;
+}
+message RevokeGroupInviteLinkResp {}
+
+message ListGroupInviteLinksReq {
+  string                        groupID    = 1;
+  openim.sdkws.RequestPagination pagination = 2;
+}
+message ListGroupInviteLinksResp {
+  uint32                      total = 1;
+  repeated GroupInviteLinkInfo links = 2;
+}
+
 service group {
   // Create group
   rpc createGroup(CreateGroupReq) returns (CreateGroupResp);
@@ -597,4 +651,11 @@ service group {
   rpc pinGroup(PinGroupReq) returns (PinGroupResp);
   // 当前用户取消置顶该群会话（同步写入 conversation.isPinned = false）
   rpc unpinGroup(UnpinGroupReq) returns (UnpinGroupResp);
+
+  // 群邀请链接：生成/查询/通过链接入群/吊销/列表
+  rpc createGroupInviteLink(CreateGroupInviteLinkReq) returns (CreateGroupInviteLinkResp);
+  rpc getGroupInviteLink(GetGroupInviteLinkReq) returns (GetGroupInviteLinkResp);
+  rpc joinGroupByInviteLink(JoinGroupByInviteLinkReq) returns (JoinGroupByInviteLinkResp);
+  rpc revokeGroupInviteLink(RevokeGroupInviteLinkReq) returns (RevokeGroupInviteLinkResp);
+  rpc listGroupInviteLinks(ListGroupInviteLinksReq) returns (ListGroupInviteLinksResp);
 }

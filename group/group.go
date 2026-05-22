@@ -459,3 +459,50 @@ func (x *UnpinGroupReq) Check() error {
 	}
 	return nil
 }
+
+func (x *CreateGroupInviteLinkReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	if x.ExpireSeconds < 0 {
+		return errors.New("expireSeconds must be >= 0")
+	}
+	if x.MaxUseCount < 0 {
+		return errors.New("maxUseCount must be >= 0")
+	}
+	return nil
+}
+
+func (x *GetGroupInviteLinkReq) Check() error {
+	if x.LinkID == "" {
+		return errors.New("linkID is empty")
+	}
+	return nil
+}
+
+func (x *JoinGroupByInviteLinkReq) Check() error {
+	if x.LinkID == "" {
+		return errors.New("linkID is empty")
+	}
+	return nil
+}
+
+func (x *RevokeGroupInviteLinkReq) Check() error {
+	if x.LinkID == "" {
+		return errors.New("linkID is empty")
+	}
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	return nil
+}
+
+func (x *ListGroupInviteLinksReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	if x.Pagination == nil {
+		return errors.New("pagination is empty")
+	}
+	return nil
+}
