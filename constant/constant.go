@@ -318,9 +318,10 @@ const (
 )
 
 const (
-	ApplyNeedVerificationInviteDirectly = 0 // requests require approval; invitations join directly
-	AllNeedVerification                 = 1 // everyone needs verification unless invited by the owner or admin
-	Directly                            = 2 // join directly without verification
+	// 以下取值仅用于群分享/邀请链接入群（JoinGroupByInviteLink）；主动申请、邀请拉人不再读取 needVerification。
+	ApplyNeedVerificationInviteDirectly = 0 // 分享链接入群需审批
+	AllNeedVerification                 = 1 // 分享链接入群需审批（与 0 在链接入群场景等价）
+	Directly                            = 2 // 分享链接入群无需审批，直接入群
 )
 
 const (
