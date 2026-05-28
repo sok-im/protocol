@@ -1,0 +1,139 @@
+syntax = "proto3";
+package openim.virgilsecurity;
+option go_package = "github.com/openimsdk/protocol/virgilsecurity";
+
+// ---------- Virgil JWT ----------
+
+message IssueVirgilJWTReq {
+  string deviceID = 1;
+  int32 tokenTtlSec = 2;
+}
+
+message IssueVirgilJWTResp {
+  string virgilJwt = 1;
+  string identity = 2;
+  int64 expiresAt = 3;
+}
+
+// ---------- Device ----------
+
+message DeviceItem {
+  string deviceID = 1;
+  string cardID = 2;
+  string platform = 3;
+  string status = 4;
+  string clientVersion = 5;
+  int64 lastSeenAt = 6;
+  int64 registeredAt = 7;
+}
+
+message RegisterDeviceReq {
+  string deviceID = 1;
+  string cardID = 2;
+  string platform = 3;
+  string clientVersion = 4;
+  string idempotencyKey = 5;
+}
+
+message RegisterDeviceResp {
+  string userID = 1;
+  string deviceID = 2;
+  string cardID = 3;
+  string status = 4;
+  int64 registeredAt = 5;
+  bool idempotentReplay = 6;
+}
+
+message GetDevicesReq {
+  string userID = 1;
+  bool includeRevoked = 2;
+}
+
+message GetDevicesResp {
+  string userID = 1;
+  repeated DeviceItem devices = 2;
+  int64 version = 3;
+}
+
+message RevokeDeviceReq {
+  string deviceID = 1;
+  string reason = 2;
+}
+
+message RevokeDeviceResp {
+  string deviceID = 1;
+  string status = 2;
+  int64 revokedAt = 3;
+}
+
+// ---------- Conversation ----------
+
+message EnsureConversationReq {
+  string peerUserID = 1;
+}
+
+message EnsureConversationResp {
+  string conversationID = 1;
+  int64 createdAt = 2;
+}
+
+// ---------- Event subscribe ----------
+
+message DeviceChange {
+  string deviceID = 1;
+  string status = 2;
+}
+
+message SubscribeEventsReq {
+  string userID = 1;
+  int64 sinceVersion = 2;
+  int32 timeoutSec = 3;
+}
+
+message EventEnvelope {
+  string type = 1;
+  string userID = 2;
+  int64 version = 3;
+  repeated DeviceChange changes = 4;
+}
+
+message SubscribeEventsResp {
+  repeated EventEnvelope events = 1;
+  int64 latestVersion = 2;
+}
+
+// ---------- File upload ----------
+
+message CreateUploadURLReq {
+  int64 size = 1;
+  string contentType = 2;
+  string conversationID = 3;
+}
+
+message CreateUploadURLResp {
+  string uploadUrl = 1;
+  string downloadUrl = 2;
+  string fileRefID = 3;
+  int64 expiresAt = 4;
+}
+
+// ---------- Service ----------
+
+service VirgilSecurityService {
+  // Virgil JWT
+  rpc IssueVirgilJWT(IssueVirgilJWTReq) returns(IssueVirgilJWTResp);
+
+  // Device management
+  rpc RegisterDevice(RegisterDeviceReq) returns(RegisterDeviceResp);
+  rpc GetDevices(GetDevicesReq) returns(GetDevicesResp);
+  rpc RevokeDevice(RevokeDeviceReq) returns(RevokeDeviceResp);
+
+  // Conversation
+  rpc EnsureConversation(EnsureConversationReq) returns(EnsureConversationResp);
+
+  // Event subscription (long poll semantics)
+  rpc SubscribeEvents(SubscribeEventsReq) returns(SubscribeEventsResp);
+
+  // File upload helper
+  rpc CreateUploadURL(CreateUploadURLReq) returns(CreateUploadURLResp);
+}
