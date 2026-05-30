@@ -1,0 +1,196 @@
+syntax = "proto3";
+package openim.openmls;
+option go_package = "github.com/openimsdk/protocol/openmls";
+
+// ---------- KeyPackage ----------
+
+message UploadKeyPackageReq {
+  string userID = 1;
+  string deviceID = 2;
+  string platform = 3;
+  string keyPackage = 4;
+  string ciphersuite = 5;
+  string credentialType = 6;
+  int64 expiresAt = 7;
+}
+
+message UploadKeyPackageResp {
+  string kpID = 1;
+  int32 totalCount = 2;
+}
+
+message KeyPackageItem {
+  string kpID = 1;
+  string deviceID = 2;
+  string platform = 3;
+  string keyPackage = 4;
+  bool consumed = 5;
+}
+
+message GetKeyPackagesReq {
+  string userID = 1;
+  string excludeDeviceID = 2;
+  int32 countPerDevice = 3;
+}
+
+message GetKeyPackagesResp {
+  string userID = 1;
+  repeated KeyPackageItem keyPackages = 2;
+}
+
+message DeviceCount {
+  string deviceID = 1;
+  int32 availableCount = 2;
+}
+
+message GetKeyPackageCountReq {
+  string userID = 1;
+}
+
+message GetKeyPackageCountResp {
+  string userID = 1;
+  repeated DeviceCount devices = 2;
+  int32 totalAvailable = 3;
+}
+
+message RefreshKeyPackagesReq {
+  string userID = 1;
+  string deviceID = 2;
+  repeated string keyPackages = 3;
+}
+
+message RefreshKeyPackagesResp {
+  int32 uploadedCount = 1;
+  int32 totalCount = 2;
+}
+
+// ---------- Group Commit ----------
+
+message WelcomeMessage {
+  string recipientUserID = 1;
+  string recipientDeviceID = 2;
+  string welcomeMessage = 3;
+}
+
+message SubmitCommitReq {
+  string groupID = 1;
+  string senderUserID = 2;
+  string senderDeviceID = 3;
+  uint64 fromEpoch = 4;
+  string commitMessage = 5;
+  repeated WelcomeMessage welcomeMessages = 6;
+}
+
+message SubmitCommitResp {
+  uint64 newEpoch = 1;
+  int64 sequenceNumber = 2;
+  int32 broadcastCount = 3;
+}
+
+message GetCommitsReq {
+  string groupID = 1;
+  uint64 sinceEpoch = 2;
+  int32 limit = 3;
+}
+
+message CommitRecord {
+  uint64 epoch = 1;
+  int64 sequenceNumber = 2;
+  string commitMessage = 3;
+  string senderUserID = 4;
+  int64 createdAt = 5;
+}
+
+message GetCommitsResp {
+  string groupID = 1;
+  repeated CommitRecord commits = 2;
+  uint64 currentEpoch = 3;
+  bool hasMore = 4;
+}
+
+message SendWelcomeReq {
+  string groupID = 1;
+  string senderUserID = 2;
+  repeated WelcomeMessage recipients = 3;
+}
+
+message SendWelcomeResp {
+  int32 deliveredCount = 1;
+}
+
+message GetGroupStateReq {
+  string groupID = 1;
+}
+
+message GetGroupStateResp {
+  string groupID = 1;
+  uint64 currentEpoch = 2;
+  int32 memberCount = 3;
+  int64 lastCommitAt = 4;
+  int64 createdAt = 5;
+}
+
+message DeleteGroupReq {
+  string groupID = 1;
+}
+
+message DeleteGroupResp {}
+
+// ---------- Credential ----------
+
+message IssueCredentialReq {
+  string userID = 1;
+  string deviceID = 2;
+  string platform = 3;
+  string leafPublicKey = 4;
+  string clientVersion = 5;
+}
+
+message IssueCredentialResp {
+  string credential = 1;
+  string credentialType = 2;
+  int64 issuedAt = 3;
+  int64 expiresAt = 4;
+  string issuer = 5;
+}
+
+message VerifyCredentialReq {
+  string credential = 1;
+}
+
+message VerifyCredentialResp {
+  bool valid = 1;
+  string userID = 2;
+  string deviceID = 3;
+  int64 expiresAt = 4;
+}
+
+message GetRootPublicKeyReq {}
+
+message GetRootPublicKeyResp {
+  string publicKey = 1;
+  string keyID = 2;
+  string algorithm = 3;
+}
+
+// ---------- Service ----------
+
+service OpenMLSService {
+  // KeyPackage management
+  rpc UploadKeyPackage(UploadKeyPackageReq)    returns (UploadKeyPackageResp);
+  rpc GetKeyPackages(GetKeyPackagesReq)         returns (GetKeyPackagesResp);
+  rpc GetKeyPackageCount(GetKeyPackageCountReq) returns (GetKeyPackageCountResp);
+  rpc RefreshKeyPackages(RefreshKeyPackagesReq) returns (RefreshKeyPackagesResp);
+
+  // Group Commit management
+  rpc SubmitCommit(SubmitCommitReq)    returns (SubmitCommitResp);
+  rpc GetCommits(GetCommitsReq)        returns (GetCommitsResp);
+  rpc SendWelcome(SendWelcomeReq)      returns (SendWelcomeResp);
+  rpc GetGroupState(GetGroupStateReq)  returns (GetGroupStateResp);
+  rpc DeleteGroup(DeleteGroupReq)      returns (DeleteGroupResp);
+
+  // Credential management
+  rpc IssueCredential(IssueCredentialReq)   returns (IssueCredentialResp);
+  rpc VerifyCredential(VerifyCredentialReq) returns (VerifyCredentialResp);
+  rpc GetRootPublicKey(GetRootPublicKeyReq) returns (GetRootPublicKeyResp);
+}
