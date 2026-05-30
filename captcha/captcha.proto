@@ -23,7 +23,32 @@ message verifyCaptchaResp {
   bool success = 1;
 }
 
+message generateClickCaptchaReq {}
+
+message generateClickCaptchaResp {
+  string captchaID = 1;
+  string masterImage = 2;
+  string thumbImage = 3;
+  int64 expireAt = 4;
+}
+
+message clickPoint {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message verifyClickCaptchaReq {
+  string captchaID = 1;
+  repeated clickPoint dots = 2;
+}
+
+message verifyClickCaptchaResp {
+  bool success = 1;
+}
+
 service Captcha {
   rpc generateCaptcha(generateCaptchaReq) returns (generateCaptchaResp);
   rpc verifyCaptcha(verifyCaptchaReq) returns (verifyCaptchaResp);
+  rpc generateClickCaptcha(generateClickCaptchaReq) returns (generateClickCaptchaResp);
+  rpc verifyClickCaptcha(verifyClickCaptchaReq) returns (verifyClickCaptchaResp);
 }

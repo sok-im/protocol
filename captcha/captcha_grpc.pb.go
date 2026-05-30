@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v6.33.0
-// source: captcha/captcha.proto
+// source: captcha.proto
 
 package captcha
 
@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Captcha_GenerateCaptcha_FullMethodName = "/openim.captcha.Captcha/generateCaptcha"
-	Captcha_VerifyCaptcha_FullMethodName   = "/openim.captcha.Captcha/verifyCaptcha"
+	Captcha_GenerateCaptcha_FullMethodName      = "/openim.captcha.Captcha/generateCaptcha"
+	Captcha_VerifyCaptcha_FullMethodName        = "/openim.captcha.Captcha/verifyCaptcha"
+	Captcha_GenerateClickCaptcha_FullMethodName = "/openim.captcha.Captcha/generateClickCaptcha"
+	Captcha_VerifyClickCaptcha_FullMethodName   = "/openim.captcha.Captcha/verifyClickCaptcha"
 )
 
 // CaptchaClient is the client API for Captcha service.
@@ -29,6 +31,8 @@ const (
 type CaptchaClient interface {
 	GenerateCaptcha(ctx context.Context, in *GenerateCaptchaReq, opts ...grpc.CallOption) (*GenerateCaptchaResp, error)
 	VerifyCaptcha(ctx context.Context, in *VerifyCaptchaReq, opts ...grpc.CallOption) (*VerifyCaptchaResp, error)
+	GenerateClickCaptcha(ctx context.Context, in *GenerateClickCaptchaReq, opts ...grpc.CallOption) (*GenerateClickCaptchaResp, error)
+	VerifyClickCaptcha(ctx context.Context, in *VerifyClickCaptchaReq, opts ...grpc.CallOption) (*VerifyClickCaptchaResp, error)
 }
 
 type captchaClient struct {
@@ -59,12 +63,34 @@ func (c *captchaClient) VerifyCaptcha(ctx context.Context, in *VerifyCaptchaReq,
 	return out, nil
 }
 
+func (c *captchaClient) GenerateClickCaptcha(ctx context.Context, in *GenerateClickCaptchaReq, opts ...grpc.CallOption) (*GenerateClickCaptchaResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GenerateClickCaptchaResp)
+	err := c.cc.Invoke(ctx, Captcha_GenerateClickCaptcha_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *captchaClient) VerifyClickCaptcha(ctx context.Context, in *VerifyClickCaptchaReq, opts ...grpc.CallOption) (*VerifyClickCaptchaResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyClickCaptchaResp)
+	err := c.cc.Invoke(ctx, Captcha_VerifyClickCaptcha_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CaptchaServer is the server API for Captcha service.
 // All implementations must embed UnimplementedCaptchaServer
 // for forward compatibility.
 type CaptchaServer interface {
 	GenerateCaptcha(context.Context, *GenerateCaptchaReq) (*GenerateCaptchaResp, error)
 	VerifyCaptcha(context.Context, *VerifyCaptchaReq) (*VerifyCaptchaResp, error)
+	GenerateClickCaptcha(context.Context, *GenerateClickCaptchaReq) (*GenerateClickCaptchaResp, error)
+	VerifyClickCaptcha(context.Context, *VerifyClickCaptchaReq) (*VerifyClickCaptchaResp, error)
 	mustEmbedUnimplementedCaptchaServer()
 }
 
@@ -80,6 +106,12 @@ func (UnimplementedCaptchaServer) GenerateCaptcha(context.Context, *GenerateCapt
 }
 func (UnimplementedCaptchaServer) VerifyCaptcha(context.Context, *VerifyCaptchaReq) (*VerifyCaptchaResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method VerifyCaptcha not implemented")
+}
+func (UnimplementedCaptchaServer) GenerateClickCaptcha(context.Context, *GenerateClickCaptchaReq) (*GenerateClickCaptchaResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GenerateClickCaptcha not implemented")
+}
+func (UnimplementedCaptchaServer) VerifyClickCaptcha(context.Context, *VerifyClickCaptchaReq) (*VerifyClickCaptchaResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method VerifyClickCaptcha not implemented")
 }
 func (UnimplementedCaptchaServer) mustEmbedUnimplementedCaptchaServer() {}
 func (UnimplementedCaptchaServer) testEmbeddedByValue()                 {}
@@ -138,6 +170,42 @@ func _Captcha_VerifyCaptcha_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Captcha_GenerateClickCaptcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateClickCaptchaReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CaptchaServer).GenerateClickCaptcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Captcha_GenerateClickCaptcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CaptchaServer).GenerateClickCaptcha(ctx, req.(*GenerateClickCaptchaReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Captcha_VerifyClickCaptcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyClickCaptchaReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CaptchaServer).VerifyClickCaptcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Captcha_VerifyClickCaptcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CaptchaServer).VerifyClickCaptcha(ctx, req.(*VerifyClickCaptchaReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Captcha_ServiceDesc is the grpc.ServiceDesc for Captcha service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -153,7 +221,15 @@ var Captcha_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "verifyCaptcha",
 			Handler:    _Captcha_VerifyCaptcha_Handler,
 		},
+		{
+			MethodName: "generateClickCaptcha",
+			Handler:    _Captcha_GenerateClickCaptcha_Handler,
+		},
+		{
+			MethodName: "verifyClickCaptcha",
+			Handler:    _Captcha_VerifyClickCaptcha_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "captcha/captcha.proto",
+	Metadata: "captcha.proto",
 }

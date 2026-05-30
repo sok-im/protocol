@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.0
-// source: captcha/captcha.proto
+// source: captcha.proto
 
 package captcha
 
@@ -29,7 +29,7 @@ type GenerateCaptchaReq struct {
 
 func (x *GenerateCaptchaReq) Reset() {
 	*x = GenerateCaptchaReq{}
-	mi := &file_captcha_captcha_proto_msgTypes[0]
+	mi := &file_captcha_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41,7 +41,7 @@ func (x *GenerateCaptchaReq) String() string {
 func (*GenerateCaptchaReq) ProtoMessage() {}
 
 func (x *GenerateCaptchaReq) ProtoReflect() protoreflect.Message {
-	mi := &file_captcha_captcha_proto_msgTypes[0]
+	mi := &file_captcha_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -54,23 +54,23 @@ func (x *GenerateCaptchaReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateCaptchaReq.ProtoReflect.Descriptor instead.
 func (*GenerateCaptchaReq) Descriptor() ([]byte, []int) {
-	return file_captcha_captcha_proto_rawDescGZIP(), []int{0}
+	return file_captcha_proto_rawDescGZIP(), []int{0}
 }
 
 type GenerateCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
-	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage"`
-	TileImage     string                 `protobuf:"bytes,3,opt,name=tileImage,proto3" json:"tileImage"`
-	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`
-	TileY         int32                  `protobuf:"varint,5,opt,name=tileY,proto3" json:"tileY"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
+	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage,omitempty"`
+	TileImage     string                 `protobuf:"bytes,3,opt,name=tileImage,proto3" json:"tileImage,omitempty"`
+	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt,omitempty"`
+	TileY         int32                  `protobuf:"varint,5,opt,name=tileY,proto3" json:"tileY,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GenerateCaptchaResp) Reset() {
 	*x = GenerateCaptchaResp{}
-	mi := &file_captcha_captcha_proto_msgTypes[1]
+	mi := &file_captcha_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -82,7 +82,7 @@ func (x *GenerateCaptchaResp) String() string {
 func (*GenerateCaptchaResp) ProtoMessage() {}
 
 func (x *GenerateCaptchaResp) ProtoReflect() protoreflect.Message {
-	mi := &file_captcha_captcha_proto_msgTypes[1]
+	mi := &file_captcha_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -95,7 +95,7 @@ func (x *GenerateCaptchaResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateCaptchaResp.ProtoReflect.Descriptor instead.
 func (*GenerateCaptchaResp) Descriptor() ([]byte, []int) {
-	return file_captcha_captcha_proto_rawDescGZIP(), []int{1}
+	return file_captcha_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GenerateCaptchaResp) GetCaptchaID() string {
@@ -135,16 +135,16 @@ func (x *GenerateCaptchaResp) GetTileY() int32 {
 
 type VerifyCaptchaReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
-	X             int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x"`
-	Y             int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
+	X             int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y             int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VerifyCaptchaReq) Reset() {
 	*x = VerifyCaptchaReq{}
-	mi := &file_captcha_captcha_proto_msgTypes[2]
+	mi := &file_captcha_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -156,7 +156,7 @@ func (x *VerifyCaptchaReq) String() string {
 func (*VerifyCaptchaReq) ProtoMessage() {}
 
 func (x *VerifyCaptchaReq) ProtoReflect() protoreflect.Message {
-	mi := &file_captcha_captcha_proto_msgTypes[2]
+	mi := &file_captcha_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +169,7 @@ func (x *VerifyCaptchaReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyCaptchaReq.ProtoReflect.Descriptor instead.
 func (*VerifyCaptchaReq) Descriptor() ([]byte, []int) {
-	return file_captcha_captcha_proto_rawDescGZIP(), []int{2}
+	return file_captcha_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VerifyCaptchaReq) GetCaptchaID() string {
@@ -195,14 +195,14 @@ func (x *VerifyCaptchaReq) GetY() int32 {
 
 type VerifyCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VerifyCaptchaResp) Reset() {
 	*x = VerifyCaptchaResp{}
-	mi := &file_captcha_captcha_proto_msgTypes[3]
+	mi := &file_captcha_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -214,7 +214,7 @@ func (x *VerifyCaptchaResp) String() string {
 func (*VerifyCaptchaResp) ProtoMessage() {}
 
 func (x *VerifyCaptchaResp) ProtoReflect() protoreflect.Message {
-	mi := &file_captcha_captcha_proto_msgTypes[3]
+	mi := &file_captcha_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -227,7 +227,7 @@ func (x *VerifyCaptchaResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyCaptchaResp.ProtoReflect.Descriptor instead.
 func (*VerifyCaptchaResp) Descriptor() ([]byte, []int) {
-	return file_captcha_captcha_proto_rawDescGZIP(), []int{3}
+	return file_captcha_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VerifyCaptchaResp) GetSuccess() bool {
@@ -237,11 +237,263 @@ func (x *VerifyCaptchaResp) GetSuccess() bool {
 	return false
 }
 
-var File_captcha_captcha_proto protoreflect.FileDescriptor
+type GenerateClickCaptchaReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
 
-const file_captcha_captcha_proto_rawDesc = "" +
+func (x *GenerateClickCaptchaReq) Reset() {
+	*x = GenerateClickCaptchaReq{}
+	mi := &file_captcha_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GenerateClickCaptchaReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GenerateClickCaptchaReq) ProtoMessage() {}
+
+func (x *GenerateClickCaptchaReq) ProtoReflect() protoreflect.Message {
+	mi := &file_captcha_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GenerateClickCaptchaReq.ProtoReflect.Descriptor instead.
+func (*GenerateClickCaptchaReq) Descriptor() ([]byte, []int) {
+	return file_captcha_proto_rawDescGZIP(), []int{4}
+}
+
+type GenerateClickCaptchaResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
+	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage,omitempty"`
+	ThumbImage    string                 `protobuf:"bytes,3,opt,name=thumbImage,proto3" json:"thumbImage,omitempty"`
+	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GenerateClickCaptchaResp) Reset() {
+	*x = GenerateClickCaptchaResp{}
+	mi := &file_captcha_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GenerateClickCaptchaResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GenerateClickCaptchaResp) ProtoMessage() {}
+
+func (x *GenerateClickCaptchaResp) ProtoReflect() protoreflect.Message {
+	mi := &file_captcha_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GenerateClickCaptchaResp.ProtoReflect.Descriptor instead.
+func (*GenerateClickCaptchaResp) Descriptor() ([]byte, []int) {
+	return file_captcha_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GenerateClickCaptchaResp) GetCaptchaID() string {
+	if x != nil {
+		return x.CaptchaID
+	}
+	return ""
+}
+
+func (x *GenerateClickCaptchaResp) GetMasterImage() string {
+	if x != nil {
+		return x.MasterImage
+	}
+	return ""
+}
+
+func (x *GenerateClickCaptchaResp) GetThumbImage() string {
+	if x != nil {
+		return x.ThumbImage
+	}
+	return ""
+}
+
+func (x *GenerateClickCaptchaResp) GetExpireAt() int64 {
+	if x != nil {
+		return x.ExpireAt
+	}
+	return 0
+}
+
+type ClickPoint struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	X             int32                  `protobuf:"varint,1,opt,name=x,proto3" json:"x,omitempty"`
+	Y             int32                  `protobuf:"varint,2,opt,name=y,proto3" json:"y,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClickPoint) Reset() {
+	*x = ClickPoint{}
+	mi := &file_captcha_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClickPoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClickPoint) ProtoMessage() {}
+
+func (x *ClickPoint) ProtoReflect() protoreflect.Message {
+	mi := &file_captcha_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClickPoint.ProtoReflect.Descriptor instead.
+func (*ClickPoint) Descriptor() ([]byte, []int) {
+	return file_captcha_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ClickPoint) GetX() int32 {
+	if x != nil {
+		return x.X
+	}
+	return 0
+}
+
+func (x *ClickPoint) GetY() int32 {
+	if x != nil {
+		return x.Y
+	}
+	return 0
+}
+
+type VerifyClickCaptchaReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
+	Dots          []*ClickPoint          `protobuf:"bytes,2,rep,name=dots,proto3" json:"dots,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyClickCaptchaReq) Reset() {
+	*x = VerifyClickCaptchaReq{}
+	mi := &file_captcha_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyClickCaptchaReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyClickCaptchaReq) ProtoMessage() {}
+
+func (x *VerifyClickCaptchaReq) ProtoReflect() protoreflect.Message {
+	mi := &file_captcha_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyClickCaptchaReq.ProtoReflect.Descriptor instead.
+func (*VerifyClickCaptchaReq) Descriptor() ([]byte, []int) {
+	return file_captcha_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *VerifyClickCaptchaReq) GetCaptchaID() string {
+	if x != nil {
+		return x.CaptchaID
+	}
+	return ""
+}
+
+func (x *VerifyClickCaptchaReq) GetDots() []*ClickPoint {
+	if x != nil {
+		return x.Dots
+	}
+	return nil
+}
+
+type VerifyClickCaptchaResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyClickCaptchaResp) Reset() {
+	*x = VerifyClickCaptchaResp{}
+	mi := &file_captcha_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyClickCaptchaResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyClickCaptchaResp) ProtoMessage() {}
+
+func (x *VerifyClickCaptchaResp) ProtoReflect() protoreflect.Message {
+	mi := &file_captcha_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyClickCaptchaResp.ProtoReflect.Descriptor instead.
+func (*VerifyClickCaptchaResp) Descriptor() ([]byte, []int) {
+	return file_captcha_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *VerifyClickCaptchaResp) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+var File_captcha_proto protoreflect.FileDescriptor
+
+const file_captcha_proto_rawDesc = "" +
 	"\n" +
-	"\x15captcha/captcha.proto\x12\x0eopenim.captcha\"\x14\n" +
+	"\rcaptcha.proto\x12\x0eopenim.captcha\"\x14\n" +
 	"\x12generateCaptchaReq\"\xa5\x01\n" +
 	"\x13generateCaptchaResp\x12\x1c\n" +
 	"\tcaptchaID\x18\x01 \x01(\tR\tcaptchaID\x12 \n" +
@@ -254,62 +506,91 @@ const file_captcha_captcha_proto_rawDesc = "" +
 	"\x01x\x18\x02 \x01(\x05R\x01x\x12\f\n" +
 	"\x01y\x18\x03 \x01(\x05R\x01y\"-\n" +
 	"\x11verifyCaptchaResp\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xbb\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x19\n" +
+	"\x17generateClickCaptchaReq\"\x96\x01\n" +
+	"\x18generateClickCaptchaResp\x12\x1c\n" +
+	"\tcaptchaID\x18\x01 \x01(\tR\tcaptchaID\x12 \n" +
+	"\vmasterImage\x18\x02 \x01(\tR\vmasterImage\x12\x1e\n" +
+	"\n" +
+	"thumbImage\x18\x03 \x01(\tR\n" +
+	"thumbImage\x12\x1a\n" +
+	"\bexpireAt\x18\x04 \x01(\x03R\bexpireAt\"(\n" +
+	"\n" +
+	"clickPoint\x12\f\n" +
+	"\x01x\x18\x01 \x01(\x05R\x01x\x12\f\n" +
+	"\x01y\x18\x02 \x01(\x05R\x01y\"e\n" +
+	"\x15verifyClickCaptchaReq\x12\x1c\n" +
+	"\tcaptchaID\x18\x01 \x01(\tR\tcaptchaID\x12.\n" +
+	"\x04dots\x18\x02 \x03(\v2\x1a.openim.captcha.clickPointR\x04dots\"2\n" +
+	"\x16verifyClickCaptchaResp\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x8b\x03\n" +
 	"\aCaptcha\x12Z\n" +
 	"\x0fgenerateCaptcha\x12\".openim.captcha.generateCaptchaReq\x1a#.openim.captcha.generateCaptchaResp\x12T\n" +
-	"\rverifyCaptcha\x12 .openim.captcha.verifyCaptchaReq\x1a!.openim.captcha.verifyCaptchaRespB'Z%github.com/openimsdk/protocol/captchab\x06proto3"
+	"\rverifyCaptcha\x12 .openim.captcha.verifyCaptchaReq\x1a!.openim.captcha.verifyCaptchaResp\x12i\n" +
+	"\x14generateClickCaptcha\x12'.openim.captcha.generateClickCaptchaReq\x1a(.openim.captcha.generateClickCaptchaResp\x12c\n" +
+	"\x12verifyClickCaptcha\x12%.openim.captcha.verifyClickCaptchaReq\x1a&.openim.captcha.verifyClickCaptchaRespB'Z%github.com/openimsdk/protocol/captchab\x06proto3"
 
 var (
-	file_captcha_captcha_proto_rawDescOnce sync.Once
-	file_captcha_captcha_proto_rawDescData []byte
+	file_captcha_proto_rawDescOnce sync.Once
+	file_captcha_proto_rawDescData []byte
 )
 
-func file_captcha_captcha_proto_rawDescGZIP() []byte {
-	file_captcha_captcha_proto_rawDescOnce.Do(func() {
-		file_captcha_captcha_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_captcha_captcha_proto_rawDesc), len(file_captcha_captcha_proto_rawDesc)))
+func file_captcha_proto_rawDescGZIP() []byte {
+	file_captcha_proto_rawDescOnce.Do(func() {
+		file_captcha_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_captcha_proto_rawDesc), len(file_captcha_proto_rawDesc)))
 	})
-	return file_captcha_captcha_proto_rawDescData
+	return file_captcha_proto_rawDescData
 }
 
-var file_captcha_captcha_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_captcha_captcha_proto_goTypes = []any{
-	(*GenerateCaptchaReq)(nil),  // 0: openim.captcha.generateCaptchaReq
-	(*GenerateCaptchaResp)(nil), // 1: openim.captcha.generateCaptchaResp
-	(*VerifyCaptchaReq)(nil),    // 2: openim.captcha.verifyCaptchaReq
-	(*VerifyCaptchaResp)(nil),   // 3: openim.captcha.verifyCaptchaResp
+var file_captcha_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_captcha_proto_goTypes = []any{
+	(*GenerateCaptchaReq)(nil),       // 0: openim.captcha.generateCaptchaReq
+	(*GenerateCaptchaResp)(nil),      // 1: openim.captcha.generateCaptchaResp
+	(*VerifyCaptchaReq)(nil),         // 2: openim.captcha.verifyCaptchaReq
+	(*VerifyCaptchaResp)(nil),        // 3: openim.captcha.verifyCaptchaResp
+	(*GenerateClickCaptchaReq)(nil),  // 4: openim.captcha.generateClickCaptchaReq
+	(*GenerateClickCaptchaResp)(nil), // 5: openim.captcha.generateClickCaptchaResp
+	(*ClickPoint)(nil),               // 6: openim.captcha.clickPoint
+	(*VerifyClickCaptchaReq)(nil),    // 7: openim.captcha.verifyClickCaptchaReq
+	(*VerifyClickCaptchaResp)(nil),   // 8: openim.captcha.verifyClickCaptchaResp
 }
-var file_captcha_captcha_proto_depIdxs = []int32{
-	0, // 0: openim.captcha.Captcha.generateCaptcha:input_type -> openim.captcha.generateCaptchaReq
-	2, // 1: openim.captcha.Captcha.verifyCaptcha:input_type -> openim.captcha.verifyCaptchaReq
-	1, // 2: openim.captcha.Captcha.generateCaptcha:output_type -> openim.captcha.generateCaptchaResp
-	3, // 3: openim.captcha.Captcha.verifyCaptcha:output_type -> openim.captcha.verifyCaptchaResp
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+var file_captcha_proto_depIdxs = []int32{
+	6, // 0: openim.captcha.verifyClickCaptchaReq.dots:type_name -> openim.captcha.clickPoint
+	0, // 1: openim.captcha.Captcha.generateCaptcha:input_type -> openim.captcha.generateCaptchaReq
+	2, // 2: openim.captcha.Captcha.verifyCaptcha:input_type -> openim.captcha.verifyCaptchaReq
+	4, // 3: openim.captcha.Captcha.generateClickCaptcha:input_type -> openim.captcha.generateClickCaptchaReq
+	7, // 4: openim.captcha.Captcha.verifyClickCaptcha:input_type -> openim.captcha.verifyClickCaptchaReq
+	1, // 5: openim.captcha.Captcha.generateCaptcha:output_type -> openim.captcha.generateCaptchaResp
+	3, // 6: openim.captcha.Captcha.verifyCaptcha:output_type -> openim.captcha.verifyCaptchaResp
+	5, // 7: openim.captcha.Captcha.generateClickCaptcha:output_type -> openim.captcha.generateClickCaptchaResp
+	8, // 8: openim.captcha.Captcha.verifyClickCaptcha:output_type -> openim.captcha.verifyClickCaptchaResp
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_captcha_captcha_proto_init() }
-func file_captcha_captcha_proto_init() {
-	if File_captcha_captcha_proto != nil {
+func init() { file_captcha_proto_init() }
+func file_captcha_proto_init() {
+	if File_captcha_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_captcha_captcha_proto_rawDesc), len(file_captcha_captcha_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_captcha_proto_rawDesc), len(file_captcha_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_captcha_captcha_proto_goTypes,
-		DependencyIndexes: file_captcha_captcha_proto_depIdxs,
-		MessageInfos:      file_captcha_captcha_proto_msgTypes,
+		GoTypes:           file_captcha_proto_goTypes,
+		DependencyIndexes: file_captcha_proto_depIdxs,
+		MessageInfos:      file_captcha_proto_msgTypes,
 	}.Build()
-	File_captcha_captcha_proto = out.File
-	file_captcha_captcha_proto_goTypes = nil
-	file_captcha_captcha_proto_depIdxs = nil
+	File_captcha_proto = out.File
+	file_captcha_proto_goTypes = nil
+	file_captcha_proto_depIdxs = nil
 }
