@@ -59,11 +59,11 @@ func (*GenerateCaptchaReq) Descriptor() ([]byte, []int) {
 
 type GenerateCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
-	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage,omitempty"`
-	TileImage     string                 `protobuf:"bytes,3,opt,name=tileImage,proto3" json:"tileImage,omitempty"`
-	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt,omitempty"`
-	TileY         int32                  `protobuf:"varint,5,opt,name=tileY,proto3" json:"tileY,omitempty"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
+	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage"`
+	TileImage     string                 `protobuf:"bytes,3,opt,name=tileImage,proto3" json:"tileImage"`
+	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`
+	TileY         int32                  `protobuf:"varint,5,opt,name=tileY,proto3" json:"tileY"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -135,9 +135,9 @@ func (x *GenerateCaptchaResp) GetTileY() int32 {
 
 type VerifyCaptchaReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
-	X             int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x,omitempty"`
-	Y             int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y,omitempty"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
+	X             int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x"`
+	Y             int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -195,7 +195,7 @@ func (x *VerifyCaptchaReq) GetY() int32 {
 
 type VerifyCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -275,10 +275,10 @@ func (*GenerateClickCaptchaReq) Descriptor() ([]byte, []int) {
 
 type GenerateClickCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
-	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage,omitempty"`
-	ThumbImage    string                 `protobuf:"bytes,3,opt,name=thumbImage,proto3" json:"thumbImage,omitempty"`
-	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt,omitempty"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
+	MasterImage   string                 `protobuf:"bytes,2,opt,name=masterImage,proto3" json:"masterImage"`
+	ThumbImage    string                 `protobuf:"bytes,3,opt,name=thumbImage,proto3" json:"thumbImage"`
+	ExpireAt      int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -343,8 +343,8 @@ func (x *GenerateClickCaptchaResp) GetExpireAt() int64 {
 
 type ClickPoint struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	X             int32                  `protobuf:"varint,1,opt,name=x,proto3" json:"x,omitempty"`
-	Y             int32                  `protobuf:"varint,2,opt,name=y,proto3" json:"y,omitempty"`
+	X             int32                  `protobuf:"varint,1,opt,name=x,proto3" json:"x"`
+	Y             int32                  `protobuf:"varint,2,opt,name=y,proto3" json:"y"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -395,8 +395,8 @@ func (x *ClickPoint) GetY() int32 {
 
 type VerifyClickCaptchaReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID,omitempty"`
-	Dots          []*ClickPoint          `protobuf:"bytes,2,rep,name=dots,proto3" json:"dots,omitempty"`
+	CaptchaID     string                 `protobuf:"bytes,1,opt,name=captchaID,proto3" json:"captchaID"`
+	Dots          []*ClickPoint          `protobuf:"bytes,2,rep,name=dots,proto3" json:"dots"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -447,7 +447,7 @@ func (x *VerifyClickCaptchaReq) GetDots() []*ClickPoint {
 
 type VerifyClickCaptchaResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

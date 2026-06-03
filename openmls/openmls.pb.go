@@ -23,13 +23,13 @@ const (
 
 type UploadKeyPackageReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	DeviceID       string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	Platform       string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
-	KeyPackage     string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage,omitempty"`
-	Ciphersuite    string                 `protobuf:"bytes,5,opt,name=ciphersuite,proto3" json:"ciphersuite,omitempty"`
-	CredentialType string                 `protobuf:"bytes,6,opt,name=credentialType,proto3" json:"credentialType,omitempty"`
-	ExpiresAt      int64                  `protobuf:"varint,7,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
+	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	DeviceID       string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
+	Platform       string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
+	KeyPackage     string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage"`
+	Ciphersuite    string                 `protobuf:"bytes,5,opt,name=ciphersuite,proto3" json:"ciphersuite"`
+	CredentialType string                 `protobuf:"bytes,6,opt,name=credentialType,proto3" json:"credentialType"`
+	ExpiresAt      int64                  `protobuf:"varint,7,opt,name=expiresAt,proto3" json:"expiresAt"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -115,8 +115,8 @@ func (x *UploadKeyPackageReq) GetExpiresAt() int64 {
 
 type UploadKeyPackageResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID,omitempty"`
-	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
+	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -167,11 +167,11 @@ func (x *UploadKeyPackageResp) GetTotalCount() int32 {
 
 type KeyPackageItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID,omitempty"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
-	KeyPackage    string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage,omitempty"`
-	Consumed      bool                   `protobuf:"varint,5,opt,name=consumed,proto3" json:"consumed,omitempty"`
+	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
+	KeyPackage    string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage"`
+	Consumed      bool                   `protobuf:"varint,5,opt,name=consumed,proto3" json:"consumed"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -243,9 +243,9 @@ func (x *KeyPackageItem) GetConsumed() bool {
 
 type GetKeyPackagesReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	ExcludeDeviceID string                 `protobuf:"bytes,2,opt,name=excludeDeviceID,proto3" json:"excludeDeviceID,omitempty"`
-	CountPerDevice  int32                  `protobuf:"varint,3,opt,name=countPerDevice,proto3" json:"countPerDevice,omitempty"`
+	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	ExcludeDeviceID string                 `protobuf:"bytes,2,opt,name=excludeDeviceID,proto3" json:"excludeDeviceID"`
+	CountPerDevice  int32                  `protobuf:"varint,3,opt,name=countPerDevice,proto3" json:"countPerDevice"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -303,8 +303,8 @@ func (x *GetKeyPackagesReq) GetCountPerDevice() int32 {
 
 type GetKeyPackagesResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	KeyPackages   []*KeyPackageItem      `protobuf:"bytes,2,rep,name=keyPackages,proto3" json:"keyPackages,omitempty"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	KeyPackages   []*KeyPackageItem      `protobuf:"bytes,2,rep,name=keyPackages,proto3" json:"keyPackages"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -355,8 +355,8 @@ func (x *GetKeyPackagesResp) GetKeyPackages() []*KeyPackageItem {
 
 type DeviceCount struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	DeviceID       string                 `protobuf:"bytes,1,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	AvailableCount int32                  `protobuf:"varint,2,opt,name=availableCount,proto3" json:"availableCount,omitempty"`
+	DeviceID       string                 `protobuf:"bytes,1,opt,name=deviceID,proto3" json:"deviceID"`
+	AvailableCount int32                  `protobuf:"varint,2,opt,name=availableCount,proto3" json:"availableCount"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -407,7 +407,7 @@ func (x *DeviceCount) GetAvailableCount() int32 {
 
 type GetKeyPackageCountReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -451,9 +451,9 @@ func (x *GetKeyPackageCountReq) GetUserID() string {
 
 type GetKeyPackageCountResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	Devices        []*DeviceCount         `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices,omitempty"`
-	TotalAvailable int32                  `protobuf:"varint,3,opt,name=totalAvailable,proto3" json:"totalAvailable,omitempty"`
+	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	Devices        []*DeviceCount         `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices"`
+	TotalAvailable int32                  `protobuf:"varint,3,opt,name=totalAvailable,proto3" json:"totalAvailable"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -511,9 +511,9 @@ func (x *GetKeyPackageCountResp) GetTotalAvailable() int32 {
 
 type RefreshKeyPackagesReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	KeyPackages   []string               `protobuf:"bytes,3,rep,name=keyPackages,proto3" json:"keyPackages,omitempty"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
+	KeyPackages   []string               `protobuf:"bytes,3,rep,name=keyPackages,proto3" json:"keyPackages"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -571,8 +571,8 @@ func (x *RefreshKeyPackagesReq) GetKeyPackages() []string {
 
 type RefreshKeyPackagesResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UploadedCount int32                  `protobuf:"varint,1,opt,name=uploadedCount,proto3" json:"uploadedCount,omitempty"`
-	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
+	UploadedCount int32                  `protobuf:"varint,1,opt,name=uploadedCount,proto3" json:"uploadedCount"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -623,9 +623,9 @@ func (x *RefreshKeyPackagesResp) GetTotalCount() int32 {
 
 type WelcomeMessage struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	RecipientUserID   string                 `protobuf:"bytes,1,opt,name=recipientUserID,proto3" json:"recipientUserID,omitempty"`
-	RecipientDeviceID string                 `protobuf:"bytes,2,opt,name=recipientDeviceID,proto3" json:"recipientDeviceID,omitempty"`
-	WelcomeMessage    string                 `protobuf:"bytes,3,opt,name=welcomeMessage,proto3" json:"welcomeMessage,omitempty"`
+	RecipientUserID   string                 `protobuf:"bytes,1,opt,name=recipientUserID,proto3" json:"recipientUserID"`
+	RecipientDeviceID string                 `protobuf:"bytes,2,opt,name=recipientDeviceID,proto3" json:"recipientDeviceID"`
+	WelcomeMessage    string                 `protobuf:"bytes,3,opt,name=welcomeMessage,proto3" json:"welcomeMessage"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -683,12 +683,12 @@ func (x *WelcomeMessage) GetWelcomeMessage() string {
 
 type SubmitCommitReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
-	SenderUserID    string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
-	SenderDeviceID  string                 `protobuf:"bytes,3,opt,name=senderDeviceID,proto3" json:"senderDeviceID,omitempty"`
-	FromEpoch       uint64                 `protobuf:"varint,4,opt,name=fromEpoch,proto3" json:"fromEpoch,omitempty"`
-	CommitMessage   string                 `protobuf:"bytes,5,opt,name=commitMessage,proto3" json:"commitMessage,omitempty"`
-	WelcomeMessages []*WelcomeMessage      `protobuf:"bytes,6,rep,name=welcomeMessages,proto3" json:"welcomeMessages,omitempty"`
+	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	SenderUserID    string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID"`
+	SenderDeviceID  string                 `protobuf:"bytes,3,opt,name=senderDeviceID,proto3" json:"senderDeviceID"`
+	FromEpoch       uint64                 `protobuf:"varint,4,opt,name=fromEpoch,proto3" json:"fromEpoch"`
+	CommitMessage   string                 `protobuf:"bytes,5,opt,name=commitMessage,proto3" json:"commitMessage"`
+	WelcomeMessages []*WelcomeMessage      `protobuf:"bytes,6,rep,name=welcomeMessages,proto3" json:"welcomeMessages"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -767,9 +767,9 @@ func (x *SubmitCommitReq) GetWelcomeMessages() []*WelcomeMessage {
 
 type SubmitCommitResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	NewEpoch       uint64                 `protobuf:"varint,1,opt,name=newEpoch,proto3" json:"newEpoch,omitempty"`
-	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber,omitempty"`
-	BroadcastCount int32                  `protobuf:"varint,3,opt,name=broadcastCount,proto3" json:"broadcastCount,omitempty"`
+	NewEpoch       uint64                 `protobuf:"varint,1,opt,name=newEpoch,proto3" json:"newEpoch"`
+	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber"`
+	BroadcastCount int32                  `protobuf:"varint,3,opt,name=broadcastCount,proto3" json:"broadcastCount"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -827,9 +827,9 @@ func (x *SubmitCommitResp) GetBroadcastCount() int32 {
 
 type GetCommitsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
-	SinceEpoch    uint64                 `protobuf:"varint,2,opt,name=sinceEpoch,proto3" json:"sinceEpoch,omitempty"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	SinceEpoch    uint64                 `protobuf:"varint,2,opt,name=sinceEpoch,proto3" json:"sinceEpoch"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -887,11 +887,11 @@ func (x *GetCommitsReq) GetLimit() int32 {
 
 type CommitRecord struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Epoch          uint64                 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber,omitempty"`
-	CommitMessage  string                 `protobuf:"bytes,3,opt,name=commitMessage,proto3" json:"commitMessage,omitempty"`
-	SenderUserID   string                 `protobuf:"bytes,4,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
-	CreatedAt      int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	Epoch          uint64                 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch"`
+	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber"`
+	CommitMessage  string                 `protobuf:"bytes,3,opt,name=commitMessage,proto3" json:"commitMessage"`
+	SenderUserID   string                 `protobuf:"bytes,4,opt,name=senderUserID,proto3" json:"senderUserID"`
+	CreatedAt      int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -963,10 +963,10 @@ func (x *CommitRecord) GetCreatedAt() int64 {
 
 type GetCommitsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
-	Commits       []*CommitRecord        `protobuf:"bytes,2,rep,name=commits,proto3" json:"commits,omitempty"`
-	CurrentEpoch  uint64                 `protobuf:"varint,3,opt,name=currentEpoch,proto3" json:"currentEpoch,omitempty"`
-	HasMore       bool                   `protobuf:"varint,4,opt,name=hasMore,proto3" json:"hasMore,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	Commits       []*CommitRecord        `protobuf:"bytes,2,rep,name=commits,proto3" json:"commits"`
+	CurrentEpoch  uint64                 `protobuf:"varint,3,opt,name=currentEpoch,proto3" json:"currentEpoch"`
+	HasMore       bool                   `protobuf:"varint,4,opt,name=hasMore,proto3" json:"hasMore"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1031,9 +1031,9 @@ func (x *GetCommitsResp) GetHasMore() bool {
 
 type SendWelcomeReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
-	SenderUserID  string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
-	Recipients    []*WelcomeMessage      `protobuf:"bytes,3,rep,name=recipients,proto3" json:"recipients,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	SenderUserID  string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID"`
+	Recipients    []*WelcomeMessage      `protobuf:"bytes,3,rep,name=recipients,proto3" json:"recipients"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1091,7 +1091,7 @@ func (x *SendWelcomeReq) GetRecipients() []*WelcomeMessage {
 
 type SendWelcomeResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	DeliveredCount int32                  `protobuf:"varint,1,opt,name=deliveredCount,proto3" json:"deliveredCount,omitempty"`
+	DeliveredCount int32                  `protobuf:"varint,1,opt,name=deliveredCount,proto3" json:"deliveredCount"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1135,7 +1135,7 @@ func (x *SendWelcomeResp) GetDeliveredCount() int32 {
 
 type GetGroupStateReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1179,11 +1179,11 @@ func (x *GetGroupStateReq) GetGroupID() string {
 
 type GetGroupStateResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
-	CurrentEpoch  uint64                 `protobuf:"varint,2,opt,name=currentEpoch,proto3" json:"currentEpoch,omitempty"`
-	MemberCount   int32                  `protobuf:"varint,3,opt,name=memberCount,proto3" json:"memberCount,omitempty"`
-	LastCommitAt  int64                  `protobuf:"varint,4,opt,name=lastCommitAt,proto3" json:"lastCommitAt,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	CurrentEpoch  uint64                 `protobuf:"varint,2,opt,name=currentEpoch,proto3" json:"currentEpoch"`
+	MemberCount   int32                  `protobuf:"varint,3,opt,name=memberCount,proto3" json:"memberCount"`
+	LastCommitAt  int64                  `protobuf:"varint,4,opt,name=lastCommitAt,proto3" json:"lastCommitAt"`
+	CreatedAt     int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1255,7 +1255,7 @@ func (x *GetGroupStateResp) GetCreatedAt() int64 {
 
 type DeleteGroupReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1335,11 +1335,11 @@ func (*DeleteGroupResp) Descriptor() ([]byte, []int) {
 
 type IssueCredentialReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
-	LeafPublicKey string                 `protobuf:"bytes,4,opt,name=leafPublicKey,proto3" json:"leafPublicKey,omitempty"`
-	ClientVersion string                 `protobuf:"bytes,5,opt,name=clientVersion,proto3" json:"clientVersion,omitempty"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
+	LeafPublicKey string                 `protobuf:"bytes,4,opt,name=leafPublicKey,proto3" json:"leafPublicKey"`
+	ClientVersion string                 `protobuf:"bytes,5,opt,name=clientVersion,proto3" json:"clientVersion"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1411,11 +1411,11 @@ func (x *IssueCredentialReq) GetClientVersion() string {
 
 type IssueCredentialResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Credential     string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential,omitempty"`
-	CredentialType string                 `protobuf:"bytes,2,opt,name=credentialType,proto3" json:"credentialType,omitempty"`
-	IssuedAt       int64                  `protobuf:"varint,3,opt,name=issuedAt,proto3" json:"issuedAt,omitempty"`
-	ExpiresAt      int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
-	Issuer         string                 `protobuf:"bytes,5,opt,name=issuer,proto3" json:"issuer,omitempty"`
+	Credential     string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential"`
+	CredentialType string                 `protobuf:"bytes,2,opt,name=credentialType,proto3" json:"credentialType"`
+	IssuedAt       int64                  `protobuf:"varint,3,opt,name=issuedAt,proto3" json:"issuedAt"`
+	ExpiresAt      int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt"`
+	Issuer         string                 `protobuf:"bytes,5,opt,name=issuer,proto3" json:"issuer"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1487,7 +1487,7 @@ func (x *IssueCredentialResp) GetIssuer() string {
 
 type VerifyCredentialReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Credential    string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential,omitempty"`
+	Credential    string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1531,10 +1531,10 @@ func (x *VerifyCredentialReq) GetCredential() string {
 
 type VerifyCredentialResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
-	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
-	DeviceID      string                 `protobuf:"bytes,3,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
-	ExpiresAt     int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	DeviceID      string                 `protobuf:"bytes,3,opt,name=deviceID,proto3" json:"deviceID"`
+	ExpiresAt     int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1635,9 +1635,9 @@ func (*GetRootPublicKeyReq) Descriptor() ([]byte, []int) {
 
 type GetRootPublicKeyResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublicKey     string                 `protobuf:"bytes,1,opt,name=publicKey,proto3" json:"publicKey,omitempty"`
-	KeyID         string                 `protobuf:"bytes,2,opt,name=keyID,proto3" json:"keyID,omitempty"`
-	Algorithm     string                 `protobuf:"bytes,3,opt,name=algorithm,proto3" json:"algorithm,omitempty"`
+	PublicKey     string                 `protobuf:"bytes,1,opt,name=publicKey,proto3" json:"publicKey"`
+	KeyID         string                 `protobuf:"bytes,2,opt,name=keyID,proto3" json:"keyID"`
+	Algorithm     string                 `protobuf:"bytes,3,opt,name=algorithm,proto3" json:"algorithm"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
