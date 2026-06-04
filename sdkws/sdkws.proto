@@ -357,6 +357,8 @@ message GroupMessagePinnedTips {
   int32 type = 3;
   GroupPinnedMsgInfo pinnedMsg = 4;
   repeated GroupPinnedMsgInfo pinnedList = 5;
+  // defaultTips English display text for the group notification message, e.g. "Alice pinned a text message"
+  string defaultTips = 6;
 }
 
 //	OnJoinGroupApplication()
