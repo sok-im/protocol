@@ -81,6 +81,11 @@ const (
 	GroupInfoSetAnnouncementNotification     = 1519
 	GroupInfoSetNameNotification             = 1520
 	GroupMessagePinnedNotification           = 1521
+	GroupCallStartedNotification             = 1522
+	GroupCallEndedNotification               = 1523
+	GroupBurnDurationSetNotification         = 1524
+	GroupFaceURLSetNotification              = 1525
+	GroupNeedVerificationSetNotification     = 1526
 
 	//SignalingNotificationBegin = 1600
 	//SignalingNotification      = 1601
@@ -184,9 +189,10 @@ const (
 	// UserJoinGroupSource.
 	JoinByAdmin = 1
 
-	JoinByInvitation = 2
-	JoinBySearch     = 3
-	JoinByQRCode     = 4
+	JoinByInvitation  = 2
+	JoinBySearch      = 3
+	JoinByQRCode      = 4
+	JoinByInviteLink  = 5
 
 	// Minio.
 	MinioDurationTimes = 3600

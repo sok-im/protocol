@@ -310,6 +310,29 @@ message GroupInfoSetNameTips {
   GroupInfo group = 2;
   uint64 groupMemberVersion = 3;
   string groupMemberVersionID = 4;
+  // defaultTips English display text, e.g. "Alice has changed the group name to NewName"
+  string defaultTips = 5;
+}
+
+// OnGroupNeedVerificationSet()
+// needVerification: 0=ApplyNeedVerification 1=AllNeedVerification 2=Directly(no approval)
+message GroupNeedVerificationSetTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  // needVerification is the new value: 0 or 1 = approval required, 2 = no approval
+  int32 needVerification = 3;
+  // defaultTips English display text, e.g. "Alice enabled join approval"
+  string defaultTips = 4;
+}
+
+// OnGroupFaceURLSet()
+message GroupFaceURLSetTips {
+  GroupMemberFullInfo opUser = 1; //who do this
+  GroupInfo group = 2;
+  uint64 groupMemberVersion = 3;
+  string groupMemberVersionID = 4;
+  // defaultTips English display text, e.g. "Alice has changed the group avatar"
+  string defaultTips = 5;
 }
 
 message GroupInfoSetAnnouncementTips {
@@ -359,6 +382,41 @@ message GroupMessagePinnedTips {
   repeated GroupPinnedMsgInfo pinnedList = 5;
   // defaultTips English display text for the group notification message, e.g. "Alice pinned a text message"
   string defaultTips = 6;
+}
+
+// OnGroupCallStarted()
+// mediaType: "audio" | "video" | "audio_video"
+message GroupCallStartedTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  // mediaType indicates the call type: "audio", "video", or "audio_video"
+  string mediaType = 3;
+  // defaultTips English display text, e.g. "Alice started an audio/video call"
+  string defaultTips = 4;
+}
+
+// OnGroupBurnDurationSet()
+// durationSecs: message disappear duration in seconds set by admin; 0 means turned off
+message GroupBurnDurationSetTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  // durationSecs is the new disappearing-message lifetime in seconds (0 = off)
+  int32 durationSecs = 3;
+  // defaultTips English display text, e.g. "Alice set disappearing messages to 1 day"
+  string defaultTips = 4;
+}
+
+// OnGroupCallEnded()
+// mediaType: "audio" | "video" | "audio_video"
+// durationSecs: call duration in seconds; 0 means the call was cancelled/not answered
+message GroupCallEndedTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  string mediaType = 3;
+  // durationSecs is the call duration in seconds (0 if not answered)
+  int64 durationSecs = 4;
+  // defaultTips English display text, e.g. "Alice ended an audio/video call (10 minutes 30 seconds)"
+  string defaultTips = 5;
 }
 
 //	OnJoinGroupApplication()
@@ -431,6 +489,8 @@ message MemberInvitedTips {
   uint64 groupMemberVersion = 5;
   string groupMemberVersionID = 6;
   GroupMemberFullInfo inviterUser = 7;
+  // defaultTips English display text, e.g. "Alice invited Bob to join the group"
+  string defaultTips = 8;
 }
 
 //Actively join the group
@@ -440,6 +500,10 @@ message MemberEnterTips {
   int64 operationTime = 3;
   uint64 groupMemberVersion = 5;
   string groupMemberVersionID = 6;
+  // joinSource: 1=admin 2=invitation 3=search 4=qrcode 5=invite_link
+  int32 joinSource = 7;
+  // defaultTips English display text, e.g. "Alice joined the group via invite link"
+  string defaultTips = 8;
 }
 
 message GroupDismissedTips {
@@ -473,6 +537,8 @@ message GroupMutedTips {
   int64 operationTime = 3;
   uint64 groupMemberVersion = 4;
   string groupMemberVersionID = 5;
+  // defaultTips English display text, e.g. "Alice muted all members"
+  string defaultTips = 6;
 }
 
 message GroupCancelMutedTips {
@@ -481,6 +547,8 @@ message GroupCancelMutedTips {
   int64 operationTime = 3;
   uint64 groupMemberVersion = 4;
   string groupMemberVersionID = 5;
+  // defaultTips English display text, e.g. "Alice unmuted all members"
+  string defaultTips = 6;
 }
 
 message GroupMemberInfoSetTips {
