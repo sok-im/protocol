@@ -113,6 +113,8 @@ message UserInfo {
   string lastName = 13;
   // callRingtoneURL 用户设置的来电铃声 URL；被叫方收到 InvitationInfo 时播放主叫方的铃声
   string callRingtoneURL = 14;
+  // callRingtoneName 用户设置的来电铃声名称（展示用）
+  string callRingtoneName = 18;
   // groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
   int32 groupInviteSetting = 16;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
@@ -134,6 +136,8 @@ message UserInfoWithEx {
   openim.protobuf.Int32Value msgReceiveSetting = 11;
   // callRingtoneURL 用户设置的来电铃声 URL（可选更新）
   openim.protobuf.StringValue callRingtoneURL = 12;
+  // callRingtoneName 用户设置的来电铃声名称（可选更新）
+  openim.protobuf.StringValue callRingtoneName = 16;
   // groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
   openim.protobuf.Int32Value groupInviteSetting = 14;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭

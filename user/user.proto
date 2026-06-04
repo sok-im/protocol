@@ -380,6 +380,15 @@ message setCallAcceptSettingReq {
 }
 message setCallAcceptSettingResp {}
 
+message setCallRingtoneReq {
+  string userID = 1;
+  // callRingtoneURL 用户自定义来电铃声 URL；空字符串表示清除，使用客户端默认铃声
+  string callRingtoneURL = 2;
+  // callRingtoneName 用户自定义来电铃声名称；空字符串表示清除
+  string callRingtoneName = 3;
+}
+message setCallRingtoneResp {}
+
 message setMsgReceiveSettingReq {
   string userID = 1;
   // msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
