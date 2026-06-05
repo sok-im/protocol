@@ -4153,8 +4153,12 @@ type SetCallRingtoneReq struct {
 	CallRingtoneURL string `protobuf:"bytes,2,opt,name=callRingtoneURL,proto3" json:"callRingtoneURL"`
 	// callRingtoneName 用户自定义来电铃声名称；空字符串表示清除
 	CallRingtoneName string `protobuf:"bytes,3,opt,name=callRingtoneName,proto3" json:"callRingtoneName"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// callRingtoneCover 用户自定义来电铃声封面 URL；空字符串表示清除
+	CallRingtoneCover string `protobuf:"bytes,4,opt,name=callRingtoneCover,proto3" json:"callRingtoneCover"`
+	// callRingtoneAuthor 用户自定义来电铃声作者；空字符串表示清除
+	CallRingtoneAuthor string `protobuf:"bytes,5,opt,name=callRingtoneAuthor,proto3" json:"callRingtoneAuthor"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SetCallRingtoneReq) Reset() {
@@ -4204,6 +4208,20 @@ func (x *SetCallRingtoneReq) GetCallRingtoneURL() string {
 func (x *SetCallRingtoneReq) GetCallRingtoneName() string {
 	if x != nil {
 		return x.CallRingtoneName
+	}
+	return ""
+}
+
+func (x *SetCallRingtoneReq) GetCallRingtoneCover() string {
+	if x != nil {
+		return x.CallRingtoneCover
+	}
+	return ""
+}
+
+func (x *SetCallRingtoneReq) GetCallRingtoneAuthor() string {
+	if x != nil {
+		return x.CallRingtoneAuthor
 	}
 	return ""
 }
@@ -5241,11 +5259,13 @@ const file_user_user_proto_rawDesc = "" +
 	"\x17setCallAcceptSettingReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12,\n" +
 	"\x11callAcceptSetting\x18\x02 \x01(\x05R\x11callAcceptSetting\"\x1a\n" +
-	"\x18setCallAcceptSettingResp\"\x82\x01\n" +
+	"\x18setCallAcceptSettingResp\"\xe0\x01\n" +
 	"\x12setCallRingtoneReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12(\n" +
 	"\x0fcallRingtoneURL\x18\x02 \x01(\tR\x0fcallRingtoneURL\x12*\n" +
-	"\x10callRingtoneName\x18\x03 \x01(\tR\x10callRingtoneName\"\x15\n" +
+	"\x10callRingtoneName\x18\x03 \x01(\tR\x10callRingtoneName\x12,\n" +
+	"\x11callRingtoneCover\x18\x04 \x01(\tR\x11callRingtoneCover\x12.\n" +
+	"\x12callRingtoneAuthor\x18\x05 \x01(\tR\x12callRingtoneAuthor\"\x15\n" +
 	"\x13setCallRingtoneResp\"_\n" +
 	"\x17setMsgReceiveSettingReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12,\n" +
