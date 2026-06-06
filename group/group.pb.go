@@ -2750,6 +2750,7 @@ func (*CancelMuteGroupResp) Descriptor() ([]byte, []int) {
 	return file_group_group_proto_rawDescGZIP(), []int{51}
 }
 
+// SetSendMessageSetting 设置群成员发消息权限
 type SetSendMessageSettingReq struct {
 	state   protoimpl.MessageState `protogen:"open.v1"`
 	GroupID string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`

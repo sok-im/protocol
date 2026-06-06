@@ -124,7 +124,7 @@ type GroupClient interface {
 	MuteGroup(ctx context.Context, in *MuteGroupReq, opts ...grpc.CallOption) (*MuteGroupResp, error)
 	// Unmute a group
 	CancelMuteGroup(ctx context.Context, in *CancelMuteGroupReq, opts ...grpc.CallOption) (*CancelMuteGroupResp, error)
-	// 设置群成员发消息权限（allowSendMsg 0=全员可发，1=仅群主/管理员可发）
+	// Set group send message permission (allowSendMsg)
 	SetSendMessageSetting(ctx context.Context, in *SetSendMessageSettingReq, opts ...grpc.CallOption) (*SetSendMessageSettingResp, error)
 	// Set group member info
 	SetGroupMemberInfo(ctx context.Context, in *SetGroupMemberInfoReq, opts ...grpc.CallOption) (*SetGroupMemberInfoResp, error)
@@ -766,7 +766,7 @@ type GroupServer interface {
 	MuteGroup(context.Context, *MuteGroupReq) (*MuteGroupResp, error)
 	// Unmute a group
 	CancelMuteGroup(context.Context, *CancelMuteGroupReq) (*CancelMuteGroupResp, error)
-	// 设置群成员发消息权限（allowSendMsg 0=全员可发，1=仅群主/管理员可发）
+	// Set group send message permission (allowSendMsg)
 	SetSendMessageSetting(context.Context, *SetSendMessageSettingReq) (*SetSendMessageSettingResp, error)
 	// Set group member info
 	SetGroupMemberInfo(context.Context, *SetGroupMemberInfoReq) (*SetGroupMemberInfoResp, error)
