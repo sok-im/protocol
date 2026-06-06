@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v6.33.0
-// source: totp.proto
+// source: totp/totp.proto
 
 package totp
 
@@ -345,5 +345,5 @@ var Totp_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "totp.proto",
+	Metadata: "totp/totp.proto",
 }

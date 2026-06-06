@@ -2750,6 +2750,95 @@ func (*CancelMuteGroupResp) Descriptor() ([]byte, []int) {
 	return file_group_group_proto_rawDescGZIP(), []int{51}
 }
 
+type SetSendMessageSettingReq struct {
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	GroupID string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	// allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
+	AllowSendMsg  int32 `protobuf:"varint,2,opt,name=allowSendMsg,proto3" json:"allowSendMsg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetSendMessageSettingReq) Reset() {
+	*x = SetSendMessageSettingReq{}
+	mi := &file_group_group_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetSendMessageSettingReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetSendMessageSettingReq) ProtoMessage() {}
+
+func (x *SetSendMessageSettingReq) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetSendMessageSettingReq.ProtoReflect.Descriptor instead.
+func (*SetSendMessageSettingReq) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *SetSendMessageSettingReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *SetSendMessageSettingReq) GetAllowSendMsg() int32 {
+	if x != nil {
+		return x.AllowSendMsg
+	}
+	return 0
+}
+
+type SetSendMessageSettingResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetSendMessageSettingResp) Reset() {
+	*x = SetSendMessageSettingResp{}
+	mi := &file_group_group_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetSendMessageSettingResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetSendMessageSettingResp) ProtoMessage() {}
+
+func (x *SetSendMessageSettingResp) ProtoReflect() protoreflect.Message {
+	mi := &file_group_group_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetSendMessageSettingResp.ProtoReflect.Descriptor instead.
+func (*SetSendMessageSettingResp) Descriptor() ([]byte, []int) {
+	return file_group_group_proto_rawDescGZIP(), []int{53}
+}
+
 type SetGroupMemberInfo struct {
 	state           protoimpl.MessageState  `protogen:"open.v1"`
 	GroupID         string                  `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
@@ -2768,7 +2857,7 @@ type SetGroupMemberInfo struct {
 
 func (x *SetGroupMemberInfo) Reset() {
 	*x = SetGroupMemberInfo{}
-	mi := &file_group_group_proto_msgTypes[52]
+	mi := &file_group_group_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2780,7 +2869,7 @@ func (x *SetGroupMemberInfo) String() string {
 func (*SetGroupMemberInfo) ProtoMessage() {}
 
 func (x *SetGroupMemberInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[52]
+	mi := &file_group_group_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2793,7 +2882,7 @@ func (x *SetGroupMemberInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGroupMemberInfo.ProtoReflect.Descriptor instead.
 func (*SetGroupMemberInfo) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{52}
+	return file_group_group_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *SetGroupMemberInfo) GetGroupID() string {
@@ -2875,7 +2964,7 @@ type SetGroupMemberInfoReq struct {
 
 func (x *SetGroupMemberInfoReq) Reset() {
 	*x = SetGroupMemberInfoReq{}
-	mi := &file_group_group_proto_msgTypes[53]
+	mi := &file_group_group_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2887,7 +2976,7 @@ func (x *SetGroupMemberInfoReq) String() string {
 func (*SetGroupMemberInfoReq) ProtoMessage() {}
 
 func (x *SetGroupMemberInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[53]
+	mi := &file_group_group_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2900,7 +2989,7 @@ func (x *SetGroupMemberInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGroupMemberInfoReq.ProtoReflect.Descriptor instead.
 func (*SetGroupMemberInfoReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{53}
+	return file_group_group_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *SetGroupMemberInfoReq) GetMembers() []*SetGroupMemberInfo {
@@ -2918,7 +3007,7 @@ type SetGroupMemberInfoResp struct {
 
 func (x *SetGroupMemberInfoResp) Reset() {
 	*x = SetGroupMemberInfoResp{}
-	mi := &file_group_group_proto_msgTypes[54]
+	mi := &file_group_group_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2930,7 +3019,7 @@ func (x *SetGroupMemberInfoResp) String() string {
 func (*SetGroupMemberInfoResp) ProtoMessage() {}
 
 func (x *SetGroupMemberInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[54]
+	mi := &file_group_group_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2943,7 +3032,7 @@ func (x *SetGroupMemberInfoResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGroupMemberInfoResp.ProtoReflect.Descriptor instead.
 func (*SetGroupMemberInfoResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{54}
+	return file_group_group_proto_rawDescGZIP(), []int{56}
 }
 
 type GetGroupAbstractInfoReq struct {
@@ -2955,7 +3044,7 @@ type GetGroupAbstractInfoReq struct {
 
 func (x *GetGroupAbstractInfoReq) Reset() {
 	*x = GetGroupAbstractInfoReq{}
-	mi := &file_group_group_proto_msgTypes[55]
+	mi := &file_group_group_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2967,7 +3056,7 @@ func (x *GetGroupAbstractInfoReq) String() string {
 func (*GetGroupAbstractInfoReq) ProtoMessage() {}
 
 func (x *GetGroupAbstractInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[55]
+	mi := &file_group_group_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2980,7 +3069,7 @@ func (x *GetGroupAbstractInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupAbstractInfoReq.ProtoReflect.Descriptor instead.
 func (*GetGroupAbstractInfoReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{55}
+	return file_group_group_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetGroupAbstractInfoReq) GetGroupIDs() []string {
@@ -3001,7 +3090,7 @@ type GroupAbstractInfo struct {
 
 func (x *GroupAbstractInfo) Reset() {
 	*x = GroupAbstractInfo{}
-	mi := &file_group_group_proto_msgTypes[56]
+	mi := &file_group_group_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3013,7 +3102,7 @@ func (x *GroupAbstractInfo) String() string {
 func (*GroupAbstractInfo) ProtoMessage() {}
 
 func (x *GroupAbstractInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[56]
+	mi := &file_group_group_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3026,7 +3115,7 @@ func (x *GroupAbstractInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupAbstractInfo.ProtoReflect.Descriptor instead.
 func (*GroupAbstractInfo) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{56}
+	return file_group_group_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *GroupAbstractInfo) GetGroupID() string {
@@ -3059,7 +3148,7 @@ type GetGroupAbstractInfoResp struct {
 
 func (x *GetGroupAbstractInfoResp) Reset() {
 	*x = GetGroupAbstractInfoResp{}
-	mi := &file_group_group_proto_msgTypes[57]
+	mi := &file_group_group_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3071,7 +3160,7 @@ func (x *GetGroupAbstractInfoResp) String() string {
 func (*GetGroupAbstractInfoResp) ProtoMessage() {}
 
 func (x *GetGroupAbstractInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[57]
+	mi := &file_group_group_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3084,7 +3173,7 @@ func (x *GetGroupAbstractInfoResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupAbstractInfoResp.ProtoReflect.Descriptor instead.
 func (*GetGroupAbstractInfoResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{57}
+	return file_group_group_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *GetGroupAbstractInfoResp) GetGroupAbstractInfos() []*GroupAbstractInfo {
@@ -3104,7 +3193,7 @@ type GetUserInGroupMembersReq struct {
 
 func (x *GetUserInGroupMembersReq) Reset() {
 	*x = GetUserInGroupMembersReq{}
-	mi := &file_group_group_proto_msgTypes[58]
+	mi := &file_group_group_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3116,7 +3205,7 @@ func (x *GetUserInGroupMembersReq) String() string {
 func (*GetUserInGroupMembersReq) ProtoMessage() {}
 
 func (x *GetUserInGroupMembersReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[58]
+	mi := &file_group_group_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3129,7 +3218,7 @@ func (x *GetUserInGroupMembersReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserInGroupMembersReq.ProtoReflect.Descriptor instead.
 func (*GetUserInGroupMembersReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{58}
+	return file_group_group_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *GetUserInGroupMembersReq) GetUserID() string {
@@ -3155,7 +3244,7 @@ type GetUserInGroupMembersResp struct {
 
 func (x *GetUserInGroupMembersResp) Reset() {
 	*x = GetUserInGroupMembersResp{}
-	mi := &file_group_group_proto_msgTypes[59]
+	mi := &file_group_group_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3167,7 +3256,7 @@ func (x *GetUserInGroupMembersResp) String() string {
 func (*GetUserInGroupMembersResp) ProtoMessage() {}
 
 func (x *GetUserInGroupMembersResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[59]
+	mi := &file_group_group_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3180,7 +3269,7 @@ func (x *GetUserInGroupMembersResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserInGroupMembersResp.ProtoReflect.Descriptor instead.
 func (*GetUserInGroupMembersResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{59}
+	return file_group_group_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *GetUserInGroupMembersResp) GetMembers() []*sdkws.GroupMemberFullInfo {
@@ -3199,7 +3288,7 @@ type GetGroupMemberUserIDsReq struct {
 
 func (x *GetGroupMemberUserIDsReq) Reset() {
 	*x = GetGroupMemberUserIDsReq{}
-	mi := &file_group_group_proto_msgTypes[60]
+	mi := &file_group_group_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3211,7 +3300,7 @@ func (x *GetGroupMemberUserIDsReq) String() string {
 func (*GetGroupMemberUserIDsReq) ProtoMessage() {}
 
 func (x *GetGroupMemberUserIDsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[60]
+	mi := &file_group_group_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3224,7 +3313,7 @@ func (x *GetGroupMemberUserIDsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberUserIDsReq.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberUserIDsReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{60}
+	return file_group_group_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *GetGroupMemberUserIDsReq) GetGroupID() string {
@@ -3243,7 +3332,7 @@ type GetGroupMemberUserIDsResp struct {
 
 func (x *GetGroupMemberUserIDsResp) Reset() {
 	*x = GetGroupMemberUserIDsResp{}
-	mi := &file_group_group_proto_msgTypes[61]
+	mi := &file_group_group_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3255,7 +3344,7 @@ func (x *GetGroupMemberUserIDsResp) String() string {
 func (*GetGroupMemberUserIDsResp) ProtoMessage() {}
 
 func (x *GetGroupMemberUserIDsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[61]
+	mi := &file_group_group_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3268,7 +3357,7 @@ func (x *GetGroupMemberUserIDsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberUserIDsResp.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberUserIDsResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{61}
+	return file_group_group_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *GetGroupMemberUserIDsResp) GetUserIDs() []string {
@@ -3288,7 +3377,7 @@ type GetGroupMemberRoleLevelReq struct {
 
 func (x *GetGroupMemberRoleLevelReq) Reset() {
 	*x = GetGroupMemberRoleLevelReq{}
-	mi := &file_group_group_proto_msgTypes[62]
+	mi := &file_group_group_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3300,7 +3389,7 @@ func (x *GetGroupMemberRoleLevelReq) String() string {
 func (*GetGroupMemberRoleLevelReq) ProtoMessage() {}
 
 func (x *GetGroupMemberRoleLevelReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[62]
+	mi := &file_group_group_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3313,7 +3402,7 @@ func (x *GetGroupMemberRoleLevelReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberRoleLevelReq.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberRoleLevelReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{62}
+	return file_group_group_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *GetGroupMemberRoleLevelReq) GetGroupID() string {
@@ -3339,7 +3428,7 @@ type GetGroupMemberRoleLevelResp struct {
 
 func (x *GetGroupMemberRoleLevelResp) Reset() {
 	*x = GetGroupMemberRoleLevelResp{}
-	mi := &file_group_group_proto_msgTypes[63]
+	mi := &file_group_group_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3351,7 +3440,7 @@ func (x *GetGroupMemberRoleLevelResp) String() string {
 func (*GetGroupMemberRoleLevelResp) ProtoMessage() {}
 
 func (x *GetGroupMemberRoleLevelResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[63]
+	mi := &file_group_group_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3364,7 +3453,7 @@ func (x *GetGroupMemberRoleLevelResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberRoleLevelResp.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberRoleLevelResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{63}
+	return file_group_group_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *GetGroupMemberRoleLevelResp) GetMembers() []*sdkws.GroupMemberFullInfo {
@@ -3383,7 +3472,7 @@ type GetGroupInfoCacheReq struct {
 
 func (x *GetGroupInfoCacheReq) Reset() {
 	*x = GetGroupInfoCacheReq{}
-	mi := &file_group_group_proto_msgTypes[64]
+	mi := &file_group_group_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3395,7 +3484,7 @@ func (x *GetGroupInfoCacheReq) String() string {
 func (*GetGroupInfoCacheReq) ProtoMessage() {}
 
 func (x *GetGroupInfoCacheReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[64]
+	mi := &file_group_group_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3408,7 +3497,7 @@ func (x *GetGroupInfoCacheReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupInfoCacheReq.ProtoReflect.Descriptor instead.
 func (*GetGroupInfoCacheReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{64}
+	return file_group_group_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *GetGroupInfoCacheReq) GetGroupID() string {
@@ -3427,7 +3516,7 @@ type GetGroupInfoCacheResp struct {
 
 func (x *GetGroupInfoCacheResp) Reset() {
 	*x = GetGroupInfoCacheResp{}
-	mi := &file_group_group_proto_msgTypes[65]
+	mi := &file_group_group_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3439,7 +3528,7 @@ func (x *GetGroupInfoCacheResp) String() string {
 func (*GetGroupInfoCacheResp) ProtoMessage() {}
 
 func (x *GetGroupInfoCacheResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[65]
+	mi := &file_group_group_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3452,7 +3541,7 @@ func (x *GetGroupInfoCacheResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupInfoCacheResp.ProtoReflect.Descriptor instead.
 func (*GetGroupInfoCacheResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{65}
+	return file_group_group_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *GetGroupInfoCacheResp) GetGroupInfo() *sdkws.GroupInfo {
@@ -3472,7 +3561,7 @@ type GetGroupMemberCacheReq struct {
 
 func (x *GetGroupMemberCacheReq) Reset() {
 	*x = GetGroupMemberCacheReq{}
-	mi := &file_group_group_proto_msgTypes[66]
+	mi := &file_group_group_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3484,7 +3573,7 @@ func (x *GetGroupMemberCacheReq) String() string {
 func (*GetGroupMemberCacheReq) ProtoMessage() {}
 
 func (x *GetGroupMemberCacheReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[66]
+	mi := &file_group_group_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3497,7 +3586,7 @@ func (x *GetGroupMemberCacheReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberCacheReq.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberCacheReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{66}
+	return file_group_group_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *GetGroupMemberCacheReq) GetGroupID() string {
@@ -3523,7 +3612,7 @@ type GetGroupMemberCacheResp struct {
 
 func (x *GetGroupMemberCacheResp) Reset() {
 	*x = GetGroupMemberCacheResp{}
-	mi := &file_group_group_proto_msgTypes[67]
+	mi := &file_group_group_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3535,7 +3624,7 @@ func (x *GetGroupMemberCacheResp) String() string {
 func (*GetGroupMemberCacheResp) ProtoMessage() {}
 
 func (x *GetGroupMemberCacheResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[67]
+	mi := &file_group_group_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3548,7 +3637,7 @@ func (x *GetGroupMemberCacheResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMemberCacheResp.ProtoReflect.Descriptor instead.
 func (*GetGroupMemberCacheResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{67}
+	return file_group_group_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *GetGroupMemberCacheResp) GetMember() *sdkws.GroupMemberFullInfo {
@@ -3568,7 +3657,7 @@ type GroupCreateCountReq struct {
 
 func (x *GroupCreateCountReq) Reset() {
 	*x = GroupCreateCountReq{}
-	mi := &file_group_group_proto_msgTypes[68]
+	mi := &file_group_group_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3580,7 +3669,7 @@ func (x *GroupCreateCountReq) String() string {
 func (*GroupCreateCountReq) ProtoMessage() {}
 
 func (x *GroupCreateCountReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[68]
+	mi := &file_group_group_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3593,7 +3682,7 @@ func (x *GroupCreateCountReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupCreateCountReq.ProtoReflect.Descriptor instead.
 func (*GroupCreateCountReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{68}
+	return file_group_group_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *GroupCreateCountReq) GetStart() int64 {
@@ -3614,14 +3703,14 @@ type GroupCreateCountResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Total         int64                  `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
 	Before        int64                  `protobuf:"varint,2,opt,name=before,proto3" json:"before"`
-	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	Count         map[string]int64       `protobuf:"bytes,3,rep,name=count,proto3" json:"count,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupCreateCountResp) Reset() {
 	*x = GroupCreateCountResp{}
-	mi := &file_group_group_proto_msgTypes[69]
+	mi := &file_group_group_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3633,7 +3722,7 @@ func (x *GroupCreateCountResp) String() string {
 func (*GroupCreateCountResp) ProtoMessage() {}
 
 func (x *GroupCreateCountResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[69]
+	mi := &file_group_group_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3646,7 +3735,7 @@ func (x *GroupCreateCountResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupCreateCountResp.ProtoReflect.Descriptor instead.
 func (*GroupCreateCountResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{69}
+	return file_group_group_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *GroupCreateCountResp) GetTotal() int64 {
@@ -3680,7 +3769,7 @@ type GetGroupUsersReqApplicationListReq struct {
 
 func (x *GetGroupUsersReqApplicationListReq) Reset() {
 	*x = GetGroupUsersReqApplicationListReq{}
-	mi := &file_group_group_proto_msgTypes[70]
+	mi := &file_group_group_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3692,7 +3781,7 @@ func (x *GetGroupUsersReqApplicationListReq) String() string {
 func (*GetGroupUsersReqApplicationListReq) ProtoMessage() {}
 
 func (x *GetGroupUsersReqApplicationListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[70]
+	mi := &file_group_group_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3705,7 +3794,7 @@ func (x *GetGroupUsersReqApplicationListReq) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetGroupUsersReqApplicationListReq.ProtoReflect.Descriptor instead.
 func (*GetGroupUsersReqApplicationListReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{70}
+	return file_group_group_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *GetGroupUsersReqApplicationListReq) GetGroupID() string {
@@ -3732,7 +3821,7 @@ type GetGroupUsersReqApplicationListResp struct {
 
 func (x *GetGroupUsersReqApplicationListResp) Reset() {
 	*x = GetGroupUsersReqApplicationListResp{}
-	mi := &file_group_group_proto_msgTypes[71]
+	mi := &file_group_group_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3744,7 +3833,7 @@ func (x *GetGroupUsersReqApplicationListResp) String() string {
 func (*GetGroupUsersReqApplicationListResp) ProtoMessage() {}
 
 func (x *GetGroupUsersReqApplicationListResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[71]
+	mi := &file_group_group_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3757,7 +3846,7 @@ func (x *GetGroupUsersReqApplicationListResp) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetGroupUsersReqApplicationListResp.ProtoReflect.Descriptor instead.
 func (*GetGroupUsersReqApplicationListResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{71}
+	return file_group_group_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *GetGroupUsersReqApplicationListResp) GetTotal() int64 {
@@ -3785,7 +3874,7 @@ type NotificationUserInfoUpdateReq struct {
 
 func (x *NotificationUserInfoUpdateReq) Reset() {
 	*x = NotificationUserInfoUpdateReq{}
-	mi := &file_group_group_proto_msgTypes[72]
+	mi := &file_group_group_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3797,7 +3886,7 @@ func (x *NotificationUserInfoUpdateReq) String() string {
 func (*NotificationUserInfoUpdateReq) ProtoMessage() {}
 
 func (x *NotificationUserInfoUpdateReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[72]
+	mi := &file_group_group_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3810,7 +3899,7 @@ func (x *NotificationUserInfoUpdateReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NotificationUserInfoUpdateReq.ProtoReflect.Descriptor instead.
 func (*NotificationUserInfoUpdateReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{72}
+	return file_group_group_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *NotificationUserInfoUpdateReq) GetUserID() string {
@@ -3842,7 +3931,7 @@ type NotificationUserInfoUpdateResp struct {
 
 func (x *NotificationUserInfoUpdateResp) Reset() {
 	*x = NotificationUserInfoUpdateResp{}
-	mi := &file_group_group_proto_msgTypes[73]
+	mi := &file_group_group_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3854,7 +3943,7 @@ func (x *NotificationUserInfoUpdateResp) String() string {
 func (*NotificationUserInfoUpdateResp) ProtoMessage() {}
 
 func (x *NotificationUserInfoUpdateResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[73]
+	mi := &file_group_group_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3867,7 +3956,7 @@ func (x *NotificationUserInfoUpdateResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NotificationUserInfoUpdateResp.ProtoReflect.Descriptor instead.
 func (*NotificationUserInfoUpdateResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{73}
+	return file_group_group_proto_rawDescGZIP(), []int{75}
 }
 
 // notificationFriendRemarkUpdateReq is sent from relation when owner updates a friend's remark.
@@ -3882,7 +3971,7 @@ type NotificationFriendRemarkUpdateReq struct {
 
 func (x *NotificationFriendRemarkUpdateReq) Reset() {
 	*x = NotificationFriendRemarkUpdateReq{}
-	mi := &file_group_group_proto_msgTypes[74]
+	mi := &file_group_group_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3894,7 +3983,7 @@ func (x *NotificationFriendRemarkUpdateReq) String() string {
 func (*NotificationFriendRemarkUpdateReq) ProtoMessage() {}
 
 func (x *NotificationFriendRemarkUpdateReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[74]
+	mi := &file_group_group_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3907,7 +3996,7 @@ func (x *NotificationFriendRemarkUpdateReq) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use NotificationFriendRemarkUpdateReq.ProtoReflect.Descriptor instead.
 func (*NotificationFriendRemarkUpdateReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{74}
+	return file_group_group_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *NotificationFriendRemarkUpdateReq) GetOwnerUserID() string {
@@ -3932,7 +4021,7 @@ type NotificationFriendRemarkUpdateResp struct {
 
 func (x *NotificationFriendRemarkUpdateResp) Reset() {
 	*x = NotificationFriendRemarkUpdateResp{}
-	mi := &file_group_group_proto_msgTypes[75]
+	mi := &file_group_group_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3944,7 +4033,7 @@ func (x *NotificationFriendRemarkUpdateResp) String() string {
 func (*NotificationFriendRemarkUpdateResp) ProtoMessage() {}
 
 func (x *NotificationFriendRemarkUpdateResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[75]
+	mi := &file_group_group_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3957,7 +4046,7 @@ func (x *NotificationFriendRemarkUpdateResp) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use NotificationFriendRemarkUpdateResp.ProtoReflect.Descriptor instead.
 func (*NotificationFriendRemarkUpdateResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{75}
+	return file_group_group_proto_rawDescGZIP(), []int{77}
 }
 
 type GetIncrementalGroupMemberReq struct {
@@ -3971,7 +4060,7 @@ type GetIncrementalGroupMemberReq struct {
 
 func (x *GetIncrementalGroupMemberReq) Reset() {
 	*x = GetIncrementalGroupMemberReq{}
-	mi := &file_group_group_proto_msgTypes[76]
+	mi := &file_group_group_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3983,7 +4072,7 @@ func (x *GetIncrementalGroupMemberReq) String() string {
 func (*GetIncrementalGroupMemberReq) ProtoMessage() {}
 
 func (x *GetIncrementalGroupMemberReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[76]
+	mi := &file_group_group_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3996,7 +4085,7 @@ func (x *GetIncrementalGroupMemberReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIncrementalGroupMemberReq.ProtoReflect.Descriptor instead.
 func (*GetIncrementalGroupMemberReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{76}
+	return file_group_group_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *GetIncrementalGroupMemberReq) GetGroupID() string {
@@ -4036,7 +4125,7 @@ type GetIncrementalGroupMemberResp struct {
 
 func (x *GetIncrementalGroupMemberResp) Reset() {
 	*x = GetIncrementalGroupMemberResp{}
-	mi := &file_group_group_proto_msgTypes[77]
+	mi := &file_group_group_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4048,7 +4137,7 @@ func (x *GetIncrementalGroupMemberResp) String() string {
 func (*GetIncrementalGroupMemberResp) ProtoMessage() {}
 
 func (x *GetIncrementalGroupMemberResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[77]
+	mi := &file_group_group_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4061,7 +4150,7 @@ func (x *GetIncrementalGroupMemberResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIncrementalGroupMemberResp.ProtoReflect.Descriptor instead.
 func (*GetIncrementalGroupMemberResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{77}
+	return file_group_group_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *GetIncrementalGroupMemberResp) GetVersion() uint64 {
@@ -4131,7 +4220,7 @@ type GetIncrementalJoinGroupReq struct {
 
 func (x *GetIncrementalJoinGroupReq) Reset() {
 	*x = GetIncrementalJoinGroupReq{}
-	mi := &file_group_group_proto_msgTypes[78]
+	mi := &file_group_group_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4143,7 +4232,7 @@ func (x *GetIncrementalJoinGroupReq) String() string {
 func (*GetIncrementalJoinGroupReq) ProtoMessage() {}
 
 func (x *GetIncrementalJoinGroupReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[78]
+	mi := &file_group_group_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4156,7 +4245,7 @@ func (x *GetIncrementalJoinGroupReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIncrementalJoinGroupReq.ProtoReflect.Descriptor instead.
 func (*GetIncrementalJoinGroupReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{78}
+	return file_group_group_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *GetIncrementalJoinGroupReq) GetUserID() string {
@@ -4195,7 +4284,7 @@ type GetIncrementalJoinGroupResp struct {
 
 func (x *GetIncrementalJoinGroupResp) Reset() {
 	*x = GetIncrementalJoinGroupResp{}
-	mi := &file_group_group_proto_msgTypes[79]
+	mi := &file_group_group_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4207,7 +4296,7 @@ func (x *GetIncrementalJoinGroupResp) String() string {
 func (*GetIncrementalJoinGroupResp) ProtoMessage() {}
 
 func (x *GetIncrementalJoinGroupResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[79]
+	mi := &file_group_group_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4220,7 +4309,7 @@ func (x *GetIncrementalJoinGroupResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIncrementalJoinGroupResp.ProtoReflect.Descriptor instead.
 func (*GetIncrementalJoinGroupResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{79}
+	return file_group_group_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *GetIncrementalJoinGroupResp) GetVersion() uint64 {
@@ -4282,7 +4371,7 @@ type GetFullGroupMemberUserIDsReq struct {
 
 func (x *GetFullGroupMemberUserIDsReq) Reset() {
 	*x = GetFullGroupMemberUserIDsReq{}
-	mi := &file_group_group_proto_msgTypes[80]
+	mi := &file_group_group_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4294,7 +4383,7 @@ func (x *GetFullGroupMemberUserIDsReq) String() string {
 func (*GetFullGroupMemberUserIDsReq) ProtoMessage() {}
 
 func (x *GetFullGroupMemberUserIDsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[80]
+	mi := &file_group_group_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4307,7 +4396,7 @@ func (x *GetFullGroupMemberUserIDsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFullGroupMemberUserIDsReq.ProtoReflect.Descriptor instead.
 func (*GetFullGroupMemberUserIDsReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{80}
+	return file_group_group_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *GetFullGroupMemberUserIDsReq) GetIdHash() uint64 {
@@ -4336,7 +4425,7 @@ type GetFullGroupMemberUserIDsResp struct {
 
 func (x *GetFullGroupMemberUserIDsResp) Reset() {
 	*x = GetFullGroupMemberUserIDsResp{}
-	mi := &file_group_group_proto_msgTypes[81]
+	mi := &file_group_group_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4348,7 +4437,7 @@ func (x *GetFullGroupMemberUserIDsResp) String() string {
 func (*GetFullGroupMemberUserIDsResp) ProtoMessage() {}
 
 func (x *GetFullGroupMemberUserIDsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[81]
+	mi := &file_group_group_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4361,7 +4450,7 @@ func (x *GetFullGroupMemberUserIDsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFullGroupMemberUserIDsResp.ProtoReflect.Descriptor instead.
 func (*GetFullGroupMemberUserIDsResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{81}
+	return file_group_group_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *GetFullGroupMemberUserIDsResp) GetVersion() uint64 {
@@ -4402,7 +4491,7 @@ type GetFullJoinGroupIDsReq struct {
 
 func (x *GetFullJoinGroupIDsReq) Reset() {
 	*x = GetFullJoinGroupIDsReq{}
-	mi := &file_group_group_proto_msgTypes[82]
+	mi := &file_group_group_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4414,7 +4503,7 @@ func (x *GetFullJoinGroupIDsReq) String() string {
 func (*GetFullJoinGroupIDsReq) ProtoMessage() {}
 
 func (x *GetFullJoinGroupIDsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[82]
+	mi := &file_group_group_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4427,7 +4516,7 @@ func (x *GetFullJoinGroupIDsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFullJoinGroupIDsReq.ProtoReflect.Descriptor instead.
 func (*GetFullJoinGroupIDsReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{82}
+	return file_group_group_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *GetFullJoinGroupIDsReq) GetIdHash() uint64 {
@@ -4456,7 +4545,7 @@ type GetFullJoinGroupIDsResp struct {
 
 func (x *GetFullJoinGroupIDsResp) Reset() {
 	*x = GetFullJoinGroupIDsResp{}
-	mi := &file_group_group_proto_msgTypes[83]
+	mi := &file_group_group_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4468,7 +4557,7 @@ func (x *GetFullJoinGroupIDsResp) String() string {
 func (*GetFullJoinGroupIDsResp) ProtoMessage() {}
 
 func (x *GetFullJoinGroupIDsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[83]
+	mi := &file_group_group_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4481,7 +4570,7 @@ func (x *GetFullJoinGroupIDsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFullJoinGroupIDsResp.ProtoReflect.Descriptor instead.
 func (*GetFullJoinGroupIDsResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{83}
+	return file_group_group_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *GetFullJoinGroupIDsResp) GetVersion() uint64 {
@@ -4522,7 +4611,7 @@ type BatchGetIncrementalGroupMemberReq struct {
 
 func (x *BatchGetIncrementalGroupMemberReq) Reset() {
 	*x = BatchGetIncrementalGroupMemberReq{}
-	mi := &file_group_group_proto_msgTypes[84]
+	mi := &file_group_group_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4534,7 +4623,7 @@ func (x *BatchGetIncrementalGroupMemberReq) String() string {
 func (*BatchGetIncrementalGroupMemberReq) ProtoMessage() {}
 
 func (x *BatchGetIncrementalGroupMemberReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[84]
+	mi := &file_group_group_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4547,7 +4636,7 @@ func (x *BatchGetIncrementalGroupMemberReq) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use BatchGetIncrementalGroupMemberReq.ProtoReflect.Descriptor instead.
 func (*BatchGetIncrementalGroupMemberReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{84}
+	return file_group_group_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *BatchGetIncrementalGroupMemberReq) GetUserID() string {
@@ -4566,14 +4655,14 @@ func (x *BatchGetIncrementalGroupMemberReq) GetReqList() []*GetIncrementalGroupM
 
 type BatchGetIncrementalGroupMemberResp struct {
 	state         protoimpl.MessageState                    `protogen:"open.v1"`
-	RespList      map[string]*GetIncrementalGroupMemberResp `protobuf:"bytes,1,rep,name=respList,proto3" json:"respList" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	RespList      map[string]*GetIncrementalGroupMemberResp `protobuf:"bytes,1,rep,name=respList,proto3" json:"respList,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *BatchGetIncrementalGroupMemberResp) Reset() {
 	*x = BatchGetIncrementalGroupMemberResp{}
-	mi := &file_group_group_proto_msgTypes[85]
+	mi := &file_group_group_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4585,7 +4674,7 @@ func (x *BatchGetIncrementalGroupMemberResp) String() string {
 func (*BatchGetIncrementalGroupMemberResp) ProtoMessage() {}
 
 func (x *BatchGetIncrementalGroupMemberResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[85]
+	mi := &file_group_group_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4598,7 +4687,7 @@ func (x *BatchGetIncrementalGroupMemberResp) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use BatchGetIncrementalGroupMemberResp.ProtoReflect.Descriptor instead.
 func (*BatchGetIncrementalGroupMemberResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{85}
+	return file_group_group_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *BatchGetIncrementalGroupMemberResp) GetRespList() map[string]*GetIncrementalGroupMemberResp {
@@ -4617,7 +4706,7 @@ type GetCommonGroupsWithFriendReq struct {
 
 func (x *GetCommonGroupsWithFriendReq) Reset() {
 	*x = GetCommonGroupsWithFriendReq{}
-	mi := &file_group_group_proto_msgTypes[86]
+	mi := &file_group_group_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4629,7 +4718,7 @@ func (x *GetCommonGroupsWithFriendReq) String() string {
 func (*GetCommonGroupsWithFriendReq) ProtoMessage() {}
 
 func (x *GetCommonGroupsWithFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[86]
+	mi := &file_group_group_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4642,7 +4731,7 @@ func (x *GetCommonGroupsWithFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommonGroupsWithFriendReq.ProtoReflect.Descriptor instead.
 func (*GetCommonGroupsWithFriendReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{86}
+	return file_group_group_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *GetCommonGroupsWithFriendReq) GetFriendUserID() string {
@@ -4662,7 +4751,7 @@ type GetCommonGroupsWithFriendResp struct {
 
 func (x *GetCommonGroupsWithFriendResp) Reset() {
 	*x = GetCommonGroupsWithFriendResp{}
-	mi := &file_group_group_proto_msgTypes[87]
+	mi := &file_group_group_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4674,7 +4763,7 @@ func (x *GetCommonGroupsWithFriendResp) String() string {
 func (*GetCommonGroupsWithFriendResp) ProtoMessage() {}
 
 func (x *GetCommonGroupsWithFriendResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[87]
+	mi := &file_group_group_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4687,7 +4776,7 @@ func (x *GetCommonGroupsWithFriendResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommonGroupsWithFriendResp.ProtoReflect.Descriptor instead.
 func (*GetCommonGroupsWithFriendResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{87}
+	return file_group_group_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *GetCommonGroupsWithFriendResp) GetTotal() uint32 {
@@ -4715,7 +4804,7 @@ type PinGroupMessageReq struct {
 
 func (x *PinGroupMessageReq) Reset() {
 	*x = PinGroupMessageReq{}
-	mi := &file_group_group_proto_msgTypes[88]
+	mi := &file_group_group_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4727,7 +4816,7 @@ func (x *PinGroupMessageReq) String() string {
 func (*PinGroupMessageReq) ProtoMessage() {}
 
 func (x *PinGroupMessageReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[88]
+	mi := &file_group_group_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4740,7 +4829,7 @@ func (x *PinGroupMessageReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinGroupMessageReq.ProtoReflect.Descriptor instead.
 func (*PinGroupMessageReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{88}
+	return file_group_group_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *PinGroupMessageReq) GetGroupID() string {
@@ -4767,7 +4856,7 @@ type PinGroupMessageResp struct {
 
 func (x *PinGroupMessageResp) Reset() {
 	*x = PinGroupMessageResp{}
-	mi := &file_group_group_proto_msgTypes[89]
+	mi := &file_group_group_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4779,7 +4868,7 @@ func (x *PinGroupMessageResp) String() string {
 func (*PinGroupMessageResp) ProtoMessage() {}
 
 func (x *PinGroupMessageResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[89]
+	mi := &file_group_group_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4792,7 +4881,7 @@ func (x *PinGroupMessageResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinGroupMessageResp.ProtoReflect.Descriptor instead.
 func (*PinGroupMessageResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{89}
+	return file_group_group_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *PinGroupMessageResp) GetPinnedMsg() *sdkws.GroupPinnedMsgInfo {
@@ -4821,7 +4910,7 @@ type UnpinGroupMessageReq struct {
 
 func (x *UnpinGroupMessageReq) Reset() {
 	*x = UnpinGroupMessageReq{}
-	mi := &file_group_group_proto_msgTypes[90]
+	mi := &file_group_group_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4833,7 +4922,7 @@ func (x *UnpinGroupMessageReq) String() string {
 func (*UnpinGroupMessageReq) ProtoMessage() {}
 
 func (x *UnpinGroupMessageReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[90]
+	mi := &file_group_group_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4846,7 +4935,7 @@ func (x *UnpinGroupMessageReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinGroupMessageReq.ProtoReflect.Descriptor instead.
 func (*UnpinGroupMessageReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{90}
+	return file_group_group_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *UnpinGroupMessageReq) GetGroupID() string {
@@ -4879,7 +4968,7 @@ type UnpinGroupMessageResp struct {
 
 func (x *UnpinGroupMessageResp) Reset() {
 	*x = UnpinGroupMessageResp{}
-	mi := &file_group_group_proto_msgTypes[91]
+	mi := &file_group_group_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4891,7 +4980,7 @@ func (x *UnpinGroupMessageResp) String() string {
 func (*UnpinGroupMessageResp) ProtoMessage() {}
 
 func (x *UnpinGroupMessageResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[91]
+	mi := &file_group_group_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4904,7 +4993,7 @@ func (x *UnpinGroupMessageResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinGroupMessageResp.ProtoReflect.Descriptor instead.
 func (*UnpinGroupMessageResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{91}
+	return file_group_group_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *UnpinGroupMessageResp) GetPinnedList() []*sdkws.GroupPinnedMsgInfo {
@@ -4923,7 +5012,7 @@ type GetGroupPinnedMessagesReq struct {
 
 func (x *GetGroupPinnedMessagesReq) Reset() {
 	*x = GetGroupPinnedMessagesReq{}
-	mi := &file_group_group_proto_msgTypes[92]
+	mi := &file_group_group_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4935,7 +5024,7 @@ func (x *GetGroupPinnedMessagesReq) String() string {
 func (*GetGroupPinnedMessagesReq) ProtoMessage() {}
 
 func (x *GetGroupPinnedMessagesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[92]
+	mi := &file_group_group_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4948,7 +5037,7 @@ func (x *GetGroupPinnedMessagesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupPinnedMessagesReq.ProtoReflect.Descriptor instead.
 func (*GetGroupPinnedMessagesReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{92}
+	return file_group_group_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *GetGroupPinnedMessagesReq) GetGroupID() string {
@@ -4967,7 +5056,7 @@ type GetGroupPinnedMessagesResp struct {
 
 func (x *GetGroupPinnedMessagesResp) Reset() {
 	*x = GetGroupPinnedMessagesResp{}
-	mi := &file_group_group_proto_msgTypes[93]
+	mi := &file_group_group_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4979,7 +5068,7 @@ func (x *GetGroupPinnedMessagesResp) String() string {
 func (*GetGroupPinnedMessagesResp) ProtoMessage() {}
 
 func (x *GetGroupPinnedMessagesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[93]
+	mi := &file_group_group_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4992,7 +5081,7 @@ func (x *GetGroupPinnedMessagesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupPinnedMessagesResp.ProtoReflect.Descriptor instead.
 func (*GetGroupPinnedMessagesResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{93}
+	return file_group_group_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *GetGroupPinnedMessagesResp) GetPinnedList() []*sdkws.GroupPinnedMsgInfo {
@@ -5014,7 +5103,7 @@ type SetGroupMuteReq struct {
 
 func (x *SetGroupMuteReq) Reset() {
 	*x = SetGroupMuteReq{}
-	mi := &file_group_group_proto_msgTypes[94]
+	mi := &file_group_group_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5026,7 +5115,7 @@ func (x *SetGroupMuteReq) String() string {
 func (*SetGroupMuteReq) ProtoMessage() {}
 
 func (x *SetGroupMuteReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[94]
+	mi := &file_group_group_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5039,7 +5128,7 @@ func (x *SetGroupMuteReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGroupMuteReq.ProtoReflect.Descriptor instead.
 func (*SetGroupMuteReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{94}
+	return file_group_group_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *SetGroupMuteReq) GetGroupID() string {
@@ -5064,7 +5153,7 @@ type SetGroupMuteResp struct {
 
 func (x *SetGroupMuteResp) Reset() {
 	*x = SetGroupMuteResp{}
-	mi := &file_group_group_proto_msgTypes[95]
+	mi := &file_group_group_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5076,7 +5165,7 @@ func (x *SetGroupMuteResp) String() string {
 func (*SetGroupMuteResp) ProtoMessage() {}
 
 func (x *SetGroupMuteResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[95]
+	mi := &file_group_group_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5089,7 +5178,7 @@ func (x *SetGroupMuteResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetGroupMuteResp.ProtoReflect.Descriptor instead.
 func (*SetGroupMuteResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{95}
+	return file_group_group_proto_rawDescGZIP(), []int{97}
 }
 
 type GetGroupMuteReq struct {
@@ -5101,7 +5190,7 @@ type GetGroupMuteReq struct {
 
 func (x *GetGroupMuteReq) Reset() {
 	*x = GetGroupMuteReq{}
-	mi := &file_group_group_proto_msgTypes[96]
+	mi := &file_group_group_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5113,7 +5202,7 @@ func (x *GetGroupMuteReq) String() string {
 func (*GetGroupMuteReq) ProtoMessage() {}
 
 func (x *GetGroupMuteReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[96]
+	mi := &file_group_group_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5126,7 +5215,7 @@ func (x *GetGroupMuteReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMuteReq.ProtoReflect.Descriptor instead.
 func (*GetGroupMuteReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{96}
+	return file_group_group_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *GetGroupMuteReq) GetGroupID() string {
@@ -5148,7 +5237,7 @@ type GetGroupMuteResp struct {
 
 func (x *GetGroupMuteResp) Reset() {
 	*x = GetGroupMuteResp{}
-	mi := &file_group_group_proto_msgTypes[97]
+	mi := &file_group_group_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5160,7 +5249,7 @@ func (x *GetGroupMuteResp) String() string {
 func (*GetGroupMuteResp) ProtoMessage() {}
 
 func (x *GetGroupMuteResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[97]
+	mi := &file_group_group_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5173,7 +5262,7 @@ func (x *GetGroupMuteResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupMuteResp.ProtoReflect.Descriptor instead.
 func (*GetGroupMuteResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{97}
+	return file_group_group_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *GetGroupMuteResp) GetMuted() bool {
@@ -5207,7 +5296,7 @@ type PinGroupReq struct {
 
 func (x *PinGroupReq) Reset() {
 	*x = PinGroupReq{}
-	mi := &file_group_group_proto_msgTypes[98]
+	mi := &file_group_group_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5219,7 +5308,7 @@ func (x *PinGroupReq) String() string {
 func (*PinGroupReq) ProtoMessage() {}
 
 func (x *PinGroupReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[98]
+	mi := &file_group_group_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5232,7 +5321,7 @@ func (x *PinGroupReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinGroupReq.ProtoReflect.Descriptor instead.
 func (*PinGroupReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{98}
+	return file_group_group_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *PinGroupReq) GetGroupID() string {
@@ -5250,7 +5339,7 @@ type PinGroupResp struct {
 
 func (x *PinGroupResp) Reset() {
 	*x = PinGroupResp{}
-	mi := &file_group_group_proto_msgTypes[99]
+	mi := &file_group_group_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5262,7 +5351,7 @@ func (x *PinGroupResp) String() string {
 func (*PinGroupResp) ProtoMessage() {}
 
 func (x *PinGroupResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[99]
+	mi := &file_group_group_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5275,7 +5364,7 @@ func (x *PinGroupResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinGroupResp.ProtoReflect.Descriptor instead.
 func (*PinGroupResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{99}
+	return file_group_group_proto_rawDescGZIP(), []int{101}
 }
 
 type UnpinGroupReq struct {
@@ -5287,7 +5376,7 @@ type UnpinGroupReq struct {
 
 func (x *UnpinGroupReq) Reset() {
 	*x = UnpinGroupReq{}
-	mi := &file_group_group_proto_msgTypes[100]
+	mi := &file_group_group_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5299,7 +5388,7 @@ func (x *UnpinGroupReq) String() string {
 func (*UnpinGroupReq) ProtoMessage() {}
 
 func (x *UnpinGroupReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[100]
+	mi := &file_group_group_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5312,7 +5401,7 @@ func (x *UnpinGroupReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinGroupReq.ProtoReflect.Descriptor instead.
 func (*UnpinGroupReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{100}
+	return file_group_group_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *UnpinGroupReq) GetGroupID() string {
@@ -5330,7 +5419,7 @@ type UnpinGroupResp struct {
 
 func (x *UnpinGroupResp) Reset() {
 	*x = UnpinGroupResp{}
-	mi := &file_group_group_proto_msgTypes[101]
+	mi := &file_group_group_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5342,7 +5431,7 @@ func (x *UnpinGroupResp) String() string {
 func (*UnpinGroupResp) ProtoMessage() {}
 
 func (x *UnpinGroupResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[101]
+	mi := &file_group_group_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5355,7 +5444,7 @@ func (x *UnpinGroupResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinGroupResp.ProtoReflect.Descriptor instead.
 func (*UnpinGroupResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{101}
+	return file_group_group_proto_rawDescGZIP(), []int{103}
 }
 
 type GroupInviteLinkInfo struct {
@@ -5376,7 +5465,7 @@ type GroupInviteLinkInfo struct {
 
 func (x *GroupInviteLinkInfo) Reset() {
 	*x = GroupInviteLinkInfo{}
-	mi := &file_group_group_proto_msgTypes[102]
+	mi := &file_group_group_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5388,7 +5477,7 @@ func (x *GroupInviteLinkInfo) String() string {
 func (*GroupInviteLinkInfo) ProtoMessage() {}
 
 func (x *GroupInviteLinkInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[102]
+	mi := &file_group_group_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5401,7 +5490,7 @@ func (x *GroupInviteLinkInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupInviteLinkInfo.ProtoReflect.Descriptor instead.
 func (*GroupInviteLinkInfo) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{102}
+	return file_group_group_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *GroupInviteLinkInfo) GetLinkID() string {
@@ -5478,7 +5567,7 @@ type CreateGroupInviteLinkReq struct {
 
 func (x *CreateGroupInviteLinkReq) Reset() {
 	*x = CreateGroupInviteLinkReq{}
-	mi := &file_group_group_proto_msgTypes[103]
+	mi := &file_group_group_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5490,7 +5579,7 @@ func (x *CreateGroupInviteLinkReq) String() string {
 func (*CreateGroupInviteLinkReq) ProtoMessage() {}
 
 func (x *CreateGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[103]
+	mi := &file_group_group_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5503,7 +5592,7 @@ func (x *CreateGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGroupInviteLinkReq.ProtoReflect.Descriptor instead.
 func (*CreateGroupInviteLinkReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{103}
+	return file_group_group_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *CreateGroupInviteLinkReq) GetGroupID() string {
@@ -5536,7 +5625,7 @@ type CreateGroupInviteLinkResp struct {
 
 func (x *CreateGroupInviteLinkResp) Reset() {
 	*x = CreateGroupInviteLinkResp{}
-	mi := &file_group_group_proto_msgTypes[104]
+	mi := &file_group_group_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5548,7 +5637,7 @@ func (x *CreateGroupInviteLinkResp) String() string {
 func (*CreateGroupInviteLinkResp) ProtoMessage() {}
 
 func (x *CreateGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[104]
+	mi := &file_group_group_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5561,7 +5650,7 @@ func (x *CreateGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGroupInviteLinkResp.ProtoReflect.Descriptor instead.
 func (*CreateGroupInviteLinkResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{104}
+	return file_group_group_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *CreateGroupInviteLinkResp) GetLink() *GroupInviteLinkInfo {
@@ -5580,7 +5669,7 @@ type GetGroupInviteLinkReq struct {
 
 func (x *GetGroupInviteLinkReq) Reset() {
 	*x = GetGroupInviteLinkReq{}
-	mi := &file_group_group_proto_msgTypes[105]
+	mi := &file_group_group_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5592,7 +5681,7 @@ func (x *GetGroupInviteLinkReq) String() string {
 func (*GetGroupInviteLinkReq) ProtoMessage() {}
 
 func (x *GetGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[105]
+	mi := &file_group_group_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5605,7 +5694,7 @@ func (x *GetGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupInviteLinkReq.ProtoReflect.Descriptor instead.
 func (*GetGroupInviteLinkReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{105}
+	return file_group_group_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *GetGroupInviteLinkReq) GetLinkID() string {
@@ -5626,7 +5715,7 @@ type GetGroupInviteLinkResp struct {
 
 func (x *GetGroupInviteLinkResp) Reset() {
 	*x = GetGroupInviteLinkResp{}
-	mi := &file_group_group_proto_msgTypes[106]
+	mi := &file_group_group_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5638,7 +5727,7 @@ func (x *GetGroupInviteLinkResp) String() string {
 func (*GetGroupInviteLinkResp) ProtoMessage() {}
 
 func (x *GetGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[106]
+	mi := &file_group_group_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5651,7 +5740,7 @@ func (x *GetGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupInviteLinkResp.ProtoReflect.Descriptor instead.
 func (*GetGroupInviteLinkResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{106}
+	return file_group_group_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *GetGroupInviteLinkResp) GetLink() *GroupInviteLinkInfo {
@@ -5685,7 +5774,7 @@ type JoinGroupByInviteLinkReq struct {
 
 func (x *JoinGroupByInviteLinkReq) Reset() {
 	*x = JoinGroupByInviteLinkReq{}
-	mi := &file_group_group_proto_msgTypes[107]
+	mi := &file_group_group_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5697,7 +5786,7 @@ func (x *JoinGroupByInviteLinkReq) String() string {
 func (*JoinGroupByInviteLinkReq) ProtoMessage() {}
 
 func (x *JoinGroupByInviteLinkReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[107]
+	mi := &file_group_group_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5710,7 +5799,7 @@ func (x *JoinGroupByInviteLinkReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinGroupByInviteLinkReq.ProtoReflect.Descriptor instead.
 func (*JoinGroupByInviteLinkReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{107}
+	return file_group_group_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *JoinGroupByInviteLinkReq) GetLinkID() string {
@@ -5735,7 +5824,7 @@ type JoinGroupByInviteLinkResp struct {
 
 func (x *JoinGroupByInviteLinkResp) Reset() {
 	*x = JoinGroupByInviteLinkResp{}
-	mi := &file_group_group_proto_msgTypes[108]
+	mi := &file_group_group_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5747,7 +5836,7 @@ func (x *JoinGroupByInviteLinkResp) String() string {
 func (*JoinGroupByInviteLinkResp) ProtoMessage() {}
 
 func (x *JoinGroupByInviteLinkResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[108]
+	mi := &file_group_group_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5760,7 +5849,7 @@ func (x *JoinGroupByInviteLinkResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinGroupByInviteLinkResp.ProtoReflect.Descriptor instead.
 func (*JoinGroupByInviteLinkResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{108}
+	return file_group_group_proto_rawDescGZIP(), []int{110}
 }
 
 type RevokeGroupInviteLinkReq struct {
@@ -5773,7 +5862,7 @@ type RevokeGroupInviteLinkReq struct {
 
 func (x *RevokeGroupInviteLinkReq) Reset() {
 	*x = RevokeGroupInviteLinkReq{}
-	mi := &file_group_group_proto_msgTypes[109]
+	mi := &file_group_group_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5785,7 +5874,7 @@ func (x *RevokeGroupInviteLinkReq) String() string {
 func (*RevokeGroupInviteLinkReq) ProtoMessage() {}
 
 func (x *RevokeGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[109]
+	mi := &file_group_group_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5798,7 +5887,7 @@ func (x *RevokeGroupInviteLinkReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeGroupInviteLinkReq.ProtoReflect.Descriptor instead.
 func (*RevokeGroupInviteLinkReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{109}
+	return file_group_group_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *RevokeGroupInviteLinkReq) GetLinkID() string {
@@ -5823,7 +5912,7 @@ type RevokeGroupInviteLinkResp struct {
 
 func (x *RevokeGroupInviteLinkResp) Reset() {
 	*x = RevokeGroupInviteLinkResp{}
-	mi := &file_group_group_proto_msgTypes[110]
+	mi := &file_group_group_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5835,7 +5924,7 @@ func (x *RevokeGroupInviteLinkResp) String() string {
 func (*RevokeGroupInviteLinkResp) ProtoMessage() {}
 
 func (x *RevokeGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[110]
+	mi := &file_group_group_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5848,7 +5937,7 @@ func (x *RevokeGroupInviteLinkResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeGroupInviteLinkResp.ProtoReflect.Descriptor instead.
 func (*RevokeGroupInviteLinkResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{110}
+	return file_group_group_proto_rawDescGZIP(), []int{112}
 }
 
 type ListGroupInviteLinksReq struct {
@@ -5861,7 +5950,7 @@ type ListGroupInviteLinksReq struct {
 
 func (x *ListGroupInviteLinksReq) Reset() {
 	*x = ListGroupInviteLinksReq{}
-	mi := &file_group_group_proto_msgTypes[111]
+	mi := &file_group_group_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5873,7 +5962,7 @@ func (x *ListGroupInviteLinksReq) String() string {
 func (*ListGroupInviteLinksReq) ProtoMessage() {}
 
 func (x *ListGroupInviteLinksReq) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[111]
+	mi := &file_group_group_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5886,7 +5975,7 @@ func (x *ListGroupInviteLinksReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupInviteLinksReq.ProtoReflect.Descriptor instead.
 func (*ListGroupInviteLinksReq) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{111}
+	return file_group_group_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *ListGroupInviteLinksReq) GetGroupID() string {
@@ -5913,7 +6002,7 @@ type ListGroupInviteLinksResp struct {
 
 func (x *ListGroupInviteLinksResp) Reset() {
 	*x = ListGroupInviteLinksResp{}
-	mi := &file_group_group_proto_msgTypes[112]
+	mi := &file_group_group_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5925,7 +6014,7 @@ func (x *ListGroupInviteLinksResp) String() string {
 func (*ListGroupInviteLinksResp) ProtoMessage() {}
 
 func (x *ListGroupInviteLinksResp) ProtoReflect() protoreflect.Message {
-	mi := &file_group_group_proto_msgTypes[112]
+	mi := &file_group_group_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5938,7 +6027,7 @@ func (x *ListGroupInviteLinksResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupInviteLinksResp.ProtoReflect.Descriptor instead.
 func (*ListGroupInviteLinksResp) Descriptor() ([]byte, []int) {
-	return file_group_group_proto_rawDescGZIP(), []int{112}
+	return file_group_group_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *ListGroupInviteLinksResp) GetTotal() uint32 {
@@ -6150,7 +6239,11 @@ const file_group_group_proto_rawDesc = "" +
 	"\rMuteGroupResp\".\n" +
 	"\x12CancelMuteGroupReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\"\x15\n" +
-	"\x13CancelMuteGroupResp\"\xa3\x04\n" +
+	"\x13CancelMuteGroupResp\"X\n" +
+	"\x18SetSendMessageSettingReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\"\n" +
+	"\fallowSendMsg\x18\x02 \x01(\x05R\fallowSendMsg\"\x1b\n" +
+	"\x19SetSendMessageSettingResp\"\xa3\x04\n" +
 	"\x12SetGroupMemberInfo\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x16\n" +
 	"\x06userID\x18\x02 \x01(\tR\x06userID\x128\n" +
@@ -6356,7 +6449,7 @@ const file_group_group_proto_rawDesc = "" +
 	"pagination\"i\n" +
 	"\x18ListGroupInviteLinksResp\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\rR\x05total\x127\n" +
-	"\x05links\x18\x02 \x03(\v2!.openim.group.GroupInviteLinkInfoR\x05links2\x9c)\n" +
+	"\x05links\x18\x02 \x03(\v2!.openim.group.GroupInviteLinkInfoR\x05links2\x86*\n" +
 	"\x05group\x12J\n" +
 	"\vcreateGroup\x12\x1c.openim.group.CreateGroupReq\x1a\x1d.openim.group.CreateGroupResp\x12D\n" +
 	"\tjoinGroup\x12\x1a.openim.group.JoinGroupReq\x1a\x1b.openim.group.JoinGroupResp\x12D\n" +
@@ -6382,7 +6475,8 @@ const file_group_group_proto_rawDesc = "" +
 	"\x0fmuteGroupMember\x12 .openim.group.MuteGroupMemberReq\x1a!.openim.group.MuteGroupMemberResp\x12h\n" +
 	"\x15cancelMuteGroupMember\x12&.openim.group.CancelMuteGroupMemberReq\x1a'.openim.group.CancelMuteGroupMemberResp\x12D\n" +
 	"\tmuteGroup\x12\x1a.openim.group.MuteGroupReq\x1a\x1b.openim.group.MuteGroupResp\x12V\n" +
-	"\x0fcancelMuteGroup\x12 .openim.group.CancelMuteGroupReq\x1a!.openim.group.CancelMuteGroupResp\x12_\n" +
+	"\x0fcancelMuteGroup\x12 .openim.group.CancelMuteGroupReq\x1a!.openim.group.CancelMuteGroupResp\x12h\n" +
+	"\x15setSendMessageSetting\x12&.openim.group.SetSendMessageSettingReq\x1a'.openim.group.SetSendMessageSettingResp\x12_\n" +
 	"\x12setGroupMemberInfo\x12#.openim.group.SetGroupMemberInfoReq\x1a$.openim.group.SetGroupMemberInfoResp\x12e\n" +
 	"\x14getGroupAbstractInfo\x12%.openim.group.GetGroupAbstractInfoReq\x1a&.openim.group.GetGroupAbstractInfoResp\x12h\n" +
 	"\x15getUserInGroupMembers\x12&.openim.group.GetUserInGroupMembersReq\x1a'.openim.group.GetUserInGroupMembersResp\x12h\n" +
@@ -6425,7 +6519,7 @@ func file_group_group_proto_rawDescGZIP() []byte {
 	return file_group_group_proto_rawDescData
 }
 
-var file_group_group_proto_msgTypes = make([]protoimpl.MessageInfo, 115)
+var file_group_group_proto_msgTypes = make([]protoimpl.MessageInfo, 117)
 var file_group_group_proto_goTypes = []any{
 	(*CreateGroupReq)(nil),                        // 0: openim.group.CreateGroupReq
 	(*CreateGroupResp)(nil),                       // 1: openim.group.CreateGroupResp
@@ -6479,154 +6573,156 @@ var file_group_group_proto_goTypes = []any{
 	(*MuteGroupResp)(nil),                         // 49: openim.group.MuteGroupResp
 	(*CancelMuteGroupReq)(nil),                    // 50: openim.group.CancelMuteGroupReq
 	(*CancelMuteGroupResp)(nil),                   // 51: openim.group.CancelMuteGroupResp
-	(*SetGroupMemberInfo)(nil),                    // 52: openim.group.SetGroupMemberInfo
-	(*SetGroupMemberInfoReq)(nil),                 // 53: openim.group.SetGroupMemberInfoReq
-	(*SetGroupMemberInfoResp)(nil),                // 54: openim.group.SetGroupMemberInfoResp
-	(*GetGroupAbstractInfoReq)(nil),               // 55: openim.group.GetGroupAbstractInfoReq
-	(*GroupAbstractInfo)(nil),                     // 56: openim.group.GroupAbstractInfo
-	(*GetGroupAbstractInfoResp)(nil),              // 57: openim.group.GetGroupAbstractInfoResp
-	(*GetUserInGroupMembersReq)(nil),              // 58: openim.group.GetUserInGroupMembersReq
-	(*GetUserInGroupMembersResp)(nil),             // 59: openim.group.GetUserInGroupMembersResp
-	(*GetGroupMemberUserIDsReq)(nil),              // 60: openim.group.GetGroupMemberUserIDsReq
-	(*GetGroupMemberUserIDsResp)(nil),             // 61: openim.group.GetGroupMemberUserIDsResp
-	(*GetGroupMemberRoleLevelReq)(nil),            // 62: openim.group.GetGroupMemberRoleLevelReq
-	(*GetGroupMemberRoleLevelResp)(nil),           // 63: openim.group.GetGroupMemberRoleLevelResp
-	(*GetGroupInfoCacheReq)(nil),                  // 64: openim.group.GetGroupInfoCacheReq
-	(*GetGroupInfoCacheResp)(nil),                 // 65: openim.group.GetGroupInfoCacheResp
-	(*GetGroupMemberCacheReq)(nil),                // 66: openim.group.GetGroupMemberCacheReq
-	(*GetGroupMemberCacheResp)(nil),               // 67: openim.group.GetGroupMemberCacheResp
-	(*GroupCreateCountReq)(nil),                   // 68: openim.group.GroupCreateCountReq
-	(*GroupCreateCountResp)(nil),                  // 69: openim.group.GroupCreateCountResp
-	(*GetGroupUsersReqApplicationListReq)(nil),    // 70: openim.group.getGroupUsersReqApplicationListReq
-	(*GetGroupUsersReqApplicationListResp)(nil),   // 71: openim.group.getGroupUsersReqApplicationListResp
-	(*NotificationUserInfoUpdateReq)(nil),         // 72: openim.group.notificationUserInfoUpdateReq
-	(*NotificationUserInfoUpdateResp)(nil),        // 73: openim.group.notificationUserInfoUpdateResp
-	(*NotificationFriendRemarkUpdateReq)(nil),     // 74: openim.group.notificationFriendRemarkUpdateReq
-	(*NotificationFriendRemarkUpdateResp)(nil),    // 75: openim.group.notificationFriendRemarkUpdateResp
-	(*GetIncrementalGroupMemberReq)(nil),          // 76: openim.group.getIncrementalGroupMemberReq
-	(*GetIncrementalGroupMemberResp)(nil),         // 77: openim.group.getIncrementalGroupMemberResp
-	(*GetIncrementalJoinGroupReq)(nil),            // 78: openim.group.getIncrementalJoinGroupReq
-	(*GetIncrementalJoinGroupResp)(nil),           // 79: openim.group.getIncrementalJoinGroupResp
-	(*GetFullGroupMemberUserIDsReq)(nil),          // 80: openim.group.GetFullGroupMemberUserIDsReq
-	(*GetFullGroupMemberUserIDsResp)(nil),         // 81: openim.group.GetFullGroupMemberUserIDsResp
-	(*GetFullJoinGroupIDsReq)(nil),                // 82: openim.group.GetFullJoinGroupIDsReq
-	(*GetFullJoinGroupIDsResp)(nil),               // 83: openim.group.GetFullJoinGroupIDsResp
-	(*BatchGetIncrementalGroupMemberReq)(nil),     // 84: openim.group.BatchGetIncrementalGroupMemberReq
-	(*BatchGetIncrementalGroupMemberResp)(nil),    // 85: openim.group.BatchGetIncrementalGroupMemberResp
-	(*GetCommonGroupsWithFriendReq)(nil),          // 86: openim.group.GetCommonGroupsWithFriendReq
-	(*GetCommonGroupsWithFriendResp)(nil),         // 87: openim.group.GetCommonGroupsWithFriendResp
-	(*PinGroupMessageReq)(nil),                    // 88: openim.group.PinGroupMessageReq
-	(*PinGroupMessageResp)(nil),                   // 89: openim.group.PinGroupMessageResp
-	(*UnpinGroupMessageReq)(nil),                  // 90: openim.group.UnpinGroupMessageReq
-	(*UnpinGroupMessageResp)(nil),                 // 91: openim.group.UnpinGroupMessageResp
-	(*GetGroupPinnedMessagesReq)(nil),             // 92: openim.group.GetGroupPinnedMessagesReq
-	(*GetGroupPinnedMessagesResp)(nil),            // 93: openim.group.GetGroupPinnedMessagesResp
-	(*SetGroupMuteReq)(nil),                       // 94: openim.group.SetGroupMuteReq
-	(*SetGroupMuteResp)(nil),                      // 95: openim.group.SetGroupMuteResp
-	(*GetGroupMuteReq)(nil),                       // 96: openim.group.GetGroupMuteReq
-	(*GetGroupMuteResp)(nil),                      // 97: openim.group.GetGroupMuteResp
-	(*PinGroupReq)(nil),                           // 98: openim.group.PinGroupReq
-	(*PinGroupResp)(nil),                          // 99: openim.group.PinGroupResp
-	(*UnpinGroupReq)(nil),                         // 100: openim.group.UnpinGroupReq
-	(*UnpinGroupResp)(nil),                        // 101: openim.group.UnpinGroupResp
-	(*GroupInviteLinkInfo)(nil),                   // 102: openim.group.GroupInviteLinkInfo
-	(*CreateGroupInviteLinkReq)(nil),              // 103: openim.group.CreateGroupInviteLinkReq
-	(*CreateGroupInviteLinkResp)(nil),             // 104: openim.group.CreateGroupInviteLinkResp
-	(*GetGroupInviteLinkReq)(nil),                 // 105: openim.group.GetGroupInviteLinkReq
-	(*GetGroupInviteLinkResp)(nil),                // 106: openim.group.GetGroupInviteLinkResp
-	(*JoinGroupByInviteLinkReq)(nil),              // 107: openim.group.JoinGroupByInviteLinkReq
-	(*JoinGroupByInviteLinkResp)(nil),             // 108: openim.group.JoinGroupByInviteLinkResp
-	(*RevokeGroupInviteLinkReq)(nil),              // 109: openim.group.RevokeGroupInviteLinkReq
-	(*RevokeGroupInviteLinkResp)(nil),             // 110: openim.group.RevokeGroupInviteLinkResp
-	(*ListGroupInviteLinksReq)(nil),               // 111: openim.group.ListGroupInviteLinksReq
-	(*ListGroupInviteLinksResp)(nil),              // 112: openim.group.ListGroupInviteLinksResp
-	nil,                                           // 113: openim.group.GroupCreateCountResp.CountEntry
-	nil,                                           // 114: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
-	(*sdkws.GroupInfo)(nil),                       // 115: openim.sdkws.GroupInfo
-	(*sdkws.GroupInfoForSet)(nil),                 // 116: openim.sdkws.GroupInfoForSet
-	(*wrapperspb.StringValue)(nil),                // 117: openim.protobuf.StringValue
-	(*wrapperspb.Int32Value)(nil),                 // 118: openim.protobuf.Int32Value
-	(*sdkws.RequestPagination)(nil),               // 119: openim.sdkws.RequestPagination
-	(*sdkws.GroupRequest)(nil),                    // 120: openim.sdkws.GroupRequest
-	(*sdkws.GroupMemberFullInfo)(nil),             // 121: openim.sdkws.GroupMemberFullInfo
-	(*wrapperspb.BoolValue)(nil),                  // 122: openim.protobuf.BoolValue
-	(*wrapperspb.Int64Value)(nil),                 // 123: openim.protobuf.Int64Value
-	(*sdkws.UserInfo)(nil),                        // 124: openim.sdkws.UserInfo
-	(*sdkws.GroupPinnedMsgInfo)(nil),              // 125: openim.sdkws.GroupPinnedMsgInfo
+	(*SetSendMessageSettingReq)(nil),              // 52: openim.group.SetSendMessageSettingReq
+	(*SetSendMessageSettingResp)(nil),             // 53: openim.group.SetSendMessageSettingResp
+	(*SetGroupMemberInfo)(nil),                    // 54: openim.group.SetGroupMemberInfo
+	(*SetGroupMemberInfoReq)(nil),                 // 55: openim.group.SetGroupMemberInfoReq
+	(*SetGroupMemberInfoResp)(nil),                // 56: openim.group.SetGroupMemberInfoResp
+	(*GetGroupAbstractInfoReq)(nil),               // 57: openim.group.GetGroupAbstractInfoReq
+	(*GroupAbstractInfo)(nil),                     // 58: openim.group.GroupAbstractInfo
+	(*GetGroupAbstractInfoResp)(nil),              // 59: openim.group.GetGroupAbstractInfoResp
+	(*GetUserInGroupMembersReq)(nil),              // 60: openim.group.GetUserInGroupMembersReq
+	(*GetUserInGroupMembersResp)(nil),             // 61: openim.group.GetUserInGroupMembersResp
+	(*GetGroupMemberUserIDsReq)(nil),              // 62: openim.group.GetGroupMemberUserIDsReq
+	(*GetGroupMemberUserIDsResp)(nil),             // 63: openim.group.GetGroupMemberUserIDsResp
+	(*GetGroupMemberRoleLevelReq)(nil),            // 64: openim.group.GetGroupMemberRoleLevelReq
+	(*GetGroupMemberRoleLevelResp)(nil),           // 65: openim.group.GetGroupMemberRoleLevelResp
+	(*GetGroupInfoCacheReq)(nil),                  // 66: openim.group.GetGroupInfoCacheReq
+	(*GetGroupInfoCacheResp)(nil),                 // 67: openim.group.GetGroupInfoCacheResp
+	(*GetGroupMemberCacheReq)(nil),                // 68: openim.group.GetGroupMemberCacheReq
+	(*GetGroupMemberCacheResp)(nil),               // 69: openim.group.GetGroupMemberCacheResp
+	(*GroupCreateCountReq)(nil),                   // 70: openim.group.GroupCreateCountReq
+	(*GroupCreateCountResp)(nil),                  // 71: openim.group.GroupCreateCountResp
+	(*GetGroupUsersReqApplicationListReq)(nil),    // 72: openim.group.getGroupUsersReqApplicationListReq
+	(*GetGroupUsersReqApplicationListResp)(nil),   // 73: openim.group.getGroupUsersReqApplicationListResp
+	(*NotificationUserInfoUpdateReq)(nil),         // 74: openim.group.notificationUserInfoUpdateReq
+	(*NotificationUserInfoUpdateResp)(nil),        // 75: openim.group.notificationUserInfoUpdateResp
+	(*NotificationFriendRemarkUpdateReq)(nil),     // 76: openim.group.notificationFriendRemarkUpdateReq
+	(*NotificationFriendRemarkUpdateResp)(nil),    // 77: openim.group.notificationFriendRemarkUpdateResp
+	(*GetIncrementalGroupMemberReq)(nil),          // 78: openim.group.getIncrementalGroupMemberReq
+	(*GetIncrementalGroupMemberResp)(nil),         // 79: openim.group.getIncrementalGroupMemberResp
+	(*GetIncrementalJoinGroupReq)(nil),            // 80: openim.group.getIncrementalJoinGroupReq
+	(*GetIncrementalJoinGroupResp)(nil),           // 81: openim.group.getIncrementalJoinGroupResp
+	(*GetFullGroupMemberUserIDsReq)(nil),          // 82: openim.group.GetFullGroupMemberUserIDsReq
+	(*GetFullGroupMemberUserIDsResp)(nil),         // 83: openim.group.GetFullGroupMemberUserIDsResp
+	(*GetFullJoinGroupIDsReq)(nil),                // 84: openim.group.GetFullJoinGroupIDsReq
+	(*GetFullJoinGroupIDsResp)(nil),               // 85: openim.group.GetFullJoinGroupIDsResp
+	(*BatchGetIncrementalGroupMemberReq)(nil),     // 86: openim.group.BatchGetIncrementalGroupMemberReq
+	(*BatchGetIncrementalGroupMemberResp)(nil),    // 87: openim.group.BatchGetIncrementalGroupMemberResp
+	(*GetCommonGroupsWithFriendReq)(nil),          // 88: openim.group.GetCommonGroupsWithFriendReq
+	(*GetCommonGroupsWithFriendResp)(nil),         // 89: openim.group.GetCommonGroupsWithFriendResp
+	(*PinGroupMessageReq)(nil),                    // 90: openim.group.PinGroupMessageReq
+	(*PinGroupMessageResp)(nil),                   // 91: openim.group.PinGroupMessageResp
+	(*UnpinGroupMessageReq)(nil),                  // 92: openim.group.UnpinGroupMessageReq
+	(*UnpinGroupMessageResp)(nil),                 // 93: openim.group.UnpinGroupMessageResp
+	(*GetGroupPinnedMessagesReq)(nil),             // 94: openim.group.GetGroupPinnedMessagesReq
+	(*GetGroupPinnedMessagesResp)(nil),            // 95: openim.group.GetGroupPinnedMessagesResp
+	(*SetGroupMuteReq)(nil),                       // 96: openim.group.SetGroupMuteReq
+	(*SetGroupMuteResp)(nil),                      // 97: openim.group.SetGroupMuteResp
+	(*GetGroupMuteReq)(nil),                       // 98: openim.group.GetGroupMuteReq
+	(*GetGroupMuteResp)(nil),                      // 99: openim.group.GetGroupMuteResp
+	(*PinGroupReq)(nil),                           // 100: openim.group.PinGroupReq
+	(*PinGroupResp)(nil),                          // 101: openim.group.PinGroupResp
+	(*UnpinGroupReq)(nil),                         // 102: openim.group.UnpinGroupReq
+	(*UnpinGroupResp)(nil),                        // 103: openim.group.UnpinGroupResp
+	(*GroupInviteLinkInfo)(nil),                   // 104: openim.group.GroupInviteLinkInfo
+	(*CreateGroupInviteLinkReq)(nil),              // 105: openim.group.CreateGroupInviteLinkReq
+	(*CreateGroupInviteLinkResp)(nil),             // 106: openim.group.CreateGroupInviteLinkResp
+	(*GetGroupInviteLinkReq)(nil),                 // 107: openim.group.GetGroupInviteLinkReq
+	(*GetGroupInviteLinkResp)(nil),                // 108: openim.group.GetGroupInviteLinkResp
+	(*JoinGroupByInviteLinkReq)(nil),              // 109: openim.group.JoinGroupByInviteLinkReq
+	(*JoinGroupByInviteLinkResp)(nil),             // 110: openim.group.JoinGroupByInviteLinkResp
+	(*RevokeGroupInviteLinkReq)(nil),              // 111: openim.group.RevokeGroupInviteLinkReq
+	(*RevokeGroupInviteLinkResp)(nil),             // 112: openim.group.RevokeGroupInviteLinkResp
+	(*ListGroupInviteLinksReq)(nil),               // 113: openim.group.ListGroupInviteLinksReq
+	(*ListGroupInviteLinksResp)(nil),              // 114: openim.group.ListGroupInviteLinksResp
+	nil,                                           // 115: openim.group.GroupCreateCountResp.CountEntry
+	nil,                                           // 116: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
+	(*sdkws.GroupInfo)(nil),                       // 117: openim.sdkws.GroupInfo
+	(*sdkws.GroupInfoForSet)(nil),                 // 118: openim.sdkws.GroupInfoForSet
+	(*wrapperspb.StringValue)(nil),                // 119: openim.protobuf.StringValue
+	(*wrapperspb.Int32Value)(nil),                 // 120: openim.protobuf.Int32Value
+	(*sdkws.RequestPagination)(nil),               // 121: openim.sdkws.RequestPagination
+	(*sdkws.GroupRequest)(nil),                    // 122: openim.sdkws.GroupRequest
+	(*sdkws.GroupMemberFullInfo)(nil),             // 123: openim.sdkws.GroupMemberFullInfo
+	(*wrapperspb.BoolValue)(nil),                  // 124: openim.protobuf.BoolValue
+	(*wrapperspb.Int64Value)(nil),                 // 125: openim.protobuf.Int64Value
+	(*sdkws.UserInfo)(nil),                        // 126: openim.sdkws.UserInfo
+	(*sdkws.GroupPinnedMsgInfo)(nil),              // 127: openim.sdkws.GroupPinnedMsgInfo
 }
 var file_group_group_proto_depIdxs = []int32{
-	115, // 0: openim.group.CreateGroupReq.groupInfo:type_name -> openim.sdkws.GroupInfo
-	115, // 1: openim.group.CreateGroupResp.groupInfo:type_name -> openim.sdkws.GroupInfo
-	115, // 2: openim.group.GetGroupsInfoResp.groupInfos:type_name -> openim.sdkws.GroupInfo
-	116, // 3: openim.group.SetGroupInfoReq.groupInfoForSet:type_name -> openim.sdkws.GroupInfoForSet
-	117, // 4: openim.group.SetGroupInfoExReq.groupName:type_name -> openim.protobuf.StringValue
-	117, // 5: openim.group.SetGroupInfoExReq.notification:type_name -> openim.protobuf.StringValue
-	117, // 6: openim.group.SetGroupInfoExReq.introduction:type_name -> openim.protobuf.StringValue
-	117, // 7: openim.group.SetGroupInfoExReq.faceURL:type_name -> openim.protobuf.StringValue
-	117, // 8: openim.group.SetGroupInfoExReq.ex:type_name -> openim.protobuf.StringValue
-	118, // 9: openim.group.SetGroupInfoExReq.needVerification:type_name -> openim.protobuf.Int32Value
-	118, // 10: openim.group.SetGroupInfoExReq.lookMemberInfo:type_name -> openim.protobuf.Int32Value
-	118, // 11: openim.group.SetGroupInfoExReq.applyMemberFriend:type_name -> openim.protobuf.Int32Value
-	118, // 12: openim.group.SetGroupInfoExReq.allowSendMsg:type_name -> openim.protobuf.Int32Value
-	118, // 13: openim.group.SetGroupInfoExReq.allowPinMsg:type_name -> openim.protobuf.Int32Value
-	118, // 14: openim.group.SetGroupInfoExReq.allowAddMember:type_name -> openim.protobuf.Int32Value
-	118, // 15: openim.group.SetGroupInfoExReq.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
-	118, // 16: openim.group.SetGroupInfoExReq.msgBurnDuration:type_name -> openim.protobuf.Int32Value
-	118, // 17: openim.group.SetGroupInfoExReq.allowBurn:type_name -> openim.protobuf.Int32Value
-	118, // 18: openim.group.SetGroupInfoExReq.enableInviteLink:type_name -> openim.protobuf.Int32Value
-	119, // 19: openim.group.GetGroupApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	120, // 20: openim.group.GetGroupApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	119, // 21: openim.group.GetUserReqApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	120, // 22: openim.group.GetUserReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	120, // 23: openim.group.GetSpecifiedUserGroupRequestInfoResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	119, // 24: openim.group.GetGroupMemberListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	121, // 25: openim.group.GetGroupMemberListResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	121, // 26: openim.group.GetGroupMembersInfoResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	119, // 27: openim.group.GetJoinedGroupListReq.pagination:type_name -> openim.sdkws.RequestPagination
-	115, // 28: openim.group.GetJoinedGroupListResp.groups:type_name -> openim.sdkws.GroupInfo
-	119, // 29: openim.group.GetGroupAllMemberReq.pagination:type_name -> openim.sdkws.RequestPagination
-	121, // 30: openim.group.GetGroupAllMemberResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	115, // 31: openim.group.CMSGroup.groupInfo:type_name -> openim.sdkws.GroupInfo
-	119, // 32: openim.group.GetGroupsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	117, // 0: openim.group.CreateGroupReq.groupInfo:type_name -> openim.sdkws.GroupInfo
+	117, // 1: openim.group.CreateGroupResp.groupInfo:type_name -> openim.sdkws.GroupInfo
+	117, // 2: openim.group.GetGroupsInfoResp.groupInfos:type_name -> openim.sdkws.GroupInfo
+	118, // 3: openim.group.SetGroupInfoReq.groupInfoForSet:type_name -> openim.sdkws.GroupInfoForSet
+	119, // 4: openim.group.SetGroupInfoExReq.groupName:type_name -> openim.protobuf.StringValue
+	119, // 5: openim.group.SetGroupInfoExReq.notification:type_name -> openim.protobuf.StringValue
+	119, // 6: openim.group.SetGroupInfoExReq.introduction:type_name -> openim.protobuf.StringValue
+	119, // 7: openim.group.SetGroupInfoExReq.faceURL:type_name -> openim.protobuf.StringValue
+	119, // 8: openim.group.SetGroupInfoExReq.ex:type_name -> openim.protobuf.StringValue
+	120, // 9: openim.group.SetGroupInfoExReq.needVerification:type_name -> openim.protobuf.Int32Value
+	120, // 10: openim.group.SetGroupInfoExReq.lookMemberInfo:type_name -> openim.protobuf.Int32Value
+	120, // 11: openim.group.SetGroupInfoExReq.applyMemberFriend:type_name -> openim.protobuf.Int32Value
+	120, // 12: openim.group.SetGroupInfoExReq.allowSendMsg:type_name -> openim.protobuf.Int32Value
+	120, // 13: openim.group.SetGroupInfoExReq.allowPinMsg:type_name -> openim.protobuf.Int32Value
+	120, // 14: openim.group.SetGroupInfoExReq.allowAddMember:type_name -> openim.protobuf.Int32Value
+	120, // 15: openim.group.SetGroupInfoExReq.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
+	120, // 16: openim.group.SetGroupInfoExReq.msgBurnDuration:type_name -> openim.protobuf.Int32Value
+	120, // 17: openim.group.SetGroupInfoExReq.allowBurn:type_name -> openim.protobuf.Int32Value
+	120, // 18: openim.group.SetGroupInfoExReq.enableInviteLink:type_name -> openim.protobuf.Int32Value
+	121, // 19: openim.group.GetGroupApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	122, // 20: openim.group.GetGroupApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	121, // 21: openim.group.GetUserReqApplicationListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	122, // 22: openim.group.GetUserReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	122, // 23: openim.group.GetSpecifiedUserGroupRequestInfoResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	121, // 24: openim.group.GetGroupMemberListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	123, // 25: openim.group.GetGroupMemberListResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	123, // 26: openim.group.GetGroupMembersInfoResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	121, // 27: openim.group.GetJoinedGroupListReq.pagination:type_name -> openim.sdkws.RequestPagination
+	117, // 28: openim.group.GetJoinedGroupListResp.groups:type_name -> openim.sdkws.GroupInfo
+	121, // 29: openim.group.GetGroupAllMemberReq.pagination:type_name -> openim.sdkws.RequestPagination
+	123, // 30: openim.group.GetGroupAllMemberResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	117, // 31: openim.group.CMSGroup.groupInfo:type_name -> openim.sdkws.GroupInfo
+	121, // 32: openim.group.GetGroupsReq.pagination:type_name -> openim.sdkws.RequestPagination
 	36,  // 33: openim.group.GetGroupsResp.groups:type_name -> openim.group.CMSGroup
-	119, // 34: openim.group.GetGroupMembersCMSReq.pagination:type_name -> openim.sdkws.RequestPagination
-	121, // 35: openim.group.GetGroupMembersCMSResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	117, // 36: openim.group.SetGroupMemberInfo.nickname:type_name -> openim.protobuf.StringValue
-	117, // 37: openim.group.SetGroupMemberInfo.faceURL:type_name -> openim.protobuf.StringValue
-	118, // 38: openim.group.SetGroupMemberInfo.roleLevel:type_name -> openim.protobuf.Int32Value
-	117, // 39: openim.group.SetGroupMemberInfo.ex:type_name -> openim.protobuf.StringValue
-	122, // 40: openim.group.SetGroupMemberInfo.isPinned:type_name -> openim.protobuf.BoolValue
-	122, // 41: openim.group.SetGroupMemberInfo.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	123, // 42: openim.group.SetGroupMemberInfo.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	118, // 43: openim.group.SetGroupMemberInfo.burnDuration:type_name -> openim.protobuf.Int32Value
-	52,  // 44: openim.group.SetGroupMemberInfoReq.members:type_name -> openim.group.SetGroupMemberInfo
-	56,  // 45: openim.group.GetGroupAbstractInfoResp.groupAbstractInfos:type_name -> openim.group.GroupAbstractInfo
-	121, // 46: openim.group.GetUserInGroupMembersResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	121, // 47: openim.group.GetGroupMemberRoleLevelResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
-	115, // 48: openim.group.GetGroupInfoCacheResp.groupInfo:type_name -> openim.sdkws.GroupInfo
-	121, // 49: openim.group.GetGroupMemberCacheResp.member:type_name -> openim.sdkws.GroupMemberFullInfo
-	113, // 50: openim.group.GroupCreateCountResp.count:type_name -> openim.group.GroupCreateCountResp.CountEntry
-	120, // 51: openim.group.getGroupUsersReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
-	124, // 52: openim.group.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
-	124, // 53: openim.group.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
-	121, // 54: openim.group.getIncrementalGroupMemberResp.insert:type_name -> openim.sdkws.GroupMemberFullInfo
-	121, // 55: openim.group.getIncrementalGroupMemberResp.update:type_name -> openim.sdkws.GroupMemberFullInfo
-	115, // 56: openim.group.getIncrementalGroupMemberResp.group:type_name -> openim.sdkws.GroupInfo
-	115, // 57: openim.group.getIncrementalJoinGroupResp.insert:type_name -> openim.sdkws.GroupInfo
-	115, // 58: openim.group.getIncrementalJoinGroupResp.update:type_name -> openim.sdkws.GroupInfo
-	76,  // 59: openim.group.BatchGetIncrementalGroupMemberReq.reqList:type_name -> openim.group.getIncrementalGroupMemberReq
-	114, // 60: openim.group.BatchGetIncrementalGroupMemberResp.respList:type_name -> openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
-	115, // 61: openim.group.GetCommonGroupsWithFriendResp.groups:type_name -> openim.sdkws.GroupInfo
-	125, // 62: openim.group.PinGroupMessageResp.pinnedMsg:type_name -> openim.sdkws.GroupPinnedMsgInfo
-	125, // 63: openim.group.PinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
-	125, // 64: openim.group.UnpinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
-	125, // 65: openim.group.GetGroupPinnedMessagesResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
-	102, // 66: openim.group.CreateGroupInviteLinkResp.link:type_name -> openim.group.GroupInviteLinkInfo
-	102, // 67: openim.group.GetGroupInviteLinkResp.link:type_name -> openim.group.GroupInviteLinkInfo
-	115, // 68: openim.group.GetGroupInviteLinkResp.groupInfo:type_name -> openim.sdkws.GroupInfo
-	119, // 69: openim.group.ListGroupInviteLinksReq.pagination:type_name -> openim.sdkws.RequestPagination
-	102, // 70: openim.group.ListGroupInviteLinksResp.links:type_name -> openim.group.GroupInviteLinkInfo
-	77,  // 71: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry.value:type_name -> openim.group.getIncrementalGroupMemberResp
+	121, // 34: openim.group.GetGroupMembersCMSReq.pagination:type_name -> openim.sdkws.RequestPagination
+	123, // 35: openim.group.GetGroupMembersCMSResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	119, // 36: openim.group.SetGroupMemberInfo.nickname:type_name -> openim.protobuf.StringValue
+	119, // 37: openim.group.SetGroupMemberInfo.faceURL:type_name -> openim.protobuf.StringValue
+	120, // 38: openim.group.SetGroupMemberInfo.roleLevel:type_name -> openim.protobuf.Int32Value
+	119, // 39: openim.group.SetGroupMemberInfo.ex:type_name -> openim.protobuf.StringValue
+	124, // 40: openim.group.SetGroupMemberInfo.isPinned:type_name -> openim.protobuf.BoolValue
+	124, // 41: openim.group.SetGroupMemberInfo.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	125, // 42: openim.group.SetGroupMemberInfo.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	120, // 43: openim.group.SetGroupMemberInfo.burnDuration:type_name -> openim.protobuf.Int32Value
+	54,  // 44: openim.group.SetGroupMemberInfoReq.members:type_name -> openim.group.SetGroupMemberInfo
+	58,  // 45: openim.group.GetGroupAbstractInfoResp.groupAbstractInfos:type_name -> openim.group.GroupAbstractInfo
+	123, // 46: openim.group.GetUserInGroupMembersResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	123, // 47: openim.group.GetGroupMemberRoleLevelResp.members:type_name -> openim.sdkws.GroupMemberFullInfo
+	117, // 48: openim.group.GetGroupInfoCacheResp.groupInfo:type_name -> openim.sdkws.GroupInfo
+	123, // 49: openim.group.GetGroupMemberCacheResp.member:type_name -> openim.sdkws.GroupMemberFullInfo
+	115, // 50: openim.group.GroupCreateCountResp.count:type_name -> openim.group.GroupCreateCountResp.CountEntry
+	122, // 51: openim.group.getGroupUsersReqApplicationListResp.groupRequests:type_name -> openim.sdkws.GroupRequest
+	126, // 52: openim.group.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
+	126, // 53: openim.group.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
+	123, // 54: openim.group.getIncrementalGroupMemberResp.insert:type_name -> openim.sdkws.GroupMemberFullInfo
+	123, // 55: openim.group.getIncrementalGroupMemberResp.update:type_name -> openim.sdkws.GroupMemberFullInfo
+	117, // 56: openim.group.getIncrementalGroupMemberResp.group:type_name -> openim.sdkws.GroupInfo
+	117, // 57: openim.group.getIncrementalJoinGroupResp.insert:type_name -> openim.sdkws.GroupInfo
+	117, // 58: openim.group.getIncrementalJoinGroupResp.update:type_name -> openim.sdkws.GroupInfo
+	78,  // 59: openim.group.BatchGetIncrementalGroupMemberReq.reqList:type_name -> openim.group.getIncrementalGroupMemberReq
+	116, // 60: openim.group.BatchGetIncrementalGroupMemberResp.respList:type_name -> openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry
+	117, // 61: openim.group.GetCommonGroupsWithFriendResp.groups:type_name -> openim.sdkws.GroupInfo
+	127, // 62: openim.group.PinGroupMessageResp.pinnedMsg:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	127, // 63: openim.group.PinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	127, // 64: openim.group.UnpinGroupMessageResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	127, // 65: openim.group.GetGroupPinnedMessagesResp.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
+	104, // 66: openim.group.CreateGroupInviteLinkResp.link:type_name -> openim.group.GroupInviteLinkInfo
+	104, // 67: openim.group.GetGroupInviteLinkResp.link:type_name -> openim.group.GroupInviteLinkInfo
+	117, // 68: openim.group.GetGroupInviteLinkResp.groupInfo:type_name -> openim.sdkws.GroupInfo
+	121, // 69: openim.group.ListGroupInviteLinksReq.pagination:type_name -> openim.sdkws.RequestPagination
+	104, // 70: openim.group.ListGroupInviteLinksResp.links:type_name -> openim.group.GroupInviteLinkInfo
+	79,  // 71: openim.group.BatchGetIncrementalGroupMemberResp.RespListEntry.value:type_name -> openim.group.getIncrementalGroupMemberResp
 	0,   // 72: openim.group.group.createGroup:input_type -> openim.group.CreateGroupReq
 	18,  // 73: openim.group.group.joinGroup:input_type -> openim.group.JoinGroupReq
 	22,  // 74: openim.group.group.quitGroup:input_type -> openim.group.QuitGroupReq
@@ -6636,7 +6732,7 @@ var file_group_group_proto_depIdxs = []int32{
 	8,   // 78: openim.group.group.getGroupApplicationList:input_type -> openim.group.GetGroupApplicationListReq
 	10,  // 79: openim.group.group.getGroupApplicationUnhandledCount:input_type -> openim.group.GetGroupApplicationUnhandledCountReq
 	12,  // 80: openim.group.group.getUserReqApplicationList:input_type -> openim.group.GetUserReqApplicationListReq
-	70,  // 81: openim.group.group.getGroupUsersReqApplicationList:input_type -> openim.group.getGroupUsersReqApplicationListReq
+	72,  // 81: openim.group.group.getGroupUsersReqApplicationList:input_type -> openim.group.getGroupUsersReqApplicationListReq
 	14,  // 82: openim.group.group.getSpecifiedUserGroupRequestInfo:input_type -> openim.group.GetSpecifiedUserGroupRequestInfoReq
 	16,  // 83: openim.group.group.transferGroupOwner:input_type -> openim.group.TransferGroupOwnerReq
 	20,  // 84: openim.group.group.groupApplicationResponse:input_type -> openim.group.GroupApplicationResponseReq
@@ -6652,89 +6748,91 @@ var file_group_group_proto_depIdxs = []int32{
 	46,  // 94: openim.group.group.cancelMuteGroupMember:input_type -> openim.group.CancelMuteGroupMemberReq
 	48,  // 95: openim.group.group.muteGroup:input_type -> openim.group.MuteGroupReq
 	50,  // 96: openim.group.group.cancelMuteGroup:input_type -> openim.group.CancelMuteGroupReq
-	53,  // 97: openim.group.group.setGroupMemberInfo:input_type -> openim.group.SetGroupMemberInfoReq
-	55,  // 98: openim.group.group.getGroupAbstractInfo:input_type -> openim.group.GetGroupAbstractInfoReq
-	58,  // 99: openim.group.group.getUserInGroupMembers:input_type -> openim.group.GetUserInGroupMembersReq
-	60,  // 100: openim.group.group.getGroupMemberUserIDs:input_type -> openim.group.GetGroupMemberUserIDsReq
-	62,  // 101: openim.group.group.GetGroupMemberRoleLevel:input_type -> openim.group.GetGroupMemberRoleLevelReq
-	64,  // 102: openim.group.group.GetGroupInfoCache:input_type -> openim.group.GetGroupInfoCacheReq
-	66,  // 103: openim.group.group.GetGroupMemberCache:input_type -> openim.group.GetGroupMemberCacheReq
-	68,  // 104: openim.group.group.GroupCreateCount:input_type -> openim.group.GroupCreateCountReq
-	72,  // 105: openim.group.group.NotificationUserInfoUpdate:input_type -> openim.group.notificationUserInfoUpdateReq
-	74,  // 106: openim.group.group.NotificationFriendRemarkUpdate:input_type -> openim.group.notificationFriendRemarkUpdateReq
-	76,  // 107: openim.group.group.getIncrementalGroupMember:input_type -> openim.group.getIncrementalGroupMemberReq
-	84,  // 108: openim.group.group.BatchGetIncrementalGroupMember:input_type -> openim.group.BatchGetIncrementalGroupMemberReq
-	78,  // 109: openim.group.group.getIncrementalJoinGroup:input_type -> openim.group.getIncrementalJoinGroupReq
-	80,  // 110: openim.group.group.GetFullGroupMemberUserIDs:input_type -> openim.group.GetFullGroupMemberUserIDsReq
-	82,  // 111: openim.group.group.GetFullJoinGroupIDs:input_type -> openim.group.GetFullJoinGroupIDsReq
-	86,  // 112: openim.group.group.getCommonGroupsWithFriend:input_type -> openim.group.GetCommonGroupsWithFriendReq
-	88,  // 113: openim.group.group.pinGroupMessage:input_type -> openim.group.PinGroupMessageReq
-	90,  // 114: openim.group.group.unpinGroupMessage:input_type -> openim.group.UnpinGroupMessageReq
-	92,  // 115: openim.group.group.getGroupPinnedMessages:input_type -> openim.group.GetGroupPinnedMessagesReq
-	94,  // 116: openim.group.group.setGroupMute:input_type -> openim.group.SetGroupMuteReq
-	96,  // 117: openim.group.group.getGroupMute:input_type -> openim.group.GetGroupMuteReq
-	98,  // 118: openim.group.group.pinGroup:input_type -> openim.group.PinGroupReq
-	100, // 119: openim.group.group.unpinGroup:input_type -> openim.group.UnpinGroupReq
-	103, // 120: openim.group.group.createGroupInviteLink:input_type -> openim.group.CreateGroupInviteLinkReq
-	105, // 121: openim.group.group.getGroupInviteLink:input_type -> openim.group.GetGroupInviteLinkReq
-	107, // 122: openim.group.group.joinGroupByInviteLink:input_type -> openim.group.JoinGroupByInviteLinkReq
-	109, // 123: openim.group.group.revokeGroupInviteLink:input_type -> openim.group.RevokeGroupInviteLinkReq
-	111, // 124: openim.group.group.listGroupInviteLinks:input_type -> openim.group.ListGroupInviteLinksReq
-	1,   // 125: openim.group.group.createGroup:output_type -> openim.group.CreateGroupResp
-	19,  // 126: openim.group.group.joinGroup:output_type -> openim.group.JoinGroupResp
-	23,  // 127: openim.group.group.quitGroup:output_type -> openim.group.QuitGroupResp
-	3,   // 128: openim.group.group.getGroupsInfo:output_type -> openim.group.GetGroupsInfoResp
-	5,   // 129: openim.group.group.setGroupInfo:output_type -> openim.group.SetGroupInfoResp
-	7,   // 130: openim.group.group.setGroupInfoEx:output_type -> openim.group.SetGroupInfoExResp
-	9,   // 131: openim.group.group.getGroupApplicationList:output_type -> openim.group.GetGroupApplicationListResp
-	11,  // 132: openim.group.group.getGroupApplicationUnhandledCount:output_type -> openim.group.GetGroupApplicationUnhandledCountResp
-	13,  // 133: openim.group.group.getUserReqApplicationList:output_type -> openim.group.GetUserReqApplicationListResp
-	71,  // 134: openim.group.group.getGroupUsersReqApplicationList:output_type -> openim.group.getGroupUsersReqApplicationListResp
-	15,  // 135: openim.group.group.getSpecifiedUserGroupRequestInfo:output_type -> openim.group.GetSpecifiedUserGroupRequestInfoResp
-	17,  // 136: openim.group.group.transferGroupOwner:output_type -> openim.group.TransferGroupOwnerResp
-	21,  // 137: openim.group.group.groupApplicationResponse:output_type -> openim.group.GroupApplicationResponseResp
-	25,  // 138: openim.group.group.getGroupMemberList:output_type -> openim.group.GetGroupMemberListResp
-	27,  // 139: openim.group.group.getGroupMembersInfo:output_type -> openim.group.GetGroupMembersInfoResp
-	29,  // 140: openim.group.group.kickGroupMember:output_type -> openim.group.KickGroupMemberResp
-	31,  // 141: openim.group.group.getJoinedGroupList:output_type -> openim.group.GetJoinedGroupListResp
-	33,  // 142: openim.group.group.inviteUserToGroup:output_type -> openim.group.InviteUserToGroupResp
-	38,  // 143: openim.group.group.getGroups:output_type -> openim.group.GetGroupsResp
-	41,  // 144: openim.group.group.getGroupMembersCMS:output_type -> openim.group.GetGroupMembersCMSResp
-	43,  // 145: openim.group.group.dismissGroup:output_type -> openim.group.DismissGroupResp
-	45,  // 146: openim.group.group.muteGroupMember:output_type -> openim.group.MuteGroupMemberResp
-	47,  // 147: openim.group.group.cancelMuteGroupMember:output_type -> openim.group.CancelMuteGroupMemberResp
-	49,  // 148: openim.group.group.muteGroup:output_type -> openim.group.MuteGroupResp
-	51,  // 149: openim.group.group.cancelMuteGroup:output_type -> openim.group.CancelMuteGroupResp
-	54,  // 150: openim.group.group.setGroupMemberInfo:output_type -> openim.group.SetGroupMemberInfoResp
-	57,  // 151: openim.group.group.getGroupAbstractInfo:output_type -> openim.group.GetGroupAbstractInfoResp
-	59,  // 152: openim.group.group.getUserInGroupMembers:output_type -> openim.group.GetUserInGroupMembersResp
-	61,  // 153: openim.group.group.getGroupMemberUserIDs:output_type -> openim.group.GetGroupMemberUserIDsResp
-	63,  // 154: openim.group.group.GetGroupMemberRoleLevel:output_type -> openim.group.GetGroupMemberRoleLevelResp
-	65,  // 155: openim.group.group.GetGroupInfoCache:output_type -> openim.group.GetGroupInfoCacheResp
-	67,  // 156: openim.group.group.GetGroupMemberCache:output_type -> openim.group.GetGroupMemberCacheResp
-	69,  // 157: openim.group.group.GroupCreateCount:output_type -> openim.group.GroupCreateCountResp
-	73,  // 158: openim.group.group.NotificationUserInfoUpdate:output_type -> openim.group.notificationUserInfoUpdateResp
-	75,  // 159: openim.group.group.NotificationFriendRemarkUpdate:output_type -> openim.group.notificationFriendRemarkUpdateResp
-	77,  // 160: openim.group.group.getIncrementalGroupMember:output_type -> openim.group.getIncrementalGroupMemberResp
-	85,  // 161: openim.group.group.BatchGetIncrementalGroupMember:output_type -> openim.group.BatchGetIncrementalGroupMemberResp
-	79,  // 162: openim.group.group.getIncrementalJoinGroup:output_type -> openim.group.getIncrementalJoinGroupResp
-	81,  // 163: openim.group.group.GetFullGroupMemberUserIDs:output_type -> openim.group.GetFullGroupMemberUserIDsResp
-	83,  // 164: openim.group.group.GetFullJoinGroupIDs:output_type -> openim.group.GetFullJoinGroupIDsResp
-	87,  // 165: openim.group.group.getCommonGroupsWithFriend:output_type -> openim.group.GetCommonGroupsWithFriendResp
-	89,  // 166: openim.group.group.pinGroupMessage:output_type -> openim.group.PinGroupMessageResp
-	91,  // 167: openim.group.group.unpinGroupMessage:output_type -> openim.group.UnpinGroupMessageResp
-	93,  // 168: openim.group.group.getGroupPinnedMessages:output_type -> openim.group.GetGroupPinnedMessagesResp
-	95,  // 169: openim.group.group.setGroupMute:output_type -> openim.group.SetGroupMuteResp
-	97,  // 170: openim.group.group.getGroupMute:output_type -> openim.group.GetGroupMuteResp
-	99,  // 171: openim.group.group.pinGroup:output_type -> openim.group.PinGroupResp
-	101, // 172: openim.group.group.unpinGroup:output_type -> openim.group.UnpinGroupResp
-	104, // 173: openim.group.group.createGroupInviteLink:output_type -> openim.group.CreateGroupInviteLinkResp
-	106, // 174: openim.group.group.getGroupInviteLink:output_type -> openim.group.GetGroupInviteLinkResp
-	108, // 175: openim.group.group.joinGroupByInviteLink:output_type -> openim.group.JoinGroupByInviteLinkResp
-	110, // 176: openim.group.group.revokeGroupInviteLink:output_type -> openim.group.RevokeGroupInviteLinkResp
-	112, // 177: openim.group.group.listGroupInviteLinks:output_type -> openim.group.ListGroupInviteLinksResp
-	125, // [125:178] is the sub-list for method output_type
-	72,  // [72:125] is the sub-list for method input_type
+	52,  // 97: openim.group.group.setSendMessageSetting:input_type -> openim.group.SetSendMessageSettingReq
+	55,  // 98: openim.group.group.setGroupMemberInfo:input_type -> openim.group.SetGroupMemberInfoReq
+	57,  // 99: openim.group.group.getGroupAbstractInfo:input_type -> openim.group.GetGroupAbstractInfoReq
+	60,  // 100: openim.group.group.getUserInGroupMembers:input_type -> openim.group.GetUserInGroupMembersReq
+	62,  // 101: openim.group.group.getGroupMemberUserIDs:input_type -> openim.group.GetGroupMemberUserIDsReq
+	64,  // 102: openim.group.group.GetGroupMemberRoleLevel:input_type -> openim.group.GetGroupMemberRoleLevelReq
+	66,  // 103: openim.group.group.GetGroupInfoCache:input_type -> openim.group.GetGroupInfoCacheReq
+	68,  // 104: openim.group.group.GetGroupMemberCache:input_type -> openim.group.GetGroupMemberCacheReq
+	70,  // 105: openim.group.group.GroupCreateCount:input_type -> openim.group.GroupCreateCountReq
+	74,  // 106: openim.group.group.NotificationUserInfoUpdate:input_type -> openim.group.notificationUserInfoUpdateReq
+	76,  // 107: openim.group.group.NotificationFriendRemarkUpdate:input_type -> openim.group.notificationFriendRemarkUpdateReq
+	78,  // 108: openim.group.group.getIncrementalGroupMember:input_type -> openim.group.getIncrementalGroupMemberReq
+	86,  // 109: openim.group.group.BatchGetIncrementalGroupMember:input_type -> openim.group.BatchGetIncrementalGroupMemberReq
+	80,  // 110: openim.group.group.getIncrementalJoinGroup:input_type -> openim.group.getIncrementalJoinGroupReq
+	82,  // 111: openim.group.group.GetFullGroupMemberUserIDs:input_type -> openim.group.GetFullGroupMemberUserIDsReq
+	84,  // 112: openim.group.group.GetFullJoinGroupIDs:input_type -> openim.group.GetFullJoinGroupIDsReq
+	88,  // 113: openim.group.group.getCommonGroupsWithFriend:input_type -> openim.group.GetCommonGroupsWithFriendReq
+	90,  // 114: openim.group.group.pinGroupMessage:input_type -> openim.group.PinGroupMessageReq
+	92,  // 115: openim.group.group.unpinGroupMessage:input_type -> openim.group.UnpinGroupMessageReq
+	94,  // 116: openim.group.group.getGroupPinnedMessages:input_type -> openim.group.GetGroupPinnedMessagesReq
+	96,  // 117: openim.group.group.setGroupMute:input_type -> openim.group.SetGroupMuteReq
+	98,  // 118: openim.group.group.getGroupMute:input_type -> openim.group.GetGroupMuteReq
+	100, // 119: openim.group.group.pinGroup:input_type -> openim.group.PinGroupReq
+	102, // 120: openim.group.group.unpinGroup:input_type -> openim.group.UnpinGroupReq
+	105, // 121: openim.group.group.createGroupInviteLink:input_type -> openim.group.CreateGroupInviteLinkReq
+	107, // 122: openim.group.group.getGroupInviteLink:input_type -> openim.group.GetGroupInviteLinkReq
+	109, // 123: openim.group.group.joinGroupByInviteLink:input_type -> openim.group.JoinGroupByInviteLinkReq
+	111, // 124: openim.group.group.revokeGroupInviteLink:input_type -> openim.group.RevokeGroupInviteLinkReq
+	113, // 125: openim.group.group.listGroupInviteLinks:input_type -> openim.group.ListGroupInviteLinksReq
+	1,   // 126: openim.group.group.createGroup:output_type -> openim.group.CreateGroupResp
+	19,  // 127: openim.group.group.joinGroup:output_type -> openim.group.JoinGroupResp
+	23,  // 128: openim.group.group.quitGroup:output_type -> openim.group.QuitGroupResp
+	3,   // 129: openim.group.group.getGroupsInfo:output_type -> openim.group.GetGroupsInfoResp
+	5,   // 130: openim.group.group.setGroupInfo:output_type -> openim.group.SetGroupInfoResp
+	7,   // 131: openim.group.group.setGroupInfoEx:output_type -> openim.group.SetGroupInfoExResp
+	9,   // 132: openim.group.group.getGroupApplicationList:output_type -> openim.group.GetGroupApplicationListResp
+	11,  // 133: openim.group.group.getGroupApplicationUnhandledCount:output_type -> openim.group.GetGroupApplicationUnhandledCountResp
+	13,  // 134: openim.group.group.getUserReqApplicationList:output_type -> openim.group.GetUserReqApplicationListResp
+	73,  // 135: openim.group.group.getGroupUsersReqApplicationList:output_type -> openim.group.getGroupUsersReqApplicationListResp
+	15,  // 136: openim.group.group.getSpecifiedUserGroupRequestInfo:output_type -> openim.group.GetSpecifiedUserGroupRequestInfoResp
+	17,  // 137: openim.group.group.transferGroupOwner:output_type -> openim.group.TransferGroupOwnerResp
+	21,  // 138: openim.group.group.groupApplicationResponse:output_type -> openim.group.GroupApplicationResponseResp
+	25,  // 139: openim.group.group.getGroupMemberList:output_type -> openim.group.GetGroupMemberListResp
+	27,  // 140: openim.group.group.getGroupMembersInfo:output_type -> openim.group.GetGroupMembersInfoResp
+	29,  // 141: openim.group.group.kickGroupMember:output_type -> openim.group.KickGroupMemberResp
+	31,  // 142: openim.group.group.getJoinedGroupList:output_type -> openim.group.GetJoinedGroupListResp
+	33,  // 143: openim.group.group.inviteUserToGroup:output_type -> openim.group.InviteUserToGroupResp
+	38,  // 144: openim.group.group.getGroups:output_type -> openim.group.GetGroupsResp
+	41,  // 145: openim.group.group.getGroupMembersCMS:output_type -> openim.group.GetGroupMembersCMSResp
+	43,  // 146: openim.group.group.dismissGroup:output_type -> openim.group.DismissGroupResp
+	45,  // 147: openim.group.group.muteGroupMember:output_type -> openim.group.MuteGroupMemberResp
+	47,  // 148: openim.group.group.cancelMuteGroupMember:output_type -> openim.group.CancelMuteGroupMemberResp
+	49,  // 149: openim.group.group.muteGroup:output_type -> openim.group.MuteGroupResp
+	51,  // 150: openim.group.group.cancelMuteGroup:output_type -> openim.group.CancelMuteGroupResp
+	53,  // 151: openim.group.group.setSendMessageSetting:output_type -> openim.group.SetSendMessageSettingResp
+	56,  // 152: openim.group.group.setGroupMemberInfo:output_type -> openim.group.SetGroupMemberInfoResp
+	59,  // 153: openim.group.group.getGroupAbstractInfo:output_type -> openim.group.GetGroupAbstractInfoResp
+	61,  // 154: openim.group.group.getUserInGroupMembers:output_type -> openim.group.GetUserInGroupMembersResp
+	63,  // 155: openim.group.group.getGroupMemberUserIDs:output_type -> openim.group.GetGroupMemberUserIDsResp
+	65,  // 156: openim.group.group.GetGroupMemberRoleLevel:output_type -> openim.group.GetGroupMemberRoleLevelResp
+	67,  // 157: openim.group.group.GetGroupInfoCache:output_type -> openim.group.GetGroupInfoCacheResp
+	69,  // 158: openim.group.group.GetGroupMemberCache:output_type -> openim.group.GetGroupMemberCacheResp
+	71,  // 159: openim.group.group.GroupCreateCount:output_type -> openim.group.GroupCreateCountResp
+	75,  // 160: openim.group.group.NotificationUserInfoUpdate:output_type -> openim.group.notificationUserInfoUpdateResp
+	77,  // 161: openim.group.group.NotificationFriendRemarkUpdate:output_type -> openim.group.notificationFriendRemarkUpdateResp
+	79,  // 162: openim.group.group.getIncrementalGroupMember:output_type -> openim.group.getIncrementalGroupMemberResp
+	87,  // 163: openim.group.group.BatchGetIncrementalGroupMember:output_type -> openim.group.BatchGetIncrementalGroupMemberResp
+	81,  // 164: openim.group.group.getIncrementalJoinGroup:output_type -> openim.group.getIncrementalJoinGroupResp
+	83,  // 165: openim.group.group.GetFullGroupMemberUserIDs:output_type -> openim.group.GetFullGroupMemberUserIDsResp
+	85,  // 166: openim.group.group.GetFullJoinGroupIDs:output_type -> openim.group.GetFullJoinGroupIDsResp
+	89,  // 167: openim.group.group.getCommonGroupsWithFriend:output_type -> openim.group.GetCommonGroupsWithFriendResp
+	91,  // 168: openim.group.group.pinGroupMessage:output_type -> openim.group.PinGroupMessageResp
+	93,  // 169: openim.group.group.unpinGroupMessage:output_type -> openim.group.UnpinGroupMessageResp
+	95,  // 170: openim.group.group.getGroupPinnedMessages:output_type -> openim.group.GetGroupPinnedMessagesResp
+	97,  // 171: openim.group.group.setGroupMute:output_type -> openim.group.SetGroupMuteResp
+	99,  // 172: openim.group.group.getGroupMute:output_type -> openim.group.GetGroupMuteResp
+	101, // 173: openim.group.group.pinGroup:output_type -> openim.group.PinGroupResp
+	103, // 174: openim.group.group.unpinGroup:output_type -> openim.group.UnpinGroupResp
+	106, // 175: openim.group.group.createGroupInviteLink:output_type -> openim.group.CreateGroupInviteLinkResp
+	108, // 176: openim.group.group.getGroupInviteLink:output_type -> openim.group.GetGroupInviteLinkResp
+	110, // 177: openim.group.group.joinGroupByInviteLink:output_type -> openim.group.JoinGroupByInviteLinkResp
+	112, // 178: openim.group.group.revokeGroupInviteLink:output_type -> openim.group.RevokeGroupInviteLinkResp
+	114, // 179: openim.group.group.listGroupInviteLinks:output_type -> openim.group.ListGroupInviteLinksResp
+	126, // [126:180] is the sub-list for method output_type
+	72,  // [72:126] is the sub-list for method input_type
 	72,  // [72:72] is the sub-list for extension type_name
 	72,  // [72:72] is the sub-list for extension extendee
 	0,   // [0:72] is the sub-list for field type_name
@@ -6755,7 +6853,7 @@ func file_group_group_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_group_group_proto_rawDesc), len(file_group_group_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   115,
+			NumMessages:   117,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

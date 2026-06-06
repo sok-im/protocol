@@ -274,6 +274,16 @@ func (x *CancelMuteGroupReq) Check() error {
 	return nil
 }
 
+func (x *SetSendMessageSettingReq) Check() error {
+	if x.GroupID == "" {
+		return errors.New("groupID is empty")
+	}
+	if x.AllowSendMsg != 0 && x.AllowSendMsg != 1 {
+		return errors.New("allowSendMsg must be 0 or 1")
+	}
+	return nil
+}
+
 func (x *SetGroupMemberInfo) Check() error {
 	if x.GroupID == "" {
 		return errors.New("GroupID is empty")

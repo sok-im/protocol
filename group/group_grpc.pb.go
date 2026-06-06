@@ -44,6 +44,7 @@ const (
 	Group_CancelMuteGroupMember_FullMethodName             = "/openim.group.group/cancelMuteGroupMember"
 	Group_MuteGroup_FullMethodName                         = "/openim.group.group/muteGroup"
 	Group_CancelMuteGroup_FullMethodName                   = "/openim.group.group/cancelMuteGroup"
+	Group_SetSendMessageSetting_FullMethodName             = "/openim.group.group/setSendMessageSetting"
 	Group_SetGroupMemberInfo_FullMethodName                = "/openim.group.group/setGroupMemberInfo"
 	Group_GetGroupAbstractInfo_FullMethodName              = "/openim.group.group/getGroupAbstractInfo"
 	Group_GetUserInGroupMembers_FullMethodName             = "/openim.group.group/getUserInGroupMembers"
@@ -123,6 +124,8 @@ type GroupClient interface {
 	MuteGroup(ctx context.Context, in *MuteGroupReq, opts ...grpc.CallOption) (*MuteGroupResp, error)
 	// Unmute a group
 	CancelMuteGroup(ctx context.Context, in *CancelMuteGroupReq, opts ...grpc.CallOption) (*CancelMuteGroupResp, error)
+	// 设置群成员发消息权限（allowSendMsg 0=全员可发，1=仅群主/管理员可发）
+	SetSendMessageSetting(ctx context.Context, in *SetSendMessageSettingReq, opts ...grpc.CallOption) (*SetSendMessageSettingResp, error)
 	// Set group member info
 	SetGroupMemberInfo(ctx context.Context, in *SetGroupMemberInfoReq, opts ...grpc.CallOption) (*SetGroupMemberInfoResp, error)
 	// Get group abstract hash
@@ -418,6 +421,16 @@ func (c *groupClient) CancelMuteGroup(ctx context.Context, in *CancelMuteGroupRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CancelMuteGroupResp)
 	err := c.cc.Invoke(ctx, Group_CancelMuteGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupClient) SetSendMessageSetting(ctx context.Context, in *SetSendMessageSettingReq, opts ...grpc.CallOption) (*SetSendMessageSettingResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetSendMessageSettingResp)
+	err := c.cc.Invoke(ctx, Group_SetSendMessageSetting_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -753,6 +766,8 @@ type GroupServer interface {
 	MuteGroup(context.Context, *MuteGroupReq) (*MuteGroupResp, error)
 	// Unmute a group
 	CancelMuteGroup(context.Context, *CancelMuteGroupReq) (*CancelMuteGroupResp, error)
+	// 设置群成员发消息权限（allowSendMsg 0=全员可发，1=仅群主/管理员可发）
+	SetSendMessageSetting(context.Context, *SetSendMessageSettingReq) (*SetSendMessageSettingResp, error)
 	// Set group member info
 	SetGroupMemberInfo(context.Context, *SetGroupMemberInfoReq) (*SetGroupMemberInfoResp, error)
 	// Get group abstract hash
@@ -878,6 +893,9 @@ func (UnimplementedGroupServer) MuteGroup(context.Context, *MuteGroupReq) (*Mute
 }
 func (UnimplementedGroupServer) CancelMuteGroup(context.Context, *CancelMuteGroupReq) (*CancelMuteGroupResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method CancelMuteGroup not implemented")
+}
+func (UnimplementedGroupServer) SetSendMessageSetting(context.Context, *SetSendMessageSettingReq) (*SetSendMessageSettingResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetSendMessageSetting not implemented")
 }
 func (UnimplementedGroupServer) SetGroupMemberInfo(context.Context, *SetGroupMemberInfoReq) (*SetGroupMemberInfoResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetGroupMemberInfo not implemented")
@@ -1430,6 +1448,24 @@ func _Group_CancelMuteGroup_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GroupServer).CancelMuteGroup(ctx, req.(*CancelMuteGroupReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Group_SetSendMessageSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetSendMessageSettingReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).SetSendMessageSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_SetSendMessageSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).SetSendMessageSetting(ctx, req.(*SetSendMessageSettingReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2044,6 +2080,10 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "cancelMuteGroup",
 			Handler:    _Group_CancelMuteGroup_Handler,
+		},
+		{
+			MethodName: "setSendMessageSetting",
+			Handler:    _Group_SetSendMessageSetting_Handler,
 		},
 		{
 			MethodName: "setGroupMemberInfo",

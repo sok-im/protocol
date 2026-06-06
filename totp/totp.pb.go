@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.0
-// source: totp.proto
+// source: totp/totp.proto
 
 package totp
 
@@ -33,7 +33,7 @@ type GetSecretReq struct {
 
 func (x *GetSecretReq) Reset() {
 	*x = GetSecretReq{}
-	mi := &file_totp_proto_msgTypes[0]
+	mi := &file_totp_totp_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *GetSecretReq) String() string {
 func (*GetSecretReq) ProtoMessage() {}
 
 func (x *GetSecretReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[0]
+	mi := &file_totp_totp_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *GetSecretReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecretReq.ProtoReflect.Descriptor instead.
 func (*GetSecretReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{0}
+	return file_totp_totp_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetSecretReq) GetUserID() string {
@@ -93,7 +93,7 @@ type GetSecretResp struct {
 
 func (x *GetSecretResp) Reset() {
 	*x = GetSecretResp{}
-	mi := &file_totp_proto_msgTypes[1]
+	mi := &file_totp_totp_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -105,7 +105,7 @@ func (x *GetSecretResp) String() string {
 func (*GetSecretResp) ProtoMessage() {}
 
 func (x *GetSecretResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[1]
+	mi := &file_totp_totp_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118,7 +118,7 @@ func (x *GetSecretResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecretResp.ProtoReflect.Descriptor instead.
 func (*GetSecretResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{1}
+	return file_totp_totp_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetSecretResp) GetSecret() string {
@@ -153,7 +153,7 @@ type BindTotpReq struct {
 
 func (x *BindTotpReq) Reset() {
 	*x = BindTotpReq{}
-	mi := &file_totp_proto_msgTypes[2]
+	mi := &file_totp_totp_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -165,7 +165,7 @@ func (x *BindTotpReq) String() string {
 func (*BindTotpReq) ProtoMessage() {}
 
 func (x *BindTotpReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[2]
+	mi := &file_totp_totp_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -178,7 +178,7 @@ func (x *BindTotpReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BindTotpReq.ProtoReflect.Descriptor instead.
 func (*BindTotpReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{2}
+	return file_totp_totp_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *BindTotpReq) GetUserID() string {
@@ -204,7 +204,7 @@ type BindTotpResp struct {
 
 func (x *BindTotpResp) Reset() {
 	*x = BindTotpResp{}
-	mi := &file_totp_proto_msgTypes[3]
+	mi := &file_totp_totp_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -216,7 +216,7 @@ func (x *BindTotpResp) String() string {
 func (*BindTotpResp) ProtoMessage() {}
 
 func (x *BindTotpResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[3]
+	mi := &file_totp_totp_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +229,7 @@ func (x *BindTotpResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BindTotpResp.ProtoReflect.Descriptor instead.
 func (*BindTotpResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{3}
+	return file_totp_totp_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *BindTotpResp) GetRecoveryCodes() []string {
@@ -251,7 +251,7 @@ type VerifyTotpReq struct {
 
 func (x *VerifyTotpReq) Reset() {
 	*x = VerifyTotpReq{}
-	mi := &file_totp_proto_msgTypes[4]
+	mi := &file_totp_totp_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -263,7 +263,7 @@ func (x *VerifyTotpReq) String() string {
 func (*VerifyTotpReq) ProtoMessage() {}
 
 func (x *VerifyTotpReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[4]
+	mi := &file_totp_totp_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -276,7 +276,7 @@ func (x *VerifyTotpReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTotpReq.ProtoReflect.Descriptor instead.
 func (*VerifyTotpReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{4}
+	return file_totp_totp_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *VerifyTotpReq) GetMfaToken() string {
@@ -311,7 +311,7 @@ type VerifyTotpResp struct {
 
 func (x *VerifyTotpResp) Reset() {
 	*x = VerifyTotpResp{}
-	mi := &file_totp_proto_msgTypes[5]
+	mi := &file_totp_totp_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -323,7 +323,7 @@ func (x *VerifyTotpResp) String() string {
 func (*VerifyTotpResp) ProtoMessage() {}
 
 func (x *VerifyTotpResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[5]
+	mi := &file_totp_totp_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +336,7 @@ func (x *VerifyTotpResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTotpResp.ProtoReflect.Descriptor instead.
 func (*VerifyTotpResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{5}
+	return file_totp_totp_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *VerifyTotpResp) GetUserID() string {
@@ -370,7 +370,7 @@ type GetStatusReq struct {
 
 func (x *GetStatusReq) Reset() {
 	*x = GetStatusReq{}
-	mi := &file_totp_proto_msgTypes[6]
+	mi := &file_totp_totp_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -382,7 +382,7 @@ func (x *GetStatusReq) String() string {
 func (*GetStatusReq) ProtoMessage() {}
 
 func (x *GetStatusReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[6]
+	mi := &file_totp_totp_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -395,7 +395,7 @@ func (x *GetStatusReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusReq.ProtoReflect.Descriptor instead.
 func (*GetStatusReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{6}
+	return file_totp_totp_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetStatusReq) GetUserID() string {
@@ -416,7 +416,7 @@ type GetStatusResp struct {
 
 func (x *GetStatusResp) Reset() {
 	*x = GetStatusResp{}
-	mi := &file_totp_proto_msgTypes[7]
+	mi := &file_totp_totp_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -428,7 +428,7 @@ func (x *GetStatusResp) String() string {
 func (*GetStatusResp) ProtoMessage() {}
 
 func (x *GetStatusResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[7]
+	mi := &file_totp_totp_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -441,7 +441,7 @@ func (x *GetStatusResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusResp.ProtoReflect.Descriptor instead.
 func (*GetStatusResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{7}
+	return file_totp_totp_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetStatusResp) GetEnabled() bool {
@@ -476,7 +476,7 @@ type UnbindTotpReq struct {
 
 func (x *UnbindTotpReq) Reset() {
 	*x = UnbindTotpReq{}
-	mi := &file_totp_proto_msgTypes[8]
+	mi := &file_totp_totp_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -488,7 +488,7 @@ func (x *UnbindTotpReq) String() string {
 func (*UnbindTotpReq) ProtoMessage() {}
 
 func (x *UnbindTotpReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[8]
+	mi := &file_totp_totp_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -501,7 +501,7 @@ func (x *UnbindTotpReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbindTotpReq.ProtoReflect.Descriptor instead.
 func (*UnbindTotpReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{8}
+	return file_totp_totp_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UnbindTotpReq) GetUserID() string {
@@ -526,7 +526,7 @@ type UnbindTotpResp struct {
 
 func (x *UnbindTotpResp) Reset() {
 	*x = UnbindTotpResp{}
-	mi := &file_totp_proto_msgTypes[9]
+	mi := &file_totp_totp_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -538,7 +538,7 @@ func (x *UnbindTotpResp) String() string {
 func (*UnbindTotpResp) ProtoMessage() {}
 
 func (x *UnbindTotpResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[9]
+	mi := &file_totp_totp_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -551,7 +551,7 @@ func (x *UnbindTotpResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbindTotpResp.ProtoReflect.Descriptor instead.
 func (*UnbindTotpResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{9}
+	return file_totp_totp_proto_rawDescGZIP(), []int{9}
 }
 
 // CreateMfaTokenReq is called by the auth service when a user passes primary
@@ -566,7 +566,7 @@ type CreateMfaTokenReq struct {
 
 func (x *CreateMfaTokenReq) Reset() {
 	*x = CreateMfaTokenReq{}
-	mi := &file_totp_proto_msgTypes[10]
+	mi := &file_totp_totp_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -578,7 +578,7 @@ func (x *CreateMfaTokenReq) String() string {
 func (*CreateMfaTokenReq) ProtoMessage() {}
 
 func (x *CreateMfaTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[10]
+	mi := &file_totp_totp_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -591,7 +591,7 @@ func (x *CreateMfaTokenReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMfaTokenReq.ProtoReflect.Descriptor instead.
 func (*CreateMfaTokenReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{10}
+	return file_totp_totp_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateMfaTokenReq) GetUserID() string {
@@ -611,7 +611,7 @@ type CreateMfaTokenResp struct {
 
 func (x *CreateMfaTokenResp) Reset() {
 	*x = CreateMfaTokenResp{}
-	mi := &file_totp_proto_msgTypes[11]
+	mi := &file_totp_totp_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -623,7 +623,7 @@ func (x *CreateMfaTokenResp) String() string {
 func (*CreateMfaTokenResp) ProtoMessage() {}
 
 func (x *CreateMfaTokenResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[11]
+	mi := &file_totp_totp_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -636,7 +636,7 @@ func (x *CreateMfaTokenResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMfaTokenResp.ProtoReflect.Descriptor instead.
 func (*CreateMfaTokenResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{11}
+	return file_totp_totp_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CreateMfaTokenResp) GetMfaToken() string {
@@ -663,7 +663,7 @@ type CheckTotpBoundReq struct {
 
 func (x *CheckTotpBoundReq) Reset() {
 	*x = CheckTotpBoundReq{}
-	mi := &file_totp_proto_msgTypes[12]
+	mi := &file_totp_totp_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -675,7 +675,7 @@ func (x *CheckTotpBoundReq) String() string {
 func (*CheckTotpBoundReq) ProtoMessage() {}
 
 func (x *CheckTotpBoundReq) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[12]
+	mi := &file_totp_totp_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -688,7 +688,7 @@ func (x *CheckTotpBoundReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckTotpBoundReq.ProtoReflect.Descriptor instead.
 func (*CheckTotpBoundReq) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{12}
+	return file_totp_totp_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CheckTotpBoundReq) GetUserID() string {
@@ -707,7 +707,7 @@ type CheckTotpBoundResp struct {
 
 func (x *CheckTotpBoundResp) Reset() {
 	*x = CheckTotpBoundResp{}
-	mi := &file_totp_proto_msgTypes[13]
+	mi := &file_totp_totp_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -719,7 +719,7 @@ func (x *CheckTotpBoundResp) String() string {
 func (*CheckTotpBoundResp) ProtoMessage() {}
 
 func (x *CheckTotpBoundResp) ProtoReflect() protoreflect.Message {
-	mi := &file_totp_proto_msgTypes[13]
+	mi := &file_totp_totp_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -732,7 +732,7 @@ func (x *CheckTotpBoundResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckTotpBoundResp.ProtoReflect.Descriptor instead.
 func (*CheckTotpBoundResp) Descriptor() ([]byte, []int) {
-	return file_totp_proto_rawDescGZIP(), []int{13}
+	return file_totp_totp_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CheckTotpBoundResp) GetBound() bool {
@@ -742,12 +742,11 @@ func (x *CheckTotpBoundResp) GetBound() bool {
 	return false
 }
 
-var File_totp_proto protoreflect.FileDescriptor
+var File_totp_totp_proto protoreflect.FileDescriptor
 
-const file_totp_proto_rawDesc = "" +
+const file_totp_totp_proto_rawDesc = "" +
 	"\n" +
-	"\n" +
-	"totp.proto\x12\vopenim.totp\"`\n" +
+	"\x0ftotp/totp.proto\x12\vopenim.totp\"`\n" +
 	"\fGetSecretReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x16\n" +
 	"\x06issuer\x18\x02 \x01(\tR\x06issuer\x12 \n" +
@@ -802,19 +801,19 @@ const file_totp_proto_rawDesc = "" +
 	"\x0eCheckTotpBound\x12\x1e.openim.totp.CheckTotpBoundReq\x1a\x1f.openim.totp.CheckTotpBoundRespB$Z\"github.com/openimsdk/protocol/totpb\x06proto3"
 
 var (
-	file_totp_proto_rawDescOnce sync.Once
-	file_totp_proto_rawDescData []byte
+	file_totp_totp_proto_rawDescOnce sync.Once
+	file_totp_totp_proto_rawDescData []byte
 )
 
-func file_totp_proto_rawDescGZIP() []byte {
-	file_totp_proto_rawDescOnce.Do(func() {
-		file_totp_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_totp_proto_rawDesc), len(file_totp_proto_rawDesc)))
+func file_totp_totp_proto_rawDescGZIP() []byte {
+	file_totp_totp_proto_rawDescOnce.Do(func() {
+		file_totp_totp_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_totp_totp_proto_rawDesc), len(file_totp_totp_proto_rawDesc)))
 	})
-	return file_totp_proto_rawDescData
+	return file_totp_totp_proto_rawDescData
 }
 
-var file_totp_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
-var file_totp_proto_goTypes = []any{
+var file_totp_totp_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_totp_totp_proto_goTypes = []any{
 	(*GetSecretReq)(nil),       // 0: openim.totp.GetSecretReq
 	(*GetSecretResp)(nil),      // 1: openim.totp.GetSecretResp
 	(*BindTotpReq)(nil),        // 2: openim.totp.BindTotpReq
@@ -830,7 +829,7 @@ var file_totp_proto_goTypes = []any{
 	(*CheckTotpBoundReq)(nil),  // 12: openim.totp.CheckTotpBoundReq
 	(*CheckTotpBoundResp)(nil), // 13: openim.totp.CheckTotpBoundResp
 }
-var file_totp_proto_depIdxs = []int32{
+var file_totp_totp_proto_depIdxs = []int32{
 	0,  // 0: openim.totp.Totp.GetSecret:input_type -> openim.totp.GetSecretReq
 	2,  // 1: openim.totp.Totp.BindTotp:input_type -> openim.totp.BindTotpReq
 	4,  // 2: openim.totp.Totp.VerifyTotp:input_type -> openim.totp.VerifyTotpReq
@@ -852,26 +851,26 @@ var file_totp_proto_depIdxs = []int32{
 	0,  // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_totp_proto_init() }
-func file_totp_proto_init() {
-	if File_totp_proto != nil {
+func init() { file_totp_totp_proto_init() }
+func file_totp_totp_proto_init() {
+	if File_totp_totp_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_totp_proto_rawDesc), len(file_totp_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_totp_totp_proto_rawDesc), len(file_totp_totp_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_totp_proto_goTypes,
-		DependencyIndexes: file_totp_proto_depIdxs,
-		MessageInfos:      file_totp_proto_msgTypes,
+		GoTypes:           file_totp_totp_proto_goTypes,
+		DependencyIndexes: file_totp_totp_proto_depIdxs,
+		MessageInfos:      file_totp_totp_proto_msgTypes,
 	}.Build()
-	File_totp_proto = out.File
-	file_totp_proto_goTypes = nil
-	file_totp_proto_depIdxs = nil
+	File_totp_totp_proto = out.File
+	file_totp_totp_proto_goTypes = nil
+	file_totp_totp_proto_depIdxs = nil
 }

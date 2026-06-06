@@ -251,6 +251,14 @@ message CancelMuteGroupReq {
 
 message CancelMuteGroupResp {}
 
+message SetSendMessageSettingReq {
+  string groupID = 1;
+  // allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
+  int32 allowSendMsg = 2;
+}
+
+message SetSendMessageSettingResp {}
+
 message SetGroupMemberInfo {
   string groupID = 1;
   string userID = 2;
@@ -607,6 +615,8 @@ service group {
   rpc muteGroup(MuteGroupReq) returns (MuteGroupResp);
   // Unmute a group
   rpc cancelMuteGroup(CancelMuteGroupReq) returns (CancelMuteGroupResp);
+  // 设置群成员发消息权限（allowSendMsg 0=全员可发，1=仅群主/管理员可发）
+  rpc setSendMessageSetting(SetSendMessageSettingReq) returns (SetSendMessageSettingResp);
 
   // Set group member info
   rpc setGroupMemberInfo(SetGroupMemberInfoReq) returns (SetGroupMemberInfoResp);
