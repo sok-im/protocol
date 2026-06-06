@@ -19,18 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OpenMLSService_UploadKeyPackage_FullMethodName   = "/openim.openmls.OpenMLSService/UploadKeyPackage"
-	OpenMLSService_GetKeyPackages_FullMethodName     = "/openim.openmls.OpenMLSService/GetKeyPackages"
-	OpenMLSService_GetKeyPackageCount_FullMethodName = "/openim.openmls.OpenMLSService/GetKeyPackageCount"
-	OpenMLSService_RefreshKeyPackages_FullMethodName = "/openim.openmls.OpenMLSService/RefreshKeyPackages"
-	OpenMLSService_SubmitCommit_FullMethodName       = "/openim.openmls.OpenMLSService/SubmitCommit"
-	OpenMLSService_GetCommits_FullMethodName         = "/openim.openmls.OpenMLSService/GetCommits"
-	OpenMLSService_SendWelcome_FullMethodName        = "/openim.openmls.OpenMLSService/SendWelcome"
-	OpenMLSService_GetGroupState_FullMethodName      = "/openim.openmls.OpenMLSService/GetGroupState"
-	OpenMLSService_DeleteGroup_FullMethodName        = "/openim.openmls.OpenMLSService/DeleteGroup"
-	OpenMLSService_IssueCredential_FullMethodName    = "/openim.openmls.OpenMLSService/IssueCredential"
-	OpenMLSService_VerifyCredential_FullMethodName   = "/openim.openmls.OpenMLSService/VerifyCredential"
-	OpenMLSService_GetRootPublicKey_FullMethodName   = "/openim.openmls.OpenMLSService/GetRootPublicKey"
+	OpenMLSService_UploadKeyPackage_FullMethodName    = "/openim.openmls.OpenMLSService/UploadKeyPackage"
+	OpenMLSService_GetKeyPackages_FullMethodName      = "/openim.openmls.OpenMLSService/GetKeyPackages"
+	OpenMLSService_GetKeyPackageCount_FullMethodName  = "/openim.openmls.OpenMLSService/GetKeyPackageCount"
+	OpenMLSService_RefreshKeyPackages_FullMethodName  = "/openim.openmls.OpenMLSService/RefreshKeyPackages"
+	OpenMLSService_SubmitCommit_FullMethodName        = "/openim.openmls.OpenMLSService/SubmitCommit"
+	OpenMLSService_GetCommits_FullMethodName          = "/openim.openmls.OpenMLSService/GetCommits"
+	OpenMLSService_SendWelcome_FullMethodName         = "/openim.openmls.OpenMLSService/SendWelcome"
+	OpenMLSService_GetGroupState_FullMethodName       = "/openim.openmls.OpenMLSService/GetGroupState"
+	OpenMLSService_DeleteGroup_FullMethodName         = "/openim.openmls.OpenMLSService/DeleteGroup"
+	OpenMLSService_InitGroupTrigger_FullMethodName    = "/openim.openmls.OpenMLSService/InitGroupTrigger"
+	OpenMLSService_AddMemberTrigger_FullMethodName    = "/openim.openmls.OpenMLSService/AddMemberTrigger"
+	OpenMLSService_RemoveMemberTrigger_FullMethodName = "/openim.openmls.OpenMLSService/RemoveMemberTrigger"
+	OpenMLSService_IssueCredential_FullMethodName     = "/openim.openmls.OpenMLSService/IssueCredential"
+	OpenMLSService_VerifyCredential_FullMethodName    = "/openim.openmls.OpenMLSService/VerifyCredential"
+	OpenMLSService_GetRootPublicKey_FullMethodName    = "/openim.openmls.OpenMLSService/GetRootPublicKey"
 )
 
 // OpenMLSServiceClient is the client API for OpenMLSService service.
@@ -48,6 +51,9 @@ type OpenMLSServiceClient interface {
 	SendWelcome(ctx context.Context, in *SendWelcomeReq, opts ...grpc.CallOption) (*SendWelcomeResp, error)
 	GetGroupState(ctx context.Context, in *GetGroupStateReq, opts ...grpc.CallOption) (*GetGroupStateResp, error)
 	DeleteGroup(ctx context.Context, in *DeleteGroupReq, opts ...grpc.CallOption) (*DeleteGroupResp, error)
+	InitGroupTrigger(ctx context.Context, in *InitGroupTriggerReq, opts ...grpc.CallOption) (*InitGroupTriggerResp, error)
+	AddMemberTrigger(ctx context.Context, in *AddMemberTriggerReq, opts ...grpc.CallOption) (*AddMemberTriggerResp, error)
+	RemoveMemberTrigger(ctx context.Context, in *RemoveMemberTriggerReq, opts ...grpc.CallOption) (*RemoveMemberTriggerResp, error)
 	// Credential management
 	IssueCredential(ctx context.Context, in *IssueCredentialReq, opts ...grpc.CallOption) (*IssueCredentialResp, error)
 	VerifyCredential(ctx context.Context, in *VerifyCredentialReq, opts ...grpc.CallOption) (*VerifyCredentialResp, error)
@@ -152,6 +158,36 @@ func (c *openMLSServiceClient) DeleteGroup(ctx context.Context, in *DeleteGroupR
 	return out, nil
 }
 
+func (c *openMLSServiceClient) InitGroupTrigger(ctx context.Context, in *InitGroupTriggerReq, opts ...grpc.CallOption) (*InitGroupTriggerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InitGroupTriggerResp)
+	err := c.cc.Invoke(ctx, OpenMLSService_InitGroupTrigger_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *openMLSServiceClient) AddMemberTrigger(ctx context.Context, in *AddMemberTriggerReq, opts ...grpc.CallOption) (*AddMemberTriggerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddMemberTriggerResp)
+	err := c.cc.Invoke(ctx, OpenMLSService_AddMemberTrigger_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *openMLSServiceClient) RemoveMemberTrigger(ctx context.Context, in *RemoveMemberTriggerReq, opts ...grpc.CallOption) (*RemoveMemberTriggerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveMemberTriggerResp)
+	err := c.cc.Invoke(ctx, OpenMLSService_RemoveMemberTrigger_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *openMLSServiceClient) IssueCredential(ctx context.Context, in *IssueCredentialReq, opts ...grpc.CallOption) (*IssueCredentialResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IssueCredentialResp)
@@ -197,6 +233,9 @@ type OpenMLSServiceServer interface {
 	SendWelcome(context.Context, *SendWelcomeReq) (*SendWelcomeResp, error)
 	GetGroupState(context.Context, *GetGroupStateReq) (*GetGroupStateResp, error)
 	DeleteGroup(context.Context, *DeleteGroupReq) (*DeleteGroupResp, error)
+	InitGroupTrigger(context.Context, *InitGroupTriggerReq) (*InitGroupTriggerResp, error)
+	AddMemberTrigger(context.Context, *AddMemberTriggerReq) (*AddMemberTriggerResp, error)
+	RemoveMemberTrigger(context.Context, *RemoveMemberTriggerReq) (*RemoveMemberTriggerResp, error)
 	// Credential management
 	IssueCredential(context.Context, *IssueCredentialReq) (*IssueCredentialResp, error)
 	VerifyCredential(context.Context, *VerifyCredentialReq) (*VerifyCredentialResp, error)
@@ -237,6 +276,15 @@ func (UnimplementedOpenMLSServiceServer) GetGroupState(context.Context, *GetGrou
 }
 func (UnimplementedOpenMLSServiceServer) DeleteGroup(context.Context, *DeleteGroupReq) (*DeleteGroupResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteGroup not implemented")
+}
+func (UnimplementedOpenMLSServiceServer) InitGroupTrigger(context.Context, *InitGroupTriggerReq) (*InitGroupTriggerResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method InitGroupTrigger not implemented")
+}
+func (UnimplementedOpenMLSServiceServer) AddMemberTrigger(context.Context, *AddMemberTriggerReq) (*AddMemberTriggerResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddMemberTrigger not implemented")
+}
+func (UnimplementedOpenMLSServiceServer) RemoveMemberTrigger(context.Context, *RemoveMemberTriggerReq) (*RemoveMemberTriggerResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method RemoveMemberTrigger not implemented")
 }
 func (UnimplementedOpenMLSServiceServer) IssueCredential(context.Context, *IssueCredentialReq) (*IssueCredentialResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method IssueCredential not implemented")
@@ -430,6 +478,60 @@ func _OpenMLSService_DeleteGroup_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OpenMLSService_InitGroupTrigger_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitGroupTriggerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OpenMLSServiceServer).InitGroupTrigger(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OpenMLSService_InitGroupTrigger_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OpenMLSServiceServer).InitGroupTrigger(ctx, req.(*InitGroupTriggerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OpenMLSService_AddMemberTrigger_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMemberTriggerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OpenMLSServiceServer).AddMemberTrigger(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OpenMLSService_AddMemberTrigger_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OpenMLSServiceServer).AddMemberTrigger(ctx, req.(*AddMemberTriggerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OpenMLSService_RemoveMemberTrigger_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveMemberTriggerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OpenMLSServiceServer).RemoveMemberTrigger(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OpenMLSService_RemoveMemberTrigger_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OpenMLSServiceServer).RemoveMemberTrigger(ctx, req.(*RemoveMemberTriggerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OpenMLSService_IssueCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IssueCredentialReq)
 	if err := dec(in); err != nil {
@@ -526,6 +628,18 @@ var OpenMLSService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteGroup",
 			Handler:    _OpenMLSService_DeleteGroup_Handler,
+		},
+		{
+			MethodName: "InitGroupTrigger",
+			Handler:    _OpenMLSService_InitGroupTrigger_Handler,
+		},
+		{
+			MethodName: "AddMemberTrigger",
+			Handler:    _OpenMLSService_AddMemberTrigger_Handler,
+		},
+		{
+			MethodName: "RemoveMemberTrigger",
+			Handler:    _OpenMLSService_RemoveMemberTrigger_Handler,
 		},
 		{
 			MethodName: "IssueCredential",

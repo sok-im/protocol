@@ -136,6 +136,44 @@ message DeleteGroupReq {
 
 message DeleteGroupResp {}
 
+// ---------- Group Init Trigger ----------
+// Sent by the Group RPC after CreateGroup completes so that the creator's
+// device(s) know to kick off the MLS group-creation flow automatically.
+
+message InitGroupTriggerReq {
+  string groupID = 1;
+  string creatorUserID = 2;
+  repeated string memberUserIDs = 3;
+}
+
+message InitGroupTriggerResp {}
+
+// ---------- Add Member Trigger ----------
+// Sent by the Group RPC after InviteUserToGroup completes so that the
+// operator's device(s) know to fetch KeyPackages for the new members, create
+// an Add-Commit + Welcome bundle, and call SubmitCommit.
+
+message AddMemberTriggerReq {
+  string groupID = 1;
+  string operatorUserID = 2;
+  repeated string newMemberUserIDs = 3;
+}
+
+message AddMemberTriggerResp {}
+
+// ---------- Remove Member Trigger ----------
+// Sent by the Group RPC after KickGroupMember completes so that the
+// operator's device(s) know to create a Remove-Commit and call SubmitCommit,
+// rotating the group epoch so kicked members lose forward secrecy.
+
+message RemoveMemberTriggerReq {
+  string groupID = 1;
+  string operatorUserID = 2;
+  repeated string removedMemberUserIDs = 3;
+}
+
+message RemoveMemberTriggerResp {}
+
 // ---------- Credential ----------
 
 message IssueCredentialReq {
@@ -188,6 +226,9 @@ service OpenMLSService {
   rpc SendWelcome(SendWelcomeReq)      returns (SendWelcomeResp);
   rpc GetGroupState(GetGroupStateReq)  returns (GetGroupStateResp);
   rpc DeleteGroup(DeleteGroupReq)      returns (DeleteGroupResp);
+  rpc InitGroupTrigger(InitGroupTriggerReq)       returns (InitGroupTriggerResp);
+  rpc AddMemberTrigger(AddMemberTriggerReq)       returns (AddMemberTriggerResp);
+  rpc RemoveMemberTrigger(RemoveMemberTriggerReq) returns (RemoveMemberTriggerResp);
 
   // Credential management
   rpc IssueCredential(IssueCredentialReq)   returns (IssueCredentialResp);

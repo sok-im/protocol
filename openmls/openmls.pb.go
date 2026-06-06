@@ -23,13 +23,13 @@ const (
 
 type UploadKeyPackageReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	DeviceID       string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
-	Platform       string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
-	KeyPackage     string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage"`
-	Ciphersuite    string                 `protobuf:"bytes,5,opt,name=ciphersuite,proto3" json:"ciphersuite"`
-	CredentialType string                 `protobuf:"bytes,6,opt,name=credentialType,proto3" json:"credentialType"`
-	ExpiresAt      int64                  `protobuf:"varint,7,opt,name=expiresAt,proto3" json:"expiresAt"`
+	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	DeviceID       string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	Platform       string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	KeyPackage     string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage,omitempty"`
+	Ciphersuite    string                 `protobuf:"bytes,5,opt,name=ciphersuite,proto3" json:"ciphersuite,omitempty"`
+	CredentialType string                 `protobuf:"bytes,6,opt,name=credentialType,proto3" json:"credentialType,omitempty"`
+	ExpiresAt      int64                  `protobuf:"varint,7,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -115,8 +115,8 @@ func (x *UploadKeyPackageReq) GetExpiresAt() int64 {
 
 type UploadKeyPackageResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID"`
-	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount"`
+	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -167,11 +167,11 @@ func (x *UploadKeyPackageResp) GetTotalCount() int32 {
 
 type KeyPackageItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
-	KeyPackage    string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage"`
-	Consumed      bool                   `protobuf:"varint,5,opt,name=consumed,proto3" json:"consumed"`
+	KpID          string                 `protobuf:"bytes,1,opt,name=kpID,proto3" json:"kpID,omitempty"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	KeyPackage    string                 `protobuf:"bytes,4,opt,name=keyPackage,proto3" json:"keyPackage,omitempty"`
+	Consumed      bool                   `protobuf:"varint,5,opt,name=consumed,proto3" json:"consumed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -243,9 +243,9 @@ func (x *KeyPackageItem) GetConsumed() bool {
 
 type GetKeyPackagesReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ExcludeDeviceID string                 `protobuf:"bytes,2,opt,name=excludeDeviceID,proto3" json:"excludeDeviceID"`
-	CountPerDevice  int32                  `protobuf:"varint,3,opt,name=countPerDevice,proto3" json:"countPerDevice"`
+	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ExcludeDeviceID string                 `protobuf:"bytes,2,opt,name=excludeDeviceID,proto3" json:"excludeDeviceID,omitempty"`
+	CountPerDevice  int32                  `protobuf:"varint,3,opt,name=countPerDevice,proto3" json:"countPerDevice,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -303,8 +303,8 @@ func (x *GetKeyPackagesReq) GetCountPerDevice() int32 {
 
 type GetKeyPackagesResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	KeyPackages   []*KeyPackageItem      `protobuf:"bytes,2,rep,name=keyPackages,proto3" json:"keyPackages"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	KeyPackages   []*KeyPackageItem      `protobuf:"bytes,2,rep,name=keyPackages,proto3" json:"keyPackages,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -355,8 +355,8 @@ func (x *GetKeyPackagesResp) GetKeyPackages() []*KeyPackageItem {
 
 type DeviceCount struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	DeviceID       string                 `protobuf:"bytes,1,opt,name=deviceID,proto3" json:"deviceID"`
-	AvailableCount int32                  `protobuf:"varint,2,opt,name=availableCount,proto3" json:"availableCount"`
+	DeviceID       string                 `protobuf:"bytes,1,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	AvailableCount int32                  `protobuf:"varint,2,opt,name=availableCount,proto3" json:"availableCount,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -407,7 +407,7 @@ func (x *DeviceCount) GetAvailableCount() int32 {
 
 type GetKeyPackageCountReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -451,9 +451,9 @@ func (x *GetKeyPackageCountReq) GetUserID() string {
 
 type GetKeyPackageCountResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Devices        []*DeviceCount         `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices"`
-	TotalAvailable int32                  `protobuf:"varint,3,opt,name=totalAvailable,proto3" json:"totalAvailable"`
+	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Devices        []*DeviceCount         `protobuf:"bytes,2,rep,name=devices,proto3" json:"devices,omitempty"`
+	TotalAvailable int32                  `protobuf:"varint,3,opt,name=totalAvailable,proto3" json:"totalAvailable,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -511,9 +511,9 @@ func (x *GetKeyPackageCountResp) GetTotalAvailable() int32 {
 
 type RefreshKeyPackagesReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
-	KeyPackages   []string               `protobuf:"bytes,3,rep,name=keyPackages,proto3" json:"keyPackages"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	KeyPackages   []string               `protobuf:"bytes,3,rep,name=keyPackages,proto3" json:"keyPackages,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -571,8 +571,8 @@ func (x *RefreshKeyPackagesReq) GetKeyPackages() []string {
 
 type RefreshKeyPackagesResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UploadedCount int32                  `protobuf:"varint,1,opt,name=uploadedCount,proto3" json:"uploadedCount"`
-	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount"`
+	UploadedCount int32                  `protobuf:"varint,1,opt,name=uploadedCount,proto3" json:"uploadedCount,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=totalCount,proto3" json:"totalCount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -623,9 +623,9 @@ func (x *RefreshKeyPackagesResp) GetTotalCount() int32 {
 
 type WelcomeMessage struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	RecipientUserID   string                 `protobuf:"bytes,1,opt,name=recipientUserID,proto3" json:"recipientUserID"`
-	RecipientDeviceID string                 `protobuf:"bytes,2,opt,name=recipientDeviceID,proto3" json:"recipientDeviceID"`
-	WelcomeMessage    string                 `protobuf:"bytes,3,opt,name=welcomeMessage,proto3" json:"welcomeMessage"`
+	RecipientUserID   string                 `protobuf:"bytes,1,opt,name=recipientUserID,proto3" json:"recipientUserID,omitempty"`
+	RecipientDeviceID string                 `protobuf:"bytes,2,opt,name=recipientDeviceID,proto3" json:"recipientDeviceID,omitempty"`
+	WelcomeMessage    string                 `protobuf:"bytes,3,opt,name=welcomeMessage,proto3" json:"welcomeMessage,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -683,12 +683,12 @@ func (x *WelcomeMessage) GetWelcomeMessage() string {
 
 type SubmitCommitReq struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	SenderUserID    string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID"`
-	SenderDeviceID  string                 `protobuf:"bytes,3,opt,name=senderDeviceID,proto3" json:"senderDeviceID"`
-	FromEpoch       uint64                 `protobuf:"varint,4,opt,name=fromEpoch,proto3" json:"fromEpoch"`
-	CommitMessage   string                 `protobuf:"bytes,5,opt,name=commitMessage,proto3" json:"commitMessage"`
-	WelcomeMessages []*WelcomeMessage      `protobuf:"bytes,6,rep,name=welcomeMessages,proto3" json:"welcomeMessages"`
+	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	SenderUserID    string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
+	SenderDeviceID  string                 `protobuf:"bytes,3,opt,name=senderDeviceID,proto3" json:"senderDeviceID,omitempty"`
+	FromEpoch       uint64                 `protobuf:"varint,4,opt,name=fromEpoch,proto3" json:"fromEpoch,omitempty"`
+	CommitMessage   string                 `protobuf:"bytes,5,opt,name=commitMessage,proto3" json:"commitMessage,omitempty"`
+	WelcomeMessages []*WelcomeMessage      `protobuf:"bytes,6,rep,name=welcomeMessages,proto3" json:"welcomeMessages,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -767,9 +767,9 @@ func (x *SubmitCommitReq) GetWelcomeMessages() []*WelcomeMessage {
 
 type SubmitCommitResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	NewEpoch       uint64                 `protobuf:"varint,1,opt,name=newEpoch,proto3" json:"newEpoch"`
-	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber"`
-	BroadcastCount int32                  `protobuf:"varint,3,opt,name=broadcastCount,proto3" json:"broadcastCount"`
+	NewEpoch       uint64                 `protobuf:"varint,1,opt,name=newEpoch,proto3" json:"newEpoch,omitempty"`
+	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber,omitempty"`
+	BroadcastCount int32                  `protobuf:"varint,3,opt,name=broadcastCount,proto3" json:"broadcastCount,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -827,9 +827,9 @@ func (x *SubmitCommitResp) GetBroadcastCount() int32 {
 
 type GetCommitsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	SinceEpoch    uint64                 `protobuf:"varint,2,opt,name=sinceEpoch,proto3" json:"sinceEpoch"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	SinceEpoch    uint64                 `protobuf:"varint,2,opt,name=sinceEpoch,proto3" json:"sinceEpoch,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -887,11 +887,11 @@ func (x *GetCommitsReq) GetLimit() int32 {
 
 type CommitRecord struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Epoch          uint64                 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch"`
-	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber"`
-	CommitMessage  string                 `protobuf:"bytes,3,opt,name=commitMessage,proto3" json:"commitMessage"`
-	SenderUserID   string                 `protobuf:"bytes,4,opt,name=senderUserID,proto3" json:"senderUserID"`
-	CreatedAt      int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt"`
+	Epoch          uint64                 `protobuf:"varint,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
+	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber,omitempty"`
+	CommitMessage  string                 `protobuf:"bytes,3,opt,name=commitMessage,proto3" json:"commitMessage,omitempty"`
+	SenderUserID   string                 `protobuf:"bytes,4,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
+	CreatedAt      int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -963,10 +963,10 @@ func (x *CommitRecord) GetCreatedAt() int64 {
 
 type GetCommitsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	Commits       []*CommitRecord        `protobuf:"bytes,2,rep,name=commits,proto3" json:"commits"`
-	CurrentEpoch  uint64                 `protobuf:"varint,3,opt,name=currentEpoch,proto3" json:"currentEpoch"`
-	HasMore       bool                   `protobuf:"varint,4,opt,name=hasMore,proto3" json:"hasMore"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	Commits       []*CommitRecord        `protobuf:"bytes,2,rep,name=commits,proto3" json:"commits,omitempty"`
+	CurrentEpoch  uint64                 `protobuf:"varint,3,opt,name=currentEpoch,proto3" json:"currentEpoch,omitempty"`
+	HasMore       bool                   `protobuf:"varint,4,opt,name=hasMore,proto3" json:"hasMore,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1031,9 +1031,9 @@ func (x *GetCommitsResp) GetHasMore() bool {
 
 type SendWelcomeReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	SenderUserID  string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID"`
-	Recipients    []*WelcomeMessage      `protobuf:"bytes,3,rep,name=recipients,proto3" json:"recipients"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	SenderUserID  string                 `protobuf:"bytes,2,opt,name=senderUserID,proto3" json:"senderUserID,omitempty"`
+	Recipients    []*WelcomeMessage      `protobuf:"bytes,3,rep,name=recipients,proto3" json:"recipients,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1091,7 +1091,7 @@ func (x *SendWelcomeReq) GetRecipients() []*WelcomeMessage {
 
 type SendWelcomeResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	DeliveredCount int32                  `protobuf:"varint,1,opt,name=deliveredCount,proto3" json:"deliveredCount"`
+	DeliveredCount int32                  `protobuf:"varint,1,opt,name=deliveredCount,proto3" json:"deliveredCount,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1135,7 +1135,7 @@ func (x *SendWelcomeResp) GetDeliveredCount() int32 {
 
 type GetGroupStateReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1179,11 +1179,11 @@ func (x *GetGroupStateReq) GetGroupID() string {
 
 type GetGroupStateResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	CurrentEpoch  uint64                 `protobuf:"varint,2,opt,name=currentEpoch,proto3" json:"currentEpoch"`
-	MemberCount   int32                  `protobuf:"varint,3,opt,name=memberCount,proto3" json:"memberCount"`
-	LastCommitAt  int64                  `protobuf:"varint,4,opt,name=lastCommitAt,proto3" json:"lastCommitAt"`
-	CreatedAt     int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	CurrentEpoch  uint64                 `protobuf:"varint,2,opt,name=currentEpoch,proto3" json:"currentEpoch,omitempty"`
+	MemberCount   int32                  `protobuf:"varint,3,opt,name=memberCount,proto3" json:"memberCount,omitempty"`
+	LastCommitAt  int64                  `protobuf:"varint,4,opt,name=lastCommitAt,proto3" json:"lastCommitAt,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1255,7 +1255,7 @@ func (x *GetGroupStateResp) GetCreatedAt() int64 {
 
 type DeleteGroupReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1333,20 +1333,308 @@ func (*DeleteGroupResp) Descriptor() ([]byte, []int) {
 	return file_openmls_openmls_proto_rawDescGZIP(), []int{21}
 }
 
+type InitGroupTriggerReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	CreatorUserID string                 `protobuf:"bytes,2,opt,name=creatorUserID,proto3" json:"creatorUserID,omitempty"`
+	MemberUserIDs []string               `protobuf:"bytes,3,rep,name=memberUserIDs,proto3" json:"memberUserIDs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitGroupTriggerReq) Reset() {
+	*x = InitGroupTriggerReq{}
+	mi := &file_openmls_openmls_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitGroupTriggerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitGroupTriggerReq) ProtoMessage() {}
+
+func (x *InitGroupTriggerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitGroupTriggerReq.ProtoReflect.Descriptor instead.
+func (*InitGroupTriggerReq) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *InitGroupTriggerReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *InitGroupTriggerReq) GetCreatorUserID() string {
+	if x != nil {
+		return x.CreatorUserID
+	}
+	return ""
+}
+
+func (x *InitGroupTriggerReq) GetMemberUserIDs() []string {
+	if x != nil {
+		return x.MemberUserIDs
+	}
+	return nil
+}
+
+type InitGroupTriggerResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitGroupTriggerResp) Reset() {
+	*x = InitGroupTriggerResp{}
+	mi := &file_openmls_openmls_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitGroupTriggerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitGroupTriggerResp) ProtoMessage() {}
+
+func (x *InitGroupTriggerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitGroupTriggerResp.ProtoReflect.Descriptor instead.
+func (*InitGroupTriggerResp) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{23}
+}
+
+type AddMemberTriggerReq struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	GroupID          string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	OperatorUserID   string                 `protobuf:"bytes,2,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	NewMemberUserIDs []string               `protobuf:"bytes,3,rep,name=newMemberUserIDs,proto3" json:"newMemberUserIDs,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *AddMemberTriggerReq) Reset() {
+	*x = AddMemberTriggerReq{}
+	mi := &file_openmls_openmls_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddMemberTriggerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMemberTriggerReq) ProtoMessage() {}
+
+func (x *AddMemberTriggerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMemberTriggerReq.ProtoReflect.Descriptor instead.
+func (*AddMemberTriggerReq) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AddMemberTriggerReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *AddMemberTriggerReq) GetOperatorUserID() string {
+	if x != nil {
+		return x.OperatorUserID
+	}
+	return ""
+}
+
+func (x *AddMemberTriggerReq) GetNewMemberUserIDs() []string {
+	if x != nil {
+		return x.NewMemberUserIDs
+	}
+	return nil
+}
+
+type AddMemberTriggerResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddMemberTriggerResp) Reset() {
+	*x = AddMemberTriggerResp{}
+	mi := &file_openmls_openmls_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddMemberTriggerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMemberTriggerResp) ProtoMessage() {}
+
+func (x *AddMemberTriggerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMemberTriggerResp.ProtoReflect.Descriptor instead.
+func (*AddMemberTriggerResp) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{25}
+}
+
+type RemoveMemberTriggerReq struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	GroupID              string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	OperatorUserID       string                 `protobuf:"bytes,2,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	RemovedMemberUserIDs []string               `protobuf:"bytes,3,rep,name=removedMemberUserIDs,proto3" json:"removedMemberUserIDs,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *RemoveMemberTriggerReq) Reset() {
+	*x = RemoveMemberTriggerReq{}
+	mi := &file_openmls_openmls_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveMemberTriggerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveMemberTriggerReq) ProtoMessage() {}
+
+func (x *RemoveMemberTriggerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveMemberTriggerReq.ProtoReflect.Descriptor instead.
+func (*RemoveMemberTriggerReq) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *RemoveMemberTriggerReq) GetGroupID() string {
+	if x != nil {
+		return x.GroupID
+	}
+	return ""
+}
+
+func (x *RemoveMemberTriggerReq) GetOperatorUserID() string {
+	if x != nil {
+		return x.OperatorUserID
+	}
+	return ""
+}
+
+func (x *RemoveMemberTriggerReq) GetRemovedMemberUserIDs() []string {
+	if x != nil {
+		return x.RemovedMemberUserIDs
+	}
+	return nil
+}
+
+type RemoveMemberTriggerResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RemoveMemberTriggerResp) Reset() {
+	*x = RemoveMemberTriggerResp{}
+	mi := &file_openmls_openmls_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveMemberTriggerResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveMemberTriggerResp) ProtoMessage() {}
+
+func (x *RemoveMemberTriggerResp) ProtoReflect() protoreflect.Message {
+	mi := &file_openmls_openmls_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveMemberTriggerResp.ProtoReflect.Descriptor instead.
+func (*RemoveMemberTriggerResp) Descriptor() ([]byte, []int) {
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{27}
+}
+
 type IssueCredentialReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID"`
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform"`
-	LeafPublicKey string                 `protobuf:"bytes,4,opt,name=leafPublicKey,proto3" json:"leafPublicKey"`
-	ClientVersion string                 `protobuf:"bytes,5,opt,name=clientVersion,proto3" json:"clientVersion"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	DeviceID      string                 `protobuf:"bytes,2,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	LeafPublicKey string                 `protobuf:"bytes,4,opt,name=leafPublicKey,proto3" json:"leafPublicKey,omitempty"`
+	ClientVersion string                 `protobuf:"bytes,5,opt,name=clientVersion,proto3" json:"clientVersion,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *IssueCredentialReq) Reset() {
 	*x = IssueCredentialReq{}
-	mi := &file_openmls_openmls_proto_msgTypes[22]
+	mi := &file_openmls_openmls_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1358,7 +1646,7 @@ func (x *IssueCredentialReq) String() string {
 func (*IssueCredentialReq) ProtoMessage() {}
 
 func (x *IssueCredentialReq) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[22]
+	mi := &file_openmls_openmls_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1371,7 +1659,7 @@ func (x *IssueCredentialReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssueCredentialReq.ProtoReflect.Descriptor instead.
 func (*IssueCredentialReq) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{22}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *IssueCredentialReq) GetUserID() string {
@@ -1411,18 +1699,18 @@ func (x *IssueCredentialReq) GetClientVersion() string {
 
 type IssueCredentialResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Credential     string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential"`
-	CredentialType string                 `protobuf:"bytes,2,opt,name=credentialType,proto3" json:"credentialType"`
-	IssuedAt       int64                  `protobuf:"varint,3,opt,name=issuedAt,proto3" json:"issuedAt"`
-	ExpiresAt      int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt"`
-	Issuer         string                 `protobuf:"bytes,5,opt,name=issuer,proto3" json:"issuer"`
+	Credential     string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential,omitempty"`
+	CredentialType string                 `protobuf:"bytes,2,opt,name=credentialType,proto3" json:"credentialType,omitempty"`
+	IssuedAt       int64                  `protobuf:"varint,3,opt,name=issuedAt,proto3" json:"issuedAt,omitempty"`
+	ExpiresAt      int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
+	Issuer         string                 `protobuf:"bytes,5,opt,name=issuer,proto3" json:"issuer,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *IssueCredentialResp) Reset() {
 	*x = IssueCredentialResp{}
-	mi := &file_openmls_openmls_proto_msgTypes[23]
+	mi := &file_openmls_openmls_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1434,7 +1722,7 @@ func (x *IssueCredentialResp) String() string {
 func (*IssueCredentialResp) ProtoMessage() {}
 
 func (x *IssueCredentialResp) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[23]
+	mi := &file_openmls_openmls_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1447,7 +1735,7 @@ func (x *IssueCredentialResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssueCredentialResp.ProtoReflect.Descriptor instead.
 func (*IssueCredentialResp) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{23}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *IssueCredentialResp) GetCredential() string {
@@ -1487,14 +1775,14 @@ func (x *IssueCredentialResp) GetIssuer() string {
 
 type VerifyCredentialReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Credential    string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential"`
+	Credential    string                 `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VerifyCredentialReq) Reset() {
 	*x = VerifyCredentialReq{}
-	mi := &file_openmls_openmls_proto_msgTypes[24]
+	mi := &file_openmls_openmls_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1506,7 +1794,7 @@ func (x *VerifyCredentialReq) String() string {
 func (*VerifyCredentialReq) ProtoMessage() {}
 
 func (x *VerifyCredentialReq) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[24]
+	mi := &file_openmls_openmls_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1519,7 +1807,7 @@ func (x *VerifyCredentialReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyCredentialReq.ProtoReflect.Descriptor instead.
 func (*VerifyCredentialReq) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{24}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *VerifyCredentialReq) GetCredential() string {
@@ -1531,17 +1819,17 @@ func (x *VerifyCredentialReq) GetCredential() string {
 
 type VerifyCredentialResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid"`
-	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
-	DeviceID      string                 `protobuf:"bytes,3,opt,name=deviceID,proto3" json:"deviceID"`
-	ExpiresAt     int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	DeviceID      string                 `protobuf:"bytes,3,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
+	ExpiresAt     int64                  `protobuf:"varint,4,opt,name=expiresAt,proto3" json:"expiresAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VerifyCredentialResp) Reset() {
 	*x = VerifyCredentialResp{}
-	mi := &file_openmls_openmls_proto_msgTypes[25]
+	mi := &file_openmls_openmls_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1553,7 +1841,7 @@ func (x *VerifyCredentialResp) String() string {
 func (*VerifyCredentialResp) ProtoMessage() {}
 
 func (x *VerifyCredentialResp) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[25]
+	mi := &file_openmls_openmls_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1566,7 +1854,7 @@ func (x *VerifyCredentialResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyCredentialResp.ProtoReflect.Descriptor instead.
 func (*VerifyCredentialResp) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{25}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *VerifyCredentialResp) GetValid() bool {
@@ -1605,7 +1893,7 @@ type GetRootPublicKeyReq struct {
 
 func (x *GetRootPublicKeyReq) Reset() {
 	*x = GetRootPublicKeyReq{}
-	mi := &file_openmls_openmls_proto_msgTypes[26]
+	mi := &file_openmls_openmls_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1617,7 +1905,7 @@ func (x *GetRootPublicKeyReq) String() string {
 func (*GetRootPublicKeyReq) ProtoMessage() {}
 
 func (x *GetRootPublicKeyReq) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[26]
+	mi := &file_openmls_openmls_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1630,21 +1918,21 @@ func (x *GetRootPublicKeyReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRootPublicKeyReq.ProtoReflect.Descriptor instead.
 func (*GetRootPublicKeyReq) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{26}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{32}
 }
 
 type GetRootPublicKeyResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublicKey     string                 `protobuf:"bytes,1,opt,name=publicKey,proto3" json:"publicKey"`
-	KeyID         string                 `protobuf:"bytes,2,opt,name=keyID,proto3" json:"keyID"`
-	Algorithm     string                 `protobuf:"bytes,3,opt,name=algorithm,proto3" json:"algorithm"`
+	PublicKey     string                 `protobuf:"bytes,1,opt,name=publicKey,proto3" json:"publicKey,omitempty"`
+	KeyID         string                 `protobuf:"bytes,2,opt,name=keyID,proto3" json:"keyID,omitempty"`
+	Algorithm     string                 `protobuf:"bytes,3,opt,name=algorithm,proto3" json:"algorithm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetRootPublicKeyResp) Reset() {
 	*x = GetRootPublicKeyResp{}
-	mi := &file_openmls_openmls_proto_msgTypes[27]
+	mi := &file_openmls_openmls_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1656,7 +1944,7 @@ func (x *GetRootPublicKeyResp) String() string {
 func (*GetRootPublicKeyResp) ProtoMessage() {}
 
 func (x *GetRootPublicKeyResp) ProtoReflect() protoreflect.Message {
-	mi := &file_openmls_openmls_proto_msgTypes[27]
+	mi := &file_openmls_openmls_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1669,7 +1957,7 @@ func (x *GetRootPublicKeyResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRootPublicKeyResp.ProtoReflect.Descriptor instead.
 func (*GetRootPublicKeyResp) Descriptor() ([]byte, []int) {
-	return file_openmls_openmls_proto_rawDescGZIP(), []int{27}
+	return file_openmls_openmls_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *GetRootPublicKeyResp) GetPublicKey() string {
@@ -1796,7 +2084,22 @@ const file_openmls_openmls_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x05 \x01(\x03R\tcreatedAt\"*\n" +
 	"\x0eDeleteGroupReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\"\x11\n" +
-	"\x0fDeleteGroupResp\"\xb0\x01\n" +
+	"\x0fDeleteGroupResp\"{\n" +
+	"\x13InitGroupTriggerReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12$\n" +
+	"\rcreatorUserID\x18\x02 \x01(\tR\rcreatorUserID\x12$\n" +
+	"\rmemberUserIDs\x18\x03 \x03(\tR\rmemberUserIDs\"\x16\n" +
+	"\x14InitGroupTriggerResp\"\x83\x01\n" +
+	"\x13AddMemberTriggerReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12&\n" +
+	"\x0eoperatorUserID\x18\x02 \x01(\tR\x0eoperatorUserID\x12*\n" +
+	"\x10newMemberUserIDs\x18\x03 \x03(\tR\x10newMemberUserIDs\"\x16\n" +
+	"\x14AddMemberTriggerResp\"\x8e\x01\n" +
+	"\x16RemoveMemberTriggerReq\x12\x18\n" +
+	"\agroupID\x18\x01 \x01(\tR\agroupID\x12&\n" +
+	"\x0eoperatorUserID\x18\x02 \x01(\tR\x0eoperatorUserID\x122\n" +
+	"\x14removedMemberUserIDs\x18\x03 \x03(\tR\x14removedMemberUserIDs\"\x19\n" +
+	"\x17RemoveMemberTriggerResp\"\xb0\x01\n" +
 	"\x12IssueCredentialReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bdeviceID\x18\x02 \x01(\tR\bdeviceID\x12\x1a\n" +
@@ -1824,7 +2127,8 @@ const file_openmls_openmls_proto_rawDesc = "" +
 	"\x14GetRootPublicKeyResp\x12\x1c\n" +
 	"\tpublicKey\x18\x01 \x01(\tR\tpublicKey\x12\x14\n" +
 	"\x05keyID\x18\x02 \x01(\tR\x05keyID\x12\x1c\n" +
-	"\talgorithm\x18\x03 \x01(\tR\talgorithm2\xc2\b\n" +
+	"\talgorithm\x18\x03 \x01(\tR\talgorithm2\xe8\n" +
+	"\n" +
 	"\x0eOpenMLSService\x12]\n" +
 	"\x10UploadKeyPackage\x12#.openim.openmls.UploadKeyPackageReq\x1a$.openim.openmls.UploadKeyPackageResp\x12W\n" +
 	"\x0eGetKeyPackages\x12!.openim.openmls.GetKeyPackagesReq\x1a\".openim.openmls.GetKeyPackagesResp\x12c\n" +
@@ -1835,7 +2139,10 @@ const file_openmls_openmls_proto_rawDesc = "" +
 	"GetCommits\x12\x1d.openim.openmls.GetCommitsReq\x1a\x1e.openim.openmls.GetCommitsResp\x12N\n" +
 	"\vSendWelcome\x12\x1e.openim.openmls.SendWelcomeReq\x1a\x1f.openim.openmls.SendWelcomeResp\x12T\n" +
 	"\rGetGroupState\x12 .openim.openmls.GetGroupStateReq\x1a!.openim.openmls.GetGroupStateResp\x12N\n" +
-	"\vDeleteGroup\x12\x1e.openim.openmls.DeleteGroupReq\x1a\x1f.openim.openmls.DeleteGroupResp\x12Z\n" +
+	"\vDeleteGroup\x12\x1e.openim.openmls.DeleteGroupReq\x1a\x1f.openim.openmls.DeleteGroupResp\x12]\n" +
+	"\x10InitGroupTrigger\x12#.openim.openmls.InitGroupTriggerReq\x1a$.openim.openmls.InitGroupTriggerResp\x12]\n" +
+	"\x10AddMemberTrigger\x12#.openim.openmls.AddMemberTriggerReq\x1a$.openim.openmls.AddMemberTriggerResp\x12f\n" +
+	"\x13RemoveMemberTrigger\x12&.openim.openmls.RemoveMemberTriggerReq\x1a'.openim.openmls.RemoveMemberTriggerResp\x12Z\n" +
 	"\x0fIssueCredential\x12\".openim.openmls.IssueCredentialReq\x1a#.openim.openmls.IssueCredentialResp\x12]\n" +
 	"\x10VerifyCredential\x12#.openim.openmls.VerifyCredentialReq\x1a$.openim.openmls.VerifyCredentialResp\x12]\n" +
 	"\x10GetRootPublicKey\x12#.openim.openmls.GetRootPublicKeyReq\x1a$.openim.openmls.GetRootPublicKeyRespB'Z%github.com/openimsdk/protocol/openmlsb\x06proto3"
@@ -1852,36 +2159,42 @@ func file_openmls_openmls_proto_rawDescGZIP() []byte {
 	return file_openmls_openmls_proto_rawDescData
 }
 
-var file_openmls_openmls_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_openmls_openmls_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_openmls_openmls_proto_goTypes = []any{
-	(*UploadKeyPackageReq)(nil),    // 0: openim.openmls.UploadKeyPackageReq
-	(*UploadKeyPackageResp)(nil),   // 1: openim.openmls.UploadKeyPackageResp
-	(*KeyPackageItem)(nil),         // 2: openim.openmls.KeyPackageItem
-	(*GetKeyPackagesReq)(nil),      // 3: openim.openmls.GetKeyPackagesReq
-	(*GetKeyPackagesResp)(nil),     // 4: openim.openmls.GetKeyPackagesResp
-	(*DeviceCount)(nil),            // 5: openim.openmls.DeviceCount
-	(*GetKeyPackageCountReq)(nil),  // 6: openim.openmls.GetKeyPackageCountReq
-	(*GetKeyPackageCountResp)(nil), // 7: openim.openmls.GetKeyPackageCountResp
-	(*RefreshKeyPackagesReq)(nil),  // 8: openim.openmls.RefreshKeyPackagesReq
-	(*RefreshKeyPackagesResp)(nil), // 9: openim.openmls.RefreshKeyPackagesResp
-	(*WelcomeMessage)(nil),         // 10: openim.openmls.WelcomeMessage
-	(*SubmitCommitReq)(nil),        // 11: openim.openmls.SubmitCommitReq
-	(*SubmitCommitResp)(nil),       // 12: openim.openmls.SubmitCommitResp
-	(*GetCommitsReq)(nil),          // 13: openim.openmls.GetCommitsReq
-	(*CommitRecord)(nil),           // 14: openim.openmls.CommitRecord
-	(*GetCommitsResp)(nil),         // 15: openim.openmls.GetCommitsResp
-	(*SendWelcomeReq)(nil),         // 16: openim.openmls.SendWelcomeReq
-	(*SendWelcomeResp)(nil),        // 17: openim.openmls.SendWelcomeResp
-	(*GetGroupStateReq)(nil),       // 18: openim.openmls.GetGroupStateReq
-	(*GetGroupStateResp)(nil),      // 19: openim.openmls.GetGroupStateResp
-	(*DeleteGroupReq)(nil),         // 20: openim.openmls.DeleteGroupReq
-	(*DeleteGroupResp)(nil),        // 21: openim.openmls.DeleteGroupResp
-	(*IssueCredentialReq)(nil),     // 22: openim.openmls.IssueCredentialReq
-	(*IssueCredentialResp)(nil),    // 23: openim.openmls.IssueCredentialResp
-	(*VerifyCredentialReq)(nil),    // 24: openim.openmls.VerifyCredentialReq
-	(*VerifyCredentialResp)(nil),   // 25: openim.openmls.VerifyCredentialResp
-	(*GetRootPublicKeyReq)(nil),    // 26: openim.openmls.GetRootPublicKeyReq
-	(*GetRootPublicKeyResp)(nil),   // 27: openim.openmls.GetRootPublicKeyResp
+	(*UploadKeyPackageReq)(nil),     // 0: openim.openmls.UploadKeyPackageReq
+	(*UploadKeyPackageResp)(nil),    // 1: openim.openmls.UploadKeyPackageResp
+	(*KeyPackageItem)(nil),          // 2: openim.openmls.KeyPackageItem
+	(*GetKeyPackagesReq)(nil),       // 3: openim.openmls.GetKeyPackagesReq
+	(*GetKeyPackagesResp)(nil),      // 4: openim.openmls.GetKeyPackagesResp
+	(*DeviceCount)(nil),             // 5: openim.openmls.DeviceCount
+	(*GetKeyPackageCountReq)(nil),   // 6: openim.openmls.GetKeyPackageCountReq
+	(*GetKeyPackageCountResp)(nil),  // 7: openim.openmls.GetKeyPackageCountResp
+	(*RefreshKeyPackagesReq)(nil),   // 8: openim.openmls.RefreshKeyPackagesReq
+	(*RefreshKeyPackagesResp)(nil),  // 9: openim.openmls.RefreshKeyPackagesResp
+	(*WelcomeMessage)(nil),          // 10: openim.openmls.WelcomeMessage
+	(*SubmitCommitReq)(nil),         // 11: openim.openmls.SubmitCommitReq
+	(*SubmitCommitResp)(nil),        // 12: openim.openmls.SubmitCommitResp
+	(*GetCommitsReq)(nil),           // 13: openim.openmls.GetCommitsReq
+	(*CommitRecord)(nil),            // 14: openim.openmls.CommitRecord
+	(*GetCommitsResp)(nil),          // 15: openim.openmls.GetCommitsResp
+	(*SendWelcomeReq)(nil),          // 16: openim.openmls.SendWelcomeReq
+	(*SendWelcomeResp)(nil),         // 17: openim.openmls.SendWelcomeResp
+	(*GetGroupStateReq)(nil),        // 18: openim.openmls.GetGroupStateReq
+	(*GetGroupStateResp)(nil),       // 19: openim.openmls.GetGroupStateResp
+	(*DeleteGroupReq)(nil),          // 20: openim.openmls.DeleteGroupReq
+	(*DeleteGroupResp)(nil),         // 21: openim.openmls.DeleteGroupResp
+	(*InitGroupTriggerReq)(nil),     // 22: openim.openmls.InitGroupTriggerReq
+	(*InitGroupTriggerResp)(nil),    // 23: openim.openmls.InitGroupTriggerResp
+	(*AddMemberTriggerReq)(nil),     // 24: openim.openmls.AddMemberTriggerReq
+	(*AddMemberTriggerResp)(nil),    // 25: openim.openmls.AddMemberTriggerResp
+	(*RemoveMemberTriggerReq)(nil),  // 26: openim.openmls.RemoveMemberTriggerReq
+	(*RemoveMemberTriggerResp)(nil), // 27: openim.openmls.RemoveMemberTriggerResp
+	(*IssueCredentialReq)(nil),      // 28: openim.openmls.IssueCredentialReq
+	(*IssueCredentialResp)(nil),     // 29: openim.openmls.IssueCredentialResp
+	(*VerifyCredentialReq)(nil),     // 30: openim.openmls.VerifyCredentialReq
+	(*VerifyCredentialResp)(nil),    // 31: openim.openmls.VerifyCredentialResp
+	(*GetRootPublicKeyReq)(nil),     // 32: openim.openmls.GetRootPublicKeyReq
+	(*GetRootPublicKeyResp)(nil),    // 33: openim.openmls.GetRootPublicKeyResp
 }
 var file_openmls_openmls_proto_depIdxs = []int32{
 	2,  // 0: openim.openmls.GetKeyPackagesResp.keyPackages:type_name -> openim.openmls.KeyPackageItem
@@ -1898,23 +2211,29 @@ var file_openmls_openmls_proto_depIdxs = []int32{
 	16, // 11: openim.openmls.OpenMLSService.SendWelcome:input_type -> openim.openmls.SendWelcomeReq
 	18, // 12: openim.openmls.OpenMLSService.GetGroupState:input_type -> openim.openmls.GetGroupStateReq
 	20, // 13: openim.openmls.OpenMLSService.DeleteGroup:input_type -> openim.openmls.DeleteGroupReq
-	22, // 14: openim.openmls.OpenMLSService.IssueCredential:input_type -> openim.openmls.IssueCredentialReq
-	24, // 15: openim.openmls.OpenMLSService.VerifyCredential:input_type -> openim.openmls.VerifyCredentialReq
-	26, // 16: openim.openmls.OpenMLSService.GetRootPublicKey:input_type -> openim.openmls.GetRootPublicKeyReq
-	1,  // 17: openim.openmls.OpenMLSService.UploadKeyPackage:output_type -> openim.openmls.UploadKeyPackageResp
-	4,  // 18: openim.openmls.OpenMLSService.GetKeyPackages:output_type -> openim.openmls.GetKeyPackagesResp
-	7,  // 19: openim.openmls.OpenMLSService.GetKeyPackageCount:output_type -> openim.openmls.GetKeyPackageCountResp
-	9,  // 20: openim.openmls.OpenMLSService.RefreshKeyPackages:output_type -> openim.openmls.RefreshKeyPackagesResp
-	12, // 21: openim.openmls.OpenMLSService.SubmitCommit:output_type -> openim.openmls.SubmitCommitResp
-	15, // 22: openim.openmls.OpenMLSService.GetCommits:output_type -> openim.openmls.GetCommitsResp
-	17, // 23: openim.openmls.OpenMLSService.SendWelcome:output_type -> openim.openmls.SendWelcomeResp
-	19, // 24: openim.openmls.OpenMLSService.GetGroupState:output_type -> openim.openmls.GetGroupStateResp
-	21, // 25: openim.openmls.OpenMLSService.DeleteGroup:output_type -> openim.openmls.DeleteGroupResp
-	23, // 26: openim.openmls.OpenMLSService.IssueCredential:output_type -> openim.openmls.IssueCredentialResp
-	25, // 27: openim.openmls.OpenMLSService.VerifyCredential:output_type -> openim.openmls.VerifyCredentialResp
-	27, // 28: openim.openmls.OpenMLSService.GetRootPublicKey:output_type -> openim.openmls.GetRootPublicKeyResp
-	17, // [17:29] is the sub-list for method output_type
-	5,  // [5:17] is the sub-list for method input_type
+	22, // 14: openim.openmls.OpenMLSService.InitGroupTrigger:input_type -> openim.openmls.InitGroupTriggerReq
+	24, // 15: openim.openmls.OpenMLSService.AddMemberTrigger:input_type -> openim.openmls.AddMemberTriggerReq
+	26, // 16: openim.openmls.OpenMLSService.RemoveMemberTrigger:input_type -> openim.openmls.RemoveMemberTriggerReq
+	28, // 17: openim.openmls.OpenMLSService.IssueCredential:input_type -> openim.openmls.IssueCredentialReq
+	30, // 18: openim.openmls.OpenMLSService.VerifyCredential:input_type -> openim.openmls.VerifyCredentialReq
+	32, // 19: openim.openmls.OpenMLSService.GetRootPublicKey:input_type -> openim.openmls.GetRootPublicKeyReq
+	1,  // 20: openim.openmls.OpenMLSService.UploadKeyPackage:output_type -> openim.openmls.UploadKeyPackageResp
+	4,  // 21: openim.openmls.OpenMLSService.GetKeyPackages:output_type -> openim.openmls.GetKeyPackagesResp
+	7,  // 22: openim.openmls.OpenMLSService.GetKeyPackageCount:output_type -> openim.openmls.GetKeyPackageCountResp
+	9,  // 23: openim.openmls.OpenMLSService.RefreshKeyPackages:output_type -> openim.openmls.RefreshKeyPackagesResp
+	12, // 24: openim.openmls.OpenMLSService.SubmitCommit:output_type -> openim.openmls.SubmitCommitResp
+	15, // 25: openim.openmls.OpenMLSService.GetCommits:output_type -> openim.openmls.GetCommitsResp
+	17, // 26: openim.openmls.OpenMLSService.SendWelcome:output_type -> openim.openmls.SendWelcomeResp
+	19, // 27: openim.openmls.OpenMLSService.GetGroupState:output_type -> openim.openmls.GetGroupStateResp
+	21, // 28: openim.openmls.OpenMLSService.DeleteGroup:output_type -> openim.openmls.DeleteGroupResp
+	23, // 29: openim.openmls.OpenMLSService.InitGroupTrigger:output_type -> openim.openmls.InitGroupTriggerResp
+	25, // 30: openim.openmls.OpenMLSService.AddMemberTrigger:output_type -> openim.openmls.AddMemberTriggerResp
+	27, // 31: openim.openmls.OpenMLSService.RemoveMemberTrigger:output_type -> openim.openmls.RemoveMemberTriggerResp
+	29, // 32: openim.openmls.OpenMLSService.IssueCredential:output_type -> openim.openmls.IssueCredentialResp
+	31, // 33: openim.openmls.OpenMLSService.VerifyCredential:output_type -> openim.openmls.VerifyCredentialResp
+	33, // 34: openim.openmls.OpenMLSService.GetRootPublicKey:output_type -> openim.openmls.GetRootPublicKeyResp
+	20, // [20:35] is the sub-list for method output_type
+	5,  // [5:20] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
 	5,  // [5:5] is the sub-list for extension extendee
 	0,  // [0:5] is the sub-list for field type_name
@@ -1931,7 +2250,7 @@ func file_openmls_openmls_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_openmls_openmls_proto_rawDesc), len(file_openmls_openmls_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   28,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
