@@ -29,6 +29,7 @@ const (
 	User_UserRegister_FullMethodName                  = "/openim.user.user/userRegister"
 	User_GetAllUserID_FullMethodName                  = "/openim.user.user/getAllUserID"
 	User_UserRegisterCount_FullMethodName             = "/openim.user.user/userRegisterCount"
+	User_GetOnlineUserCount_FullMethodName            = "/openim.user.user/getOnlineUserCount"
 	User_SubscribeOrCancelUsersStatus_FullMethodName  = "/openim.user.user/subscribeOrCancelUsersStatus"
 	User_GetSubscribeUsersStatus_FullMethodName       = "/openim.user.user/getSubscribeUsersStatus"
 	User_GetUserStatus_FullMethodName                 = "/openim.user.user/getUserStatus"
@@ -83,6 +84,8 @@ type UserClient interface {
 	GetAllUserID(ctx context.Context, in *GetAllUserIDReq, opts ...grpc.CallOption) (*GetAllUserIDResp, error)
 	// Get the total number of users and the user increment within a specified time period
 	UserRegisterCount(ctx context.Context, in *UserRegisterCountReq, opts ...grpc.CallOption) (*UserRegisterCountResp, error)
+	// Get current online user count, optionally filtered by areaCode
+	GetOnlineUserCount(ctx context.Context, in *GetOnlineUserCountReq, opts ...grpc.CallOption) (*GetOnlineUserCountResp, error)
 	// Subscribe or unsubscribe user presence
 	SubscribeOrCancelUsersStatus(ctx context.Context, in *SubscribeOrCancelUsersStatusReq, opts ...grpc.CallOption) (*SubscribeOrCancelUsersStatusResp, error)
 	// Get the online status of subscribers
@@ -239,6 +242,16 @@ func (c *userClient) UserRegisterCount(ctx context.Context, in *UserRegisterCoun
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserRegisterCountResp)
 	err := c.cc.Invoke(ctx, User_UserRegisterCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetOnlineUserCount(ctx context.Context, in *GetOnlineUserCountReq, opts ...grpc.CallOption) (*GetOnlineUserCountResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOnlineUserCountResp)
+	err := c.cc.Invoke(ctx, User_GetOnlineUserCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -558,6 +571,8 @@ type UserServer interface {
 	GetAllUserID(context.Context, *GetAllUserIDReq) (*GetAllUserIDResp, error)
 	// Get the total number of users and the user increment within a specified time period
 	UserRegisterCount(context.Context, *UserRegisterCountReq) (*UserRegisterCountResp, error)
+	// Get current online user count, optionally filtered by areaCode
+	GetOnlineUserCount(context.Context, *GetOnlineUserCountReq) (*GetOnlineUserCountResp, error)
 	// Subscribe or unsubscribe user presence
 	SubscribeOrCancelUsersStatus(context.Context, *SubscribeOrCancelUsersStatusReq) (*SubscribeOrCancelUsersStatusResp, error)
 	// Get the online status of subscribers
@@ -649,6 +664,9 @@ func (UnimplementedUserServer) GetAllUserID(context.Context, *GetAllUserIDReq) (
 }
 func (UnimplementedUserServer) UserRegisterCount(context.Context, *UserRegisterCountReq) (*UserRegisterCountResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method UserRegisterCount not implemented")
+}
+func (UnimplementedUserServer) GetOnlineUserCount(context.Context, *GetOnlineUserCountReq) (*GetOnlineUserCountResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetOnlineUserCount not implemented")
 }
 func (UnimplementedUserServer) SubscribeOrCancelUsersStatus(context.Context, *SubscribeOrCancelUsersStatusReq) (*SubscribeOrCancelUsersStatusResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SubscribeOrCancelUsersStatus not implemented")
@@ -934,6 +952,24 @@ func _User_UserRegisterCount_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).UserRegisterCount(ctx, req.(*UserRegisterCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetOnlineUserCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOnlineUserCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetOnlineUserCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetOnlineUserCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetOnlineUserCount(ctx, req.(*GetOnlineUserCountReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1506,6 +1542,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "userRegisterCount",
 			Handler:    _User_UserRegisterCount_Handler,
+		},
+		{
+			MethodName: "getOnlineUserCount",
+			Handler:    _User_GetOnlineUserCount_Handler,
 		},
 		{
 			MethodName: "subscribeOrCancelUsersStatus",

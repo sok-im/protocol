@@ -142,6 +142,21 @@ message userRegisterCountResp {
   map<string, int64> count = 3;
 }
 
+message getOnlineUserCountReq {
+  string areaCode = 1;
+}
+
+message onlineUserAreaCount {
+  string areaCode = 1;
+  int64 onlineUserCount = 2;
+}
+
+message getOnlineUserCountResp {
+  int64 onlineUserCount = 1;
+  string areaCode = 2;
+  repeated onlineUserAreaCount areaCounts = 3;
+}
+
 message subscribeOrCancelUsersStatusReq {
   string userID = 1;
   repeated string userIDs = 2;
@@ -475,6 +490,8 @@ service user {
   rpc getAllUserID(getAllUserIDReq) returns (getAllUserIDResp);
   //Get the total number of users and the user increment within a specified time period
   rpc userRegisterCount(userRegisterCountReq) returns (userRegisterCountResp);
+  //Get current online user count, optionally filtered by areaCode
+  rpc getOnlineUserCount(getOnlineUserCountReq) returns (getOnlineUserCountResp);
   //Subscribe or unsubscribe user presence
   rpc subscribeOrCancelUsersStatus(subscribeOrCancelUsersStatusReq) returns (subscribeOrCancelUsersStatusResp);
   //Get the online status of subscribers
