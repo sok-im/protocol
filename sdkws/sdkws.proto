@@ -39,6 +39,21 @@ message GroupInfo {
   int32 allowBurn = 23;
   // enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
   int32 enableInviteLink = 24;
+  // inviteLink 群内邀请链接列表（开启 enableInviteLink 时返回）
+  repeated GroupInviteLinkInfo inviteLink = 25;
+}
+
+message GroupInviteLinkInfo {
+  string linkID      = 1;
+  string groupID     = 2;
+  string creatorID   = 3;
+  int64  expireAt    = 4;   // unix ms；0=永不过期
+  int32  maxUseCount = 5;   // 0=不限次数
+  int32  usedCount   = 6;
+  bool   revoked     = 7;
+  int64  createdAt   = 8;
+  // shareURL 完整分享链接，由配置 shareLinkBaseURL + linkID 拼接；未配置时为空
+  string shareURL    = 9;
 }
 
 message GroupInfoForSet {
