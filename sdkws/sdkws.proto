@@ -39,7 +39,6 @@ message GroupInfo {
   int32 allowBurn = 23;
   // enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
   int32 enableInviteLink = 24;
-  // inviteLink 群内唯一邀请链接；请通过 list_invite_links 单独获取，不在 GroupInfo 同步中填充
   GroupInviteLinkInfo inviteLink = 25;
 }
 

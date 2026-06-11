@@ -557,13 +557,11 @@ message RevokeGroupInviteLinkReq {
 }
 message RevokeGroupInviteLinkResp {}
 
-message ListGroupInviteLinksReq {
-  string                        groupID    = 1;
-  openim.sdkws.RequestPagination pagination = 2;
+message GetGroupInviteLinkByGroupIDReq {
+  string groupID = 1;
 }
-message ListGroupInviteLinksResp {
-  uint32                      total = 1;
-  repeated GroupInviteLinkInfo links = 2;
+message GetGroupInviteLinkByGroupIDResp {
+  GroupInviteLinkInfo link = 1;
 }
 
 service group {
@@ -665,10 +663,10 @@ service group {
   // 当前用户取消置顶该群会话（同步写入 conversation.isPinned = false）
   rpc unpinGroup(UnpinGroupReq) returns (UnpinGroupResp);
 
-  // 群邀请链接：生成/查询/通过链接入群/吊销/列表
+  // 群邀请链接：每群唯一；生成/查询/通过链接入群/吊销
   rpc createGroupInviteLink(CreateGroupInviteLinkReq) returns (CreateGroupInviteLinkResp);
   rpc getGroupInviteLink(GetGroupInviteLinkReq) returns (GetGroupInviteLinkResp);
   rpc joinGroupByInviteLink(JoinGroupByInviteLinkReq) returns (JoinGroupByInviteLinkResp);
   rpc revokeGroupInviteLink(RevokeGroupInviteLinkReq) returns (RevokeGroupInviteLinkResp);
-  rpc listGroupInviteLinks(ListGroupInviteLinksReq) returns (ListGroupInviteLinksResp);
+  rpc getGroupInviteLinkByGroupID(GetGroupInviteLinkByGroupIDReq) returns (GetGroupInviteLinkByGroupIDResp);
 }

@@ -102,8 +102,8 @@ type GroupInfo struct {
 	AllowBurn int32 `protobuf:"varint,23,opt,name=allowBurn,proto3" json:"allowBurn"`
 	// enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
 	EnableInviteLink int32 `protobuf:"varint,24,opt,name=enableInviteLink,proto3" json:"enableInviteLink"`
-	// inviteLink 群内邀请链接列表（开启 enableInviteLink 时返回）
-	InviteLink    []*GroupInviteLinkInfo `protobuf:"bytes,25,rep,name=inviteLink,proto3" json:"inviteLink"`
+	// inviteLink 群内唯一邀请链接；请通过 getGroupInviteLinkByGroupID 单独获取，不在 GroupInfo 同步中填充
+	InviteLink    *GroupInviteLinkInfo `protobuf:"bytes,25,opt,name=inviteLink,proto3" json:"inviteLink"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -306,7 +306,7 @@ func (x *GroupInfo) GetEnableInviteLink() int32 {
 	return 0
 }
 
-func (x *GroupInfo) GetInviteLink() []*GroupInviteLinkInfo {
+func (x *GroupInfo) GetInviteLink() *GroupInviteLinkInfo {
 	if x != nil {
 		return x.InviteLink
 	}
@@ -6926,7 +6926,7 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\tallowBurn\x18\x17 \x01(\x05R\tallowBurn\x12*\n" +
 	"\x10enableInviteLink\x18\x18 \x01(\x05R\x10enableInviteLink\x12A\n" +
 	"\n" +
-	"inviteLink\x18\x19 \x03(\v2!.openim.sdkws.GroupInviteLinkInfoR\n" +
+	"inviteLink\x18\x19 \x01(\v2!.openim.sdkws.GroupInviteLinkInfoR\n" +
 	"inviteLink\"\x95\x02\n" +
 	"\x13GroupInviteLinkInfo\x12\x16\n" +
 	"\x06linkID\x18\x01 \x01(\tR\x06linkID\x12\x18\n" +
