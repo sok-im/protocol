@@ -507,9 +507,12 @@ func (x *RevokeGroupInviteLinkReq) Check() error {
 	return nil
 }
 
-func (x *GetGroupInviteLinkByGroupIDReq) Check() error {
+func (x *ListGroupInviteLinksReq) Check() error {
 	if x.GroupID == "" {
 		return errors.New("groupID is empty")
+	}
+	if x.Pagination == nil {
+		return errors.New("pagination is empty")
 	}
 	return nil
 }

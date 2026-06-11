@@ -72,7 +72,7 @@ const (
 	Group_GetGroupInviteLink_FullMethodName                = "/openim.group.group/getGroupInviteLink"
 	Group_JoinGroupByInviteLink_FullMethodName             = "/openim.group.group/joinGroupByInviteLink"
 	Group_RevokeGroupInviteLink_FullMethodName             = "/openim.group.group/revokeGroupInviteLink"
-	Group_GetGroupInviteLinkByGroupID_FullMethodName       = "/openim.group.group/getGroupInviteLinkByGroupID"
+	Group_ListGroupInviteLinks_FullMethodName              = "/openim.group.group/listGroupInviteLinks"
 )
 
 // GroupClient is the client API for Group service.
@@ -166,7 +166,7 @@ type GroupClient interface {
 	GetGroupInviteLink(ctx context.Context, in *GetGroupInviteLinkReq, opts ...grpc.CallOption) (*GetGroupInviteLinkResp, error)
 	JoinGroupByInviteLink(ctx context.Context, in *JoinGroupByInviteLinkReq, opts ...grpc.CallOption) (*JoinGroupByInviteLinkResp, error)
 	RevokeGroupInviteLink(ctx context.Context, in *RevokeGroupInviteLinkReq, opts ...grpc.CallOption) (*RevokeGroupInviteLinkResp, error)
-	GetGroupInviteLinkByGroupID(ctx context.Context, in *GetGroupInviteLinkByGroupIDReq, opts ...grpc.CallOption) (*GetGroupInviteLinkByGroupIDResp, error)
+	ListGroupInviteLinks(ctx context.Context, in *ListGroupInviteLinksReq, opts ...grpc.CallOption) (*ListGroupInviteLinksResp, error)
 }
 
 type groupClient struct {
@@ -707,10 +707,10 @@ func (c *groupClient) RevokeGroupInviteLink(ctx context.Context, in *RevokeGroup
 	return out, nil
 }
 
-func (c *groupClient) GetGroupInviteLinkByGroupID(ctx context.Context, in *GetGroupInviteLinkByGroupIDReq, opts ...grpc.CallOption) (*GetGroupInviteLinkByGroupIDResp, error) {
+func (c *groupClient) ListGroupInviteLinks(ctx context.Context, in *ListGroupInviteLinksReq, opts ...grpc.CallOption) (*ListGroupInviteLinksResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetGroupInviteLinkByGroupIDResp)
-	err := c.cc.Invoke(ctx, Group_GetGroupInviteLinkByGroupID_FullMethodName, in, out, cOpts...)
+	out := new(ListGroupInviteLinksResp)
+	err := c.cc.Invoke(ctx, Group_ListGroupInviteLinks_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -808,7 +808,7 @@ type GroupServer interface {
 	GetGroupInviteLink(context.Context, *GetGroupInviteLinkReq) (*GetGroupInviteLinkResp, error)
 	JoinGroupByInviteLink(context.Context, *JoinGroupByInviteLinkReq) (*JoinGroupByInviteLinkResp, error)
 	RevokeGroupInviteLink(context.Context, *RevokeGroupInviteLinkReq) (*RevokeGroupInviteLinkResp, error)
-	GetGroupInviteLinkByGroupID(context.Context, *GetGroupInviteLinkByGroupIDReq) (*GetGroupInviteLinkByGroupIDResp, error)
+	ListGroupInviteLinks(context.Context, *ListGroupInviteLinksReq) (*ListGroupInviteLinksResp, error)
 	mustEmbedUnimplementedGroupServer()
 }
 
@@ -978,8 +978,8 @@ func (UnimplementedGroupServer) JoinGroupByInviteLink(context.Context, *JoinGrou
 func (UnimplementedGroupServer) RevokeGroupInviteLink(context.Context, *RevokeGroupInviteLinkReq) (*RevokeGroupInviteLinkResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method RevokeGroupInviteLink not implemented")
 }
-func (UnimplementedGroupServer) GetGroupInviteLinkByGroupID(context.Context, *GetGroupInviteLinkByGroupIDReq) (*GetGroupInviteLinkByGroupIDResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetGroupInviteLinkByGroupID not implemented")
+func (UnimplementedGroupServer) ListGroupInviteLinks(context.Context, *ListGroupInviteLinksReq) (*ListGroupInviteLinksResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListGroupInviteLinks not implemented")
 }
 func (UnimplementedGroupServer) mustEmbedUnimplementedGroupServer() {}
 func (UnimplementedGroupServer) testEmbeddedByValue()               {}
@@ -1956,20 +1956,20 @@ func _Group_RevokeGroupInviteLink_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Group_GetGroupInviteLinkByGroupID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGroupInviteLinkByGroupIDReq)
+func _Group_ListGroupInviteLinks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGroupInviteLinksReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupServer).GetGroupInviteLinkByGroupID(ctx, in)
+		return srv.(GroupServer).ListGroupInviteLinks(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Group_GetGroupInviteLinkByGroupID_FullMethodName,
+		FullMethod: Group_ListGroupInviteLinks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupServer).GetGroupInviteLinkByGroupID(ctx, req.(*GetGroupInviteLinkByGroupIDReq))
+		return srv.(GroupServer).ListGroupInviteLinks(ctx, req.(*ListGroupInviteLinksReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2194,8 +2194,8 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Group_RevokeGroupInviteLink_Handler,
 		},
 		{
-			MethodName: "getGroupInviteLinkByGroupID",
-			Handler:    _Group_GetGroupInviteLinkByGroupID_Handler,
+			MethodName: "listGroupInviteLinks",
+			Handler:    _Group_ListGroupInviteLinks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
