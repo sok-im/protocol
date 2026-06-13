@@ -144,6 +144,8 @@ message SignalHungUpReq {
   InvitationInfo invitation = 1;
   sdkws.OfflinePushInfo offlinePushInfo  = 2;
   string userID = 3;
+  // callDuration: 1v1 talk duration in seconds reported by the client; 0 = server computes from AcceptTime
+  int64 callDuration = 4;
 }
 
 message SignalHungUpResp {

@@ -1393,8 +1393,10 @@ type SignalHungUpReq struct {
 	Invitation      *InvitationInfo        `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation"`
 	OfflinePushInfo *sdkws.OfflinePushInfo `protobuf:"bytes,2,opt,name=offlinePushInfo,proto3" json:"offlinePushInfo"`
 	UserID          string                 `protobuf:"bytes,3,opt,name=userID,proto3" json:"userID"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// callDuration: 1v1 talk duration in seconds reported by the client; 0 = server computes from AcceptTime
+	CallDuration  int64 `protobuf:"varint,4,opt,name=callDuration,proto3" json:"callDuration"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SignalHungUpReq) Reset() {
@@ -1446,6 +1448,13 @@ func (x *SignalHungUpReq) GetUserID() string {
 		return x.UserID
 	}
 	return ""
+}
+
+func (x *SignalHungUpReq) GetCallDuration() int64 {
+	if x != nil {
+		return x.CallDuration
+	}
+	return 0
 }
 
 type SignalHungUpResp struct {
@@ -3324,13 +3333,14 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x10SignalAcceptResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
-	"\aliveURL\x18\x03 \x01(\tR\aliveURL\"\xae\x01\n" +
+	"\aliveURL\x18\x03 \x01(\tR\aliveURL\"\xd2\x01\n" +
 	"\x0fSignalHungUpReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
 	"invitation\x12G\n" +
 	"\x0fofflinePushInfo\x18\x02 \x01(\v2\x1d.openim.sdkws.OfflinePushInfoR\x0fofflinePushInfo\x12\x16\n" +
-	"\x06userID\x18\x03 \x01(\tR\x06userID\"\x12\n" +
+	"\x06userID\x18\x03 \x01(\tR\x06userID\x12\"\n" +
+	"\fcallDuration\x18\x04 \x01(\x03R\fcallDuration\"\x12\n" +
 	"\x10SignalHungUpResp\"\x9d\x02\n" +
 	"\x0fSignalRejectReq\x12:\n" +
 	"\n" +
