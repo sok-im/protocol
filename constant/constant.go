@@ -136,6 +136,8 @@ const (
 	DefalutNotKick = 0
 	// Full-end login, but the same end is mutually exclusive.
 	AllLoginButSameTermKick = 1
+	// New login kicks all existing sessions across all platforms; only one session allowed at any time.
+	AllKick = 2
 	// The PC side is mutually exclusive, and the mobile side is mutually exclusive, but the web side can be online at
 	// the same time.
 	AllLoginButSameClassKick = 4
