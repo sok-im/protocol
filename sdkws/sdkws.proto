@@ -419,6 +419,21 @@ message GroupCallStartedTips {
   string mediaType = 3;
   // defaultTips English display text, e.g. "Alice started an audio/video call"
   string defaultTips = 4;
+  // roomID identifies the LiveKit room for this call
+  string roomID = 5;
+  // participantCount is the number of users currently in the call
+  int32 participantCount = 6;
+}
+
+// OnGroupCallParticipantCountUpdated()
+// Sent when the in-call participant count changes after the call has started.
+message GroupCallParticipantCountUpdatedTips {
+  GroupInfo group = 1;
+  string roomID = 2;
+  int32 participantCount = 3;
+  // defaultTips English display text, e.g. "3 people in the call"
+  string defaultTips = 4;
+  string mediaType = 5;
 }
 
 // OnGroupBurnDurationSet()

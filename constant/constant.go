@@ -81,9 +81,10 @@ const (
 	GroupInfoSetAnnouncementNotification     = 1519
 	GroupInfoSetNameNotification             = 1520
 	GroupMessagePinnedNotification           = 1521
-	GroupCallStartedNotification             = 1522
-	GroupCallEndedNotification               = 1523
-	GroupBurnDurationSetNotification         = 1524
+	GroupCallStartedNotification                  = 1522
+	GroupCallEndedNotification                    = 1523
+	GroupCallParticipantCountUpdatedNotification  = 1527
+	GroupBurnDurationSetNotification              = 1524
 	GroupFaceURLSetNotification              = 1525
 	GroupNeedVerificationSetNotification     = 1526
 
