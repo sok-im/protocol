@@ -71,38 +71,38 @@ func (PullOrder) EnumDescriptor() ([]byte, []int) {
 
 type GroupInfo struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	GroupID                string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	GroupName              string                 `protobuf:"bytes,2,opt,name=groupName,proto3" json:"groupName"`
-	Notification           string                 `protobuf:"bytes,3,opt,name=notification,proto3" json:"notification"`
-	Introduction           string                 `protobuf:"bytes,4,opt,name=introduction,proto3" json:"introduction"`
-	FaceURL                string                 `protobuf:"bytes,5,opt,name=faceURL,proto3" json:"faceURL"`
-	OwnerUserID            string                 `protobuf:"bytes,6,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	CreateTime             int64                  `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime"`
-	MemberCount            uint32                 `protobuf:"varint,8,opt,name=memberCount,proto3" json:"memberCount"`
-	Ex                     string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex"`
-	Status                 int32                  `protobuf:"varint,10,opt,name=status,proto3" json:"status"`
-	CreatorUserID          string                 `protobuf:"bytes,11,opt,name=creatorUserID,proto3" json:"creatorUserID"`
-	GroupType              int32                  `protobuf:"varint,12,opt,name=groupType,proto3" json:"groupType"`
-	NeedVerification       int32                  `protobuf:"varint,13,opt,name=needVerification,proto3" json:"needVerification"`
-	LookMemberInfo         int32                  `protobuf:"varint,14,opt,name=lookMemberInfo,proto3" json:"lookMemberInfo"`
-	ApplyMemberFriend      int32                  `protobuf:"varint,15,opt,name=applyMemberFriend,proto3" json:"applyMemberFriend"`
-	NotificationUpdateTime int64                  `protobuf:"varint,16,opt,name=notificationUpdateTime,proto3" json:"notificationUpdateTime"`
-	NotificationUserID     string                 `protobuf:"bytes,17,opt,name=notificationUserID,proto3" json:"notificationUserID"`
+	GroupID                string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	GroupName              string                 `protobuf:"bytes,2,opt,name=groupName,proto3" json:"groupName,omitempty"`
+	Notification           string                 `protobuf:"bytes,3,opt,name=notification,proto3" json:"notification,omitempty"`
+	Introduction           string                 `protobuf:"bytes,4,opt,name=introduction,proto3" json:"introduction,omitempty"`
+	FaceURL                string                 `protobuf:"bytes,5,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	OwnerUserID            string                 `protobuf:"bytes,6,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	CreateTime             int64                  `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	MemberCount            uint32                 `protobuf:"varint,8,opt,name=memberCount,proto3" json:"memberCount,omitempty"`
+	Ex                     string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex,omitempty"`
+	Status                 int32                  `protobuf:"varint,10,opt,name=status,proto3" json:"status,omitempty"`
+	CreatorUserID          string                 `protobuf:"bytes,11,opt,name=creatorUserID,proto3" json:"creatorUserID,omitempty"`
+	GroupType              int32                  `protobuf:"varint,12,opt,name=groupType,proto3" json:"groupType,omitempty"`
+	NeedVerification       int32                  `protobuf:"varint,13,opt,name=needVerification,proto3" json:"needVerification,omitempty"`
+	LookMemberInfo         int32                  `protobuf:"varint,14,opt,name=lookMemberInfo,proto3" json:"lookMemberInfo,omitempty"`
+	ApplyMemberFriend      int32                  `protobuf:"varint,15,opt,name=applyMemberFriend,proto3" json:"applyMemberFriend,omitempty"`
+	NotificationUpdateTime int64                  `protobuf:"varint,16,opt,name=notificationUpdateTime,proto3" json:"notificationUpdateTime,omitempty"`
+	NotificationUserID     string                 `protobuf:"bytes,17,opt,name=notificationUserID,proto3" json:"notificationUserID,omitempty"`
 	// allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
-	AllowSendMsg int32 `protobuf:"varint,18,opt,name=allowSendMsg,proto3" json:"allowSendMsg"`
+	AllowSendMsg int32 `protobuf:"varint,18,opt,name=allowSendMsg,proto3" json:"allowSendMsg,omitempty"`
 	// allowPinMsg 0=全员可置顶消息 1=仅群主/管理员可置顶消息
-	AllowPinMsg int32 `protobuf:"varint,19,opt,name=allowPinMsg,proto3" json:"allowPinMsg"`
+	AllowPinMsg int32 `protobuf:"varint,19,opt,name=allowPinMsg,proto3" json:"allowPinMsg,omitempty"`
 	// allowAddMember 0=全员可拉人入群 1=仅群主/管理员可拉人入群
-	AllowAddMember int32 `protobuf:"varint,20,opt,name=allowAddMember,proto3" json:"allowAddMember"`
+	AllowAddMember int32 `protobuf:"varint,20,opt,name=allowAddMember,proto3" json:"allowAddMember,omitempty"`
 	// allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
-	AllowEditGroupInfo int32 `protobuf:"varint,21,opt,name=allowEditGroupInfo,proto3" json:"allowEditGroupInfo"`
+	AllowEditGroupInfo int32 `protobuf:"varint,21,opt,name=allowEditGroupInfo,proto3" json:"allowEditGroupInfo,omitempty"`
 	// msgBurnDuration 群消息阅后即焚时长（秒）；0 表示未开启
-	MsgBurnDuration int32 `protobuf:"varint,22,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
+	MsgBurnDuration int32 `protobuf:"varint,22,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration,omitempty"`
 	// allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
-	AllowBurn int32 `protobuf:"varint,23,opt,name=allowBurn,proto3" json:"allowBurn"`
+	AllowBurn int32 `protobuf:"varint,23,opt,name=allowBurn,proto3" json:"allowBurn,omitempty"`
 	// enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
-	EnableInviteLink int32                `protobuf:"varint,24,opt,name=enableInviteLink,proto3" json:"enableInviteLink"`
-	InviteLink       *GroupInviteLinkInfo `protobuf:"bytes,25,opt,name=inviteLink,proto3" json:"inviteLink"`
+	EnableInviteLink int32                `protobuf:"varint,24,opt,name=enableInviteLink,proto3" json:"enableInviteLink,omitempty"`
+	InviteLink       *GroupInviteLinkInfo `protobuf:"bytes,25,opt,name=inviteLink,proto3" json:"inviteLink,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -314,16 +314,16 @@ func (x *GroupInfo) GetInviteLink() *GroupInviteLinkInfo {
 
 type GroupInviteLinkInfo struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	LinkID      string                 `protobuf:"bytes,1,opt,name=linkID,proto3" json:"linkID"`
-	GroupID     string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID"`
-	CreatorID   string                 `protobuf:"bytes,3,opt,name=creatorID,proto3" json:"creatorID"`
-	ExpireAt    int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt"`       // unix ms；0=永不过期
-	MaxUseCount int32                  `protobuf:"varint,5,opt,name=maxUseCount,proto3" json:"maxUseCount"` // 0=不限次数
-	UsedCount   int32                  `protobuf:"varint,6,opt,name=usedCount,proto3" json:"usedCount"`
-	Revoked     bool                   `protobuf:"varint,7,opt,name=revoked,proto3" json:"revoked"`
-	CreatedAt   int64                  `protobuf:"varint,8,opt,name=createdAt,proto3" json:"createdAt"`
+	LinkID      string                 `protobuf:"bytes,1,opt,name=linkID,proto3" json:"linkID,omitempty"`
+	GroupID     string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	CreatorID   string                 `protobuf:"bytes,3,opt,name=creatorID,proto3" json:"creatorID,omitempty"`
+	ExpireAt    int64                  `protobuf:"varint,4,opt,name=expireAt,proto3" json:"expireAt,omitempty"`       // unix ms；0=永不过期
+	MaxUseCount int32                  `protobuf:"varint,5,opt,name=maxUseCount,proto3" json:"maxUseCount,omitempty"` // 0=不限次数
+	UsedCount   int32                  `protobuf:"varint,6,opt,name=usedCount,proto3" json:"usedCount,omitempty"`
+	Revoked     bool                   `protobuf:"varint,7,opt,name=revoked,proto3" json:"revoked,omitempty"`
+	CreatedAt   int64                  `protobuf:"varint,8,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	// shareURL 完整分享链接，由配置 shareLinkBaseURL + linkID 拼接；未配置时为空
-	ShareURL      string `protobuf:"bytes,9,opt,name=shareURL,proto3" json:"shareURL"`
+	ShareURL      string `protobuf:"bytes,9,opt,name=shareURL,proto3" json:"shareURL,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -423,27 +423,27 @@ func (x *GroupInviteLinkInfo) GetShareURL() string {
 
 type GroupInfoForSet struct {
 	state             protoimpl.MessageState  `protogen:"open.v1"`
-	GroupID           string                  `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	GroupName         string                  `protobuf:"bytes,2,opt,name=groupName,proto3" json:"groupName"`
-	Notification      string                  `protobuf:"bytes,3,opt,name=notification,proto3" json:"notification"`
-	Introduction      string                  `protobuf:"bytes,4,opt,name=introduction,proto3" json:"introduction"`
-	FaceURL           string                  `protobuf:"bytes,5,opt,name=faceURL,proto3" json:"faceURL"`
-	Ex                *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=ex,proto3" json:"ex"`
-	NeedVerification  *wrapperspb.Int32Value  `protobuf:"bytes,7,opt,name=needVerification,proto3" json:"needVerification"`
-	LookMemberInfo    *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=lookMemberInfo,proto3" json:"lookMemberInfo"`
-	ApplyMemberFriend *wrapperspb.Int32Value  `protobuf:"bytes,9,opt,name=applyMemberFriend,proto3" json:"applyMemberFriend"`
+	GroupID           string                  `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	GroupName         string                  `protobuf:"bytes,2,opt,name=groupName,proto3" json:"groupName,omitempty"`
+	Notification      string                  `protobuf:"bytes,3,opt,name=notification,proto3" json:"notification,omitempty"`
+	Introduction      string                  `protobuf:"bytes,4,opt,name=introduction,proto3" json:"introduction,omitempty"`
+	FaceURL           string                  `protobuf:"bytes,5,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	Ex                *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=ex,proto3" json:"ex,omitempty"`
+	NeedVerification  *wrapperspb.Int32Value  `protobuf:"bytes,7,opt,name=needVerification,proto3" json:"needVerification,omitempty"`
+	LookMemberInfo    *wrapperspb.Int32Value  `protobuf:"bytes,8,opt,name=lookMemberInfo,proto3" json:"lookMemberInfo,omitempty"`
+	ApplyMemberFriend *wrapperspb.Int32Value  `protobuf:"bytes,9,opt,name=applyMemberFriend,proto3" json:"applyMemberFriend,omitempty"`
 	// allowSendMsg 0=全员可发消息 1=仅群主/管理员可发消息
-	AllowSendMsg *wrapperspb.Int32Value `protobuf:"bytes,10,opt,name=allowSendMsg,proto3" json:"allowSendMsg"`
+	AllowSendMsg *wrapperspb.Int32Value `protobuf:"bytes,10,opt,name=allowSendMsg,proto3" json:"allowSendMsg,omitempty"`
 	// allowPinMsg 0=全员可置顶消息 1=仅群主/管理员可置顶消息
-	AllowPinMsg *wrapperspb.Int32Value `protobuf:"bytes,11,opt,name=allowPinMsg,proto3" json:"allowPinMsg"`
+	AllowPinMsg *wrapperspb.Int32Value `protobuf:"bytes,11,opt,name=allowPinMsg,proto3" json:"allowPinMsg,omitempty"`
 	// allowAddMember 0=全员可拉人入群 1=仅群主/管理员可拉人入群
-	AllowAddMember *wrapperspb.Int32Value `protobuf:"bytes,12,opt,name=allowAddMember,proto3" json:"allowAddMember"`
+	AllowAddMember *wrapperspb.Int32Value `protobuf:"bytes,12,opt,name=allowAddMember,proto3" json:"allowAddMember,omitempty"`
 	// allowEditGroupInfo 0=全员可编辑群资料 1=仅群主/管理员可编辑群资料
-	AllowEditGroupInfo *wrapperspb.Int32Value `protobuf:"bytes,13,opt,name=allowEditGroupInfo,proto3" json:"allowEditGroupInfo"`
+	AllowEditGroupInfo *wrapperspb.Int32Value `protobuf:"bytes,13,opt,name=allowEditGroupInfo,proto3" json:"allowEditGroupInfo,omitempty"`
 	// allowBurn 0=仅群主可设置阅后即焚（默认） 1=全员可设置阅后即焚
-	AllowBurn *wrapperspb.Int32Value `protobuf:"bytes,14,opt,name=allowBurn,proto3" json:"allowBurn"`
+	AllowBurn *wrapperspb.Int32Value `protobuf:"bytes,14,opt,name=allowBurn,proto3" json:"allowBurn,omitempty"`
 	// enableInviteLink 0=关闭群邀请链接 1=开启群邀请链接
-	EnableInviteLink *wrapperspb.Int32Value `protobuf:"bytes,15,opt,name=enableInviteLink,proto3" json:"enableInviteLink"`
+	EnableInviteLink *wrapperspb.Int32Value `protobuf:"bytes,15,opt,name=enableInviteLink,proto3" json:"enableInviteLink,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -585,22 +585,22 @@ func (x *GroupInfoForSet) GetEnableInviteLink() *wrapperspb.Int32Value {
 
 type GroupMemberFullInfo struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
-	UserID          string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
-	RoleLevel       int32                  `protobuf:"varint,3,opt,name=roleLevel,proto3" json:"roleLevel"`
-	JoinTime        int64                  `protobuf:"varint,4,opt,name=joinTime,proto3" json:"joinTime"`
-	Nickname        string                 `protobuf:"bytes,5,opt,name=nickname,proto3" json:"nickname"`
-	FaceURL         string                 `protobuf:"bytes,6,opt,name=faceURL,proto3" json:"faceURL"`
-	AppMangerLevel  int32                  `protobuf:"varint,7,opt,name=appMangerLevel,proto3" json:"appMangerLevel"` //if >0
-	JoinSource      int32                  `protobuf:"varint,8,opt,name=joinSource,proto3" json:"joinSource"`
-	OperatorUserID  string                 `protobuf:"bytes,9,opt,name=operatorUserID,proto3" json:"operatorUserID"`
-	Ex              string                 `protobuf:"bytes,10,opt,name=ex,proto3" json:"ex"`
-	MuteEndTime     int64                  `protobuf:"varint,11,opt,name=muteEndTime,proto3" json:"muteEndTime"`
-	InviterUserID   string                 `protobuf:"bytes,12,opt,name=inviterUserID,proto3" json:"inviterUserID"`
-	IsPinned        bool                   `protobuf:"varint,13,opt,name=isPinned,proto3" json:"isPinned"`
-	IsMsgDestruct   bool                   `protobuf:"varint,14,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MsgDestructTime int64                  `protobuf:"varint,15,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	BurnDuration    int32                  `protobuf:"varint,16,opt,name=burnDuration,proto3" json:"burnDuration"`
+	GroupID         string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	UserID          string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	RoleLevel       int32                  `protobuf:"varint,3,opt,name=roleLevel,proto3" json:"roleLevel,omitempty"`
+	JoinTime        int64                  `protobuf:"varint,4,opt,name=joinTime,proto3" json:"joinTime,omitempty"`
+	Nickname        string                 `protobuf:"bytes,5,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	FaceURL         string                 `protobuf:"bytes,6,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	AppMangerLevel  int32                  `protobuf:"varint,7,opt,name=appMangerLevel,proto3" json:"appMangerLevel,omitempty"` //if >0
+	JoinSource      int32                  `protobuf:"varint,8,opt,name=joinSource,proto3" json:"joinSource,omitempty"`
+	OperatorUserID  string                 `protobuf:"bytes,9,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	Ex              string                 `protobuf:"bytes,10,opt,name=ex,proto3" json:"ex,omitempty"`
+	MuteEndTime     int64                  `protobuf:"varint,11,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
+	InviterUserID   string                 `protobuf:"bytes,12,opt,name=inviterUserID,proto3" json:"inviterUserID,omitempty"`
+	IsPinned        bool                   `protobuf:"varint,13,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	IsMsgDestruct   bool                   `protobuf:"varint,14,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MsgDestructTime int64                  `protobuf:"varint,15,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	BurnDuration    int32                  `protobuf:"varint,16,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -749,10 +749,10 @@ func (x *GroupMemberFullInfo) GetBurnDuration() int32 {
 
 type PublicUserInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
-	FaceURL       string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL"`
-	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	FaceURL       string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -817,37 +817,37 @@ func (x *PublicUserInfo) GetEx() string {
 
 type UserInfo struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	UserID           string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Nickname         string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
-	FaceURL          string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL"`
-	Ex               string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
-	CreateTime       int64                  `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime"`
-	AppMangerLevel   int32                  `protobuf:"varint,6,opt,name=appMangerLevel,proto3" json:"appMangerLevel"`
-	GlobalRecvMsgOpt int32                  `protobuf:"varint,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt"`
+	UserID           string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Nickname         string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	FaceURL          string                 `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	Ex               string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex,omitempty"`
+	CreateTime       int64                  `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	AppMangerLevel   int32                  `protobuf:"varint,6,opt,name=appMangerLevel,proto3" json:"appMangerLevel,omitempty"`
+	GlobalRecvMsgOpt int32                  `protobuf:"varint,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt,omitempty"`
 	// phone 仅对有权限的 viewer 下发，无权限时为空字符串
-	Phone string `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone"`
+	Phone string `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
 	// areaCode 手机国际区号（如 +86）
-	AreaCode string `protobuf:"bytes,15,opt,name=areaCode,proto3" json:"areaCode"`
+	AreaCode string `protobuf:"bytes,15,opt,name=areaCode,proto3" json:"areaCode,omitempty"`
 	// phoneVisibility 0=所有人 1=仅好友 2=隐藏
-	PhoneVisibility int32 `protobuf:"varint,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility"`
+	PhoneVisibility int32 `protobuf:"varint,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility,omitempty"`
 	// callAcceptSetting 0=所有人可发起 1=仅好友可发起 2=不接受任何通话
-	CallAcceptSetting int32 `protobuf:"varint,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting"`
+	CallAcceptSetting int32 `protobuf:"varint,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting,omitempty"`
 	// msgReceiveSetting 0=所有人可发送 1=仅好友可发送 2=所有人不可发送
-	MsgReceiveSetting int32  `protobuf:"varint,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting"`
-	FirstName         string `protobuf:"bytes,12,opt,name=firstName,proto3" json:"firstName"`
-	LastName          string `protobuf:"bytes,13,opt,name=lastName,proto3" json:"lastName"`
+	MsgReceiveSetting int32  `protobuf:"varint,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting,omitempty"`
+	FirstName         string `protobuf:"bytes,12,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	LastName          string `protobuf:"bytes,13,opt,name=lastName,proto3" json:"lastName,omitempty"`
 	// callRingtoneURL 用户设置的来电铃声 URL；被叫方收到 InvitationInfo 时播放主叫方的铃声
-	CallRingtoneURL string `protobuf:"bytes,14,opt,name=callRingtoneURL,proto3" json:"callRingtoneURL"`
+	CallRingtoneURL string `protobuf:"bytes,14,opt,name=callRingtoneURL,proto3" json:"callRingtoneURL,omitempty"`
 	// callRingtoneName 用户设置的来电铃声名称（展示用）
-	CallRingtoneName string `protobuf:"bytes,18,opt,name=callRingtoneName,proto3" json:"callRingtoneName"`
+	CallRingtoneName string `protobuf:"bytes,18,opt,name=callRingtoneName,proto3" json:"callRingtoneName,omitempty"`
 	// callRingtoneCover 用户设置的来电铃声封面 URL
-	CallRingtoneCover string `protobuf:"bytes,19,opt,name=callRingtoneCover,proto3" json:"callRingtoneCover"`
+	CallRingtoneCover string `protobuf:"bytes,19,opt,name=callRingtoneCover,proto3" json:"callRingtoneCover,omitempty"`
 	// callRingtoneAuthor 用户设置的来电铃声作者
-	CallRingtoneAuthor string `protobuf:"bytes,20,opt,name=callRingtoneAuthor,proto3" json:"callRingtoneAuthor"`
+	CallRingtoneAuthor string `protobuf:"bytes,20,opt,name=callRingtoneAuthor,proto3" json:"callRingtoneAuthor,omitempty"`
 	// groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
-	GroupInviteSetting int32 `protobuf:"varint,16,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting"`
+	GroupInviteSetting int32 `protobuf:"varint,16,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting,omitempty"`
 	// msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
-	MsgBurnDuration int32 `protobuf:"varint,17,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
+	MsgBurnDuration int32 `protobuf:"varint,17,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1024,30 +1024,30 @@ func (x *UserInfo) GetMsgBurnDuration() int32 {
 
 type UserInfoWithEx struct {
 	state             protoimpl.MessageState  `protogen:"open.v1"`
-	UserID            string                  `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Nickname          *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
-	FaceURL           *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL"`
-	Ex                *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
-	FirstName         *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=firstName,proto3" json:"firstName"`
-	LastName          *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=lastName,proto3" json:"lastName"`
-	GlobalRecvMsgOpt  *wrapperspb.Int32Value  `protobuf:"bytes,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt"`
-	Phone             *wrapperspb.StringValue `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone"`
-	AreaCode          *wrapperspb.StringValue `protobuf:"bytes,13,opt,name=areaCode,proto3" json:"areaCode"`
-	PhoneVisibility   *wrapperspb.Int32Value  `protobuf:"bytes,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility"`
-	CallAcceptSetting *wrapperspb.Int32Value  `protobuf:"bytes,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting"`
-	MsgReceiveSetting *wrapperspb.Int32Value  `protobuf:"bytes,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting"`
+	UserID            string                  `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Nickname          *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	FaceURL           *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=faceURL,proto3" json:"faceURL,omitempty"`
+	Ex                *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex,omitempty"`
+	FirstName         *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	LastName          *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=lastName,proto3" json:"lastName,omitempty"`
+	GlobalRecvMsgOpt  *wrapperspb.Int32Value  `protobuf:"bytes,7,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt,omitempty"`
+	Phone             *wrapperspb.StringValue `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
+	AreaCode          *wrapperspb.StringValue `protobuf:"bytes,13,opt,name=areaCode,proto3" json:"areaCode,omitempty"`
+	PhoneVisibility   *wrapperspb.Int32Value  `protobuf:"bytes,9,opt,name=phoneVisibility,proto3" json:"phoneVisibility,omitempty"`
+	CallAcceptSetting *wrapperspb.Int32Value  `protobuf:"bytes,10,opt,name=callAcceptSetting,proto3" json:"callAcceptSetting,omitempty"`
+	MsgReceiveSetting *wrapperspb.Int32Value  `protobuf:"bytes,11,opt,name=msgReceiveSetting,proto3" json:"msgReceiveSetting,omitempty"`
 	// callRingtoneURL 用户设置的来电铃声 URL（可选更新）
-	CallRingtoneURL *wrapperspb.StringValue `protobuf:"bytes,12,opt,name=callRingtoneURL,proto3" json:"callRingtoneURL"`
+	CallRingtoneURL *wrapperspb.StringValue `protobuf:"bytes,12,opt,name=callRingtoneURL,proto3" json:"callRingtoneURL,omitempty"`
 	// callRingtoneName 用户设置的来电铃声名称（可选更新）
-	CallRingtoneName *wrapperspb.StringValue `protobuf:"bytes,16,opt,name=callRingtoneName,proto3" json:"callRingtoneName"`
+	CallRingtoneName *wrapperspb.StringValue `protobuf:"bytes,16,opt,name=callRingtoneName,proto3" json:"callRingtoneName,omitempty"`
 	// callRingtoneCover 用户设置的来电铃声封面 URL（可选更新）
-	CallRingtoneCover *wrapperspb.StringValue `protobuf:"bytes,17,opt,name=callRingtoneCover,proto3" json:"callRingtoneCover"`
+	CallRingtoneCover *wrapperspb.StringValue `protobuf:"bytes,17,opt,name=callRingtoneCover,proto3" json:"callRingtoneCover,omitempty"`
 	// callRingtoneAuthor 用户设置的来电铃声作者（可选更新）
-	CallRingtoneAuthor *wrapperspb.StringValue `protobuf:"bytes,18,opt,name=callRingtoneAuthor,proto3" json:"callRingtoneAuthor"`
+	CallRingtoneAuthor *wrapperspb.StringValue `protobuf:"bytes,18,opt,name=callRingtoneAuthor,proto3" json:"callRingtoneAuthor,omitempty"`
 	// groupInviteSetting 0=所有人可邀请 1=仅好友可邀请 2=所有人不可邀请
-	GroupInviteSetting *wrapperspb.Int32Value `protobuf:"bytes,14,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting"`
+	GroupInviteSetting *wrapperspb.Int32Value `protobuf:"bytes,14,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting,omitempty"`
 	// msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
-	MsgBurnDuration *wrapperspb.Int32Value `protobuf:"bytes,15,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
+	MsgBurnDuration *wrapperspb.Int32Value `protobuf:"bytes,15,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1210,20 +1210,20 @@ func (x *UserInfoWithEx) GetMsgBurnDuration() *wrapperspb.Int32Value {
 
 type FriendInfo struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	Remark          string                 `protobuf:"bytes,2,opt,name=remark,proto3" json:"remark"`
-	CreateTime      int64                  `protobuf:"varint,3,opt,name=createTime,proto3" json:"createTime"`
-	FriendUser      *UserInfo              `protobuf:"bytes,4,opt,name=friendUser,proto3" json:"friendUser"`
-	AddSource       int32                  `protobuf:"varint,5,opt,name=addSource,proto3" json:"addSource"`
-	OperatorUserID  string                 `protobuf:"bytes,6,opt,name=operatorUserID,proto3" json:"operatorUserID"`
-	Ex              string                 `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex"`
-	IsPinned        bool                   `protobuf:"varint,8,opt,name=isPinned,proto3" json:"isPinned"`
-	IsMsgDestruct   bool                   `protobuf:"varint,9,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct"`
-	MsgDestructTime int64                  `protobuf:"varint,10,opt,name=msgDestructTime,proto3" json:"msgDestructTime"`
-	BurnDuration    int32                  `protobuf:"varint,11,opt,name=burnDuration,proto3" json:"burnDuration"`
-	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute"`
-	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration"`
-	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	OwnerUserID     string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	Remark          string                 `protobuf:"bytes,2,opt,name=remark,proto3" json:"remark,omitempty"`
+	CreateTime      int64                  `protobuf:"varint,3,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	FriendUser      *UserInfo              `protobuf:"bytes,4,opt,name=friendUser,proto3" json:"friendUser,omitempty"`
+	AddSource       int32                  `protobuf:"varint,5,opt,name=addSource,proto3" json:"addSource,omitempty"`
+	OperatorUserID  string                 `protobuf:"bytes,6,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	Ex              string                 `protobuf:"bytes,7,opt,name=ex,proto3" json:"ex,omitempty"`
+	IsPinned        bool                   `protobuf:"varint,8,opt,name=isPinned,proto3" json:"isPinned,omitempty"`
+	IsMsgDestruct   bool                   `protobuf:"varint,9,opt,name=isMsgDestruct,proto3" json:"isMsgDestruct,omitempty"`
+	MsgDestructTime int64                  `protobuf:"varint,10,opt,name=msgDestructTime,proto3" json:"msgDestructTime,omitempty"`
+	BurnDuration    int32                  `protobuf:"varint,11,opt,name=burnDuration,proto3" json:"burnDuration,omitempty"`
+	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute,omitempty"`
+	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration,omitempty"`
+	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1358,12 +1358,12 @@ func (x *FriendInfo) GetMuteEndTime() int64 {
 
 type BlackInfo struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	CreateTime     int64                  `protobuf:"varint,2,opt,name=createTime,proto3" json:"createTime"`
-	BlackUserInfo  *PublicUserInfo        `protobuf:"bytes,3,opt,name=blackUserInfo,proto3" json:"blackUserInfo"`
-	AddSource      int32                  `protobuf:"varint,4,opt,name=addSource,proto3" json:"addSource"`
-	OperatorUserID string                 `protobuf:"bytes,5,opt,name=operatorUserID,proto3" json:"operatorUserID"`
-	Ex             string                 `protobuf:"bytes,6,opt,name=ex,proto3" json:"ex"`
+	OwnerUserID    string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID,omitempty"`
+	CreateTime     int64                  `protobuf:"varint,2,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	BlackUserInfo  *PublicUserInfo        `protobuf:"bytes,3,opt,name=blackUserInfo,proto3" json:"blackUserInfo,omitempty"`
+	AddSource      int32                  `protobuf:"varint,4,opt,name=addSource,proto3" json:"addSource,omitempty"`
+	OperatorUserID string                 `protobuf:"bytes,5,opt,name=operatorUserID,proto3" json:"operatorUserID,omitempty"`
+	Ex             string                 `protobuf:"bytes,6,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1442,17 +1442,17 @@ func (x *BlackInfo) GetEx() string {
 
 type GroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserInfo      *PublicUserInfo        `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo"`
-	GroupInfo     *GroupInfo             `protobuf:"bytes,2,opt,name=groupInfo,proto3" json:"groupInfo"`
-	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult"`
-	ReqMsg        string                 `protobuf:"bytes,4,opt,name=reqMsg,proto3" json:"reqMsg"`
-	HandleMsg     string                 `protobuf:"bytes,5,opt,name=handleMsg,proto3" json:"handleMsg"`
-	ReqTime       int64                  `protobuf:"varint,6,opt,name=reqTime,proto3" json:"reqTime"`
-	HandleUserID  string                 `protobuf:"bytes,7,opt,name=handleUserID,proto3" json:"handleUserID"`
-	HandleTime    int64                  `protobuf:"varint,8,opt,name=handleTime,proto3" json:"handleTime"`
-	Ex            string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex"`
-	JoinSource    int32                  `protobuf:"varint,10,opt,name=joinSource,proto3" json:"joinSource"`
-	InviterUserID string                 `protobuf:"bytes,11,opt,name=inviterUserID,proto3" json:"inviterUserID"`
+	UserInfo      *PublicUserInfo        `protobuf:"bytes,1,opt,name=userInfo,proto3" json:"userInfo,omitempty"`
+	GroupInfo     *GroupInfo             `protobuf:"bytes,2,opt,name=groupInfo,proto3" json:"groupInfo,omitempty"`
+	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult,omitempty"`
+	ReqMsg        string                 `protobuf:"bytes,4,opt,name=reqMsg,proto3" json:"reqMsg,omitempty"`
+	HandleMsg     string                 `protobuf:"bytes,5,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	ReqTime       int64                  `protobuf:"varint,6,opt,name=reqTime,proto3" json:"reqTime,omitempty"`
+	HandleUserID  string                 `protobuf:"bytes,7,opt,name=handleUserID,proto3" json:"handleUserID,omitempty"`
+	HandleTime    int64                  `protobuf:"varint,8,opt,name=handleTime,proto3" json:"handleTime,omitempty"`
+	Ex            string                 `protobuf:"bytes,9,opt,name=ex,proto3" json:"ex,omitempty"`
+	JoinSource    int32                  `protobuf:"varint,10,opt,name=joinSource,proto3" json:"joinSource,omitempty"`
+	InviterUserID string                 `protobuf:"bytes,11,opt,name=inviterUserID,proto3" json:"inviterUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1566,19 +1566,19 @@ func (x *GroupRequest) GetInviterUserID() string {
 
 type FriendRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	FromNickname  string                 `protobuf:"bytes,2,opt,name=fromNickname,proto3" json:"fromNickname"`
-	FromFaceURL   string                 `protobuf:"bytes,3,opt,name=fromFaceURL,proto3" json:"fromFaceURL"`
-	ToUserID      string                 `protobuf:"bytes,4,opt,name=toUserID,proto3" json:"toUserID"`
-	ToNickname    string                 `protobuf:"bytes,5,opt,name=toNickname,proto3" json:"toNickname"`
-	ToFaceURL     string                 `protobuf:"bytes,6,opt,name=toFaceURL,proto3" json:"toFaceURL"`
-	HandleResult  int32                  `protobuf:"varint,7,opt,name=handleResult,proto3" json:"handleResult"`
-	ReqMsg        string                 `protobuf:"bytes,8,opt,name=reqMsg,proto3" json:"reqMsg"`
-	CreateTime    int64                  `protobuf:"varint,9,opt,name=createTime,proto3" json:"createTime"`
-	HandlerUserID string                 `protobuf:"bytes,10,opt,name=handlerUserID,proto3" json:"handlerUserID"`
-	HandleMsg     string                 `protobuf:"bytes,11,opt,name=handleMsg,proto3" json:"handleMsg"`
-	HandleTime    int64                  `protobuf:"varint,12,opt,name=handleTime,proto3" json:"handleTime"`
-	Ex            string                 `protobuf:"bytes,13,opt,name=ex,proto3" json:"ex"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	FromNickname  string                 `protobuf:"bytes,2,opt,name=fromNickname,proto3" json:"fromNickname,omitempty"`
+	FromFaceURL   string                 `protobuf:"bytes,3,opt,name=fromFaceURL,proto3" json:"fromFaceURL,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,4,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
+	ToNickname    string                 `protobuf:"bytes,5,opt,name=toNickname,proto3" json:"toNickname,omitempty"`
+	ToFaceURL     string                 `protobuf:"bytes,6,opt,name=toFaceURL,proto3" json:"toFaceURL,omitempty"`
+	HandleResult  int32                  `protobuf:"varint,7,opt,name=handleResult,proto3" json:"handleResult,omitempty"`
+	ReqMsg        string                 `protobuf:"bytes,8,opt,name=reqMsg,proto3" json:"reqMsg,omitempty"`
+	CreateTime    int64                  `protobuf:"varint,9,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	HandlerUserID string                 `protobuf:"bytes,10,opt,name=handlerUserID,proto3" json:"handlerUserID,omitempty"`
+	HandleMsg     string                 `protobuf:"bytes,11,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	HandleTime    int64                  `protobuf:"varint,12,opt,name=handleTime,proto3" json:"handleTime,omitempty"`
+	Ex            string                 `protobuf:"bytes,13,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1706,9 +1706,9 @@ func (x *FriendRequest) GetEx() string {
 
 type PullMessageBySeqsReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	SeqRanges     []*SeqRange            `protobuf:"bytes,2,rep,name=seqRanges,proto3" json:"seqRanges"`
-	Order         PullOrder              `protobuf:"varint,3,opt,name=order,proto3,enum=openim.sdkws.PullOrder" json:"order"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	SeqRanges     []*SeqRange            `protobuf:"bytes,2,rep,name=seqRanges,proto3" json:"seqRanges,omitempty"`
+	Order         PullOrder              `protobuf:"varint,3,opt,name=order,proto3,enum=openim.sdkws.PullOrder" json:"order,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1766,10 +1766,10 @@ func (x *PullMessageBySeqsReq) GetOrder() PullOrder {
 
 type SeqRange struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	Begin          int64                  `protobuf:"varint,2,opt,name=begin,proto3" json:"begin"`
-	End            int64                  `protobuf:"varint,3,opt,name=end,proto3" json:"end"`
-	Num            int64                  `protobuf:"varint,4,opt,name=num,proto3" json:"num"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	Begin          int64                  `protobuf:"varint,2,opt,name=begin,proto3" json:"begin,omitempty"`
+	End            int64                  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+	Num            int64                  `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1834,9 +1834,9 @@ func (x *SeqRange) GetNum() int64 {
 
 type PullMsgs struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Msgs          []*MsgData             `protobuf:"bytes,1,rep,name=Msgs,proto3" json:"Msgs"`
-	IsEnd         bool                   `protobuf:"varint,2,opt,name=isEnd,proto3" json:"isEnd"`
-	EndSeq        int64                  `protobuf:"varint,3,opt,name=endSeq,proto3" json:"endSeq"`
+	Msgs          []*MsgData             `protobuf:"bytes,1,rep,name=Msgs,proto3" json:"Msgs,omitempty"`
+	IsEnd         bool                   `protobuf:"varint,2,opt,name=isEnd,proto3" json:"isEnd,omitempty"`
+	EndSeq        int64                  `protobuf:"varint,3,opt,name=endSeq,proto3" json:"endSeq,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1894,8 +1894,8 @@ func (x *PullMsgs) GetEndSeq() int64 {
 
 type PullMessageBySeqsResp struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1946,7 +1946,7 @@ func (x *PullMessageBySeqsResp) GetNotificationMsgs() map[string]*PullMsgs {
 
 type GetMaxSeqReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1990,8 +1990,8 @@ func (x *GetMaxSeqReq) GetUserID() string {
 
 type GetMaxSeqResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	MinSeqs       map[string]int64       `protobuf:"bytes,2,rep,name=minSeqs,proto3" json:"minSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MinSeqs       map[string]int64       `protobuf:"bytes,2,rep,name=minSeqs,proto3" json:"minSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2042,9 +2042,9 @@ func (x *GetMaxSeqResp) GetMinSeqs() map[string]int64 {
 
 type UserSendMsgResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ServerMsgID   string                 `protobuf:"bytes,1,opt,name=serverMsgID,proto3" json:"serverMsgID"`
-	ClientMsgID   string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	SendTime      int64                  `protobuf:"varint,3,opt,name=sendTime,proto3" json:"sendTime"`
+	ServerMsgID   string                 `protobuf:"bytes,1,opt,name=serverMsgID,proto3" json:"serverMsgID,omitempty"`
+	ClientMsgID   string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	SendTime      int64                  `protobuf:"varint,3,opt,name=sendTime,proto3" json:"sendTime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2102,28 +2102,28 @@ func (x *UserSendMsgResp) GetSendTime() int64 {
 
 type MsgData struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	SendID           string                 `protobuf:"bytes,1,opt,name=sendID,proto3" json:"sendID"`
-	RecvID           string                 `protobuf:"bytes,2,opt,name=recvID,proto3" json:"recvID"`
-	GroupID          string                 `protobuf:"bytes,3,opt,name=groupID,proto3" json:"groupID"`
-	ClientMsgID      string                 `protobuf:"bytes,4,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	ServerMsgID      string                 `protobuf:"bytes,5,opt,name=serverMsgID,proto3" json:"serverMsgID"`
-	SenderPlatformID int32                  `protobuf:"varint,6,opt,name=senderPlatformID,proto3" json:"senderPlatformID"`
-	SenderNickname   string                 `protobuf:"bytes,7,opt,name=senderNickname,proto3" json:"senderNickname"`
-	SenderFaceURL    string                 `protobuf:"bytes,8,opt,name=senderFaceURL,proto3" json:"senderFaceURL"`
-	SessionType      int32                  `protobuf:"varint,9,opt,name=sessionType,proto3" json:"sessionType"`
-	MsgFrom          int32                  `protobuf:"varint,10,opt,name=msgFrom,proto3" json:"msgFrom"`
-	ContentType      int32                  `protobuf:"varint,11,opt,name=contentType,proto3" json:"contentType"`
-	Content          []byte                 `protobuf:"bytes,12,opt,name=content,proto3" json:"content"`
-	Seq              int64                  `protobuf:"varint,14,opt,name=seq,proto3" json:"seq"`
-	SendTime         int64                  `protobuf:"varint,15,opt,name=sendTime,proto3" json:"sendTime"`
-	CreateTime       int64                  `protobuf:"varint,16,opt,name=createTime,proto3" json:"createTime"`
-	Status           int32                  `protobuf:"varint,17,opt,name=status,proto3" json:"status"`
-	IsRead           bool                   `protobuf:"varint,18,opt,name=isRead,proto3" json:"isRead"`
-	Options          map[string]bool        `protobuf:"bytes,19,rep,name=options,proto3" json:"options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	OfflinePushInfo  *OfflinePushInfo       `protobuf:"bytes,20,opt,name=offlinePushInfo,proto3" json:"offlinePushInfo"`
-	AtUserIDList     []string               `protobuf:"bytes,21,rep,name=atUserIDList,proto3" json:"atUserIDList"`
-	AttachedInfo     string                 `protobuf:"bytes,22,opt,name=attachedInfo,proto3" json:"attachedInfo"`
-	Ex               string                 `protobuf:"bytes,23,opt,name=ex,proto3" json:"ex"`
+	SendID           string                 `protobuf:"bytes,1,opt,name=sendID,proto3" json:"sendID,omitempty"`
+	RecvID           string                 `protobuf:"bytes,2,opt,name=recvID,proto3" json:"recvID,omitempty"`
+	GroupID          string                 `protobuf:"bytes,3,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	ClientMsgID      string                 `protobuf:"bytes,4,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	ServerMsgID      string                 `protobuf:"bytes,5,opt,name=serverMsgID,proto3" json:"serverMsgID,omitempty"`
+	SenderPlatformID int32                  `protobuf:"varint,6,opt,name=senderPlatformID,proto3" json:"senderPlatformID,omitempty"`
+	SenderNickname   string                 `protobuf:"bytes,7,opt,name=senderNickname,proto3" json:"senderNickname,omitempty"`
+	SenderFaceURL    string                 `protobuf:"bytes,8,opt,name=senderFaceURL,proto3" json:"senderFaceURL,omitempty"`
+	SessionType      int32                  `protobuf:"varint,9,opt,name=sessionType,proto3" json:"sessionType,omitempty"`
+	MsgFrom          int32                  `protobuf:"varint,10,opt,name=msgFrom,proto3" json:"msgFrom,omitempty"`
+	ContentType      int32                  `protobuf:"varint,11,opt,name=contentType,proto3" json:"contentType,omitempty"`
+	Content          []byte                 `protobuf:"bytes,12,opt,name=content,proto3" json:"content,omitempty"`
+	Seq              int64                  `protobuf:"varint,14,opt,name=seq,proto3" json:"seq,omitempty"`
+	SendTime         int64                  `protobuf:"varint,15,opt,name=sendTime,proto3" json:"sendTime,omitempty"`
+	CreateTime       int64                  `protobuf:"varint,16,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	Status           int32                  `protobuf:"varint,17,opt,name=status,proto3" json:"status,omitempty"`
+	IsRead           bool                   `protobuf:"varint,18,opt,name=isRead,proto3" json:"isRead,omitempty"`
+	Options          map[string]bool        `protobuf:"bytes,19,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	OfflinePushInfo  *OfflinePushInfo       `protobuf:"bytes,20,opt,name=offlinePushInfo,proto3" json:"offlinePushInfo,omitempty"`
+	AtUserIDList     []string               `protobuf:"bytes,21,rep,name=atUserIDList,proto3" json:"atUserIDList,omitempty"`
+	AttachedInfo     string                 `protobuf:"bytes,22,opt,name=attachedInfo,proto3" json:"attachedInfo,omitempty"`
+	Ex               string                 `protobuf:"bytes,23,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -2314,8 +2314,8 @@ func (x *MsgData) GetEx() string {
 
 type PushMessages struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -2366,12 +2366,12 @@ func (x *PushMessages) GetNotificationMsgs() map[string]*PullMsgs {
 
 type OfflinePushInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title"`
-	Desc          string                 `protobuf:"bytes,2,opt,name=desc,proto3" json:"desc"`
-	Ex            string                 `protobuf:"bytes,3,opt,name=ex,proto3" json:"ex"`
-	IOSPushSound  string                 `protobuf:"bytes,4,opt,name=iOSPushSound,proto3" json:"iOSPushSound"`
-	IOSBadgeCount bool                   `protobuf:"varint,5,opt,name=iOSBadgeCount,proto3" json:"iOSBadgeCount"`
-	SignalInfo    string                 `protobuf:"bytes,6,opt,name=signalInfo,proto3" json:"signalInfo"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Desc          string                 `protobuf:"bytes,2,opt,name=desc,proto3" json:"desc,omitempty"`
+	Ex            string                 `protobuf:"bytes,3,opt,name=ex,proto3" json:"ex,omitempty"`
+	IOSPushSound  string                 `protobuf:"bytes,4,opt,name=iOSPushSound,proto3" json:"iOSPushSound,omitempty"`
+	IOSBadgeCount bool                   `protobuf:"varint,5,opt,name=iOSBadgeCount,proto3" json:"iOSBadgeCount,omitempty"`
+	SignalInfo    string                 `protobuf:"bytes,6,opt,name=signalInfo,proto3" json:"signalInfo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2450,9 +2450,9 @@ func (x *OfflinePushInfo) GetSignalInfo() string {
 
 type TipsComm struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Detail        []byte                 `protobuf:"bytes,1,opt,name=detail,proto3" json:"detail"`
-	DefaultTips   string                 `protobuf:"bytes,2,opt,name=defaultTips,proto3" json:"defaultTips"`
-	JsonDetail    string                 `protobuf:"bytes,3,opt,name=jsonDetail,proto3" json:"jsonDetail"`
+	Detail        []byte                 `protobuf:"bytes,1,opt,name=detail,proto3" json:"detail,omitempty"`
+	DefaultTips   string                 `protobuf:"bytes,2,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
+	JsonDetail    string                 `protobuf:"bytes,3,opt,name=jsonDetail,proto3" json:"jsonDetail,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2511,13 +2511,13 @@ func (x *TipsComm) GetJsonDetail() string {
 // OnGroupCreated()
 type GroupCreatedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	MemberList           []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=memberList,proto3" json:"memberList"`
-	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupOwnerUser       *GroupMemberFullInfo   `protobuf:"bytes,5,opt,name=groupOwnerUser,proto3" json:"groupOwnerUser"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,6,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,7,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	MemberList           []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=memberList,proto3" json:"memberList,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupOwnerUser       *GroupMemberFullInfo   `protobuf:"bytes,5,opt,name=groupOwnerUser,proto3" json:"groupOwnerUser,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,6,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,7,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2604,11 +2604,11 @@ func (x *GroupCreatedTips) GetGroupMemberVersionID() string {
 // OnGroupInfoSet()
 type GroupInfoSetTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"` //who do this
-	MuteTime             int64                  `protobuf:"varint,2,opt,name=muteTime,proto3" json:"muteTime"`
-	Group                *GroupInfo             `protobuf:"bytes,3,opt,name=group,proto3" json:"group"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"` //who do this
+	MuteTime             int64                  `protobuf:"varint,2,opt,name=muteTime,proto3" json:"muteTime,omitempty"`
+	Group                *GroupInfo             `protobuf:"bytes,3,opt,name=group,proto3" json:"group,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2680,12 +2680,12 @@ func (x *GroupInfoSetTips) GetGroupMemberVersionID() string {
 
 type GroupInfoSetNameTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"` //who do this
-	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"` //who do this
+	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	// defaultTips English display text, e.g. "Alice has changed the group name to NewName"
-	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2759,12 +2759,12 @@ func (x *GroupInfoSetNameTips) GetDefaultTips() string {
 // needVerification: 0=ApplyNeedVerification 1=AllNeedVerification 2=Directly(no approval)
 type GroupNeedVerificationSetTips struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
-	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"`
-	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
+	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
 	// needVerification is the new value: 0 or 1 = approval required, 2 = no approval
-	NeedVerification int32 `protobuf:"varint,3,opt,name=needVerification,proto3" json:"needVerification"`
+	NeedVerification int32 `protobuf:"varint,3,opt,name=needVerification,proto3" json:"needVerification,omitempty"`
 	// defaultTips English display text, e.g. "Alice enabled join approval"
-	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2830,12 +2830,12 @@ func (x *GroupNeedVerificationSetTips) GetDefaultTips() string {
 // OnGroupFaceURLSet()
 type GroupFaceURLSetTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"` //who do this
-	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"` //who do this
+	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	// defaultTips English display text, e.g. "Alice has changed the group avatar"
-	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2907,10 +2907,10 @@ func (x *GroupFaceURLSetTips) GetDefaultTips() string {
 
 type GroupInfoSetAnnouncementTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"` //who do this
-	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"` //who do this
+	Group                *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,3,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,4,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2978,30 +2978,30 @@ func (x *GroupInfoSetAnnouncementTips) GetGroupMemberVersionID() string {
 // 客户端调用取消置顶时建议优先使用 pinID 精确删除
 type GroupPinnedMsgInfo struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	PinID            string                 `protobuf:"bytes,1,opt,name=pinID,proto3" json:"pinID"`
-	GroupID          string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID"`
-	ConversationID   string                 `protobuf:"bytes,3,opt,name=conversationID,proto3" json:"conversationID"`
-	Seq              int64                  `protobuf:"varint,4,opt,name=seq,proto3" json:"seq"`
-	ServerMsgID      string                 `protobuf:"bytes,5,opt,name=serverMsgID,proto3" json:"serverMsgID"`
-	ClientMsgID      string                 `protobuf:"bytes,6,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	SendID           string                 `protobuf:"bytes,7,opt,name=sendID,proto3" json:"sendID"`
-	RecvID           string                 `protobuf:"bytes,8,opt,name=recvID,proto3" json:"recvID"`
-	SenderPlatformID int32                  `protobuf:"varint,9,opt,name=senderPlatformID,proto3" json:"senderPlatformID"`
-	SenderNickname   string                 `protobuf:"bytes,10,opt,name=senderNickname,proto3" json:"senderNickname"`
-	SenderFaceURL    string                 `protobuf:"bytes,11,opt,name=senderFaceURL,proto3" json:"senderFaceURL"`
-	SessionType      int32                  `protobuf:"varint,12,opt,name=sessionType,proto3" json:"sessionType"`
-	MsgFrom          int32                  `protobuf:"varint,13,opt,name=msgFrom,proto3" json:"msgFrom"`
-	ContentType      int32                  `protobuf:"varint,14,opt,name=contentType,proto3" json:"contentType"`
-	Content          string                 `protobuf:"bytes,15,opt,name=content,proto3" json:"content"`
-	AtUserIDList     []string               `protobuf:"bytes,16,rep,name=atUserIDList,proto3" json:"atUserIDList"`
-	Options          map[string]bool        `protobuf:"bytes,17,rep,name=options,proto3" json:"options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	AttachedInfo     string                 `protobuf:"bytes,18,opt,name=attachedInfo,proto3" json:"attachedInfo"`
-	Ex               string                 `protobuf:"bytes,19,opt,name=ex,proto3" json:"ex"`
-	SendTime         int64                  `protobuf:"varint,20,opt,name=sendTime,proto3" json:"sendTime"`
-	CreateTime       int64                  `protobuf:"varint,21,opt,name=createTime,proto3" json:"createTime"`
-	Status           int32                  `protobuf:"varint,22,opt,name=status,proto3" json:"status"`
-	PinUserID        string                 `protobuf:"bytes,23,opt,name=pinUserID,proto3" json:"pinUserID"`
-	PinTime          int64                  `protobuf:"varint,24,opt,name=pinTime,proto3" json:"pinTime"`
+	PinID            string                 `protobuf:"bytes,1,opt,name=pinID,proto3" json:"pinID,omitempty"`
+	GroupID          string                 `protobuf:"bytes,2,opt,name=groupID,proto3" json:"groupID,omitempty"`
+	ConversationID   string                 `protobuf:"bytes,3,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	Seq              int64                  `protobuf:"varint,4,opt,name=seq,proto3" json:"seq,omitempty"`
+	ServerMsgID      string                 `protobuf:"bytes,5,opt,name=serverMsgID,proto3" json:"serverMsgID,omitempty"`
+	ClientMsgID      string                 `protobuf:"bytes,6,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	SendID           string                 `protobuf:"bytes,7,opt,name=sendID,proto3" json:"sendID,omitempty"`
+	RecvID           string                 `protobuf:"bytes,8,opt,name=recvID,proto3" json:"recvID,omitempty"`
+	SenderPlatformID int32                  `protobuf:"varint,9,opt,name=senderPlatformID,proto3" json:"senderPlatformID,omitempty"`
+	SenderNickname   string                 `protobuf:"bytes,10,opt,name=senderNickname,proto3" json:"senderNickname,omitempty"`
+	SenderFaceURL    string                 `protobuf:"bytes,11,opt,name=senderFaceURL,proto3" json:"senderFaceURL,omitempty"`
+	SessionType      int32                  `protobuf:"varint,12,opt,name=sessionType,proto3" json:"sessionType,omitempty"`
+	MsgFrom          int32                  `protobuf:"varint,13,opt,name=msgFrom,proto3" json:"msgFrom,omitempty"`
+	ContentType      int32                  `protobuf:"varint,14,opt,name=contentType,proto3" json:"contentType,omitempty"`
+	Content          string                 `protobuf:"bytes,15,opt,name=content,proto3" json:"content,omitempty"`
+	AtUserIDList     []string               `protobuf:"bytes,16,rep,name=atUserIDList,proto3" json:"atUserIDList,omitempty"`
+	Options          map[string]bool        `protobuf:"bytes,17,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	AttachedInfo     string                 `protobuf:"bytes,18,opt,name=attachedInfo,proto3" json:"attachedInfo,omitempty"`
+	Ex               string                 `protobuf:"bytes,19,opt,name=ex,proto3" json:"ex,omitempty"`
+	SendTime         int64                  `protobuf:"varint,20,opt,name=sendTime,proto3" json:"sendTime,omitempty"`
+	CreateTime       int64                  `protobuf:"varint,21,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	Status           int32                  `protobuf:"varint,22,opt,name=status,proto3" json:"status,omitempty"`
+	PinUserID        string                 `protobuf:"bytes,23,opt,name=pinUserID,proto3" json:"pinUserID,omitempty"`
+	PinTime          int64                  `protobuf:"varint,24,opt,name=pinTime,proto3" json:"pinTime,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -3208,13 +3208,13 @@ func (x *GroupPinnedMsgInfo) GetPinTime() int64 {
 // type: 1=置顶，2=取消置顶
 type GroupMessagePinnedTips struct {
 	state      protoimpl.MessageState `protogen:"open.v1"`
-	OpUser     *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"`
-	Group      *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
-	Type       int32                  `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
-	PinnedMsg  *GroupPinnedMsgInfo    `protobuf:"bytes,4,opt,name=pinnedMsg,proto3" json:"pinnedMsg"`
-	PinnedList []*GroupPinnedMsgInfo  `protobuf:"bytes,5,rep,name=pinnedList,proto3" json:"pinnedList"`
+	OpUser     *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	Group      *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	Type       int32                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
+	PinnedMsg  *GroupPinnedMsgInfo    `protobuf:"bytes,4,opt,name=pinnedMsg,proto3" json:"pinnedMsg,omitempty"`
+	PinnedList []*GroupPinnedMsgInfo  `protobuf:"bytes,5,rep,name=pinnedList,proto3" json:"pinnedList,omitempty"`
 	// defaultTips English display text for the group notification message, e.g. "Alice pinned a text message"
-	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3295,14 +3295,18 @@ func (x *GroupMessagePinnedTips) GetDefaultTips() string {
 // mediaType: "audio" | "video" | "audio_video"
 type GroupCallStartedTips struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
-	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"`
-	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
+	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
 	// mediaType indicates the call type: "audio", "video", or "audio_video"
-	MediaType string `protobuf:"bytes,3,opt,name=mediaType,proto3" json:"mediaType"`
+	MediaType string `protobuf:"bytes,3,opt,name=mediaType,proto3" json:"mediaType,omitempty"`
 	// defaultTips English display text, e.g. "Alice started an audio/video call"
-	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	DefaultTips string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
+	// roomID identifies the LiveKit room for this call
+	RoomID string `protobuf:"bytes,5,opt,name=roomID,proto3" json:"roomID,omitempty"`
+	// participantCount is the number of users currently in the call
+	ParticipantCount int32 `protobuf:"varint,6,opt,name=participantCount,proto3" json:"participantCount,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GroupCallStartedTips) Reset() {
@@ -3363,23 +3367,116 @@ func (x *GroupCallStartedTips) GetDefaultTips() string {
 	return ""
 }
 
+func (x *GroupCallStartedTips) GetRoomID() string {
+	if x != nil {
+		return x.RoomID
+	}
+	return ""
+}
+
+func (x *GroupCallStartedTips) GetParticipantCount() int32 {
+	if x != nil {
+		return x.ParticipantCount
+	}
+	return 0
+}
+
+// OnGroupCallParticipantCountUpdated()
+// Sent when the in-call participant count changes after the call has started.
+type GroupCallParticipantCountUpdatedTips struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Group            *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	RoomID           string                 `protobuf:"bytes,2,opt,name=roomID,proto3" json:"roomID,omitempty"`
+	ParticipantCount int32                  `protobuf:"varint,3,opt,name=participantCount,proto3" json:"participantCount,omitempty"`
+	// defaultTips English display text, e.g. "3 people in the call"
+	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
+	MediaType     string `protobuf:"bytes,5,opt,name=mediaType,proto3" json:"mediaType,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) Reset() {
+	*x = GroupCallParticipantCountUpdatedTips{}
+	mi := &file_sdkws_sdkws_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GroupCallParticipantCountUpdatedTips) ProtoMessage() {}
+
+func (x *GroupCallParticipantCountUpdatedTips) ProtoReflect() protoreflect.Message {
+	mi := &file_sdkws_sdkws_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GroupCallParticipantCountUpdatedTips.ProtoReflect.Descriptor instead.
+func (*GroupCallParticipantCountUpdatedTips) Descriptor() ([]byte, []int) {
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) GetGroup() *GroupInfo {
+	if x != nil {
+		return x.Group
+	}
+	return nil
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) GetRoomID() string {
+	if x != nil {
+		return x.RoomID
+	}
+	return ""
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) GetParticipantCount() int32 {
+	if x != nil {
+		return x.ParticipantCount
+	}
+	return 0
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) GetDefaultTips() string {
+	if x != nil {
+		return x.DefaultTips
+	}
+	return ""
+}
+
+func (x *GroupCallParticipantCountUpdatedTips) GetMediaType() string {
+	if x != nil {
+		return x.MediaType
+	}
+	return ""
+}
+
 // OnGroupBurnDurationSet()
 // durationSecs: message disappear duration in seconds set by admin; 0 means turned off
 type GroupBurnDurationSetTips struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
-	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"`
-	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
+	OpUser *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	Group  *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
 	// durationSecs is the new disappearing-message lifetime in seconds (0 = off)
-	DurationSecs int32 `protobuf:"varint,3,opt,name=durationSecs,proto3" json:"durationSecs"`
+	DurationSecs int32 `protobuf:"varint,3,opt,name=durationSecs,proto3" json:"durationSecs,omitempty"`
 	// defaultTips English display text, e.g. "Alice set disappearing messages to 1 day"
-	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,4,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupBurnDurationSetTips) Reset() {
 	*x = GroupBurnDurationSetTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[31]
+	mi := &file_sdkws_sdkws_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3391,7 +3488,7 @@ func (x *GroupBurnDurationSetTips) String() string {
 func (*GroupBurnDurationSetTips) ProtoMessage() {}
 
 func (x *GroupBurnDurationSetTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[31]
+	mi := &file_sdkws_sdkws_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3404,7 +3501,7 @@ func (x *GroupBurnDurationSetTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupBurnDurationSetTips.ProtoReflect.Descriptor instead.
 func (*GroupBurnDurationSetTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{31}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GroupBurnDurationSetTips) GetOpUser() *GroupMemberFullInfo {
@@ -3440,20 +3537,20 @@ func (x *GroupBurnDurationSetTips) GetDefaultTips() string {
 // durationSecs: call duration in seconds; 0 means the call was cancelled/not answered
 type GroupCallEndedTips struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
-	OpUser    *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser"`
-	Group     *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group"`
-	MediaType string                 `protobuf:"bytes,3,opt,name=mediaType,proto3" json:"mediaType"`
+	OpUser    *GroupMemberFullInfo   `protobuf:"bytes,1,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	Group     *GroupInfo             `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	MediaType string                 `protobuf:"bytes,3,opt,name=mediaType,proto3" json:"mediaType,omitempty"`
 	// durationSecs is the call duration in seconds (0 if not answered)
-	DurationSecs int64 `protobuf:"varint,4,opt,name=durationSecs,proto3" json:"durationSecs"`
+	DurationSecs int64 `protobuf:"varint,4,opt,name=durationSecs,proto3" json:"durationSecs,omitempty"`
 	// defaultTips English display text, e.g. "Alice ended an audio/video call (10 minutes 30 seconds)"
-	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,5,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupCallEndedTips) Reset() {
 	*x = GroupCallEndedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[32]
+	mi := &file_sdkws_sdkws_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3465,7 +3562,7 @@ func (x *GroupCallEndedTips) String() string {
 func (*GroupCallEndedTips) ProtoMessage() {}
 
 func (x *GroupCallEndedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[32]
+	mi := &file_sdkws_sdkws_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3478,7 +3575,7 @@ func (x *GroupCallEndedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupCallEndedTips.ProtoReflect.Descriptor instead.
 func (*GroupCallEndedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{32}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *GroupCallEndedTips) GetOpUser() *GroupMemberFullInfo {
@@ -3519,18 +3616,18 @@ func (x *GroupCallEndedTips) GetDefaultTips() string {
 // OnJoinGroupApplication()
 type JoinGroupApplicationTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	Applicant     *PublicUserInfo        `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant"`
-	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg"`
-	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid"`
-	Request       *GroupRequest          `protobuf:"bytes,5,opt,name=request,proto3" json:"request"`
+	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	Applicant     *PublicUserInfo        `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant,omitempty"`
+	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg,omitempty"`
+	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Request       *GroupRequest          `protobuf:"bytes,5,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *JoinGroupApplicationTips) Reset() {
 	*x = JoinGroupApplicationTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[33]
+	mi := &file_sdkws_sdkws_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3542,7 +3639,7 @@ func (x *JoinGroupApplicationTips) String() string {
 func (*JoinGroupApplicationTips) ProtoMessage() {}
 
 func (x *JoinGroupApplicationTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[33]
+	mi := &file_sdkws_sdkws_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3555,7 +3652,7 @@ func (x *JoinGroupApplicationTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinGroupApplicationTips.ProtoReflect.Descriptor instead.
 func (*JoinGroupApplicationTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{33}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *JoinGroupApplicationTips) GetGroup() *GroupInfo {
@@ -3598,18 +3695,18 @@ func (x *JoinGroupApplicationTips) GetRequest() *GroupRequest {
 // Actively leave the group
 type MemberQuitTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	QuitUser             *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=quitUser,proto3" json:"quitUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	QuitUser             *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=quitUser,proto3" json:"quitUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *MemberQuitTips) Reset() {
 	*x = MemberQuitTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[34]
+	mi := &file_sdkws_sdkws_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3621,7 +3718,7 @@ func (x *MemberQuitTips) String() string {
 func (*MemberQuitTips) ProtoMessage() {}
 
 func (x *MemberQuitTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[34]
+	mi := &file_sdkws_sdkws_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3634,7 +3731,7 @@ func (x *MemberQuitTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemberQuitTips.ProtoReflect.Descriptor instead.
 func (*MemberQuitTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{34}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *MemberQuitTips) GetGroup() *GroupInfo {
@@ -3675,19 +3772,19 @@ func (x *MemberQuitTips) GetGroupMemberVersionID() string {
 // OnApplicationGroupAccepted()
 type GroupApplicationAcceptedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg"`
-	ReceiverAs    int32                  `protobuf:"varint,5,opt,name=receiverAs,proto3" json:"receiverAs"` // admin(==1) or applicant(==0)
-	Uuid          string                 `protobuf:"bytes,6,opt,name=uuid,proto3" json:"uuid"`
-	Request       *GroupRequest          `protobuf:"bytes,7,opt,name=request,proto3" json:"request"`
+	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	ReceiverAs    int32                  `protobuf:"varint,5,opt,name=receiverAs,proto3" json:"receiverAs,omitempty"` // admin(==1) or applicant(==0)
+	Uuid          string                 `protobuf:"bytes,6,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Request       *GroupRequest          `protobuf:"bytes,7,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupApplicationAcceptedTips) Reset() {
 	*x = GroupApplicationAcceptedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[35]
+	mi := &file_sdkws_sdkws_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3699,7 +3796,7 @@ func (x *GroupApplicationAcceptedTips) String() string {
 func (*GroupApplicationAcceptedTips) ProtoMessage() {}
 
 func (x *GroupApplicationAcceptedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[35]
+	mi := &file_sdkws_sdkws_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3712,7 +3809,7 @@ func (x *GroupApplicationAcceptedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupApplicationAcceptedTips.ProtoReflect.Descriptor instead.
 func (*GroupApplicationAcceptedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{35}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GroupApplicationAcceptedTips) GetGroup() *GroupInfo {
@@ -3760,19 +3857,19 @@ func (x *GroupApplicationAcceptedTips) GetRequest() *GroupRequest {
 // OnApplicationGroupRejected()
 type GroupApplicationRejectedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg"`
-	ReceiverAs    int32                  `protobuf:"varint,5,opt,name=receiverAs,proto3" json:"receiverAs"` // admin(==1) or applicant(==0)
-	Uuid          string                 `protobuf:"bytes,6,opt,name=uuid,proto3" json:"uuid"`
-	Request       *GroupRequest          `protobuf:"bytes,7,opt,name=request,proto3" json:"request"`
+	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	HandleMsg     string                 `protobuf:"bytes,4,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	ReceiverAs    int32                  `protobuf:"varint,5,opt,name=receiverAs,proto3" json:"receiverAs,omitempty"` // admin(==1) or applicant(==0)
+	Uuid          string                 `protobuf:"bytes,6,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Request       *GroupRequest          `protobuf:"bytes,7,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupApplicationRejectedTips) Reset() {
 	*x = GroupApplicationRejectedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[36]
+	mi := &file_sdkws_sdkws_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3784,7 +3881,7 @@ func (x *GroupApplicationRejectedTips) String() string {
 func (*GroupApplicationRejectedTips) ProtoMessage() {}
 
 func (x *GroupApplicationRejectedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[36]
+	mi := &file_sdkws_sdkws_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3797,7 +3894,7 @@ func (x *GroupApplicationRejectedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupApplicationRejectedTips.ProtoReflect.Descriptor instead.
 func (*GroupApplicationRejectedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{36}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GroupApplicationRejectedTips) GetGroup() *GroupInfo {
@@ -3845,21 +3942,21 @@ func (x *GroupApplicationRejectedTips) GetRequest() *GroupRequest {
 // OnTransferGroupOwner()
 type GroupOwnerTransferredTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	NewGroupOwner        *GroupMemberFullInfo   `protobuf:"bytes,3,opt,name=newGroupOwner,proto3" json:"newGroupOwner"`
-	OldGroupOwner        string                 `protobuf:"bytes,4,opt,name=oldGroupOwner,proto3" json:"oldGroupOwner"`
-	OperationTime        int64                  `protobuf:"varint,5,opt,name=operationTime,proto3" json:"operationTime"`
-	OldGroupOwnerInfo    *GroupMemberFullInfo   `protobuf:"bytes,6,opt,name=oldGroupOwnerInfo,proto3" json:"oldGroupOwnerInfo"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,7,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,8,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	NewGroupOwner        *GroupMemberFullInfo   `protobuf:"bytes,3,opt,name=newGroupOwner,proto3" json:"newGroupOwner,omitempty"`
+	OldGroupOwner        string                 `protobuf:"bytes,4,opt,name=oldGroupOwner,proto3" json:"oldGroupOwner,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,5,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	OldGroupOwnerInfo    *GroupMemberFullInfo   `protobuf:"bytes,6,opt,name=oldGroupOwnerInfo,proto3" json:"oldGroupOwnerInfo,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,7,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,8,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GroupOwnerTransferredTips) Reset() {
 	*x = GroupOwnerTransferredTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[37]
+	mi := &file_sdkws_sdkws_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3871,7 +3968,7 @@ func (x *GroupOwnerTransferredTips) String() string {
 func (*GroupOwnerTransferredTips) ProtoMessage() {}
 
 func (x *GroupOwnerTransferredTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[37]
+	mi := &file_sdkws_sdkws_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3884,7 +3981,7 @@ func (x *GroupOwnerTransferredTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupOwnerTransferredTips.ProtoReflect.Descriptor instead.
 func (*GroupOwnerTransferredTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{37}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GroupOwnerTransferredTips) GetGroup() *GroupInfo {
@@ -3946,19 +4043,19 @@ func (x *GroupOwnerTransferredTips) GetGroupMemberVersionID() string {
 // OnMemberKicked()
 type MemberKickedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	KickedUserList       []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=kickedUserList,proto3" json:"kickedUserList"`
-	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	KickedUserList       []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=kickedUserList,proto3" json:"kickedUserList,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *MemberKickedTips) Reset() {
 	*x = MemberKickedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[38]
+	mi := &file_sdkws_sdkws_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3970,7 +4067,7 @@ func (x *MemberKickedTips) String() string {
 func (*MemberKickedTips) ProtoMessage() {}
 
 func (x *MemberKickedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[38]
+	mi := &file_sdkws_sdkws_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3983,7 +4080,7 @@ func (x *MemberKickedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemberKickedTips.ProtoReflect.Descriptor instead.
 func (*MemberKickedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{38}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *MemberKickedTips) GetGroup() *GroupInfo {
@@ -4031,22 +4128,22 @@ func (x *MemberKickedTips) GetGroupMemberVersionID() string {
 // OnMemberInvited()
 type MemberInvitedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	InvitedUserList      []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=invitedUserList,proto3" json:"invitedUserList"`
-	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
-	InviterUser          *GroupMemberFullInfo   `protobuf:"bytes,7,opt,name=inviterUser,proto3" json:"inviterUser"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	InvitedUserList      []*GroupMemberFullInfo `protobuf:"bytes,3,rep,name=invitedUserList,proto3" json:"invitedUserList,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,4,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
+	InviterUser          *GroupMemberFullInfo   `protobuf:"bytes,7,opt,name=inviterUser,proto3" json:"inviterUser,omitempty"`
 	// defaultTips English display text, e.g. "Alice invited Bob to join the group"
-	DefaultTips   string `protobuf:"bytes,8,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,8,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MemberInvitedTips) Reset() {
 	*x = MemberInvitedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[39]
+	mi := &file_sdkws_sdkws_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4058,7 +4155,7 @@ func (x *MemberInvitedTips) String() string {
 func (*MemberInvitedTips) ProtoMessage() {}
 
 func (x *MemberInvitedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[39]
+	mi := &file_sdkws_sdkws_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4071,7 +4168,7 @@ func (x *MemberInvitedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemberInvitedTips.ProtoReflect.Descriptor instead.
 func (*MemberInvitedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{39}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *MemberInvitedTips) GetGroup() *GroupInfo {
@@ -4133,22 +4230,22 @@ func (x *MemberInvitedTips) GetDefaultTips() string {
 // Actively join the group
 type MemberEnterTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	EntrantUser          *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=entrantUser,proto3" json:"entrantUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	EntrantUser          *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=entrantUser,proto3" json:"entrantUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	// joinSource: 1=admin 2=invitation 3=search 4=qrcode 5=invite_link
-	JoinSource int32 `protobuf:"varint,7,opt,name=joinSource,proto3" json:"joinSource"`
+	JoinSource int32 `protobuf:"varint,7,opt,name=joinSource,proto3" json:"joinSource,omitempty"`
 	// defaultTips English display text, e.g. "Alice joined the group via invite link"
-	DefaultTips   string `protobuf:"bytes,8,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,8,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MemberEnterTips) Reset() {
 	*x = MemberEnterTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[40]
+	mi := &file_sdkws_sdkws_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4160,7 +4257,7 @@ func (x *MemberEnterTips) String() string {
 func (*MemberEnterTips) ProtoMessage() {}
 
 func (x *MemberEnterTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[40]
+	mi := &file_sdkws_sdkws_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4173,7 +4270,7 @@ func (x *MemberEnterTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemberEnterTips.ProtoReflect.Descriptor instead.
 func (*MemberEnterTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{40}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *MemberEnterTips) GetGroup() *GroupInfo {
@@ -4227,16 +4324,16 @@ func (x *MemberEnterTips) GetDefaultTips() string {
 
 type GroupDismissedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
+	Group         *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser        *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupDismissedTips) Reset() {
 	*x = GroupDismissedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[41]
+	mi := &file_sdkws_sdkws_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4248,7 +4345,7 @@ func (x *GroupDismissedTips) String() string {
 func (*GroupDismissedTips) ProtoMessage() {}
 
 func (x *GroupDismissedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[41]
+	mi := &file_sdkws_sdkws_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4261,7 +4358,7 @@ func (x *GroupDismissedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupDismissedTips.ProtoReflect.Descriptor instead.
 func (*GroupDismissedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{41}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *GroupDismissedTips) GetGroup() *GroupInfo {
@@ -4287,20 +4384,20 @@ func (x *GroupDismissedTips) GetOperationTime() int64 {
 
 type GroupMemberMutedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	MutedUser            *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=mutedUser,proto3" json:"mutedUser"`
-	MutedSeconds         uint32                 `protobuf:"varint,5,opt,name=mutedSeconds,proto3" json:"mutedSeconds"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,6,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,7,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	MutedUser            *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=mutedUser,proto3" json:"mutedUser,omitempty"`
+	MutedSeconds         uint32                 `protobuf:"varint,5,opt,name=mutedSeconds,proto3" json:"mutedSeconds,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,6,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,7,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GroupMemberMutedTips) Reset() {
 	*x = GroupMemberMutedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[42]
+	mi := &file_sdkws_sdkws_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4312,7 +4409,7 @@ func (x *GroupMemberMutedTips) String() string {
 func (*GroupMemberMutedTips) ProtoMessage() {}
 
 func (x *GroupMemberMutedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[42]
+	mi := &file_sdkws_sdkws_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4325,7 +4422,7 @@ func (x *GroupMemberMutedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupMemberMutedTips.ProtoReflect.Descriptor instead.
 func (*GroupMemberMutedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{42}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *GroupMemberMutedTips) GetGroup() *GroupInfo {
@@ -4379,19 +4476,19 @@ func (x *GroupMemberMutedTips) GetGroupMemberVersionID() string {
 
 type GroupMemberCancelMutedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	MutedUser            *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=mutedUser,proto3" json:"mutedUser"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	MutedUser            *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=mutedUser,proto3" json:"mutedUser,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GroupMemberCancelMutedTips) Reset() {
 	*x = GroupMemberCancelMutedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[43]
+	mi := &file_sdkws_sdkws_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4403,7 +4500,7 @@ func (x *GroupMemberCancelMutedTips) String() string {
 func (*GroupMemberCancelMutedTips) ProtoMessage() {}
 
 func (x *GroupMemberCancelMutedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[43]
+	mi := &file_sdkws_sdkws_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4416,7 +4513,7 @@ func (x *GroupMemberCancelMutedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupMemberCancelMutedTips.ProtoReflect.Descriptor instead.
 func (*GroupMemberCancelMutedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{43}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *GroupMemberCancelMutedTips) GetGroup() *GroupInfo {
@@ -4463,20 +4560,20 @@ func (x *GroupMemberCancelMutedTips) GetGroupMemberVersionID() string {
 
 type GroupMutedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	// defaultTips English display text, e.g. "Alice muted all members"
-	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupMutedTips) Reset() {
 	*x = GroupMutedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[44]
+	mi := &file_sdkws_sdkws_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4488,7 +4585,7 @@ func (x *GroupMutedTips) String() string {
 func (*GroupMutedTips) ProtoMessage() {}
 
 func (x *GroupMutedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[44]
+	mi := &file_sdkws_sdkws_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4501,7 +4598,7 @@ func (x *GroupMutedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupMutedTips.ProtoReflect.Descriptor instead.
 func (*GroupMutedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{44}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GroupMutedTips) GetGroup() *GroupInfo {
@@ -4548,20 +4645,20 @@ func (x *GroupMutedTips) GetDefaultTips() string {
 
 type GroupCancelMutedTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,4,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,5,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
 	// defaultTips English display text, e.g. "Alice unmuted all members"
-	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips"`
+	DefaultTips   string `protobuf:"bytes,6,opt,name=defaultTips,proto3" json:"defaultTips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GroupCancelMutedTips) Reset() {
 	*x = GroupCancelMutedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[45]
+	mi := &file_sdkws_sdkws_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4573,7 +4670,7 @@ func (x *GroupCancelMutedTips) String() string {
 func (*GroupCancelMutedTips) ProtoMessage() {}
 
 func (x *GroupCancelMutedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[45]
+	mi := &file_sdkws_sdkws_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4586,7 +4683,7 @@ func (x *GroupCancelMutedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupCancelMutedTips.ProtoReflect.Descriptor instead.
 func (*GroupCancelMutedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{45}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GroupCancelMutedTips) GetGroup() *GroupInfo {
@@ -4633,20 +4730,20 @@ func (x *GroupCancelMutedTips) GetDefaultTips() string {
 
 type GroupMemberInfoSetTips struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group"`
-	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser"`
-	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime"`
-	ChangedUser          *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=changedUser,proto3" json:"changedUser"`
-	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion"`
-	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID"`
-	GroupSortVersion     uint64                 `protobuf:"varint,7,opt,name=groupSortVersion,proto3" json:"groupSortVersion"`
+	Group                *GroupInfo             `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpUser               *GroupMemberFullInfo   `protobuf:"bytes,2,opt,name=opUser,proto3" json:"opUser,omitempty"`
+	OperationTime        int64                  `protobuf:"varint,3,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	ChangedUser          *GroupMemberFullInfo   `protobuf:"bytes,4,opt,name=changedUser,proto3" json:"changedUser,omitempty"`
+	GroupMemberVersion   uint64                 `protobuf:"varint,5,opt,name=groupMemberVersion,proto3" json:"groupMemberVersion,omitempty"`
+	GroupMemberVersionID string                 `protobuf:"bytes,6,opt,name=groupMemberVersionID,proto3" json:"groupMemberVersionID,omitempty"`
+	GroupSortVersion     uint64                 `protobuf:"varint,7,opt,name=groupSortVersion,proto3" json:"groupSortVersion,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GroupMemberInfoSetTips) Reset() {
 	*x = GroupMemberInfoSetTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[46]
+	mi := &file_sdkws_sdkws_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4658,7 +4755,7 @@ func (x *GroupMemberInfoSetTips) String() string {
 func (*GroupMemberInfoSetTips) ProtoMessage() {}
 
 func (x *GroupMemberInfoSetTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[46]
+	mi := &file_sdkws_sdkws_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4671,7 +4768,7 @@ func (x *GroupMemberInfoSetTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupMemberInfoSetTips.ProtoReflect.Descriptor instead.
 func (*GroupMemberInfoSetTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{46}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GroupMemberInfoSetTips) GetGroup() *GroupInfo {
@@ -4725,16 +4822,16 @@ func (x *GroupMemberInfoSetTips) GetGroupSortVersion() uint64 {
 
 type FriendApplication struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AddTime       int64                  `protobuf:"varint,1,opt,name=addTime,proto3" json:"addTime"`
-	AddSource     string                 `protobuf:"bytes,2,opt,name=addSource,proto3" json:"addSource"`
-	AddWording    string                 `protobuf:"bytes,3,opt,name=addWording,proto3" json:"addWording"`
+	AddTime       int64                  `protobuf:"varint,1,opt,name=addTime,proto3" json:"addTime,omitempty"`
+	AddSource     string                 `protobuf:"bytes,2,opt,name=addSource,proto3" json:"addSource,omitempty"`
+	AddWording    string                 `protobuf:"bytes,3,opt,name=addWording,proto3" json:"addWording,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FriendApplication) Reset() {
 	*x = FriendApplication{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[47]
+	mi := &file_sdkws_sdkws_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4746,7 +4843,7 @@ func (x *FriendApplication) String() string {
 func (*FriendApplication) ProtoMessage() {}
 
 func (x *FriendApplication) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[47]
+	mi := &file_sdkws_sdkws_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4759,7 +4856,7 @@ func (x *FriendApplication) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendApplication.ProtoReflect.Descriptor instead.
 func (*FriendApplication) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{47}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *FriendApplication) GetAddTime() int64 {
@@ -4785,15 +4882,15 @@ func (x *FriendApplication) GetAddWording() string {
 
 type FromToUserID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FromToUserID) Reset() {
 	*x = FromToUserID{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[48]
+	mi := &file_sdkws_sdkws_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4805,7 +4902,7 @@ func (x *FromToUserID) String() string {
 func (*FromToUserID) ProtoMessage() {}
 
 func (x *FromToUserID) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[48]
+	mi := &file_sdkws_sdkws_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4818,7 +4915,7 @@ func (x *FromToUserID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FromToUserID.ProtoReflect.Descriptor instead.
 func (*FromToUserID) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{48}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *FromToUserID) GetFromUserID() string {
@@ -4838,15 +4935,15 @@ func (x *FromToUserID) GetToUserID() string {
 // FromUserID apply to add ToUserID
 type FriendApplicationTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from: initiator; to: receiver
-	Request       *FriendRequest         `protobuf:"bytes,2,opt,name=request,proto3" json:"request"`
+	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from: initiator; to: receiver
+	Request       *FriendRequest         `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FriendApplicationTips) Reset() {
 	*x = FriendApplicationTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[49]
+	mi := &file_sdkws_sdkws_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4858,7 +4955,7 @@ func (x *FriendApplicationTips) String() string {
 func (*FriendApplicationTips) ProtoMessage() {}
 
 func (x *FriendApplicationTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[49]
+	mi := &file_sdkws_sdkws_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4871,7 +4968,7 @@ func (x *FriendApplicationTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendApplicationTips.ProtoReflect.Descriptor instead.
 func (*FriendApplicationTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{49}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *FriendApplicationTips) GetFromToUserID() *FromToUserID {
@@ -4891,18 +4988,18 @@ func (x *FriendApplicationTips) GetRequest() *FriendRequest {
 // FromUserID accept or reject ToUserID
 type FriendApplicationApprovedTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID    *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from: the person who agrees; to: the person who initiates the request
-	HandleMsg       string                 `protobuf:"bytes,2,opt,name=handleMsg,proto3" json:"handleMsg"`
-	FriendVersion   uint64                 `protobuf:"varint,3,opt,name=friendVersion,proto3" json:"friendVersion"`
-	FriendVersionID string                 `protobuf:"bytes,4,opt,name=friendVersionID,proto3" json:"friendVersionID"`
-	Request         *FriendRequest         `protobuf:"bytes,5,opt,name=request,proto3" json:"request"`
+	FromToUserID    *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from: the person who agrees; to: the person who initiates the request
+	HandleMsg       string                 `protobuf:"bytes,2,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	FriendVersion   uint64                 `protobuf:"varint,3,opt,name=friendVersion,proto3" json:"friendVersion,omitempty"`
+	FriendVersionID string                 `protobuf:"bytes,4,opt,name=friendVersionID,proto3" json:"friendVersionID,omitempty"`
+	Request         *FriendRequest         `protobuf:"bytes,5,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FriendApplicationApprovedTips) Reset() {
 	*x = FriendApplicationApprovedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[50]
+	mi := &file_sdkws_sdkws_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4914,7 +5011,7 @@ func (x *FriendApplicationApprovedTips) String() string {
 func (*FriendApplicationApprovedTips) ProtoMessage() {}
 
 func (x *FriendApplicationApprovedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[50]
+	mi := &file_sdkws_sdkws_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4927,7 +5024,7 @@ func (x *FriendApplicationApprovedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendApplicationApprovedTips.ProtoReflect.Descriptor instead.
 func (*FriendApplicationApprovedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{50}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *FriendApplicationApprovedTips) GetFromToUserID() *FromToUserID {
@@ -4968,16 +5065,16 @@ func (x *FriendApplicationApprovedTips) GetRequest() *FriendRequest {
 // FromUserID accept or reject ToUserID
 type FriendApplicationRejectedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from: rejecter; to: request initiator
-	HandleMsg     string                 `protobuf:"bytes,2,opt,name=handleMsg,proto3" json:"handleMsg"`
-	Request       *FriendRequest         `protobuf:"bytes,3,opt,name=request,proto3" json:"request"`
+	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from: rejecter; to: request initiator
+	HandleMsg     string                 `protobuf:"bytes,2,opt,name=handleMsg,proto3" json:"handleMsg,omitempty"`
+	Request       *FriendRequest         `protobuf:"bytes,3,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FriendApplicationRejectedTips) Reset() {
 	*x = FriendApplicationRejectedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[51]
+	mi := &file_sdkws_sdkws_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4989,7 +5086,7 @@ func (x *FriendApplicationRejectedTips) String() string {
 func (*FriendApplicationRejectedTips) ProtoMessage() {}
 
 func (x *FriendApplicationRejectedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[51]
+	mi := &file_sdkws_sdkws_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5002,7 +5099,7 @@ func (x *FriendApplicationRejectedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendApplicationRejectedTips.ProtoReflect.Descriptor instead.
 func (*FriendApplicationRejectedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{51}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *FriendApplicationRejectedTips) GetFromToUserID() *FromToUserID {
@@ -5029,18 +5126,18 @@ func (x *FriendApplicationRejectedTips) GetRequest() *FriendRequest {
 // FromUserID  Added a friend ToUserID
 type FriendAddedTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	Friend          *FriendInfo            `protobuf:"bytes,1,opt,name=friend,proto3" json:"friend"`
-	OperationTime   int64                  `protobuf:"varint,2,opt,name=operationTime,proto3" json:"operationTime"`
-	OpUser          *PublicUserInfo        `protobuf:"bytes,3,opt,name=opUser,proto3" json:"opUser"` //who do this
-	FriendVersion   uint64                 `protobuf:"varint,4,opt,name=friendVersion,proto3" json:"friendVersion"`
-	FriendVersionID string                 `protobuf:"bytes,5,opt,name=friendVersionID,proto3" json:"friendVersionID"`
+	Friend          *FriendInfo            `protobuf:"bytes,1,opt,name=friend,proto3" json:"friend,omitempty"`
+	OperationTime   int64                  `protobuf:"varint,2,opt,name=operationTime,proto3" json:"operationTime,omitempty"`
+	OpUser          *PublicUserInfo        `protobuf:"bytes,3,opt,name=opUser,proto3" json:"opUser,omitempty"` //who do this
+	FriendVersion   uint64                 `protobuf:"varint,4,opt,name=friendVersion,proto3" json:"friendVersion,omitempty"`
+	FriendVersionID string                 `protobuf:"bytes,5,opt,name=friendVersionID,proto3" json:"friendVersionID,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FriendAddedTips) Reset() {
 	*x = FriendAddedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[52]
+	mi := &file_sdkws_sdkws_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5052,7 +5149,7 @@ func (x *FriendAddedTips) String() string {
 func (*FriendAddedTips) ProtoMessage() {}
 
 func (x *FriendAddedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[52]
+	mi := &file_sdkws_sdkws_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5065,7 +5162,7 @@ func (x *FriendAddedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendAddedTips.ProtoReflect.Descriptor instead.
 func (*FriendAddedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{52}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *FriendAddedTips) GetFriend() *FriendInfo {
@@ -5106,16 +5203,16 @@ func (x *FriendAddedTips) GetFriendVersionID() string {
 // FromUserID  deleted a friend ToUserID
 type FriendDeletedTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID    *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from：owner； to：friend
-	FriendVersion   uint64                 `protobuf:"varint,2,opt,name=friendVersion,proto3" json:"friendVersion"`
-	FriendVersionID string                 `protobuf:"bytes,3,opt,name=friendVersionID,proto3" json:"friendVersionID"`
+	FromToUserID    *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from：owner； to：friend
+	FriendVersion   uint64                 `protobuf:"varint,2,opt,name=friendVersion,proto3" json:"friendVersion,omitempty"`
+	FriendVersionID string                 `protobuf:"bytes,3,opt,name=friendVersionID,proto3" json:"friendVersionID,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FriendDeletedTips) Reset() {
 	*x = FriendDeletedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[53]
+	mi := &file_sdkws_sdkws_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5127,7 +5224,7 @@ func (x *FriendDeletedTips) String() string {
 func (*FriendDeletedTips) ProtoMessage() {}
 
 func (x *FriendDeletedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[53]
+	mi := &file_sdkws_sdkws_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5140,7 +5237,7 @@ func (x *FriendDeletedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendDeletedTips.ProtoReflect.Descriptor instead.
 func (*FriendDeletedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{53}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *FriendDeletedTips) GetFromToUserID() *FromToUserID {
@@ -5166,14 +5263,14 @@ func (x *FriendDeletedTips) GetFriendVersionID() string {
 
 type BlackAddedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from：owner； to：black
+	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from：owner； to：black
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *BlackAddedTips) Reset() {
 	*x = BlackAddedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[54]
+	mi := &file_sdkws_sdkws_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5185,7 +5282,7 @@ func (x *BlackAddedTips) String() string {
 func (*BlackAddedTips) ProtoMessage() {}
 
 func (x *BlackAddedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[54]
+	mi := &file_sdkws_sdkws_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5198,7 +5295,7 @@ func (x *BlackAddedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlackAddedTips.ProtoReflect.Descriptor instead.
 func (*BlackAddedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{54}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *BlackAddedTips) GetFromToUserID() *FromToUserID {
@@ -5210,14 +5307,14 @@ func (x *BlackAddedTips) GetFromToUserID() *FromToUserID {
 
 type BlackDeletedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from：owner； to：black
+	FromToUserID  *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from：owner； to：black
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *BlackDeletedTips) Reset() {
 	*x = BlackDeletedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[55]
+	mi := &file_sdkws_sdkws_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5229,7 +5326,7 @@ func (x *BlackDeletedTips) String() string {
 func (*BlackDeletedTips) ProtoMessage() {}
 
 func (x *BlackDeletedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[55]
+	mi := &file_sdkws_sdkws_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5242,7 +5339,7 @@ func (x *BlackDeletedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlackDeletedTips.ProtoReflect.Descriptor instead.
 func (*BlackDeletedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{55}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *BlackDeletedTips) GetFromToUserID() *FromToUserID {
@@ -5254,17 +5351,17 @@ func (x *BlackDeletedTips) GetFromToUserID() *FromToUserID {
 
 type FriendInfoChangedTips struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID      *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"` //from：changed； to：friend
-	FriendVersion     uint64                 `protobuf:"varint,2,opt,name=friendVersion,proto3" json:"friendVersion"`
-	FriendVersionID   string                 `protobuf:"bytes,3,opt,name=friendVersionID,proto3" json:"friendVersionID"`
-	FriendSortVersion uint64                 `protobuf:"varint,4,opt,name=friendSortVersion,proto3" json:"friendSortVersion"`
+	FromToUserID      *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"` //from：changed； to：friend
+	FriendVersion     uint64                 `protobuf:"varint,2,opt,name=friendVersion,proto3" json:"friendVersion,omitempty"`
+	FriendVersionID   string                 `protobuf:"bytes,3,opt,name=friendVersionID,proto3" json:"friendVersionID,omitempty"`
+	FriendSortVersion uint64                 `protobuf:"varint,4,opt,name=friendSortVersion,proto3" json:"friendSortVersion,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FriendInfoChangedTips) Reset() {
 	*x = FriendInfoChangedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[56]
+	mi := &file_sdkws_sdkws_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5276,7 +5373,7 @@ func (x *FriendInfoChangedTips) String() string {
 func (*FriendInfoChangedTips) ProtoMessage() {}
 
 func (x *FriendInfoChangedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[56]
+	mi := &file_sdkws_sdkws_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5289,7 +5386,7 @@ func (x *FriendInfoChangedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendInfoChangedTips.ProtoReflect.Descriptor instead.
 func (*FriendInfoChangedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{56}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *FriendInfoChangedTips) GetFromToUserID() *FromToUserID {
@@ -5323,14 +5420,14 @@ func (x *FriendInfoChangedTips) GetFriendSortVersion() uint64 {
 // ////////////////////user/////////////////////
 type UserInfoUpdatedTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserInfoUpdatedTips) Reset() {
 	*x = UserInfoUpdatedTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[57]
+	mi := &file_sdkws_sdkws_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5342,7 +5439,7 @@ func (x *UserInfoUpdatedTips) String() string {
 func (*UserInfoUpdatedTips) ProtoMessage() {}
 
 func (x *UserInfoUpdatedTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[57]
+	mi := &file_sdkws_sdkws_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5355,7 +5452,7 @@ func (x *UserInfoUpdatedTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserInfoUpdatedTips.ProtoReflect.Descriptor instead.
 func (*UserInfoUpdatedTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{57}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *UserInfoUpdatedTips) GetUserID() string {
@@ -5367,17 +5464,17 @@ func (x *UserInfoUpdatedTips) GetUserID() string {
 
 type UserStatusChangeTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
-	Status        int32                  `protobuf:"varint,3,opt,name=status,proto3" json:"status"`
-	PlatformID    int32                  `protobuf:"varint,4,opt,name=platformID,proto3" json:"platformID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
+	Status        int32                  `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
+	PlatformID    int32                  `protobuf:"varint,4,opt,name=platformID,proto3" json:"platformID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserStatusChangeTips) Reset() {
 	*x = UserStatusChangeTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[58]
+	mi := &file_sdkws_sdkws_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5389,7 +5486,7 @@ func (x *UserStatusChangeTips) String() string {
 func (*UserStatusChangeTips) ProtoMessage() {}
 
 func (x *UserStatusChangeTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[58]
+	mi := &file_sdkws_sdkws_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5402,7 +5499,7 @@ func (x *UserStatusChangeTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserStatusChangeTips.ProtoReflect.Descriptor instead.
 func (*UserStatusChangeTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{58}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UserStatusChangeTips) GetFromUserID() string {
@@ -5435,15 +5532,15 @@ func (x *UserStatusChangeTips) GetPlatformID() int32 {
 
 type UserCommandAddTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserCommandAddTips) Reset() {
 	*x = UserCommandAddTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[59]
+	mi := &file_sdkws_sdkws_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5455,7 +5552,7 @@ func (x *UserCommandAddTips) String() string {
 func (*UserCommandAddTips) ProtoMessage() {}
 
 func (x *UserCommandAddTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[59]
+	mi := &file_sdkws_sdkws_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5468,7 +5565,7 @@ func (x *UserCommandAddTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserCommandAddTips.ProtoReflect.Descriptor instead.
 func (*UserCommandAddTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{59}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *UserCommandAddTips) GetFromUserID() string {
@@ -5487,15 +5584,15 @@ func (x *UserCommandAddTips) GetToUserID() string {
 
 type UserCommandUpdateTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserCommandUpdateTips) Reset() {
 	*x = UserCommandUpdateTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[60]
+	mi := &file_sdkws_sdkws_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5507,7 +5604,7 @@ func (x *UserCommandUpdateTips) String() string {
 func (*UserCommandUpdateTips) ProtoMessage() {}
 
 func (x *UserCommandUpdateTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[60]
+	mi := &file_sdkws_sdkws_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5520,7 +5617,7 @@ func (x *UserCommandUpdateTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserCommandUpdateTips.ProtoReflect.Descriptor instead.
 func (*UserCommandUpdateTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{60}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *UserCommandUpdateTips) GetFromUserID() string {
@@ -5539,15 +5636,15 @@ func (x *UserCommandUpdateTips) GetToUserID() string {
 
 type UserCommandDeleteTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID,omitempty"`
+	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserCommandDeleteTips) Reset() {
 	*x = UserCommandDeleteTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[61]
+	mi := &file_sdkws_sdkws_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5559,7 +5656,7 @@ func (x *UserCommandDeleteTips) String() string {
 func (*UserCommandDeleteTips) ProtoMessage() {}
 
 func (x *UserCommandDeleteTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[61]
+	mi := &file_sdkws_sdkws_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5572,7 +5669,7 @@ func (x *UserCommandDeleteTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserCommandDeleteTips.ProtoReflect.Descriptor instead.
 func (*UserCommandDeleteTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{61}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *UserCommandDeleteTips) GetFromUserID() string {
@@ -5592,15 +5689,15 @@ func (x *UserCommandDeleteTips) GetToUserID() string {
 // ////////////////////conversation/////////////////////
 type ConversationUpdateTips struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	UserID             string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationIDList []string               `protobuf:"bytes,2,rep,name=conversationIDList,proto3" json:"conversationIDList"`
+	UserID             string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationIDList []string               `protobuf:"bytes,2,rep,name=conversationIDList,proto3" json:"conversationIDList,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
 func (x *ConversationUpdateTips) Reset() {
 	*x = ConversationUpdateTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[62]
+	mi := &file_sdkws_sdkws_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5612,7 +5709,7 @@ func (x *ConversationUpdateTips) String() string {
 func (*ConversationUpdateTips) ProtoMessage() {}
 
 func (x *ConversationUpdateTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[62]
+	mi := &file_sdkws_sdkws_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5625,7 +5722,7 @@ func (x *ConversationUpdateTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConversationUpdateTips.ProtoReflect.Descriptor instead.
 func (*ConversationUpdateTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{62}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ConversationUpdateTips) GetUserID() string {
@@ -5644,17 +5741,17 @@ func (x *ConversationUpdateTips) GetConversationIDList() []string {
 
 type ConversationSetPrivateTips struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	RecvID         string                 `protobuf:"bytes,1,opt,name=recvID,proto3" json:"recvID"`
-	SendID         string                 `protobuf:"bytes,2,opt,name=sendID,proto3" json:"sendID"`
-	IsPrivate      bool                   `protobuf:"varint,3,opt,name=isPrivate,proto3" json:"isPrivate"`
-	ConversationID string                 `protobuf:"bytes,4,opt,name=conversationID,proto3" json:"conversationID"`
+	RecvID         string                 `protobuf:"bytes,1,opt,name=recvID,proto3" json:"recvID,omitempty"`
+	SendID         string                 `protobuf:"bytes,2,opt,name=sendID,proto3" json:"sendID,omitempty"`
+	IsPrivate      bool                   `protobuf:"varint,3,opt,name=isPrivate,proto3" json:"isPrivate,omitempty"`
+	ConversationID string                 `protobuf:"bytes,4,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ConversationSetPrivateTips) Reset() {
 	*x = ConversationSetPrivateTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[63]
+	mi := &file_sdkws_sdkws_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5666,7 +5763,7 @@ func (x *ConversationSetPrivateTips) String() string {
 func (*ConversationSetPrivateTips) ProtoMessage() {}
 
 func (x *ConversationSetPrivateTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[63]
+	mi := &file_sdkws_sdkws_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5679,7 +5776,7 @@ func (x *ConversationSetPrivateTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConversationSetPrivateTips.ProtoReflect.Descriptor instead.
 func (*ConversationSetPrivateTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{63}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ConversationSetPrivateTips) GetRecvID() string {
@@ -5712,17 +5809,17 @@ func (x *ConversationSetPrivateTips) GetConversationID() string {
 
 type ConversationHasReadTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationID  string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
-	HasReadSeq      int64                  `protobuf:"varint,3,opt,name=hasReadSeq,proto3" json:"hasReadSeq"`
-	UnreadCountTime int64                  `protobuf:"varint,4,opt,name=unreadCountTime,proto3" json:"unreadCountTime"`
+	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationID  string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	HasReadSeq      int64                  `protobuf:"varint,3,opt,name=hasReadSeq,proto3" json:"hasReadSeq,omitempty"`
+	UnreadCountTime int64                  `protobuf:"varint,4,opt,name=unreadCountTime,proto3" json:"unreadCountTime,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ConversationHasReadTips) Reset() {
 	*x = ConversationHasReadTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[64]
+	mi := &file_sdkws_sdkws_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5734,7 +5831,7 @@ func (x *ConversationHasReadTips) String() string {
 func (*ConversationHasReadTips) ProtoMessage() {}
 
 func (x *ConversationHasReadTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[64]
+	mi := &file_sdkws_sdkws_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5747,7 +5844,7 @@ func (x *ConversationHasReadTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConversationHasReadTips.ProtoReflect.Descriptor instead.
 func (*ConversationHasReadTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{64}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ConversationHasReadTips) GetUserID() string {
@@ -5780,14 +5877,14 @@ func (x *ConversationHasReadTips) GetUnreadCountTime() int64 {
 
 type NotificationElem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Detail        string                 `protobuf:"bytes,1,opt,name=detail,proto3" json:"detail"`
+	Detail        string                 `protobuf:"bytes,1,opt,name=detail,proto3" json:"detail,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *NotificationElem) Reset() {
 	*x = NotificationElem{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[65]
+	mi := &file_sdkws_sdkws_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5799,7 +5896,7 @@ func (x *NotificationElem) String() string {
 func (*NotificationElem) ProtoMessage() {}
 
 func (x *NotificationElem) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[65]
+	mi := &file_sdkws_sdkws_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5812,7 +5909,7 @@ func (x *NotificationElem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NotificationElem.ProtoReflect.Descriptor instead.
 func (*NotificationElem) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{65}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *NotificationElem) GetDetail() string {
@@ -5825,14 +5922,14 @@ func (x *NotificationElem) GetDetail() string {
 // //////////////////message///////////////////////
 type Seqs struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Seqs          []int64                `protobuf:"varint,1,rep,packed,name=seqs,proto3" json:"seqs"`
+	Seqs          []int64                `protobuf:"varint,1,rep,packed,name=seqs,proto3" json:"seqs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Seqs) Reset() {
 	*x = Seqs{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[66]
+	mi := &file_sdkws_sdkws_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5844,7 +5941,7 @@ func (x *Seqs) String() string {
 func (*Seqs) ProtoMessage() {}
 
 func (x *Seqs) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[66]
+	mi := &file_sdkws_sdkws_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5857,7 +5954,7 @@ func (x *Seqs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Seqs.ProtoReflect.Descriptor instead.
 func (*Seqs) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{66}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *Seqs) GetSeqs() []int64 {
@@ -5869,16 +5966,16 @@ func (x *Seqs) GetSeqs() []int64 {
 
 type DeleteMessageTips struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OpUserID      string                 `protobuf:"bytes,1,opt,name=opUserID,proto3" json:"opUserID"`
-	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
-	Seqs          []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs"`
+	OpUserID      string                 `protobuf:"bytes,1,opt,name=opUserID,proto3" json:"opUserID,omitempty"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	Seqs          []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteMessageTips) Reset() {
 	*x = DeleteMessageTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[67]
+	mi := &file_sdkws_sdkws_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5890,7 +5987,7 @@ func (x *DeleteMessageTips) String() string {
 func (*DeleteMessageTips) ProtoMessage() {}
 
 func (x *DeleteMessageTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[67]
+	mi := &file_sdkws_sdkws_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5903,7 +6000,7 @@ func (x *DeleteMessageTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMessageTips.ProtoReflect.Descriptor instead.
 func (*DeleteMessageTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{67}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *DeleteMessageTips) GetOpUserID() string {
@@ -5929,20 +6026,20 @@ func (x *DeleteMessageTips) GetSeqs() []int64 {
 
 type RevokeMsgTips struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	RevokerUserID  string                 `protobuf:"bytes,1,opt,name=revokerUserID,proto3" json:"revokerUserID"`
-	ClientMsgID    string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	RevokeTime     int64                  `protobuf:"varint,3,opt,name=revokeTime,proto3" json:"revokeTime"`
-	SesstionType   int32                  `protobuf:"varint,5,opt,name=sesstionType,proto3" json:"sesstionType"`
-	Seq            int64                  `protobuf:"varint,6,opt,name=seq,proto3" json:"seq"`
-	ConversationID string                 `protobuf:"bytes,7,opt,name=conversationID,proto3" json:"conversationID"`
-	IsAdminRevoke  bool                   `protobuf:"varint,8,opt,name=isAdminRevoke,proto3" json:"isAdminRevoke"`
+	RevokerUserID  string                 `protobuf:"bytes,1,opt,name=revokerUserID,proto3" json:"revokerUserID,omitempty"`
+	ClientMsgID    string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	RevokeTime     int64                  `protobuf:"varint,3,opt,name=revokeTime,proto3" json:"revokeTime,omitempty"`
+	SesstionType   int32                  `protobuf:"varint,5,opt,name=sesstionType,proto3" json:"sesstionType,omitempty"`
+	Seq            int64                  `protobuf:"varint,6,opt,name=seq,proto3" json:"seq,omitempty"`
+	ConversationID string                 `protobuf:"bytes,7,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	IsAdminRevoke  bool                   `protobuf:"varint,8,opt,name=isAdminRevoke,proto3" json:"isAdminRevoke,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *RevokeMsgTips) Reset() {
 	*x = RevokeMsgTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[68]
+	mi := &file_sdkws_sdkws_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5954,7 +6051,7 @@ func (x *RevokeMsgTips) String() string {
 func (*RevokeMsgTips) ProtoMessage() {}
 
 func (x *RevokeMsgTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[68]
+	mi := &file_sdkws_sdkws_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5967,7 +6064,7 @@ func (x *RevokeMsgTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeMsgTips.ProtoReflect.Descriptor instead.
 func (*RevokeMsgTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{68}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *RevokeMsgTips) GetRevokerUserID() string {
@@ -6021,24 +6118,24 @@ func (x *RevokeMsgTips) GetIsAdminRevoke() bool {
 
 type MessageRevokedContent struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	RevokerID                   string                 `protobuf:"bytes,1,opt,name=revokerID,proto3" json:"revokerID"`
-	RevokerRole                 int32                  `protobuf:"varint,2,opt,name=revokerRole,proto3" json:"revokerRole"`
-	ClientMsgID                 string                 `protobuf:"bytes,3,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	RevokerNickname             string                 `protobuf:"bytes,4,opt,name=revokerNickname,proto3" json:"revokerNickname"`
-	RevokeTime                  int64                  `protobuf:"varint,5,opt,name=revokeTime,proto3" json:"revokeTime"`
-	SourceMessageSendTime       int64                  `protobuf:"varint,6,opt,name=sourceMessageSendTime,proto3" json:"sourceMessageSendTime"`
-	SourceMessageSendID         string                 `protobuf:"bytes,7,opt,name=sourceMessageSendID,proto3" json:"sourceMessageSendID"`
-	SourceMessageSenderNickname string                 `protobuf:"bytes,8,opt,name=sourceMessageSenderNickname,proto3" json:"sourceMessageSenderNickname"`
-	SessionType                 int32                  `protobuf:"varint,10,opt,name=sessionType,proto3" json:"sessionType"`
-	Seq                         int64                  `protobuf:"varint,11,opt,name=seq,proto3" json:"seq"`
-	Ex                          string                 `protobuf:"bytes,12,opt,name=ex,proto3" json:"ex"`
+	RevokerID                   string                 `protobuf:"bytes,1,opt,name=revokerID,proto3" json:"revokerID,omitempty"`
+	RevokerRole                 int32                  `protobuf:"varint,2,opt,name=revokerRole,proto3" json:"revokerRole,omitempty"`
+	ClientMsgID                 string                 `protobuf:"bytes,3,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	RevokerNickname             string                 `protobuf:"bytes,4,opt,name=revokerNickname,proto3" json:"revokerNickname,omitempty"`
+	RevokeTime                  int64                  `protobuf:"varint,5,opt,name=revokeTime,proto3" json:"revokeTime,omitempty"`
+	SourceMessageSendTime       int64                  `protobuf:"varint,6,opt,name=sourceMessageSendTime,proto3" json:"sourceMessageSendTime,omitempty"`
+	SourceMessageSendID         string                 `protobuf:"bytes,7,opt,name=sourceMessageSendID,proto3" json:"sourceMessageSendID,omitempty"`
+	SourceMessageSenderNickname string                 `protobuf:"bytes,8,opt,name=sourceMessageSenderNickname,proto3" json:"sourceMessageSenderNickname,omitempty"`
+	SessionType                 int32                  `protobuf:"varint,10,opt,name=sessionType,proto3" json:"sessionType,omitempty"`
+	Seq                         int64                  `protobuf:"varint,11,opt,name=seq,proto3" json:"seq,omitempty"`
+	Ex                          string                 `protobuf:"bytes,12,opt,name=ex,proto3" json:"ex,omitempty"`
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *MessageRevokedContent) Reset() {
 	*x = MessageRevokedContent{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[69]
+	mi := &file_sdkws_sdkws_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6050,7 +6147,7 @@ func (x *MessageRevokedContent) String() string {
 func (*MessageRevokedContent) ProtoMessage() {}
 
 func (x *MessageRevokedContent) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[69]
+	mi := &file_sdkws_sdkws_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6063,7 +6160,7 @@ func (x *MessageRevokedContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageRevokedContent.ProtoReflect.Descriptor instead.
 func (*MessageRevokedContent) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{69}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *MessageRevokedContent) GetRevokerID() string {
@@ -6145,15 +6242,15 @@ func (x *MessageRevokedContent) GetEx() string {
 
 type ClearConversationTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ClearConversationTips) Reset() {
 	*x = ClearConversationTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[70]
+	mi := &file_sdkws_sdkws_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6165,7 +6262,7 @@ func (x *ClearConversationTips) String() string {
 func (*ClearConversationTips) ProtoMessage() {}
 
 func (x *ClearConversationTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[70]
+	mi := &file_sdkws_sdkws_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6178,7 +6275,7 @@ func (x *ClearConversationTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClearConversationTips.ProtoReflect.Descriptor instead.
 func (*ClearConversationTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{70}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *ClearConversationTips) GetUserID() string {
@@ -6197,16 +6294,16 @@ func (x *ClearConversationTips) GetConversationIDs() []string {
 
 type DeleteMsgsTips struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
-	Seqs           []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs"`
+	UserID         string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationID string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	Seqs           []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DeleteMsgsTips) Reset() {
 	*x = DeleteMsgsTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[71]
+	mi := &file_sdkws_sdkws_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6218,7 +6315,7 @@ func (x *DeleteMsgsTips) String() string {
 func (*DeleteMsgsTips) ProtoMessage() {}
 
 func (x *DeleteMsgsTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[71]
+	mi := &file_sdkws_sdkws_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6231,7 +6328,7 @@ func (x *DeleteMsgsTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMsgsTips.ProtoReflect.Descriptor instead.
 func (*DeleteMsgsTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{71}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *DeleteMsgsTips) GetUserID() string {
@@ -6257,17 +6354,17 @@ func (x *DeleteMsgsTips) GetSeqs() []int64 {
 
 type MarkAsReadTips struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	MarkAsReadUserID string                 `protobuf:"bytes,1,opt,name=markAsReadUserID,proto3" json:"markAsReadUserID"`
-	ConversationID   string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID"`
-	Seqs             []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs"`
-	HasReadSeq       int64                  `protobuf:"varint,4,opt,name=hasReadSeq,proto3" json:"hasReadSeq"`
+	MarkAsReadUserID string                 `protobuf:"bytes,1,opt,name=markAsReadUserID,proto3" json:"markAsReadUserID,omitempty"`
+	ConversationID   string                 `protobuf:"bytes,2,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	Seqs             []int64                `protobuf:"varint,3,rep,packed,name=seqs,proto3" json:"seqs,omitempty"`
+	HasReadSeq       int64                  `protobuf:"varint,4,opt,name=hasReadSeq,proto3" json:"hasReadSeq,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *MarkAsReadTips) Reset() {
 	*x = MarkAsReadTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[72]
+	mi := &file_sdkws_sdkws_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6279,7 +6376,7 @@ func (x *MarkAsReadTips) String() string {
 func (*MarkAsReadTips) ProtoMessage() {}
 
 func (x *MarkAsReadTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[72]
+	mi := &file_sdkws_sdkws_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6292,7 +6389,7 @@ func (x *MarkAsReadTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkAsReadTips.ProtoReflect.Descriptor instead.
 func (*MarkAsReadTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{72}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *MarkAsReadTips) GetMarkAsReadUserID() string {
@@ -6325,15 +6422,15 @@ func (x *MarkAsReadTips) GetHasReadSeq() int64 {
 
 type SetAppBackgroundStatusReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	IsBackground  bool                   `protobuf:"varint,2,opt,name=isBackground,proto3" json:"isBackground"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	IsBackground  bool                   `protobuf:"varint,2,opt,name=isBackground,proto3" json:"isBackground,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetAppBackgroundStatusReq) Reset() {
 	*x = SetAppBackgroundStatusReq{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[73]
+	mi := &file_sdkws_sdkws_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6345,7 +6442,7 @@ func (x *SetAppBackgroundStatusReq) String() string {
 func (*SetAppBackgroundStatusReq) ProtoMessage() {}
 
 func (x *SetAppBackgroundStatusReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[73]
+	mi := &file_sdkws_sdkws_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6358,7 +6455,7 @@ func (x *SetAppBackgroundStatusReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAppBackgroundStatusReq.ProtoReflect.Descriptor instead.
 func (*SetAppBackgroundStatusReq) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{73}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *SetAppBackgroundStatusReq) GetUserID() string {
@@ -6383,7 +6480,7 @@ type SetAppBackgroundStatusResp struct {
 
 func (x *SetAppBackgroundStatusResp) Reset() {
 	*x = SetAppBackgroundStatusResp{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[74]
+	mi := &file_sdkws_sdkws_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6395,7 +6492,7 @@ func (x *SetAppBackgroundStatusResp) String() string {
 func (*SetAppBackgroundStatusResp) ProtoMessage() {}
 
 func (x *SetAppBackgroundStatusResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[74]
+	mi := &file_sdkws_sdkws_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6408,23 +6505,23 @@ func (x *SetAppBackgroundStatusResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAppBackgroundStatusResp.ProtoReflect.Descriptor instead.
 func (*SetAppBackgroundStatusResp) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{74}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{75}
 }
 
 type ProcessUserCommand struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	Type          int32                  `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
-	CreateTime    int64                  `protobuf:"varint,3,opt,name=createTime,proto3" json:"createTime"`
-	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid"`
-	Value         string                 `protobuf:"bytes,5,opt,name=value,proto3" json:"value"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Type          int32                  `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
+	CreateTime    int64                  `protobuf:"varint,3,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Value         string                 `protobuf:"bytes,5,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ProcessUserCommand) Reset() {
 	*x = ProcessUserCommand{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[75]
+	mi := &file_sdkws_sdkws_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6436,7 +6533,7 @@ func (x *ProcessUserCommand) String() string {
 func (*ProcessUserCommand) ProtoMessage() {}
 
 func (x *ProcessUserCommand) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[75]
+	mi := &file_sdkws_sdkws_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6449,7 +6546,7 @@ func (x *ProcessUserCommand) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessUserCommand.ProtoReflect.Descriptor instead.
 func (*ProcessUserCommand) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{75}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *ProcessUserCommand) GetUserID() string {
@@ -6489,15 +6586,15 @@ func (x *ProcessUserCommand) GetValue() string {
 
 type RequestPagination struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PageNumber    int32                  `protobuf:"varint,1,opt,name=pageNumber,proto3" json:"pageNumber"`
-	ShowNumber    int32                  `protobuf:"varint,2,opt,name=showNumber,proto3" json:"showNumber"`
+	PageNumber    int32                  `protobuf:"varint,1,opt,name=pageNumber,proto3" json:"pageNumber,omitempty"`
+	ShowNumber    int32                  `protobuf:"varint,2,opt,name=showNumber,proto3" json:"showNumber,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RequestPagination) Reset() {
 	*x = RequestPagination{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[76]
+	mi := &file_sdkws_sdkws_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6509,7 +6606,7 @@ func (x *RequestPagination) String() string {
 func (*RequestPagination) ProtoMessage() {}
 
 func (x *RequestPagination) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[76]
+	mi := &file_sdkws_sdkws_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6522,7 +6619,7 @@ func (x *RequestPagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestPagination.ProtoReflect.Descriptor instead.
 func (*RequestPagination) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{76}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *RequestPagination) GetPageNumber() int32 {
@@ -6541,18 +6638,18 @@ func (x *RequestPagination) GetShowNumber() int32 {
 
 type FriendsInfoUpdateTips struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	FromToUserID      *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID"`
-	FriendIDs         []string               `protobuf:"bytes,2,rep,name=friendIDs,proto3" json:"friendIDs"`
-	FriendVersion     uint64                 `protobuf:"varint,3,opt,name=friendVersion,proto3" json:"friendVersion"`
-	FriendVersionID   string                 `protobuf:"bytes,4,opt,name=friendVersionID,proto3" json:"friendVersionID"`
-	FriendSortVersion uint64                 `protobuf:"varint,5,opt,name=friendSortVersion,proto3" json:"friendSortVersion"`
+	FromToUserID      *FromToUserID          `protobuf:"bytes,1,opt,name=fromToUserID,proto3" json:"fromToUserID,omitempty"`
+	FriendIDs         []string               `protobuf:"bytes,2,rep,name=friendIDs,proto3" json:"friendIDs,omitempty"`
+	FriendVersion     uint64                 `protobuf:"varint,3,opt,name=friendVersion,proto3" json:"friendVersion,omitempty"`
+	FriendVersionID   string                 `protobuf:"bytes,4,opt,name=friendVersionID,proto3" json:"friendVersionID,omitempty"`
+	FriendSortVersion uint64                 `protobuf:"varint,5,opt,name=friendSortVersion,proto3" json:"friendSortVersion,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FriendsInfoUpdateTips) Reset() {
 	*x = FriendsInfoUpdateTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[77]
+	mi := &file_sdkws_sdkws_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6564,7 +6661,7 @@ func (x *FriendsInfoUpdateTips) String() string {
 func (*FriendsInfoUpdateTips) ProtoMessage() {}
 
 func (x *FriendsInfoUpdateTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[77]
+	mi := &file_sdkws_sdkws_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6577,7 +6674,7 @@ func (x *FriendsInfoUpdateTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendsInfoUpdateTips.ProtoReflect.Descriptor instead.
 func (*FriendsInfoUpdateTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{77}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *FriendsInfoUpdateTips) GetFromToUserID() *FromToUserID {
@@ -6617,15 +6714,15 @@ func (x *FriendsInfoUpdateTips) GetFriendSortVersion() uint64 {
 
 type SubUserOnlineStatusElem struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	UserID            string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	OnlinePlatformIDs []int32                `protobuf:"varint,2,rep,packed,name=onlinePlatformIDs,proto3" json:"onlinePlatformIDs"`
+	UserID            string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	OnlinePlatformIDs []int32                `protobuf:"varint,2,rep,packed,name=onlinePlatformIDs,proto3" json:"onlinePlatformIDs,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SubUserOnlineStatusElem) Reset() {
 	*x = SubUserOnlineStatusElem{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[78]
+	mi := &file_sdkws_sdkws_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6637,7 +6734,7 @@ func (x *SubUserOnlineStatusElem) String() string {
 func (*SubUserOnlineStatusElem) ProtoMessage() {}
 
 func (x *SubUserOnlineStatusElem) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[78]
+	mi := &file_sdkws_sdkws_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6650,7 +6747,7 @@ func (x *SubUserOnlineStatusElem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubUserOnlineStatusElem.ProtoReflect.Descriptor instead.
 func (*SubUserOnlineStatusElem) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{78}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *SubUserOnlineStatusElem) GetUserID() string {
@@ -6669,14 +6766,14 @@ func (x *SubUserOnlineStatusElem) GetOnlinePlatformIDs() []int32 {
 
 type SubUserOnlineStatusTips struct {
 	state         protoimpl.MessageState     `protogen:"open.v1"`
-	Subscribers   []*SubUserOnlineStatusElem `protobuf:"bytes,1,rep,name=subscribers,proto3" json:"subscribers"`
+	Subscribers   []*SubUserOnlineStatusElem `protobuf:"bytes,1,rep,name=subscribers,proto3" json:"subscribers,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SubUserOnlineStatusTips) Reset() {
 	*x = SubUserOnlineStatusTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[79]
+	mi := &file_sdkws_sdkws_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6688,7 +6785,7 @@ func (x *SubUserOnlineStatusTips) String() string {
 func (*SubUserOnlineStatusTips) ProtoMessage() {}
 
 func (x *SubUserOnlineStatusTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[79]
+	mi := &file_sdkws_sdkws_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6701,7 +6798,7 @@ func (x *SubUserOnlineStatusTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubUserOnlineStatusTips.ProtoReflect.Descriptor instead.
 func (*SubUserOnlineStatusTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{79}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *SubUserOnlineStatusTips) GetSubscribers() []*SubUserOnlineStatusElem {
@@ -6713,15 +6810,15 @@ func (x *SubUserOnlineStatusTips) GetSubscribers() []*SubUserOnlineStatusElem {
 
 type SubUserOnlineStatus struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	SubscribeUserID   []string               `protobuf:"bytes,1,rep,name=subscribeUserID,proto3" json:"subscribeUserID"`
-	UnsubscribeUserID []string               `protobuf:"bytes,2,rep,name=unsubscribeUserID,proto3" json:"unsubscribeUserID"`
+	SubscribeUserID   []string               `protobuf:"bytes,1,rep,name=subscribeUserID,proto3" json:"subscribeUserID,omitempty"`
+	UnsubscribeUserID []string               `protobuf:"bytes,2,rep,name=unsubscribeUserID,proto3" json:"unsubscribeUserID,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SubUserOnlineStatus) Reset() {
 	*x = SubUserOnlineStatus{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[80]
+	mi := &file_sdkws_sdkws_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6733,7 +6830,7 @@ func (x *SubUserOnlineStatus) String() string {
 func (*SubUserOnlineStatus) ProtoMessage() {}
 
 func (x *SubUserOnlineStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[80]
+	mi := &file_sdkws_sdkws_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6746,7 +6843,7 @@ func (x *SubUserOnlineStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubUserOnlineStatus.ProtoReflect.Descriptor instead.
 func (*SubUserOnlineStatus) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{80}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *SubUserOnlineStatus) GetSubscribeUserID() []string {
@@ -6765,18 +6862,18 @@ func (x *SubUserOnlineStatus) GetUnsubscribeUserID() []string {
 
 type StreamMsgTips struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`
-	ClientMsgID    string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID"`
-	StartIndex     int64                  `protobuf:"varint,3,opt,name=startIndex,proto3" json:"startIndex"`
-	Packets        []string               `protobuf:"bytes,4,rep,name=packets,proto3" json:"packets"`
-	End            bool                   `protobuf:"varint,5,opt,name=end,proto3" json:"end"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	ClientMsgID    string                 `protobuf:"bytes,2,opt,name=clientMsgID,proto3" json:"clientMsgID,omitempty"`
+	StartIndex     int64                  `protobuf:"varint,3,opt,name=startIndex,proto3" json:"startIndex,omitempty"`
+	Packets        []string               `protobuf:"bytes,4,rep,name=packets,proto3" json:"packets,omitempty"`
+	End            bool                   `protobuf:"varint,5,opt,name=end,proto3" json:"end,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *StreamMsgTips) Reset() {
 	*x = StreamMsgTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[81]
+	mi := &file_sdkws_sdkws_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6788,7 +6885,7 @@ func (x *StreamMsgTips) String() string {
 func (*StreamMsgTips) ProtoMessage() {}
 
 func (x *StreamMsgTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[81]
+	mi := &file_sdkws_sdkws_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6801,7 +6898,7 @@ func (x *StreamMsgTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamMsgTips.ProtoReflect.Descriptor instead.
 func (*StreamMsgTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{81}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *StreamMsgTips) GetConversationID() string {
@@ -6841,15 +6938,15 @@ func (x *StreamMsgTips) GetEnd() bool {
 
 type ConversationDeleteTips struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
-	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs"`
+	UserID          string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	ConversationIDs []string               `protobuf:"bytes,2,rep,name=conversationIDs,proto3" json:"conversationIDs,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ConversationDeleteTips) Reset() {
 	*x = ConversationDeleteTips{}
-	mi := &file_sdkws_sdkws_proto_msgTypes[82]
+	mi := &file_sdkws_sdkws_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6861,7 +6958,7 @@ func (x *ConversationDeleteTips) String() string {
 func (*ConversationDeleteTips) ProtoMessage() {}
 
 func (x *ConversationDeleteTips) ProtoReflect() protoreflect.Message {
-	mi := &file_sdkws_sdkws_proto_msgTypes[82]
+	mi := &file_sdkws_sdkws_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6874,7 +6971,7 @@ func (x *ConversationDeleteTips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConversationDeleteTips.ProtoReflect.Descriptor instead.
 func (*ConversationDeleteTips) Descriptor() ([]byte, []int) {
-	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{82}
+	return file_sdkws_sdkws_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *ConversationDeleteTips) GetUserID() string {
@@ -7260,12 +7357,20 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\n" +
 	"pinnedList\x18\x05 \x03(\v2 .openim.sdkws.GroupPinnedMsgInfoR\n" +
 	"pinnedList\x12 \n" +
-	"\vdefaultTips\x18\x06 \x01(\tR\vdefaultTips\"\xc0\x01\n" +
+	"\vdefaultTips\x18\x06 \x01(\tR\vdefaultTips\"\x84\x02\n" +
 	"\x14GroupCallStartedTips\x129\n" +
 	"\x06opUser\x18\x01 \x01(\v2!.openim.sdkws.GroupMemberFullInfoR\x06opUser\x12-\n" +
 	"\x05group\x18\x02 \x01(\v2\x17.openim.sdkws.GroupInfoR\x05group\x12\x1c\n" +
 	"\tmediaType\x18\x03 \x01(\tR\tmediaType\x12 \n" +
-	"\vdefaultTips\x18\x04 \x01(\tR\vdefaultTips\"\xca\x01\n" +
+	"\vdefaultTips\x18\x04 \x01(\tR\vdefaultTips\x12\x16\n" +
+	"\x06roomID\x18\x05 \x01(\tR\x06roomID\x12*\n" +
+	"\x10participantCount\x18\x06 \x01(\x05R\x10participantCount\"\xd9\x01\n" +
+	"$GroupCallParticipantCountUpdatedTips\x12-\n" +
+	"\x05group\x18\x01 \x01(\v2\x17.openim.sdkws.GroupInfoR\x05group\x12\x16\n" +
+	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12*\n" +
+	"\x10participantCount\x18\x03 \x01(\x05R\x10participantCount\x12 \n" +
+	"\vdefaultTips\x18\x04 \x01(\tR\vdefaultTips\x12\x1c\n" +
+	"\tmediaType\x18\x05 \x01(\tR\tmediaType\"\xca\x01\n" +
 	"\x18GroupBurnDurationSetTips\x129\n" +
 	"\x06opUser\x18\x01 \x01(\v2!.openim.sdkws.GroupMemberFullInfoR\x06opUser\x12-\n" +
 	"\x05group\x18\x02 \x01(\v2\x17.openim.sdkws.GroupInfoR\x05group\x12\"\n" +
@@ -7575,132 +7680,133 @@ func file_sdkws_sdkws_proto_rawDescGZIP() []byte {
 }
 
 var file_sdkws_sdkws_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_sdkws_sdkws_proto_msgTypes = make([]protoimpl.MessageInfo, 91)
+var file_sdkws_sdkws_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
 var file_sdkws_sdkws_proto_goTypes = []any{
-	(PullOrder)(0),                        // 0: openim.sdkws.PullOrder
-	(*GroupInfo)(nil),                     // 1: openim.sdkws.GroupInfo
-	(*GroupInviteLinkInfo)(nil),           // 2: openim.sdkws.GroupInviteLinkInfo
-	(*GroupInfoForSet)(nil),               // 3: openim.sdkws.GroupInfoForSet
-	(*GroupMemberFullInfo)(nil),           // 4: openim.sdkws.GroupMemberFullInfo
-	(*PublicUserInfo)(nil),                // 5: openim.sdkws.PublicUserInfo
-	(*UserInfo)(nil),                      // 6: openim.sdkws.UserInfo
-	(*UserInfoWithEx)(nil),                // 7: openim.sdkws.UserInfoWithEx
-	(*FriendInfo)(nil),                    // 8: openim.sdkws.FriendInfo
-	(*BlackInfo)(nil),                     // 9: openim.sdkws.BlackInfo
-	(*GroupRequest)(nil),                  // 10: openim.sdkws.GroupRequest
-	(*FriendRequest)(nil),                 // 11: openim.sdkws.FriendRequest
-	(*PullMessageBySeqsReq)(nil),          // 12: openim.sdkws.PullMessageBySeqsReq
-	(*SeqRange)(nil),                      // 13: openim.sdkws.SeqRange
-	(*PullMsgs)(nil),                      // 14: openim.sdkws.PullMsgs
-	(*PullMessageBySeqsResp)(nil),         // 15: openim.sdkws.PullMessageBySeqsResp
-	(*GetMaxSeqReq)(nil),                  // 16: openim.sdkws.GetMaxSeqReq
-	(*GetMaxSeqResp)(nil),                 // 17: openim.sdkws.GetMaxSeqResp
-	(*UserSendMsgResp)(nil),               // 18: openim.sdkws.UserSendMsgResp
-	(*MsgData)(nil),                       // 19: openim.sdkws.MsgData
-	(*PushMessages)(nil),                  // 20: openim.sdkws.PushMessages
-	(*OfflinePushInfo)(nil),               // 21: openim.sdkws.OfflinePushInfo
-	(*TipsComm)(nil),                      // 22: openim.sdkws.TipsComm
-	(*GroupCreatedTips)(nil),              // 23: openim.sdkws.GroupCreatedTips
-	(*GroupInfoSetTips)(nil),              // 24: openim.sdkws.GroupInfoSetTips
-	(*GroupInfoSetNameTips)(nil),          // 25: openim.sdkws.GroupInfoSetNameTips
-	(*GroupNeedVerificationSetTips)(nil),  // 26: openim.sdkws.GroupNeedVerificationSetTips
-	(*GroupFaceURLSetTips)(nil),           // 27: openim.sdkws.GroupFaceURLSetTips
-	(*GroupInfoSetAnnouncementTips)(nil),  // 28: openim.sdkws.GroupInfoSetAnnouncementTips
-	(*GroupPinnedMsgInfo)(nil),            // 29: openim.sdkws.GroupPinnedMsgInfo
-	(*GroupMessagePinnedTips)(nil),        // 30: openim.sdkws.GroupMessagePinnedTips
-	(*GroupCallStartedTips)(nil),          // 31: openim.sdkws.GroupCallStartedTips
-	(*GroupBurnDurationSetTips)(nil),      // 32: openim.sdkws.GroupBurnDurationSetTips
-	(*GroupCallEndedTips)(nil),            // 33: openim.sdkws.GroupCallEndedTips
-	(*JoinGroupApplicationTips)(nil),      // 34: openim.sdkws.JoinGroupApplicationTips
-	(*MemberQuitTips)(nil),                // 35: openim.sdkws.MemberQuitTips
-	(*GroupApplicationAcceptedTips)(nil),  // 36: openim.sdkws.GroupApplicationAcceptedTips
-	(*GroupApplicationRejectedTips)(nil),  // 37: openim.sdkws.GroupApplicationRejectedTips
-	(*GroupOwnerTransferredTips)(nil),     // 38: openim.sdkws.GroupOwnerTransferredTips
-	(*MemberKickedTips)(nil),              // 39: openim.sdkws.MemberKickedTips
-	(*MemberInvitedTips)(nil),             // 40: openim.sdkws.MemberInvitedTips
-	(*MemberEnterTips)(nil),               // 41: openim.sdkws.MemberEnterTips
-	(*GroupDismissedTips)(nil),            // 42: openim.sdkws.GroupDismissedTips
-	(*GroupMemberMutedTips)(nil),          // 43: openim.sdkws.GroupMemberMutedTips
-	(*GroupMemberCancelMutedTips)(nil),    // 44: openim.sdkws.GroupMemberCancelMutedTips
-	(*GroupMutedTips)(nil),                // 45: openim.sdkws.GroupMutedTips
-	(*GroupCancelMutedTips)(nil),          // 46: openim.sdkws.GroupCancelMutedTips
-	(*GroupMemberInfoSetTips)(nil),        // 47: openim.sdkws.GroupMemberInfoSetTips
-	(*FriendApplication)(nil),             // 48: openim.sdkws.FriendApplication
-	(*FromToUserID)(nil),                  // 49: openim.sdkws.FromToUserID
-	(*FriendApplicationTips)(nil),         // 50: openim.sdkws.FriendApplicationTips
-	(*FriendApplicationApprovedTips)(nil), // 51: openim.sdkws.FriendApplicationApprovedTips
-	(*FriendApplicationRejectedTips)(nil), // 52: openim.sdkws.FriendApplicationRejectedTips
-	(*FriendAddedTips)(nil),               // 53: openim.sdkws.FriendAddedTips
-	(*FriendDeletedTips)(nil),             // 54: openim.sdkws.FriendDeletedTips
-	(*BlackAddedTips)(nil),                // 55: openim.sdkws.BlackAddedTips
-	(*BlackDeletedTips)(nil),              // 56: openim.sdkws.BlackDeletedTips
-	(*FriendInfoChangedTips)(nil),         // 57: openim.sdkws.FriendInfoChangedTips
-	(*UserInfoUpdatedTips)(nil),           // 58: openim.sdkws.UserInfoUpdatedTips
-	(*UserStatusChangeTips)(nil),          // 59: openim.sdkws.UserStatusChangeTips
-	(*UserCommandAddTips)(nil),            // 60: openim.sdkws.UserCommandAddTips
-	(*UserCommandUpdateTips)(nil),         // 61: openim.sdkws.UserCommandUpdateTips
-	(*UserCommandDeleteTips)(nil),         // 62: openim.sdkws.UserCommandDeleteTips
-	(*ConversationUpdateTips)(nil),        // 63: openim.sdkws.ConversationUpdateTips
-	(*ConversationSetPrivateTips)(nil),    // 64: openim.sdkws.ConversationSetPrivateTips
-	(*ConversationHasReadTips)(nil),       // 65: openim.sdkws.ConversationHasReadTips
-	(*NotificationElem)(nil),              // 66: openim.sdkws.NotificationElem
-	(*Seqs)(nil),                          // 67: openim.sdkws.seqs
-	(*DeleteMessageTips)(nil),             // 68: openim.sdkws.DeleteMessageTips
-	(*RevokeMsgTips)(nil),                 // 69: openim.sdkws.RevokeMsgTips
-	(*MessageRevokedContent)(nil),         // 70: openim.sdkws.MessageRevokedContent
-	(*ClearConversationTips)(nil),         // 71: openim.sdkws.ClearConversationTips
-	(*DeleteMsgsTips)(nil),                // 72: openim.sdkws.DeleteMsgsTips
-	(*MarkAsReadTips)(nil),                // 73: openim.sdkws.MarkAsReadTips
-	(*SetAppBackgroundStatusReq)(nil),     // 74: openim.sdkws.SetAppBackgroundStatusReq
-	(*SetAppBackgroundStatusResp)(nil),    // 75: openim.sdkws.SetAppBackgroundStatusResp
-	(*ProcessUserCommand)(nil),            // 76: openim.sdkws.ProcessUserCommand
-	(*RequestPagination)(nil),             // 77: openim.sdkws.RequestPagination
-	(*FriendsInfoUpdateTips)(nil),         // 78: openim.sdkws.FriendsInfoUpdateTips
-	(*SubUserOnlineStatusElem)(nil),       // 79: openim.sdkws.SubUserOnlineStatusElem
-	(*SubUserOnlineStatusTips)(nil),       // 80: openim.sdkws.SubUserOnlineStatusTips
-	(*SubUserOnlineStatus)(nil),           // 81: openim.sdkws.SubUserOnlineStatus
-	(*StreamMsgTips)(nil),                 // 82: openim.sdkws.StreamMsgTips
-	(*ConversationDeleteTips)(nil),        // 83: openim.sdkws.ConversationDeleteTips
-	nil,                                   // 84: openim.sdkws.PullMessageBySeqsResp.MsgsEntry
-	nil,                                   // 85: openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry
-	nil,                                   // 86: openim.sdkws.GetMaxSeqResp.MaxSeqsEntry
-	nil,                                   // 87: openim.sdkws.GetMaxSeqResp.MinSeqsEntry
-	nil,                                   // 88: openim.sdkws.MsgData.OptionsEntry
-	nil,                                   // 89: openim.sdkws.PushMessages.MsgsEntry
-	nil,                                   // 90: openim.sdkws.PushMessages.NotificationMsgsEntry
-	nil,                                   // 91: openim.sdkws.GroupPinnedMsgInfo.OptionsEntry
-	(*wrapperspb.StringValue)(nil),        // 92: openim.protobuf.StringValue
-	(*wrapperspb.Int32Value)(nil),         // 93: openim.protobuf.Int32Value
+	(PullOrder)(0),                               // 0: openim.sdkws.PullOrder
+	(*GroupInfo)(nil),                            // 1: openim.sdkws.GroupInfo
+	(*GroupInviteLinkInfo)(nil),                  // 2: openim.sdkws.GroupInviteLinkInfo
+	(*GroupInfoForSet)(nil),                      // 3: openim.sdkws.GroupInfoForSet
+	(*GroupMemberFullInfo)(nil),                  // 4: openim.sdkws.GroupMemberFullInfo
+	(*PublicUserInfo)(nil),                       // 5: openim.sdkws.PublicUserInfo
+	(*UserInfo)(nil),                             // 6: openim.sdkws.UserInfo
+	(*UserInfoWithEx)(nil),                       // 7: openim.sdkws.UserInfoWithEx
+	(*FriendInfo)(nil),                           // 8: openim.sdkws.FriendInfo
+	(*BlackInfo)(nil),                            // 9: openim.sdkws.BlackInfo
+	(*GroupRequest)(nil),                         // 10: openim.sdkws.GroupRequest
+	(*FriendRequest)(nil),                        // 11: openim.sdkws.FriendRequest
+	(*PullMessageBySeqsReq)(nil),                 // 12: openim.sdkws.PullMessageBySeqsReq
+	(*SeqRange)(nil),                             // 13: openim.sdkws.SeqRange
+	(*PullMsgs)(nil),                             // 14: openim.sdkws.PullMsgs
+	(*PullMessageBySeqsResp)(nil),                // 15: openim.sdkws.PullMessageBySeqsResp
+	(*GetMaxSeqReq)(nil),                         // 16: openim.sdkws.GetMaxSeqReq
+	(*GetMaxSeqResp)(nil),                        // 17: openim.sdkws.GetMaxSeqResp
+	(*UserSendMsgResp)(nil),                      // 18: openim.sdkws.UserSendMsgResp
+	(*MsgData)(nil),                              // 19: openim.sdkws.MsgData
+	(*PushMessages)(nil),                         // 20: openim.sdkws.PushMessages
+	(*OfflinePushInfo)(nil),                      // 21: openim.sdkws.OfflinePushInfo
+	(*TipsComm)(nil),                             // 22: openim.sdkws.TipsComm
+	(*GroupCreatedTips)(nil),                     // 23: openim.sdkws.GroupCreatedTips
+	(*GroupInfoSetTips)(nil),                     // 24: openim.sdkws.GroupInfoSetTips
+	(*GroupInfoSetNameTips)(nil),                 // 25: openim.sdkws.GroupInfoSetNameTips
+	(*GroupNeedVerificationSetTips)(nil),         // 26: openim.sdkws.GroupNeedVerificationSetTips
+	(*GroupFaceURLSetTips)(nil),                  // 27: openim.sdkws.GroupFaceURLSetTips
+	(*GroupInfoSetAnnouncementTips)(nil),         // 28: openim.sdkws.GroupInfoSetAnnouncementTips
+	(*GroupPinnedMsgInfo)(nil),                   // 29: openim.sdkws.GroupPinnedMsgInfo
+	(*GroupMessagePinnedTips)(nil),               // 30: openim.sdkws.GroupMessagePinnedTips
+	(*GroupCallStartedTips)(nil),                 // 31: openim.sdkws.GroupCallStartedTips
+	(*GroupCallParticipantCountUpdatedTips)(nil), // 32: openim.sdkws.GroupCallParticipantCountUpdatedTips
+	(*GroupBurnDurationSetTips)(nil),             // 33: openim.sdkws.GroupBurnDurationSetTips
+	(*GroupCallEndedTips)(nil),                   // 34: openim.sdkws.GroupCallEndedTips
+	(*JoinGroupApplicationTips)(nil),             // 35: openim.sdkws.JoinGroupApplicationTips
+	(*MemberQuitTips)(nil),                       // 36: openim.sdkws.MemberQuitTips
+	(*GroupApplicationAcceptedTips)(nil),         // 37: openim.sdkws.GroupApplicationAcceptedTips
+	(*GroupApplicationRejectedTips)(nil),         // 38: openim.sdkws.GroupApplicationRejectedTips
+	(*GroupOwnerTransferredTips)(nil),            // 39: openim.sdkws.GroupOwnerTransferredTips
+	(*MemberKickedTips)(nil),                     // 40: openim.sdkws.MemberKickedTips
+	(*MemberInvitedTips)(nil),                    // 41: openim.sdkws.MemberInvitedTips
+	(*MemberEnterTips)(nil),                      // 42: openim.sdkws.MemberEnterTips
+	(*GroupDismissedTips)(nil),                   // 43: openim.sdkws.GroupDismissedTips
+	(*GroupMemberMutedTips)(nil),                 // 44: openim.sdkws.GroupMemberMutedTips
+	(*GroupMemberCancelMutedTips)(nil),           // 45: openim.sdkws.GroupMemberCancelMutedTips
+	(*GroupMutedTips)(nil),                       // 46: openim.sdkws.GroupMutedTips
+	(*GroupCancelMutedTips)(nil),                 // 47: openim.sdkws.GroupCancelMutedTips
+	(*GroupMemberInfoSetTips)(nil),               // 48: openim.sdkws.GroupMemberInfoSetTips
+	(*FriendApplication)(nil),                    // 49: openim.sdkws.FriendApplication
+	(*FromToUserID)(nil),                         // 50: openim.sdkws.FromToUserID
+	(*FriendApplicationTips)(nil),                // 51: openim.sdkws.FriendApplicationTips
+	(*FriendApplicationApprovedTips)(nil),        // 52: openim.sdkws.FriendApplicationApprovedTips
+	(*FriendApplicationRejectedTips)(nil),        // 53: openim.sdkws.FriendApplicationRejectedTips
+	(*FriendAddedTips)(nil),                      // 54: openim.sdkws.FriendAddedTips
+	(*FriendDeletedTips)(nil),                    // 55: openim.sdkws.FriendDeletedTips
+	(*BlackAddedTips)(nil),                       // 56: openim.sdkws.BlackAddedTips
+	(*BlackDeletedTips)(nil),                     // 57: openim.sdkws.BlackDeletedTips
+	(*FriendInfoChangedTips)(nil),                // 58: openim.sdkws.FriendInfoChangedTips
+	(*UserInfoUpdatedTips)(nil),                  // 59: openim.sdkws.UserInfoUpdatedTips
+	(*UserStatusChangeTips)(nil),                 // 60: openim.sdkws.UserStatusChangeTips
+	(*UserCommandAddTips)(nil),                   // 61: openim.sdkws.UserCommandAddTips
+	(*UserCommandUpdateTips)(nil),                // 62: openim.sdkws.UserCommandUpdateTips
+	(*UserCommandDeleteTips)(nil),                // 63: openim.sdkws.UserCommandDeleteTips
+	(*ConversationUpdateTips)(nil),               // 64: openim.sdkws.ConversationUpdateTips
+	(*ConversationSetPrivateTips)(nil),           // 65: openim.sdkws.ConversationSetPrivateTips
+	(*ConversationHasReadTips)(nil),              // 66: openim.sdkws.ConversationHasReadTips
+	(*NotificationElem)(nil),                     // 67: openim.sdkws.NotificationElem
+	(*Seqs)(nil),                                 // 68: openim.sdkws.seqs
+	(*DeleteMessageTips)(nil),                    // 69: openim.sdkws.DeleteMessageTips
+	(*RevokeMsgTips)(nil),                        // 70: openim.sdkws.RevokeMsgTips
+	(*MessageRevokedContent)(nil),                // 71: openim.sdkws.MessageRevokedContent
+	(*ClearConversationTips)(nil),                // 72: openim.sdkws.ClearConversationTips
+	(*DeleteMsgsTips)(nil),                       // 73: openim.sdkws.DeleteMsgsTips
+	(*MarkAsReadTips)(nil),                       // 74: openim.sdkws.MarkAsReadTips
+	(*SetAppBackgroundStatusReq)(nil),            // 75: openim.sdkws.SetAppBackgroundStatusReq
+	(*SetAppBackgroundStatusResp)(nil),           // 76: openim.sdkws.SetAppBackgroundStatusResp
+	(*ProcessUserCommand)(nil),                   // 77: openim.sdkws.ProcessUserCommand
+	(*RequestPagination)(nil),                    // 78: openim.sdkws.RequestPagination
+	(*FriendsInfoUpdateTips)(nil),                // 79: openim.sdkws.FriendsInfoUpdateTips
+	(*SubUserOnlineStatusElem)(nil),              // 80: openim.sdkws.SubUserOnlineStatusElem
+	(*SubUserOnlineStatusTips)(nil),              // 81: openim.sdkws.SubUserOnlineStatusTips
+	(*SubUserOnlineStatus)(nil),                  // 82: openim.sdkws.SubUserOnlineStatus
+	(*StreamMsgTips)(nil),                        // 83: openim.sdkws.StreamMsgTips
+	(*ConversationDeleteTips)(nil),               // 84: openim.sdkws.ConversationDeleteTips
+	nil,                                          // 85: openim.sdkws.PullMessageBySeqsResp.MsgsEntry
+	nil,                                          // 86: openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry
+	nil,                                          // 87: openim.sdkws.GetMaxSeqResp.MaxSeqsEntry
+	nil,                                          // 88: openim.sdkws.GetMaxSeqResp.MinSeqsEntry
+	nil,                                          // 89: openim.sdkws.MsgData.OptionsEntry
+	nil,                                          // 90: openim.sdkws.PushMessages.MsgsEntry
+	nil,                                          // 91: openim.sdkws.PushMessages.NotificationMsgsEntry
+	nil,                                          // 92: openim.sdkws.GroupPinnedMsgInfo.OptionsEntry
+	(*wrapperspb.StringValue)(nil),               // 93: openim.protobuf.StringValue
+	(*wrapperspb.Int32Value)(nil),                // 94: openim.protobuf.Int32Value
 }
 var file_sdkws_sdkws_proto_depIdxs = []int32{
 	2,   // 0: openim.sdkws.GroupInfo.inviteLink:type_name -> openim.sdkws.GroupInviteLinkInfo
-	92,  // 1: openim.sdkws.GroupInfoForSet.ex:type_name -> openim.protobuf.StringValue
-	93,  // 2: openim.sdkws.GroupInfoForSet.needVerification:type_name -> openim.protobuf.Int32Value
-	93,  // 3: openim.sdkws.GroupInfoForSet.lookMemberInfo:type_name -> openim.protobuf.Int32Value
-	93,  // 4: openim.sdkws.GroupInfoForSet.applyMemberFriend:type_name -> openim.protobuf.Int32Value
-	93,  // 5: openim.sdkws.GroupInfoForSet.allowSendMsg:type_name -> openim.protobuf.Int32Value
-	93,  // 6: openim.sdkws.GroupInfoForSet.allowPinMsg:type_name -> openim.protobuf.Int32Value
-	93,  // 7: openim.sdkws.GroupInfoForSet.allowAddMember:type_name -> openim.protobuf.Int32Value
-	93,  // 8: openim.sdkws.GroupInfoForSet.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
-	93,  // 9: openim.sdkws.GroupInfoForSet.allowBurn:type_name -> openim.protobuf.Int32Value
-	93,  // 10: openim.sdkws.GroupInfoForSet.enableInviteLink:type_name -> openim.protobuf.Int32Value
-	92,  // 11: openim.sdkws.UserInfoWithEx.nickname:type_name -> openim.protobuf.StringValue
-	92,  // 12: openim.sdkws.UserInfoWithEx.faceURL:type_name -> openim.protobuf.StringValue
-	92,  // 13: openim.sdkws.UserInfoWithEx.ex:type_name -> openim.protobuf.StringValue
-	92,  // 14: openim.sdkws.UserInfoWithEx.firstName:type_name -> openim.protobuf.StringValue
-	92,  // 15: openim.sdkws.UserInfoWithEx.lastName:type_name -> openim.protobuf.StringValue
-	93,  // 16: openim.sdkws.UserInfoWithEx.globalRecvMsgOpt:type_name -> openim.protobuf.Int32Value
-	92,  // 17: openim.sdkws.UserInfoWithEx.phone:type_name -> openim.protobuf.StringValue
-	92,  // 18: openim.sdkws.UserInfoWithEx.areaCode:type_name -> openim.protobuf.StringValue
-	93,  // 19: openim.sdkws.UserInfoWithEx.phoneVisibility:type_name -> openim.protobuf.Int32Value
-	93,  // 20: openim.sdkws.UserInfoWithEx.callAcceptSetting:type_name -> openim.protobuf.Int32Value
-	93,  // 21: openim.sdkws.UserInfoWithEx.msgReceiveSetting:type_name -> openim.protobuf.Int32Value
-	92,  // 22: openim.sdkws.UserInfoWithEx.callRingtoneURL:type_name -> openim.protobuf.StringValue
-	92,  // 23: openim.sdkws.UserInfoWithEx.callRingtoneName:type_name -> openim.protobuf.StringValue
-	92,  // 24: openim.sdkws.UserInfoWithEx.callRingtoneCover:type_name -> openim.protobuf.StringValue
-	92,  // 25: openim.sdkws.UserInfoWithEx.callRingtoneAuthor:type_name -> openim.protobuf.StringValue
-	93,  // 26: openim.sdkws.UserInfoWithEx.groupInviteSetting:type_name -> openim.protobuf.Int32Value
-	93,  // 27: openim.sdkws.UserInfoWithEx.msgBurnDuration:type_name -> openim.protobuf.Int32Value
+	93,  // 1: openim.sdkws.GroupInfoForSet.ex:type_name -> openim.protobuf.StringValue
+	94,  // 2: openim.sdkws.GroupInfoForSet.needVerification:type_name -> openim.protobuf.Int32Value
+	94,  // 3: openim.sdkws.GroupInfoForSet.lookMemberInfo:type_name -> openim.protobuf.Int32Value
+	94,  // 4: openim.sdkws.GroupInfoForSet.applyMemberFriend:type_name -> openim.protobuf.Int32Value
+	94,  // 5: openim.sdkws.GroupInfoForSet.allowSendMsg:type_name -> openim.protobuf.Int32Value
+	94,  // 6: openim.sdkws.GroupInfoForSet.allowPinMsg:type_name -> openim.protobuf.Int32Value
+	94,  // 7: openim.sdkws.GroupInfoForSet.allowAddMember:type_name -> openim.protobuf.Int32Value
+	94,  // 8: openim.sdkws.GroupInfoForSet.allowEditGroupInfo:type_name -> openim.protobuf.Int32Value
+	94,  // 9: openim.sdkws.GroupInfoForSet.allowBurn:type_name -> openim.protobuf.Int32Value
+	94,  // 10: openim.sdkws.GroupInfoForSet.enableInviteLink:type_name -> openim.protobuf.Int32Value
+	93,  // 11: openim.sdkws.UserInfoWithEx.nickname:type_name -> openim.protobuf.StringValue
+	93,  // 12: openim.sdkws.UserInfoWithEx.faceURL:type_name -> openim.protobuf.StringValue
+	93,  // 13: openim.sdkws.UserInfoWithEx.ex:type_name -> openim.protobuf.StringValue
+	93,  // 14: openim.sdkws.UserInfoWithEx.firstName:type_name -> openim.protobuf.StringValue
+	93,  // 15: openim.sdkws.UserInfoWithEx.lastName:type_name -> openim.protobuf.StringValue
+	94,  // 16: openim.sdkws.UserInfoWithEx.globalRecvMsgOpt:type_name -> openim.protobuf.Int32Value
+	93,  // 17: openim.sdkws.UserInfoWithEx.phone:type_name -> openim.protobuf.StringValue
+	93,  // 18: openim.sdkws.UserInfoWithEx.areaCode:type_name -> openim.protobuf.StringValue
+	94,  // 19: openim.sdkws.UserInfoWithEx.phoneVisibility:type_name -> openim.protobuf.Int32Value
+	94,  // 20: openim.sdkws.UserInfoWithEx.callAcceptSetting:type_name -> openim.protobuf.Int32Value
+	94,  // 21: openim.sdkws.UserInfoWithEx.msgReceiveSetting:type_name -> openim.protobuf.Int32Value
+	93,  // 22: openim.sdkws.UserInfoWithEx.callRingtoneURL:type_name -> openim.protobuf.StringValue
+	93,  // 23: openim.sdkws.UserInfoWithEx.callRingtoneName:type_name -> openim.protobuf.StringValue
+	93,  // 24: openim.sdkws.UserInfoWithEx.callRingtoneCover:type_name -> openim.protobuf.StringValue
+	93,  // 25: openim.sdkws.UserInfoWithEx.callRingtoneAuthor:type_name -> openim.protobuf.StringValue
+	94,  // 26: openim.sdkws.UserInfoWithEx.groupInviteSetting:type_name -> openim.protobuf.Int32Value
+	94,  // 27: openim.sdkws.UserInfoWithEx.msgBurnDuration:type_name -> openim.protobuf.Int32Value
 	6,   // 28: openim.sdkws.FriendInfo.friendUser:type_name -> openim.sdkws.UserInfo
 	5,   // 29: openim.sdkws.BlackInfo.blackUserInfo:type_name -> openim.sdkws.PublicUserInfo
 	5,   // 30: openim.sdkws.GroupRequest.userInfo:type_name -> openim.sdkws.PublicUserInfo
@@ -7708,14 +7814,14 @@ var file_sdkws_sdkws_proto_depIdxs = []int32{
 	13,  // 32: openim.sdkws.PullMessageBySeqsReq.seqRanges:type_name -> openim.sdkws.SeqRange
 	0,   // 33: openim.sdkws.PullMessageBySeqsReq.order:type_name -> openim.sdkws.PullOrder
 	19,  // 34: openim.sdkws.PullMsgs.Msgs:type_name -> openim.sdkws.MsgData
-	84,  // 35: openim.sdkws.PullMessageBySeqsResp.msgs:type_name -> openim.sdkws.PullMessageBySeqsResp.MsgsEntry
-	85,  // 36: openim.sdkws.PullMessageBySeqsResp.notificationMsgs:type_name -> openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry
-	86,  // 37: openim.sdkws.GetMaxSeqResp.maxSeqs:type_name -> openim.sdkws.GetMaxSeqResp.MaxSeqsEntry
-	87,  // 38: openim.sdkws.GetMaxSeqResp.minSeqs:type_name -> openim.sdkws.GetMaxSeqResp.MinSeqsEntry
-	88,  // 39: openim.sdkws.MsgData.options:type_name -> openim.sdkws.MsgData.OptionsEntry
+	85,  // 35: openim.sdkws.PullMessageBySeqsResp.msgs:type_name -> openim.sdkws.PullMessageBySeqsResp.MsgsEntry
+	86,  // 36: openim.sdkws.PullMessageBySeqsResp.notificationMsgs:type_name -> openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry
+	87,  // 37: openim.sdkws.GetMaxSeqResp.maxSeqs:type_name -> openim.sdkws.GetMaxSeqResp.MaxSeqsEntry
+	88,  // 38: openim.sdkws.GetMaxSeqResp.minSeqs:type_name -> openim.sdkws.GetMaxSeqResp.MinSeqsEntry
+	89,  // 39: openim.sdkws.MsgData.options:type_name -> openim.sdkws.MsgData.OptionsEntry
 	21,  // 40: openim.sdkws.MsgData.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	89,  // 41: openim.sdkws.PushMessages.msgs:type_name -> openim.sdkws.PushMessages.MsgsEntry
-	90,  // 42: openim.sdkws.PushMessages.notificationMsgs:type_name -> openim.sdkws.PushMessages.NotificationMsgsEntry
+	90,  // 41: openim.sdkws.PushMessages.msgs:type_name -> openim.sdkws.PushMessages.MsgsEntry
+	91,  // 42: openim.sdkws.PushMessages.notificationMsgs:type_name -> openim.sdkws.PushMessages.NotificationMsgsEntry
 	1,   // 43: openim.sdkws.GroupCreatedTips.group:type_name -> openim.sdkws.GroupInfo
 	4,   // 44: openim.sdkws.GroupCreatedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
 	4,   // 45: openim.sdkws.GroupCreatedTips.memberList:type_name -> openim.sdkws.GroupMemberFullInfo
@@ -7730,79 +7836,80 @@ var file_sdkws_sdkws_proto_depIdxs = []int32{
 	1,   // 54: openim.sdkws.GroupFaceURLSetTips.group:type_name -> openim.sdkws.GroupInfo
 	4,   // 55: openim.sdkws.GroupInfoSetAnnouncementTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
 	1,   // 56: openim.sdkws.GroupInfoSetAnnouncementTips.group:type_name -> openim.sdkws.GroupInfo
-	91,  // 57: openim.sdkws.GroupPinnedMsgInfo.options:type_name -> openim.sdkws.GroupPinnedMsgInfo.OptionsEntry
+	92,  // 57: openim.sdkws.GroupPinnedMsgInfo.options:type_name -> openim.sdkws.GroupPinnedMsgInfo.OptionsEntry
 	4,   // 58: openim.sdkws.GroupMessagePinnedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
 	1,   // 59: openim.sdkws.GroupMessagePinnedTips.group:type_name -> openim.sdkws.GroupInfo
 	29,  // 60: openim.sdkws.GroupMessagePinnedTips.pinnedMsg:type_name -> openim.sdkws.GroupPinnedMsgInfo
 	29,  // 61: openim.sdkws.GroupMessagePinnedTips.pinnedList:type_name -> openim.sdkws.GroupPinnedMsgInfo
 	4,   // 62: openim.sdkws.GroupCallStartedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
 	1,   // 63: openim.sdkws.GroupCallStartedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 64: openim.sdkws.GroupBurnDurationSetTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 65: openim.sdkws.GroupBurnDurationSetTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 66: openim.sdkws.GroupCallEndedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 67: openim.sdkws.GroupCallEndedTips.group:type_name -> openim.sdkws.GroupInfo
-	1,   // 68: openim.sdkws.JoinGroupApplicationTips.group:type_name -> openim.sdkws.GroupInfo
-	5,   // 69: openim.sdkws.JoinGroupApplicationTips.applicant:type_name -> openim.sdkws.PublicUserInfo
-	10,  // 70: openim.sdkws.JoinGroupApplicationTips.request:type_name -> openim.sdkws.GroupRequest
-	1,   // 71: openim.sdkws.MemberQuitTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 72: openim.sdkws.MemberQuitTips.quitUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 73: openim.sdkws.GroupApplicationAcceptedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 74: openim.sdkws.GroupApplicationAcceptedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	10,  // 75: openim.sdkws.GroupApplicationAcceptedTips.request:type_name -> openim.sdkws.GroupRequest
-	1,   // 76: openim.sdkws.GroupApplicationRejectedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 77: openim.sdkws.GroupApplicationRejectedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	10,  // 78: openim.sdkws.GroupApplicationRejectedTips.request:type_name -> openim.sdkws.GroupRequest
-	1,   // 79: openim.sdkws.GroupOwnerTransferredTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 80: openim.sdkws.GroupOwnerTransferredTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 81: openim.sdkws.GroupOwnerTransferredTips.newGroupOwner:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 82: openim.sdkws.GroupOwnerTransferredTips.oldGroupOwnerInfo:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 83: openim.sdkws.MemberKickedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 84: openim.sdkws.MemberKickedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 85: openim.sdkws.MemberKickedTips.kickedUserList:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 86: openim.sdkws.MemberInvitedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 87: openim.sdkws.MemberInvitedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 88: openim.sdkws.MemberInvitedTips.invitedUserList:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 89: openim.sdkws.MemberInvitedTips.inviterUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 90: openim.sdkws.MemberEnterTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 91: openim.sdkws.MemberEnterTips.entrantUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 92: openim.sdkws.GroupDismissedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 93: openim.sdkws.GroupDismissedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 94: openim.sdkws.GroupMemberMutedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 95: openim.sdkws.GroupMemberMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 96: openim.sdkws.GroupMemberMutedTips.mutedUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 97: openim.sdkws.GroupMemberCancelMutedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 98: openim.sdkws.GroupMemberCancelMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 99: openim.sdkws.GroupMemberCancelMutedTips.mutedUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 100: openim.sdkws.GroupMutedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 101: openim.sdkws.GroupMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 102: openim.sdkws.GroupCancelMutedTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 103: openim.sdkws.GroupCancelMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	1,   // 104: openim.sdkws.GroupMemberInfoSetTips.group:type_name -> openim.sdkws.GroupInfo
-	4,   // 105: openim.sdkws.GroupMemberInfoSetTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	4,   // 106: openim.sdkws.GroupMemberInfoSetTips.changedUser:type_name -> openim.sdkws.GroupMemberFullInfo
-	49,  // 107: openim.sdkws.FriendApplicationTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	11,  // 108: openim.sdkws.FriendApplicationTips.request:type_name -> openim.sdkws.FriendRequest
-	49,  // 109: openim.sdkws.FriendApplicationApprovedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	11,  // 110: openim.sdkws.FriendApplicationApprovedTips.request:type_name -> openim.sdkws.FriendRequest
-	49,  // 111: openim.sdkws.FriendApplicationRejectedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	11,  // 112: openim.sdkws.FriendApplicationRejectedTips.request:type_name -> openim.sdkws.FriendRequest
-	8,   // 113: openim.sdkws.FriendAddedTips.friend:type_name -> openim.sdkws.FriendInfo
-	5,   // 114: openim.sdkws.FriendAddedTips.opUser:type_name -> openim.sdkws.PublicUserInfo
-	49,  // 115: openim.sdkws.FriendDeletedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	49,  // 116: openim.sdkws.BlackAddedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	49,  // 117: openim.sdkws.BlackDeletedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	49,  // 118: openim.sdkws.FriendInfoChangedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	49,  // 119: openim.sdkws.FriendsInfoUpdateTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
-	79,  // 120: openim.sdkws.SubUserOnlineStatusTips.subscribers:type_name -> openim.sdkws.SubUserOnlineStatusElem
-	14,  // 121: openim.sdkws.PullMessageBySeqsResp.MsgsEntry.value:type_name -> openim.sdkws.PullMsgs
-	14,  // 122: openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry.value:type_name -> openim.sdkws.PullMsgs
-	14,  // 123: openim.sdkws.PushMessages.MsgsEntry.value:type_name -> openim.sdkws.PullMsgs
-	14,  // 124: openim.sdkws.PushMessages.NotificationMsgsEntry.value:type_name -> openim.sdkws.PullMsgs
-	125, // [125:125] is the sub-list for method output_type
-	125, // [125:125] is the sub-list for method input_type
-	125, // [125:125] is the sub-list for extension type_name
-	125, // [125:125] is the sub-list for extension extendee
-	0,   // [0:125] is the sub-list for field type_name
+	1,   // 64: openim.sdkws.GroupCallParticipantCountUpdatedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 65: openim.sdkws.GroupBurnDurationSetTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 66: openim.sdkws.GroupBurnDurationSetTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 67: openim.sdkws.GroupCallEndedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 68: openim.sdkws.GroupCallEndedTips.group:type_name -> openim.sdkws.GroupInfo
+	1,   // 69: openim.sdkws.JoinGroupApplicationTips.group:type_name -> openim.sdkws.GroupInfo
+	5,   // 70: openim.sdkws.JoinGroupApplicationTips.applicant:type_name -> openim.sdkws.PublicUserInfo
+	10,  // 71: openim.sdkws.JoinGroupApplicationTips.request:type_name -> openim.sdkws.GroupRequest
+	1,   // 72: openim.sdkws.MemberQuitTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 73: openim.sdkws.MemberQuitTips.quitUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 74: openim.sdkws.GroupApplicationAcceptedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 75: openim.sdkws.GroupApplicationAcceptedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	10,  // 76: openim.sdkws.GroupApplicationAcceptedTips.request:type_name -> openim.sdkws.GroupRequest
+	1,   // 77: openim.sdkws.GroupApplicationRejectedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 78: openim.sdkws.GroupApplicationRejectedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	10,  // 79: openim.sdkws.GroupApplicationRejectedTips.request:type_name -> openim.sdkws.GroupRequest
+	1,   // 80: openim.sdkws.GroupOwnerTransferredTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 81: openim.sdkws.GroupOwnerTransferredTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 82: openim.sdkws.GroupOwnerTransferredTips.newGroupOwner:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 83: openim.sdkws.GroupOwnerTransferredTips.oldGroupOwnerInfo:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 84: openim.sdkws.MemberKickedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 85: openim.sdkws.MemberKickedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 86: openim.sdkws.MemberKickedTips.kickedUserList:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 87: openim.sdkws.MemberInvitedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 88: openim.sdkws.MemberInvitedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 89: openim.sdkws.MemberInvitedTips.invitedUserList:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 90: openim.sdkws.MemberInvitedTips.inviterUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 91: openim.sdkws.MemberEnterTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 92: openim.sdkws.MemberEnterTips.entrantUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 93: openim.sdkws.GroupDismissedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 94: openim.sdkws.GroupDismissedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 95: openim.sdkws.GroupMemberMutedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 96: openim.sdkws.GroupMemberMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 97: openim.sdkws.GroupMemberMutedTips.mutedUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 98: openim.sdkws.GroupMemberCancelMutedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 99: openim.sdkws.GroupMemberCancelMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 100: openim.sdkws.GroupMemberCancelMutedTips.mutedUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 101: openim.sdkws.GroupMutedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 102: openim.sdkws.GroupMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 103: openim.sdkws.GroupCancelMutedTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 104: openim.sdkws.GroupCancelMutedTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	1,   // 105: openim.sdkws.GroupMemberInfoSetTips.group:type_name -> openim.sdkws.GroupInfo
+	4,   // 106: openim.sdkws.GroupMemberInfoSetTips.opUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	4,   // 107: openim.sdkws.GroupMemberInfoSetTips.changedUser:type_name -> openim.sdkws.GroupMemberFullInfo
+	50,  // 108: openim.sdkws.FriendApplicationTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	11,  // 109: openim.sdkws.FriendApplicationTips.request:type_name -> openim.sdkws.FriendRequest
+	50,  // 110: openim.sdkws.FriendApplicationApprovedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	11,  // 111: openim.sdkws.FriendApplicationApprovedTips.request:type_name -> openim.sdkws.FriendRequest
+	50,  // 112: openim.sdkws.FriendApplicationRejectedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	11,  // 113: openim.sdkws.FriendApplicationRejectedTips.request:type_name -> openim.sdkws.FriendRequest
+	8,   // 114: openim.sdkws.FriendAddedTips.friend:type_name -> openim.sdkws.FriendInfo
+	5,   // 115: openim.sdkws.FriendAddedTips.opUser:type_name -> openim.sdkws.PublicUserInfo
+	50,  // 116: openim.sdkws.FriendDeletedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	50,  // 117: openim.sdkws.BlackAddedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	50,  // 118: openim.sdkws.BlackDeletedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	50,  // 119: openim.sdkws.FriendInfoChangedTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	50,  // 120: openim.sdkws.FriendsInfoUpdateTips.fromToUserID:type_name -> openim.sdkws.FromToUserID
+	80,  // 121: openim.sdkws.SubUserOnlineStatusTips.subscribers:type_name -> openim.sdkws.SubUserOnlineStatusElem
+	14,  // 122: openim.sdkws.PullMessageBySeqsResp.MsgsEntry.value:type_name -> openim.sdkws.PullMsgs
+	14,  // 123: openim.sdkws.PullMessageBySeqsResp.NotificationMsgsEntry.value:type_name -> openim.sdkws.PullMsgs
+	14,  // 124: openim.sdkws.PushMessages.MsgsEntry.value:type_name -> openim.sdkws.PullMsgs
+	14,  // 125: openim.sdkws.PushMessages.NotificationMsgsEntry.value:type_name -> openim.sdkws.PullMsgs
+	126, // [126:126] is the sub-list for method output_type
+	126, // [126:126] is the sub-list for method input_type
+	126, // [126:126] is the sub-list for extension type_name
+	126, // [126:126] is the sub-list for extension extendee
+	0,   // [0:126] is the sub-list for field type_name
 }
 
 func init() { file_sdkws_sdkws_proto_init() }
@@ -7816,7 +7923,7 @@ func file_sdkws_sdkws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sdkws_sdkws_proto_rawDesc), len(file_sdkws_sdkws_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   91,
+			NumMessages:   92,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

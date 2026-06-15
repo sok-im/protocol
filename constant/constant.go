@@ -60,33 +60,33 @@ const (
 
 	GroupNotificationBegin = 1500
 
-	GroupCreatedNotification                 = 1501
-	GroupInfoSetNotification                 = 1502
-	JoinGroupApplicationNotification         = 1503
-	MemberQuitNotification                   = 1504
-	GroupApplicationAcceptedNotification     = 1505
-	GroupApplicationRejectedNotification     = 1506
-	GroupOwnerTransferredNotification        = 1507
-	MemberKickedNotification                 = 1508
-	MemberInvitedNotification                = 1509
-	MemberEnterNotification                  = 1510
-	GroupDismissedNotification               = 1511
-	GroupMemberMutedNotification             = 1512
-	GroupMemberCancelMutedNotification       = 1513
-	GroupMutedNotification                   = 1514
-	GroupCancelMutedNotification             = 1515
-	GroupMemberInfoSetNotification           = 1516
-	GroupMemberSetToAdminNotification        = 1517
-	GroupMemberSetToOrdinaryUserNotification = 1518
-	GroupInfoSetAnnouncementNotification     = 1519
-	GroupInfoSetNameNotification             = 1520
-	GroupMessagePinnedNotification           = 1521
-	GroupCallStartedNotification                  = 1522
-	GroupCallEndedNotification                    = 1523
-	GroupCallParticipantCountUpdatedNotification  = 1527
-	GroupBurnDurationSetNotification              = 1524
-	GroupFaceURLSetNotification              = 1525
-	GroupNeedVerificationSetNotification     = 1526
+	GroupCreatedNotification                     = 1501
+	GroupInfoSetNotification                     = 1502
+	JoinGroupApplicationNotification             = 1503
+	MemberQuitNotification                       = 1504
+	GroupApplicationAcceptedNotification         = 1505
+	GroupApplicationRejectedNotification         = 1506
+	GroupOwnerTransferredNotification            = 1507
+	MemberKickedNotification                     = 1508
+	MemberInvitedNotification                    = 1509
+	MemberEnterNotification                      = 1510
+	GroupDismissedNotification                   = 1511
+	GroupMemberMutedNotification                 = 1512
+	GroupMemberCancelMutedNotification           = 1513
+	GroupMutedNotification                       = 1514
+	GroupCancelMutedNotification                 = 1515
+	GroupMemberInfoSetNotification               = 1516
+	GroupMemberSetToAdminNotification            = 1517
+	GroupMemberSetToOrdinaryUserNotification     = 1518
+	GroupInfoSetAnnouncementNotification         = 1519
+	GroupInfoSetNameNotification                 = 1520
+	GroupMessagePinnedNotification               = 1521
+	GroupCallStartedNotification                 = 1522
+	GroupCallEndedNotification                   = 1523
+	GroupCallParticipantCountUpdatedNotification = 1527
+	GroupBurnDurationSetNotification             = 1524
+	GroupFaceURLSetNotification                  = 1525
+	GroupNeedVerificationSetNotification         = 1526
 
 	//SignalingNotificationBegin = 1600
 	//SignalingNotification      = 1601
@@ -192,10 +192,10 @@ const (
 	// UserJoinGroupSource.
 	JoinByAdmin = 1
 
-	JoinByInvitation  = 2
-	JoinBySearch      = 3
-	JoinByQRCode      = 4
-	JoinByInviteLink  = 5
+	JoinByInvitation = 2
+	JoinBySearch     = 3
+	JoinByQRCode     = 4
+	JoinByInviteLink = 5
 
 	// Minio.
 	MinioDurationTimes = 3600
