@@ -42,6 +42,21 @@ message SignalSendCustomSignalReq {
 message SignalSendCustomSignalResp {
 }
 
+// SignalNotifyGroupCallEndedReq triggers GroupCallEndedNotification (1523) to all group members.
+message SignalNotifyGroupCallEndedReq {
+  string groupID = 1;
+  // roomID optionally resolves inviterUserID and mediaType from the active invitation.
+  string roomID = 2;
+  // inviterUserID is the user shown as ending the call; defaults to invitation inviter when roomID is set.
+  string inviterUserID = 3;
+  string mediaType = 4;
+  // durationSecs is call duration in seconds; 0 means cancelled or not answered.
+  int64 durationSecs = 5;
+}
+
+message SignalNotifyGroupCallEndedResp {
+}
+
 message SignalOnStreamChangeReq {
   string roomID = 1;
   string streamType = 2;
@@ -349,6 +364,8 @@ service RtcService {
 
   // custom signal
   rpc SignalSendCustomSignal(SignalSendCustomSignalReq) returns(SignalSendCustomSignalResp);
+  // group call ended notification (1523)
+  rpc SignalNotifyGroupCallEnded(SignalNotifyGroupCallEndedReq) returns(SignalNotifyGroupCallEndedResp);
 
   // rtc cms
   rpc GetSignalInvitationRecords(GetSignalInvitationRecordsReq) returns(GetSignalInvitationRecordsResp);

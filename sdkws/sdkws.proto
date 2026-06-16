@@ -460,17 +460,6 @@ message GroupCallEndedTips {
   string defaultTips = 5;
 }
 
-// OnGroupCallParticipantCountUpdated()
-// Sent when the in-call participant count changes after the call has started.
-message GroupCallParticipantCountUpdatedTips {
-  GroupInfo group = 1;
-  string roomID = 2;
-  int32 participantCount = 3;
-  // defaultTips English display text, e.g. "3 people in the call"
-  string defaultTips = 4;
-  string mediaType = 5;
-}
-
 //	OnJoinGroupApplication()
 message JoinGroupApplicationTips {
   GroupInfo group = 1;
