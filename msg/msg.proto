@@ -94,6 +94,14 @@ message MarkMsgsAsReadReq {
 
 message MarkMsgsAsReadResp {}
 
+message MarkGroupMsgsAsReadReq {
+  string conversationID = 1;
+  repeated int64 seqs   = 2;
+  string userID         = 3;
+}
+
+message MarkGroupMsgsAsReadResp {}
+
 message MarkConversationAsReadReq {
   string conversationID = 1;
   string userID = 2;
@@ -478,6 +486,7 @@ service msg {
   // mark as read
   rpc MarkMsgsAsRead(MarkMsgsAsReadReq) returns (MarkMsgsAsReadResp);
   rpc MarkConversationAsRead(MarkConversationAsReadReq) returns (MarkConversationAsReadResp);
+  rpc MarkGroupMsgsAsRead(MarkGroupMsgsAsReadReq) returns (MarkGroupMsgsAsReadResp);
   rpc SetConversationHasReadSeq(SetConversationHasReadSeqReq) returns (SetConversationHasReadSeqResp);
 
   rpc GetConversationsHasReadAndMaxSeq(GetConversationsHasReadAndMaxSeqReq) returns (GetConversationsHasReadAndMaxSeqResp);

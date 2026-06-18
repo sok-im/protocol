@@ -41,6 +41,7 @@ const (
 	Msg_RevokeMsg_FullMethodName                        = "/openim.msg.msg/RevokeMsg"
 	Msg_MarkMsgsAsRead_FullMethodName                   = "/openim.msg.msg/MarkMsgsAsRead"
 	Msg_MarkConversationAsRead_FullMethodName           = "/openim.msg.msg/MarkConversationAsRead"
+	Msg_MarkGroupMsgsAsRead_FullMethodName              = "/openim.msg.msg/MarkGroupMsgsAsRead"
 	Msg_SetConversationHasReadSeq_FullMethodName        = "/openim.msg.msg/SetConversationHasReadSeq"
 	Msg_GetConversationsHasReadAndMaxSeq_FullMethodName = "/openim.msg.msg/GetConversationsHasReadAndMaxSeq"
 	Msg_GetActiveUser_FullMethodName                    = "/openim.msg.msg/GetActiveUser"
@@ -98,6 +99,7 @@ type MsgClient interface {
 	// mark as read
 	MarkMsgsAsRead(ctx context.Context, in *MarkMsgsAsReadReq, opts ...grpc.CallOption) (*MarkMsgsAsReadResp, error)
 	MarkConversationAsRead(ctx context.Context, in *MarkConversationAsReadReq, opts ...grpc.CallOption) (*MarkConversationAsReadResp, error)
+	MarkGroupMsgsAsRead(ctx context.Context, in *MarkGroupMsgsAsReadReq, opts ...grpc.CallOption) (*MarkGroupMsgsAsReadResp, error)
 	SetConversationHasReadSeq(ctx context.Context, in *SetConversationHasReadSeqReq, opts ...grpc.CallOption) (*SetConversationHasReadSeqResp, error)
 	GetConversationsHasReadAndMaxSeq(ctx context.Context, in *GetConversationsHasReadAndMaxSeqReq, opts ...grpc.CallOption) (*GetConversationsHasReadAndMaxSeqResp, error)
 	GetActiveUser(ctx context.Context, in *GetActiveUserReq, opts ...grpc.CallOption) (*GetActiveUserResp, error)
@@ -336,6 +338,16 @@ func (c *msgClient) MarkConversationAsRead(ctx context.Context, in *MarkConversa
 	return out, nil
 }
 
+func (c *msgClient) MarkGroupMsgsAsRead(ctx context.Context, in *MarkGroupMsgsAsReadReq, opts ...grpc.CallOption) (*MarkGroupMsgsAsReadResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkGroupMsgsAsReadResp)
+	err := c.cc.Invoke(ctx, Msg_MarkGroupMsgsAsRead_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *msgClient) SetConversationHasReadSeq(ctx context.Context, in *SetConversationHasReadSeqReq, opts ...grpc.CallOption) (*SetConversationHasReadSeqResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetConversationHasReadSeqResp)
@@ -526,6 +538,7 @@ type MsgServer interface {
 	// mark as read
 	MarkMsgsAsRead(context.Context, *MarkMsgsAsReadReq) (*MarkMsgsAsReadResp, error)
 	MarkConversationAsRead(context.Context, *MarkConversationAsReadReq) (*MarkConversationAsReadResp, error)
+	MarkGroupMsgsAsRead(context.Context, *MarkGroupMsgsAsReadReq) (*MarkGroupMsgsAsReadResp, error)
 	SetConversationHasReadSeq(context.Context, *SetConversationHasReadSeqReq) (*SetConversationHasReadSeqResp, error)
 	GetConversationsHasReadAndMaxSeq(context.Context, *GetConversationsHasReadAndMaxSeqReq) (*GetConversationsHasReadAndMaxSeqResp, error)
 	GetActiveUser(context.Context, *GetActiveUserReq) (*GetActiveUserResp, error)
@@ -616,6 +629,9 @@ func (UnimplementedMsgServer) MarkMsgsAsRead(context.Context, *MarkMsgsAsReadReq
 }
 func (UnimplementedMsgServer) MarkConversationAsRead(context.Context, *MarkConversationAsReadReq) (*MarkConversationAsReadResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkConversationAsRead not implemented")
+}
+func (UnimplementedMsgServer) MarkGroupMsgsAsRead(context.Context, *MarkGroupMsgsAsReadReq) (*MarkGroupMsgsAsReadResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method MarkGroupMsgsAsRead not implemented")
 }
 func (UnimplementedMsgServer) SetConversationHasReadSeq(context.Context, *SetConversationHasReadSeqReq) (*SetConversationHasReadSeqResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetConversationHasReadSeq not implemented")
@@ -1061,6 +1077,24 @@ func _Msg_MarkConversationAsRead_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_MarkGroupMsgsAsRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkGroupMsgsAsReadReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).MarkGroupMsgsAsRead(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_MarkGroupMsgsAsRead_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).MarkGroupMsgsAsRead(ctx, req.(*MarkGroupMsgsAsReadReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Msg_SetConversationHasReadSeq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetConversationHasReadSeqReq)
 	if err := dec(in); err != nil {
@@ -1421,6 +1455,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkConversationAsRead",
 			Handler:    _Msg_MarkConversationAsRead_Handler,
+		},
+		{
+			MethodName: "MarkGroupMsgsAsRead",
+			Handler:    _Msg_MarkGroupMsgsAsRead_Handler,
 		},
 		{
 			MethodName: "SetConversationHasReadSeq",
