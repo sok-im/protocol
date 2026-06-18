@@ -104,6 +104,8 @@ const (
 
 	BusinessNotificationBegin = 2000
 	BusinessNotification      = 2001
+	ServiceNotification       = 2002 // 服务通知
+	PaymentNotification       = 2003 // 支付通知
 	BusinessNotificationEnd   = 2099
 
 	MsgRevokeNotification  = 2101
@@ -352,6 +354,16 @@ func GroupIsBanPrivateChat(status int32) bool {
 		return false
 	}
 	return true
+}
+
+// IsNotificationSessionContentType 判断是否为通知会话消息类型（需配合 NotificationChatType 使用）。
+func IsNotificationSessionContentType(contentType int32) bool {
+	switch contentType {
+	case OANotification, ServiceNotification, PaymentNotification:
+		return true
+	default:
+		return false
+	}
 }
 
 const LogFileName = "OpenIM.log"
