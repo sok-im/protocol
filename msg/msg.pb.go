@@ -1027,6 +1027,49 @@ func (*MarkMsgsAsReadResp) Descriptor() ([]byte, []int) {
 	return file_msg_msg_proto_rawDescGZIP(), []int{20}
 }
 
+type MarkGroupMsgsAsReadReq struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID,omitempty"`
+	Seqs           []int64                `protobuf:"varint,2,rep,packed,name=seqs,proto3" json:"seqs,omitempty"`
+	UserID         string                 `protobuf:"bytes,3,opt,name=userID,proto3" json:"userID,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MarkGroupMsgsAsReadReq) Reset()         { *x = MarkGroupMsgsAsReadReq{} }
+func (x *MarkGroupMsgsAsReadReq) String() string  { return protoimpl.X.MessageStringOf(x) }
+func (*MarkGroupMsgsAsReadReq) ProtoMessage()      {}
+func (x *MarkGroupMsgsAsReadReq) ProtoReflect() protoreflect.Message { return nil }
+func (x *MarkGroupMsgsAsReadReq) GetConversationID() string {
+	if x != nil {
+		return x.ConversationID
+	}
+	return ""
+}
+func (x *MarkGroupMsgsAsReadReq) GetSeqs() []int64 {
+	if x != nil {
+		return x.Seqs
+	}
+	return nil
+}
+func (x *MarkGroupMsgsAsReadReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+type MarkGroupMsgsAsReadResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MarkGroupMsgsAsReadResp) Reset()         { *x = MarkGroupMsgsAsReadResp{} }
+func (x *MarkGroupMsgsAsReadResp) String() string  { return protoimpl.X.MessageStringOf(x) }
+func (*MarkGroupMsgsAsReadResp) ProtoMessage()      {}
+func (x *MarkGroupMsgsAsReadResp) ProtoReflect() protoreflect.Message { return nil }
+
 type MarkConversationAsReadReq struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ConversationID string                 `protobuf:"bytes,1,opt,name=conversationID,proto3" json:"conversationID"`

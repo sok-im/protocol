@@ -124,6 +124,24 @@ func (x *MarkMsgsAsReadReq) Check() error {
 	return nil
 }
 
+func (x *MarkGroupMsgsAsReadReq) Check() error {
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if len(x.Seqs) == 0 {
+		return errors.New("seqs is empty")
+	}
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	for _, seq := range x.Seqs {
+		if seq == 0 {
+			return errors.New("seqs has 0 value is invalid")
+		}
+	}
+	return nil
+}
+
 func (x *MarkConversationAsReadReq) Check() error {
 	if x.ConversationID == "" {
 		return errors.New("conversationID is empty")
