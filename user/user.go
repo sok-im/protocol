@@ -3,6 +3,7 @@ package user
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/openimsdk/protocol/util/datautil"
 )
@@ -288,4 +289,11 @@ func (x *GetDesignateUsersResp) Format() any {
 		return fmt.Sprintf("len is %v", len(x.UsersInfo))
 	}
 	return x
+}
+
+func (x *CheckNicknameReq) Check() error {
+	if strings.TrimSpace(x.Nickname) == "" {
+		return errors.New("nickname is empty")
+	}
+	return nil
 }
