@@ -297,3 +297,45 @@ func (x *CheckNicknameReq) Check() error {
 	}
 	return nil
 }
+
+func (x *SetMsgNotificationSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
+func (x *SetSokimPaymentNotificationSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
+func (x *SetSokimServiceNotificationSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
+func (x *SetAvNotificationSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
+func (x *SetAvCallRingtoneSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
+func (x *SetPlayCalleeRingtoneOnAnswerSwitchReq) Check() error {
+	if x.UserID == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
