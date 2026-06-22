@@ -7,14 +7,13 @@
 package msg
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	conversation "github.com/openimsdk/protocol/conversation"
 	sdkws "github.com/openimsdk/protocol/sdkws"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -1080,6 +1079,7 @@ func (x *MarkGroupMsgsAsReadReq) GetSeqs() []int64 {
 	}
 	return nil
 }
+
 func (x *MarkGroupMsgsAsReadReq) GetUserID() string {
 	if x != nil {
 		return x.UserID
