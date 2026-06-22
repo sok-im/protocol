@@ -137,6 +137,8 @@ message UserInfo {
   int32 groupInviteSetting = 16;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
   int32 msgBurnDuration = 17;
+  // appLanguage 用户应用语言（如 zh-CN、en-US）
+  string appLanguage = 21;
 }
 
 message UserInfoWithEx {
@@ -164,6 +166,8 @@ message UserInfoWithEx {
   openim.protobuf.Int32Value groupInviteSetting = 14;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
   openim.protobuf.Int32Value msgBurnDuration = 15;
+  // appLanguage 用户应用语言（如 zh-CN、en-US）（可选更新）
+  openim.protobuf.StringValue appLanguage = 19;
 }
 
 message FriendInfo {
