@@ -19,47 +19,54 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_GetDesignateUsers_FullMethodName             = "/openim.user.user/getDesignateUsers"
-	User_UpdateUserInfo_FullMethodName                = "/openim.user.user/updateUserInfo"
-	User_UpdateUserInfoEx_FullMethodName              = "/openim.user.user/updateUserInfoEx"
-	User_SetGlobalRecvMessageOpt_FullMethodName       = "/openim.user.user/setGlobalRecvMessageOpt"
-	User_GetGlobalRecvMessageOpt_FullMethodName       = "/openim.user.user/getGlobalRecvMessageOpt"
-	User_AccountCheck_FullMethodName                  = "/openim.user.user/accountCheck"
-	User_GetPaginationUsers_FullMethodName            = "/openim.user.user/getPaginationUsers"
-	User_UserRegister_FullMethodName                  = "/openim.user.user/userRegister"
-	User_GetAllUserID_FullMethodName                  = "/openim.user.user/getAllUserID"
-	User_UserRegisterCount_FullMethodName             = "/openim.user.user/userRegisterCount"
-	User_GetOnlineUserCount_FullMethodName            = "/openim.user.user/getOnlineUserCount"
-	User_SubscribeOrCancelUsersStatus_FullMethodName  = "/openim.user.user/subscribeOrCancelUsersStatus"
-	User_GetSubscribeUsersStatus_FullMethodName       = "/openim.user.user/getSubscribeUsersStatus"
-	User_GetUserStatus_FullMethodName                 = "/openim.user.user/getUserStatus"
-	User_SetUserStatus_FullMethodName                 = "/openim.user.user/setUserStatus"
-	User_ProcessUserCommandAdd_FullMethodName         = "/openim.user.user/processUserCommandAdd"
-	User_ProcessUserCommandUpdate_FullMethodName      = "/openim.user.user/processUserCommandUpdate"
-	User_ProcessUserCommandDelete_FullMethodName      = "/openim.user.user/processUserCommandDelete"
-	User_ProcessUserCommandGet_FullMethodName         = "/openim.user.user/processUserCommandGet"
-	User_ProcessUserCommandGetAll_FullMethodName      = "/openim.user.user/processUserCommandGetAll"
-	User_AddNotificationAccount_FullMethodName        = "/openim.user.user/addNotificationAccount"
-	User_UpdateNotificationAccountInfo_FullMethodName = "/openim.user.user/updateNotificationAccountInfo"
-	User_SearchNotificationAccount_FullMethodName     = "/openim.user.user/searchNotificationAccount"
-	User_GetNotificationAccount_FullMethodName        = "/openim.user.user/getNotificationAccount"
-	User_SortQuery_FullMethodName                     = "/openim.user.user/sortQuery"
-	User_SetUserOnlineStatus_FullMethodName           = "/openim.user.user/setUserOnlineStatus"
-	User_GetAllOnlineUsers_FullMethodName             = "/openim.user.user/getAllOnlineUsers"
-	User_GetUserClientConfig_FullMethodName           = "/openim.user.user/getUserClientConfig"
-	User_SetUserClientConfig_FullMethodName           = "/openim.user.user/setUserClientConfig"
-	User_DelUserClientConfig_FullMethodName           = "/openim.user.user/delUserClientConfig"
-	User_PageUserClientConfig_FullMethodName          = "/openim.user.user/pageUserClientConfig"
-	User_SetPhoneVisibility_FullMethodName            = "/openim.user.user/setPhoneVisibility"
-	User_SetCallAcceptSetting_FullMethodName          = "/openim.user.user/setCallAcceptSetting"
-	User_SetMsgReceiveSetting_FullMethodName          = "/openim.user.user/setMsgReceiveSetting"
-	User_SetGroupInviteSetting_FullMethodName         = "/openim.user.user/setGroupInviteSetting"
-	User_GetUserByPhone_FullMethodName                = "/openim.user.user/getUserByPhone"
-	User_GetUsersByNickname_FullMethodName            = "/openim.user.user/getUsersByNickname"
-	User_CheckNickname_FullMethodName                 = "/openim.user.user/checkNickname"
-	User_SetUserMsgBurnDuration_FullMethodName        = "/openim.user.user/setUserMsgBurnDuration"
-	User_SetDeleteAccountInterval_FullMethodName      = "/openim.user.user/setDeleteAccountInterval"
-	User_GetUserPrivacySettings_FullMethodName        = "/openim.user.user/getUserPrivacySettings"
+	User_GetDesignateUsers_FullMethodName                   = "/openim.user.user/getDesignateUsers"
+	User_UpdateUserInfo_FullMethodName                      = "/openim.user.user/updateUserInfo"
+	User_UpdateUserInfoEx_FullMethodName                    = "/openim.user.user/updateUserInfoEx"
+	User_SetGlobalRecvMessageOpt_FullMethodName             = "/openim.user.user/setGlobalRecvMessageOpt"
+	User_GetGlobalRecvMessageOpt_FullMethodName             = "/openim.user.user/getGlobalRecvMessageOpt"
+	User_AccountCheck_FullMethodName                        = "/openim.user.user/accountCheck"
+	User_GetPaginationUsers_FullMethodName                  = "/openim.user.user/getPaginationUsers"
+	User_UserRegister_FullMethodName                        = "/openim.user.user/userRegister"
+	User_GetAllUserID_FullMethodName                        = "/openim.user.user/getAllUserID"
+	User_UserRegisterCount_FullMethodName                   = "/openim.user.user/userRegisterCount"
+	User_GetOnlineUserCount_FullMethodName                  = "/openim.user.user/getOnlineUserCount"
+	User_SubscribeOrCancelUsersStatus_FullMethodName        = "/openim.user.user/subscribeOrCancelUsersStatus"
+	User_GetSubscribeUsersStatus_FullMethodName             = "/openim.user.user/getSubscribeUsersStatus"
+	User_GetUserStatus_FullMethodName                       = "/openim.user.user/getUserStatus"
+	User_SetUserStatus_FullMethodName                       = "/openim.user.user/setUserStatus"
+	User_ProcessUserCommandAdd_FullMethodName               = "/openim.user.user/processUserCommandAdd"
+	User_ProcessUserCommandUpdate_FullMethodName            = "/openim.user.user/processUserCommandUpdate"
+	User_ProcessUserCommandDelete_FullMethodName            = "/openim.user.user/processUserCommandDelete"
+	User_ProcessUserCommandGet_FullMethodName               = "/openim.user.user/processUserCommandGet"
+	User_ProcessUserCommandGetAll_FullMethodName            = "/openim.user.user/processUserCommandGetAll"
+	User_AddNotificationAccount_FullMethodName              = "/openim.user.user/addNotificationAccount"
+	User_UpdateNotificationAccountInfo_FullMethodName       = "/openim.user.user/updateNotificationAccountInfo"
+	User_SearchNotificationAccount_FullMethodName           = "/openim.user.user/searchNotificationAccount"
+	User_GetNotificationAccount_FullMethodName              = "/openim.user.user/getNotificationAccount"
+	User_SortQuery_FullMethodName                           = "/openim.user.user/sortQuery"
+	User_SetUserOnlineStatus_FullMethodName                 = "/openim.user.user/setUserOnlineStatus"
+	User_GetAllOnlineUsers_FullMethodName                   = "/openim.user.user/getAllOnlineUsers"
+	User_GetUserClientConfig_FullMethodName                 = "/openim.user.user/getUserClientConfig"
+	User_SetUserClientConfig_FullMethodName                 = "/openim.user.user/setUserClientConfig"
+	User_DelUserClientConfig_FullMethodName                 = "/openim.user.user/delUserClientConfig"
+	User_PageUserClientConfig_FullMethodName                = "/openim.user.user/pageUserClientConfig"
+	User_SetPhoneVisibility_FullMethodName                  = "/openim.user.user/setPhoneVisibility"
+	User_SetCallAcceptSetting_FullMethodName                = "/openim.user.user/setCallAcceptSetting"
+	User_SetMsgReceiveSetting_FullMethodName                = "/openim.user.user/setMsgReceiveSetting"
+	User_SetGroupInviteSetting_FullMethodName               = "/openim.user.user/setGroupInviteSetting"
+	User_GetUserByPhone_FullMethodName                      = "/openim.user.user/getUserByPhone"
+	User_GetUsersByNickname_FullMethodName                  = "/openim.user.user/getUsersByNickname"
+	User_CheckNickname_FullMethodName                       = "/openim.user.user/checkNickname"
+	User_SetUserMsgBurnDuration_FullMethodName              = "/openim.user.user/setUserMsgBurnDuration"
+	User_SetDeleteAccountInterval_FullMethodName            = "/openim.user.user/setDeleteAccountInterval"
+	User_GetUserPrivacySettings_FullMethodName              = "/openim.user.user/getUserPrivacySettings"
+	User_SetMsgNotificationSwitch_FullMethodName            = "/openim.user.user/setMsgNotificationSwitch"
+	User_SetSokimPaymentNotificationSwitch_FullMethodName   = "/openim.user.user/setSokimPaymentNotificationSwitch"
+	User_SetSokimServiceNotificationSwitch_FullMethodName   = "/openim.user.user/setSokimServiceNotificationSwitch"
+	User_SetAvNotificationSwitch_FullMethodName             = "/openim.user.user/setAvNotificationSwitch"
+	User_SetAvCallRingtoneSwitch_FullMethodName             = "/openim.user.user/setAvCallRingtoneSwitch"
+	User_SetPlayCalleeRingtoneOnAnswerSwitch_FullMethodName = "/openim.user.user/setPlayCalleeRingtoneOnAnswerSwitch"
+	User_GetUserNotificationSettings_FullMethodName         = "/openim.user.user/getUserNotificationSettings"
 )
 
 // UserClient is the client API for User service.
@@ -141,6 +148,20 @@ type UserClient interface {
 	SetDeleteAccountInterval(ctx context.Context, in *SetDeleteAccountIntervalReq, opts ...grpc.CallOption) (*SetDeleteAccountIntervalResp, error)
 	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
 	GetUserPrivacySettings(ctx context.Context, in *GetUserPrivacySettingsReq, opts ...grpc.CallOption) (*GetUserPrivacySettingsResp, error)
+	// 设置消息通知开关
+	SetMsgNotificationSwitch(ctx context.Context, in *SetMsgNotificationSwitchReq, opts ...grpc.CallOption) (*SetMsgNotificationSwitchResp, error)
+	// 设置 sokim 支付通知开关
+	SetSokimPaymentNotificationSwitch(ctx context.Context, in *SetSokimPaymentNotificationSwitchReq, opts ...grpc.CallOption) (*SetSokimPaymentNotificationSwitchResp, error)
+	// 设置 sokim 服务通知开关
+	SetSokimServiceNotificationSwitch(ctx context.Context, in *SetSokimServiceNotificationSwitchReq, opts ...grpc.CallOption) (*SetSokimServiceNotificationSwitchResp, error)
+	// 设置音视频通知开关
+	SetAvNotificationSwitch(ctx context.Context, in *SetAvNotificationSwitchReq, opts ...grpc.CallOption) (*SetAvNotificationSwitchResp, error)
+	// 设置音视频来电铃声开关
+	SetAvCallRingtoneSwitch(ctx context.Context, in *SetAvCallRingtoneSwitchReq, opts ...grpc.CallOption) (*SetAvCallRingtoneSwitchResp, error)
+	// 设置接听时播放对方铃声开关
+	SetPlayCalleeRingtoneOnAnswerSwitch(ctx context.Context, in *SetPlayCalleeRingtoneOnAnswerSwitchReq, opts ...grpc.CallOption) (*SetPlayCalleeRingtoneOnAnswerSwitchResp, error)
+	// 返回当前登录用户的通知相关开关；userID 取自上下文 opUserID
+	GetUserNotificationSettings(ctx context.Context, in *GetUserNotificationSettingsReq, opts ...grpc.CallOption) (*GetUserNotificationSettingsResp, error)
 }
 
 type userClient struct {
@@ -561,6 +582,76 @@ func (c *userClient) GetUserPrivacySettings(ctx context.Context, in *GetUserPriv
 	return out, nil
 }
 
+func (c *userClient) SetMsgNotificationSwitch(ctx context.Context, in *SetMsgNotificationSwitchReq, opts ...grpc.CallOption) (*SetMsgNotificationSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetMsgNotificationSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetMsgNotificationSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetSokimPaymentNotificationSwitch(ctx context.Context, in *SetSokimPaymentNotificationSwitchReq, opts ...grpc.CallOption) (*SetSokimPaymentNotificationSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetSokimPaymentNotificationSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetSokimPaymentNotificationSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetSokimServiceNotificationSwitch(ctx context.Context, in *SetSokimServiceNotificationSwitchReq, opts ...grpc.CallOption) (*SetSokimServiceNotificationSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetSokimServiceNotificationSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetSokimServiceNotificationSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetAvNotificationSwitch(ctx context.Context, in *SetAvNotificationSwitchReq, opts ...grpc.CallOption) (*SetAvNotificationSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetAvNotificationSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetAvNotificationSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetAvCallRingtoneSwitch(ctx context.Context, in *SetAvCallRingtoneSwitchReq, opts ...grpc.CallOption) (*SetAvCallRingtoneSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetAvCallRingtoneSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetAvCallRingtoneSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetPlayCalleeRingtoneOnAnswerSwitch(ctx context.Context, in *SetPlayCalleeRingtoneOnAnswerSwitchReq, opts ...grpc.CallOption) (*SetPlayCalleeRingtoneOnAnswerSwitchResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetPlayCalleeRingtoneOnAnswerSwitchResp)
+	err := c.cc.Invoke(ctx, User_SetPlayCalleeRingtoneOnAnswerSwitch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserNotificationSettings(ctx context.Context, in *GetUserNotificationSettingsReq, opts ...grpc.CallOption) (*GetUserNotificationSettingsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserNotificationSettingsResp)
+	err := c.cc.Invoke(ctx, User_GetUserNotificationSettings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -640,6 +731,20 @@ type UserServer interface {
 	SetDeleteAccountInterval(context.Context, *SetDeleteAccountIntervalReq) (*SetDeleteAccountIntervalResp, error)
 	// 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
 	GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error)
+	// 设置消息通知开关
+	SetMsgNotificationSwitch(context.Context, *SetMsgNotificationSwitchReq) (*SetMsgNotificationSwitchResp, error)
+	// 设置 sokim 支付通知开关
+	SetSokimPaymentNotificationSwitch(context.Context, *SetSokimPaymentNotificationSwitchReq) (*SetSokimPaymentNotificationSwitchResp, error)
+	// 设置 sokim 服务通知开关
+	SetSokimServiceNotificationSwitch(context.Context, *SetSokimServiceNotificationSwitchReq) (*SetSokimServiceNotificationSwitchResp, error)
+	// 设置音视频通知开关
+	SetAvNotificationSwitch(context.Context, *SetAvNotificationSwitchReq) (*SetAvNotificationSwitchResp, error)
+	// 设置音视频来电铃声开关
+	SetAvCallRingtoneSwitch(context.Context, *SetAvCallRingtoneSwitchReq) (*SetAvCallRingtoneSwitchResp, error)
+	// 设置接听时播放对方铃声开关
+	SetPlayCalleeRingtoneOnAnswerSwitch(context.Context, *SetPlayCalleeRingtoneOnAnswerSwitchReq) (*SetPlayCalleeRingtoneOnAnswerSwitchResp, error)
+	// 返回当前登录用户的通知相关开关；userID 取自上下文 opUserID
+	GetUserNotificationSettings(context.Context, *GetUserNotificationSettingsReq) (*GetUserNotificationSettingsResp, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -772,6 +877,27 @@ func (UnimplementedUserServer) SetDeleteAccountInterval(context.Context, *SetDel
 }
 func (UnimplementedUserServer) GetUserPrivacySettings(context.Context, *GetUserPrivacySettingsReq) (*GetUserPrivacySettingsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserPrivacySettings not implemented")
+}
+func (UnimplementedUserServer) SetMsgNotificationSwitch(context.Context, *SetMsgNotificationSwitchReq) (*SetMsgNotificationSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetMsgNotificationSwitch not implemented")
+}
+func (UnimplementedUserServer) SetSokimPaymentNotificationSwitch(context.Context, *SetSokimPaymentNotificationSwitchReq) (*SetSokimPaymentNotificationSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetSokimPaymentNotificationSwitch not implemented")
+}
+func (UnimplementedUserServer) SetSokimServiceNotificationSwitch(context.Context, *SetSokimServiceNotificationSwitchReq) (*SetSokimServiceNotificationSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetSokimServiceNotificationSwitch not implemented")
+}
+func (UnimplementedUserServer) SetAvNotificationSwitch(context.Context, *SetAvNotificationSwitchReq) (*SetAvNotificationSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAvNotificationSwitch not implemented")
+}
+func (UnimplementedUserServer) SetAvCallRingtoneSwitch(context.Context, *SetAvCallRingtoneSwitchReq) (*SetAvCallRingtoneSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAvCallRingtoneSwitch not implemented")
+}
+func (UnimplementedUserServer) SetPlayCalleeRingtoneOnAnswerSwitch(context.Context, *SetPlayCalleeRingtoneOnAnswerSwitchReq) (*SetPlayCalleeRingtoneOnAnswerSwitchResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetPlayCalleeRingtoneOnAnswerSwitch not implemented")
+}
+func (UnimplementedUserServer) GetUserNotificationSettings(context.Context, *GetUserNotificationSettingsReq) (*GetUserNotificationSettingsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserNotificationSettings not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -1532,6 +1658,132 @@ func _User_GetUserPrivacySettings_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SetMsgNotificationSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetMsgNotificationSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetMsgNotificationSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetMsgNotificationSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetMsgNotificationSwitch(ctx, req.(*SetMsgNotificationSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetSokimPaymentNotificationSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetSokimPaymentNotificationSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetSokimPaymentNotificationSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetSokimPaymentNotificationSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetSokimPaymentNotificationSwitch(ctx, req.(*SetSokimPaymentNotificationSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetSokimServiceNotificationSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetSokimServiceNotificationSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetSokimServiceNotificationSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetSokimServiceNotificationSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetSokimServiceNotificationSwitch(ctx, req.(*SetSokimServiceNotificationSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetAvNotificationSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetAvNotificationSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetAvNotificationSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetAvNotificationSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetAvNotificationSwitch(ctx, req.(*SetAvNotificationSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetAvCallRingtoneSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetAvCallRingtoneSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetAvCallRingtoneSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetAvCallRingtoneSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetAvCallRingtoneSwitch(ctx, req.(*SetAvCallRingtoneSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetPlayCalleeRingtoneOnAnswerSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPlayCalleeRingtoneOnAnswerSwitchReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetPlayCalleeRingtoneOnAnswerSwitch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetPlayCalleeRingtoneOnAnswerSwitch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetPlayCalleeRingtoneOnAnswerSwitch(ctx, req.(*SetPlayCalleeRingtoneOnAnswerSwitchReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserNotificationSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserNotificationSettingsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserNotificationSettings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserNotificationSettings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserNotificationSettings(ctx, req.(*GetUserNotificationSettingsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1702,6 +1954,34 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getUserPrivacySettings",
 			Handler:    _User_GetUserPrivacySettings_Handler,
+		},
+		{
+			MethodName: "setMsgNotificationSwitch",
+			Handler:    _User_SetMsgNotificationSwitch_Handler,
+		},
+		{
+			MethodName: "setSokimPaymentNotificationSwitch",
+			Handler:    _User_SetSokimPaymentNotificationSwitch_Handler,
+		},
+		{
+			MethodName: "setSokimServiceNotificationSwitch",
+			Handler:    _User_SetSokimServiceNotificationSwitch_Handler,
+		},
+		{
+			MethodName: "setAvNotificationSwitch",
+			Handler:    _User_SetAvNotificationSwitch_Handler,
+		},
+		{
+			MethodName: "setAvCallRingtoneSwitch",
+			Handler:    _User_SetAvCallRingtoneSwitch_Handler,
+		},
+		{
+			MethodName: "setPlayCalleeRingtoneOnAnswerSwitch",
+			Handler:    _User_SetPlayCalleeRingtoneOnAnswerSwitch_Handler,
+		},
+		{
+			MethodName: "getUserNotificationSettings",
+			Handler:    _User_GetUserNotificationSettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

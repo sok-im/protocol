@@ -460,6 +460,64 @@ message setDeleteAccountIntervalReq {
 }
 message setDeleteAccountIntervalResp {}
 
+message setMsgNotificationSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setMsgNotificationSwitchResp {}
+
+message setSokimPaymentNotificationSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setSokimPaymentNotificationSwitchResp {}
+
+message setSokimServiceNotificationSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setSokimServiceNotificationSwitchResp {}
+
+message setAvNotificationSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setAvNotificationSwitchResp {}
+
+message setAvCallRingtoneSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setAvCallRingtoneSwitchResp {}
+
+message setPlayCalleeRingtoneOnAnswerSwitchReq {
+  string userID = 1;
+  // enable true=打开 false=关闭
+  bool enable = 2;
+}
+message setPlayCalleeRingtoneOnAnswerSwitchResp {}
+
+message getUserNotificationSettingsReq {}
+message getUserNotificationSettingsResp {
+  // msgNotification 消息通知开关
+  bool msgNotification = 1;
+  // sokimPaymentNotification sokim 支付通知开关
+  bool sokimPaymentNotification = 2;
+  // sokimServiceNotification sokim 服务通知开关
+  bool sokimServiceNotification = 3;
+  // avNotification 音视频通知开关
+  bool avNotification = 4;
+  // avCallRingtone 音视频来电铃声开关
+  bool avCallRingtone = 5;
+  // playCalleeRingtoneOnAnswer 接听时播放对方铃声开关
+  bool playCalleeRingtoneOnAnswer = 6;
+}
+
 message getUserPrivacySettingsReq {}
 message getUserPrivacySettingsResp {
   // msgBurnDuration 阅后即焚时长（秒），0 表示关闭
@@ -572,5 +630,19 @@ service user {
   // 返回当前登录用户的隐私与接收相关设置（阅后即焚、手机号可见性、音视频、全局消息接收、会话消息接收、群邀请）；userID 取自上下文 opUserID
   rpc getUserPrivacySettings(getUserPrivacySettingsReq) returns (getUserPrivacySettingsResp);
 
+  // 设置消息通知开关
+  rpc setMsgNotificationSwitch(setMsgNotificationSwitchReq) returns (setMsgNotificationSwitchResp);
+  // 设置 sokim 支付通知开关
+  rpc setSokimPaymentNotificationSwitch(setSokimPaymentNotificationSwitchReq) returns (setSokimPaymentNotificationSwitchResp);
+  // 设置 sokim 服务通知开关
+  rpc setSokimServiceNotificationSwitch(setSokimServiceNotificationSwitchReq) returns (setSokimServiceNotificationSwitchResp);
+  // 设置音视频通知开关
+  rpc setAvNotificationSwitch(setAvNotificationSwitchReq) returns (setAvNotificationSwitchResp);
+  // 设置音视频来电铃声开关
+  rpc setAvCallRingtoneSwitch(setAvCallRingtoneSwitchReq) returns (setAvCallRingtoneSwitchResp);
+  // 设置接听时播放对方铃声开关
+  rpc setPlayCalleeRingtoneOnAnswerSwitch(setPlayCalleeRingtoneOnAnswerSwitchReq) returns (setPlayCalleeRingtoneOnAnswerSwitchResp);
+  // 返回当前登录用户的通知相关开关；userID 取自上下文 opUserID
+  rpc getUserNotificationSettings(getUserNotificationSettingsReq) returns (getUserNotificationSettingsResp);
 
 }
