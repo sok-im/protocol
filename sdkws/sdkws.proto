@@ -450,6 +450,8 @@ message GroupCallParticipantCountUpdatedTips {
   // defaultTips English display text, e.g. "3 people in the call"
   string defaultTips = 4;
   string mediaType = 5;
+  // participantUserList is the full list of users currently in the call.
+  repeated PublicUserInfo participantUserList = 6;
 }
 
 // OnGroupBurnDurationSet()
