@@ -147,6 +147,10 @@ message UserInfo {
   int32 avCallRingtone = 24;
   // playCalleeRingtoneOnAnswer 接听时播放对方铃声开关：0=未设置（默认打开），1=打开，2=关闭
   int32 playCalleeRingtoneOnAnswer = 25;
+  // sokimServiceNotification sokim 服务通知开关：0=未设置（默认打开），1=打开，2=关闭
+  int32 sokimServiceNotification = 26;
+  // avNotification 音视频通知开关：0=未设置（默认打开），1=打开，2=关闭
+  int32 avNotification = 27;
 }
 
 message UserInfoWithEx {
