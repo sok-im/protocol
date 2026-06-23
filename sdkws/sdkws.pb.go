@@ -848,8 +848,8 @@ type UserInfo struct {
 	GroupInviteSetting int32 `protobuf:"varint,16,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting"`
 	// msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
 	MsgBurnDuration int32 `protobuf:"varint,17,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
-	// appLanguage 用户应用语言（如 zh-CN、en-US）
-	AppLanguage string `protobuf:"bytes,21,opt,name=appLanguage,proto3" json:"appLanguage"`
+	// language 用户应用语言（如 zh-CN、en-US）
+	Language string `protobuf:"bytes,21,opt,name=language,proto3" json:"language"`
 	// msgNotification 消息通知开关：0=未设置（默认打开），1=打开，2=关闭
 	MsgNotification int32 `protobuf:"varint,22,opt,name=msgNotification,proto3" json:"msgNotification"`
 	// sokimPaymentNotification sokim 支付通知开关：0=未设置（默认打开），1=打开，2=关闭
@@ -1036,9 +1036,9 @@ func (x *UserInfo) GetMsgBurnDuration() int32 {
 	return 0
 }
 
-func (x *UserInfo) GetAppLanguage() string {
+func (x *UserInfo) GetLanguage() string {
 	if x != nil {
-		return x.AppLanguage
+		return x.Language
 	}
 	return ""
 }
@@ -1111,8 +1111,8 @@ type UserInfoWithEx struct {
 	GroupInviteSetting *wrapperspb.Int32Value `protobuf:"bytes,14,opt,name=groupInviteSetting,proto3" json:"groupInviteSetting"`
 	// msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
 	MsgBurnDuration *wrapperspb.Int32Value `protobuf:"bytes,15,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
-	// appLanguage 用户应用语言（如 zh-CN、en-US）（可选更新）
-	AppLanguage   *wrapperspb.StringValue `protobuf:"bytes,19,opt,name=appLanguage,proto3" json:"appLanguage"`
+	// language 用户应用语言（如 zh-CN、en-US）（可选更新）
+	Language      *wrapperspb.StringValue `protobuf:"bytes,19,opt,name=language,proto3" json:"language"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1273,9 +1273,9 @@ func (x *UserInfoWithEx) GetMsgBurnDuration() *wrapperspb.Int32Value {
 	return nil
 }
 
-func (x *UserInfoWithEx) GetAppLanguage() *wrapperspb.StringValue {
+func (x *UserInfoWithEx) GetLanguage() *wrapperspb.StringValue {
 	if x != nil {
-		return x.AppLanguage
+		return x.Language
 	}
 	return nil
 }
@@ -7156,7 +7156,7 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
 	"\afaceURL\x18\x03 \x01(\tR\afaceURL\x12\x0e\n" +
-	"\x02ex\x18\x04 \x01(\tR\x02ex\"\xb0\b\n" +
+	"\x02ex\x18\x04 \x01(\tR\x02ex\"\xaa\b\n" +
 	"\bUserInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
@@ -7180,14 +7180,14 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x11callRingtoneCover\x18\x13 \x01(\tR\x11callRingtoneCover\x12.\n" +
 	"\x12callRingtoneAuthor\x18\x14 \x01(\tR\x12callRingtoneAuthor\x12.\n" +
 	"\x12groupInviteSetting\x18\x10 \x01(\x05R\x12groupInviteSetting\x12(\n" +
-	"\x0fmsgBurnDuration\x18\x11 \x01(\x05R\x0fmsgBurnDuration\x12 \n" +
-	"\vappLanguage\x18\x15 \x01(\tR\vappLanguage\x12(\n" +
+	"\x0fmsgBurnDuration\x18\x11 \x01(\x05R\x0fmsgBurnDuration\x12\x1a\n" +
+	"\blanguage\x18\x15 \x01(\tR\blanguage\x12(\n" +
 	"\x0fmsgNotification\x18\x16 \x01(\x05R\x0fmsgNotification\x12:\n" +
 	"\x18sokimPaymentNotification\x18\x17 \x01(\x05R\x18sokimPaymentNotification\x12&\n" +
 	"\x0eavCallRingtone\x18\x18 \x01(\x05R\x0eavCallRingtone\x12>\n" +
 	"\x1aplayCalleeRingtoneOnAnswer\x18\x19 \x01(\x05R\x1aplayCalleeRingtoneOnAnswer\x12:\n" +
 	"\x18sokimServiceNotification\x18\x1a \x01(\x05R\x18sokimServiceNotification\x12&\n" +
-	"\x0eavNotification\x18\x1b \x01(\x05R\x0eavNotification\"\xd2\t\n" +
+	"\x0eavNotification\x18\x1b \x01(\x05R\x0eavNotification\"\xcc\t\n" +
 	"\x0eUserInfoWithEx\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x128\n" +
 	"\bnickname\x18\x02 \x01(\v2\x1c.openim.protobuf.StringValueR\bnickname\x126\n" +
@@ -7207,8 +7207,8 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x11callRingtoneCover\x18\x11 \x01(\v2\x1c.openim.protobuf.StringValueR\x11callRingtoneCover\x12L\n" +
 	"\x12callRingtoneAuthor\x18\x12 \x01(\v2\x1c.openim.protobuf.StringValueR\x12callRingtoneAuthor\x12K\n" +
 	"\x12groupInviteSetting\x18\x0e \x01(\v2\x1b.openim.protobuf.Int32ValueR\x12groupInviteSetting\x12E\n" +
-	"\x0fmsgBurnDuration\x18\x0f \x01(\v2\x1b.openim.protobuf.Int32ValueR\x0fmsgBurnDuration\x12>\n" +
-	"\vappLanguage\x18\x13 \x01(\v2\x1c.openim.protobuf.StringValueR\vappLanguage\"\xe2\x03\n" +
+	"\x0fmsgBurnDuration\x18\x0f \x01(\v2\x1b.openim.protobuf.Int32ValueR\x0fmsgBurnDuration\x128\n" +
+	"\blanguage\x18\x13 \x01(\v2\x1c.openim.protobuf.StringValueR\blanguage\"\xe2\x03\n" +
 	"\n" +
 	"FriendInfo\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\x16\n" +
@@ -7897,7 +7897,7 @@ var file_sdkws_sdkws_proto_depIdxs = []int32{
 	93,  // 25: openim.sdkws.UserInfoWithEx.callRingtoneAuthor:type_name -> openim.protobuf.StringValue
 	94,  // 26: openim.sdkws.UserInfoWithEx.groupInviteSetting:type_name -> openim.protobuf.Int32Value
 	94,  // 27: openim.sdkws.UserInfoWithEx.msgBurnDuration:type_name -> openim.protobuf.Int32Value
-	93,  // 28: openim.sdkws.UserInfoWithEx.appLanguage:type_name -> openim.protobuf.StringValue
+	93,  // 28: openim.sdkws.UserInfoWithEx.language:type_name -> openim.protobuf.StringValue
 	6,   // 29: openim.sdkws.FriendInfo.friendUser:type_name -> openim.sdkws.UserInfo
 	5,   // 30: openim.sdkws.BlackInfo.blackUserInfo:type_name -> openim.sdkws.PublicUserInfo
 	5,   // 31: openim.sdkws.GroupRequest.userInfo:type_name -> openim.sdkws.PublicUserInfo

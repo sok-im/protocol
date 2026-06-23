@@ -137,8 +137,8 @@ message UserInfo {
   int32 groupInviteSetting = 16;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
   int32 msgBurnDuration = 17;
-  // appLanguage 用户应用语言（如 zh-CN、en-US）
-  string appLanguage = 21;
+  // language 用户应用语言（如 zh-CN、en-US）
+  string language = 21;
   // msgNotification 消息通知开关：0=未设置（默认打开），1=打开，2=关闭
   int32 msgNotification = 22;
   // sokimPaymentNotification sokim 支付通知开关：0=未设置（默认打开），1=打开，2=关闭
@@ -178,8 +178,8 @@ message UserInfoWithEx {
   openim.protobuf.Int32Value groupInviteSetting = 14;
   // msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
   openim.protobuf.Int32Value msgBurnDuration = 15;
-  // appLanguage 用户应用语言（如 zh-CN、en-US）（可选更新）
-  openim.protobuf.StringValue appLanguage = 19;
+  // language 用户应用语言（如 zh-CN、en-US）（可选更新）
+  openim.protobuf.StringValue language = 19;
 }
 
 message FriendInfo {
