@@ -856,8 +856,10 @@ type UserInfo struct {
 	SokimPaymentNotification int32 `protobuf:"varint,23,opt,name=sokimPaymentNotification,proto3" json:"sokimPaymentNotification"`
 	// avCallRingtone 音视频来电铃声开关：0=未设置（默认打开），1=打开，2=关闭
 	AvCallRingtone int32 `protobuf:"varint,24,opt,name=avCallRingtone,proto3" json:"avCallRingtone"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// playCalleeRingtoneOnAnswer 接听时播放对方铃声开关：0=未设置（默认打开），1=打开，2=关闭
+	PlayCalleeRingtoneOnAnswer int32 `protobuf:"varint,25,opt,name=playCalleeRingtoneOnAnswer,proto3" json:"playCalleeRingtoneOnAnswer"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *UserInfo) Reset() {
@@ -1054,6 +1056,13 @@ func (x *UserInfo) GetSokimPaymentNotification() int32 {
 func (x *UserInfo) GetAvCallRingtone() int32 {
 	if x != nil {
 		return x.AvCallRingtone
+	}
+	return 0
+}
+
+func (x *UserInfo) GetPlayCalleeRingtoneOnAnswer() int32 {
+	if x != nil {
+		return x.PlayCalleeRingtoneOnAnswer
 	}
 	return 0
 }
@@ -7120,7 +7129,7 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
 	"\afaceURL\x18\x03 \x01(\tR\afaceURL\x12\x0e\n" +
-	"\x02ex\x18\x04 \x01(\tR\x02ex\"\x8c\a\n" +
+	"\x02ex\x18\x04 \x01(\tR\x02ex\"\xcc\a\n" +
 	"\bUserInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
@@ -7148,7 +7157,8 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\vappLanguage\x18\x15 \x01(\tR\vappLanguage\x12(\n" +
 	"\x0fmsgNotification\x18\x16 \x01(\x05R\x0fmsgNotification\x12:\n" +
 	"\x18sokimPaymentNotification\x18\x17 \x01(\x05R\x18sokimPaymentNotification\x12&\n" +
-	"\x0eavCallRingtone\x18\x18 \x01(\x05R\x0eavCallRingtone\"\xd2\t\n" +
+	"\x0eavCallRingtone\x18\x18 \x01(\x05R\x0eavCallRingtone\x12>\n" +
+	"\x1aplayCalleeRingtoneOnAnswer\x18\x19 \x01(\x05R\x1aplayCalleeRingtoneOnAnswer\"\xd2\t\n" +
 	"\x0eUserInfoWithEx\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x128\n" +
 	"\bnickname\x18\x02 \x01(\v2\x1c.openim.protobuf.StringValueR\bnickname\x126\n" +
