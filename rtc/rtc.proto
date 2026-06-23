@@ -110,6 +110,8 @@ message SignalInviteResp {
   string calleeRingtoneURL = 5;
   // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
   repeated string notAllowUserIDList = 6;
+  // callerRingtoneURL 主叫方设置的来电铃声 URL
+  string callerRingtoneURL = 7;
 }
 
 message SignalInviteInGroupReq {

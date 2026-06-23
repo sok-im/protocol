@@ -1034,8 +1034,10 @@ type SignalInviteResp struct {
 	CalleeRingtoneURL string `protobuf:"bytes,5,opt,name=calleeRingtoneURL,proto3" json:"calleeRingtoneURL"`
 	// notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
 	NotAllowUserIDList []string `protobuf:"bytes,6,rep,name=notAllowUserIDList,proto3" json:"notAllowUserIDList"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// callerRingtoneURL 主叫方设置的来电铃声 URL
+	CallerRingtoneURL string `protobuf:"bytes,7,opt,name=callerRingtoneURL,proto3" json:"callerRingtoneURL"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SignalInviteResp) Reset() {
@@ -1108,6 +1110,13 @@ func (x *SignalInviteResp) GetNotAllowUserIDList() []string {
 		return x.NotAllowUserIDList
 	}
 	return nil
+}
+
+func (x *SignalInviteResp) GetCallerRingtoneURL() string {
+	if x != nil {
+		return x.CallerRingtoneURL
+	}
+	return ""
 }
 
 type SignalInviteInGroupReq struct {
@@ -3415,14 +3424,15 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"invitation\x12G\n" +
 	"\x0fofflinePushInfo\x18\x02 \x01(\v2\x1d.openim.sdkws.OfflinePushInfoR\x0fofflinePushInfo\x12A\n" +
 	"\vparticipant\x18\x03 \x01(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12\x16\n" +
-	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xe8\x01\n" +
+	"\x06userID\x18\x04 \x01(\tR\x06userID\"\x96\x02\n" +
 	"\x10SignalInviteResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
 	"\aliveURL\x18\x03 \x01(\tR\aliveURL\x12.\n" +
 	"\x12busyLineUserIDList\x18\x04 \x03(\tR\x12busyLineUserIDList\x12,\n" +
 	"\x11calleeRingtoneURL\x18\x05 \x01(\tR\x11calleeRingtoneURL\x12.\n" +
-	"\x12notAllowUserIDList\x18\x06 \x03(\tR\x12notAllowUserIDList\"\xf8\x01\n" +
+	"\x12notAllowUserIDList\x18\x06 \x03(\tR\x12notAllowUserIDList\x12,\n" +
+	"\x11callerRingtoneURL\x18\a \x01(\tR\x11callerRingtoneURL\"\xf8\x01\n" +
 	"\x16SignalInviteInGroupReq\x12:\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x1a.openim.rtc.InvitationInfoR\n" +
