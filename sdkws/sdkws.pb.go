@@ -849,9 +849,15 @@ type UserInfo struct {
 	// msgBurnDuration 用户全局消息阅后即焚时长（秒）；0 表示关闭
 	MsgBurnDuration int32 `protobuf:"varint,17,opt,name=msgBurnDuration,proto3" json:"msgBurnDuration"`
 	// appLanguage 用户应用语言（如 zh-CN、en-US）
-	AppLanguage   string `protobuf:"bytes,21,opt,name=appLanguage,proto3" json:"appLanguage"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	AppLanguage string `protobuf:"bytes,21,opt,name=appLanguage,proto3" json:"appLanguage"`
+	// msgNotification 消息通知开关：0=未设置（默认打开），1=打开，2=关闭
+	MsgNotification int32 `protobuf:"varint,22,opt,name=msgNotification,proto3" json:"msgNotification"`
+	// sokimPaymentNotification sokim 支付通知开关：0=未设置（默认打开），1=打开，2=关闭
+	SokimPaymentNotification int32 `protobuf:"varint,23,opt,name=sokimPaymentNotification,proto3" json:"sokimPaymentNotification"`
+	// avCallRingtone 音视频来电铃声开关：0=未设置（默认打开），1=打开，2=关闭
+	AvCallRingtone int32 `protobuf:"varint,24,opt,name=avCallRingtone,proto3" json:"avCallRingtone"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UserInfo) Reset() {
@@ -1029,6 +1035,27 @@ func (x *UserInfo) GetAppLanguage() string {
 		return x.AppLanguage
 	}
 	return ""
+}
+
+func (x *UserInfo) GetMsgNotification() int32 {
+	if x != nil {
+		return x.MsgNotification
+	}
+	return 0
+}
+
+func (x *UserInfo) GetSokimPaymentNotification() int32 {
+	if x != nil {
+		return x.SokimPaymentNotification
+	}
+	return 0
+}
+
+func (x *UserInfo) GetAvCallRingtone() int32 {
+	if x != nil {
+		return x.AvCallRingtone
+	}
+	return 0
 }
 
 type UserInfoWithEx struct {
@@ -7093,7 +7120,7 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
 	"\afaceURL\x18\x03 \x01(\tR\afaceURL\x12\x0e\n" +
-	"\x02ex\x18\x04 \x01(\tR\x02ex\"\xfe\x05\n" +
+	"\x02ex\x18\x04 \x01(\tR\x02ex\"\x8c\a\n" +
 	"\bUserInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x18\n" +
@@ -7118,7 +7145,10 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x12callRingtoneAuthor\x18\x14 \x01(\tR\x12callRingtoneAuthor\x12.\n" +
 	"\x12groupInviteSetting\x18\x10 \x01(\x05R\x12groupInviteSetting\x12(\n" +
 	"\x0fmsgBurnDuration\x18\x11 \x01(\x05R\x0fmsgBurnDuration\x12 \n" +
-	"\vappLanguage\x18\x15 \x01(\tR\vappLanguage\"\xd2\t\n" +
+	"\vappLanguage\x18\x15 \x01(\tR\vappLanguage\x12(\n" +
+	"\x0fmsgNotification\x18\x16 \x01(\x05R\x0fmsgNotification\x12:\n" +
+	"\x18sokimPaymentNotification\x18\x17 \x01(\x05R\x18sokimPaymentNotification\x12&\n" +
+	"\x0eavCallRingtone\x18\x18 \x01(\x05R\x0eavCallRingtone\"\xd2\t\n" +
 	"\x0eUserInfoWithEx\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x128\n" +
 	"\bnickname\x18\x02 \x01(\v2\x1c.openim.protobuf.StringValueR\bnickname\x126\n" +
