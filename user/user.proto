@@ -446,6 +446,13 @@ message checkNicknameResp {
   bool exists = 1;
 }
 
+message checkUserExistReq {
+  string userID = 1;
+}
+message checkUserExistResp {
+  bool exists = 1;
+}
+
 message setUserMsgBurnDurationReq {
   string userID = 1;
   // msgBurnDuration 阅后即焚时长，单位秒；0 表示关闭，必须 >= 0
@@ -620,6 +627,9 @@ service user {
 
   // 检查昵称是否已被普通用户占用（精确匹配）
   rpc checkNickname(checkNicknameReq) returns (checkNicknameResp);
+
+  // 检查指定 userID 的用户是否存在
+  rpc checkUserExist(checkUserExistReq) returns (checkUserExistResp);
 
   // 设置用户全局消息阅后即焚时长（秒），0 表示关闭
   rpc setUserMsgBurnDuration(setUserMsgBurnDurationReq) returns (setUserMsgBurnDurationResp);

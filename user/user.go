@@ -298,6 +298,13 @@ func (x *CheckNicknameReq) Check() error {
 	return nil
 }
 
+func (x *CheckUserExistReq) Check() error {
+	if strings.TrimSpace(x.UserID) == "" {
+		return errors.New("userID is empty")
+	}
+	return nil
+}
+
 func (x *SetMsgNotificationSwitchReq) Check() error {
 	if x.UserID == "" {
 		return errors.New("userID is empty")

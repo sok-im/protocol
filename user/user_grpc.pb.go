@@ -57,6 +57,7 @@ const (
 	User_GetUserByPhone_FullMethodName                      = "/openim.user.user/getUserByPhone"
 	User_GetUsersByNickname_FullMethodName                  = "/openim.user.user/getUsersByNickname"
 	User_CheckNickname_FullMethodName                       = "/openim.user.user/checkNickname"
+	User_CheckUserExist_FullMethodName                      = "/openim.user.user/checkUserExist"
 	User_SetUserMsgBurnDuration_FullMethodName              = "/openim.user.user/setUserMsgBurnDuration"
 	User_SetDeleteAccountInterval_FullMethodName            = "/openim.user.user/setDeleteAccountInterval"
 	User_GetUserPrivacySettings_FullMethodName              = "/openim.user.user/getUserPrivacySettings"
@@ -142,6 +143,8 @@ type UserClient interface {
 	GetUsersByNickname(ctx context.Context, in *GetUsersByNicknameReq, opts ...grpc.CallOption) (*GetUsersByNicknameResp, error)
 	// 检查昵称是否已被普通用户占用（精确匹配）
 	CheckNickname(ctx context.Context, in *CheckNicknameReq, opts ...grpc.CallOption) (*CheckNicknameResp, error)
+	// 检查指定 userID 的用户是否存在
+	CheckUserExist(ctx context.Context, in *CheckUserExistReq, opts ...grpc.CallOption) (*CheckUserExistResp, error)
 	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
 	SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error)
 	// 设置删除账号等待间隔（秒），0 表示使用系统默认（18个月）
@@ -552,6 +555,16 @@ func (c *userClient) CheckNickname(ctx context.Context, in *CheckNicknameReq, op
 	return out, nil
 }
 
+func (c *userClient) CheckUserExist(ctx context.Context, in *CheckUserExistReq, opts ...grpc.CallOption) (*CheckUserExistResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckUserExistResp)
+	err := c.cc.Invoke(ctx, User_CheckUserExist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) SetUserMsgBurnDuration(ctx context.Context, in *SetUserMsgBurnDurationReq, opts ...grpc.CallOption) (*SetUserMsgBurnDurationResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetUserMsgBurnDurationResp)
@@ -725,6 +738,8 @@ type UserServer interface {
 	GetUsersByNickname(context.Context, *GetUsersByNicknameReq) (*GetUsersByNicknameResp, error)
 	// 检查昵称是否已被普通用户占用（精确匹配）
 	CheckNickname(context.Context, *CheckNicknameReq) (*CheckNicknameResp, error)
+	// 检查指定 userID 的用户是否存在
+	CheckUserExist(context.Context, *CheckUserExistReq) (*CheckUserExistResp, error)
 	// 设置用户全局消息阅后即焚时长（秒），0 表示关闭
 	SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error)
 	// 设置删除账号等待间隔（秒），0 表示使用系统默认（18个月）
@@ -868,6 +883,9 @@ func (UnimplementedUserServer) GetUsersByNickname(context.Context, *GetUsersByNi
 }
 func (UnimplementedUserServer) CheckNickname(context.Context, *CheckNicknameReq) (*CheckNicknameResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckNickname not implemented")
+}
+func (UnimplementedUserServer) CheckUserExist(context.Context, *CheckUserExistReq) (*CheckUserExistResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method CheckUserExist not implemented")
 }
 func (UnimplementedUserServer) SetUserMsgBurnDuration(context.Context, *SetUserMsgBurnDurationReq) (*SetUserMsgBurnDurationResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetUserMsgBurnDuration not implemented")
@@ -1604,6 +1622,24 @@ func _User_CheckNickname_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_CheckUserExist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckUserExistReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).CheckUserExist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_CheckUserExist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).CheckUserExist(ctx, req.(*CheckUserExistReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_SetUserMsgBurnDuration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetUserMsgBurnDurationReq)
 	if err := dec(in); err != nil {
@@ -1942,6 +1978,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkNickname",
 			Handler:    _User_CheckNickname_Handler,
+		},
+		{
+			MethodName: "checkUserExist",
+			Handler:    _User_CheckUserExist_Handler,
 		},
 		{
 			MethodName: "setUserMsgBurnDuration",
