@@ -468,6 +468,7 @@ message GroupBurnDurationSetTips {
 // OnGroupCallEnded()
 // mediaType: "audio" | "video" | "audio_video"
 // durationSecs: call duration in seconds; 0 means the call was cancelled/not answered
+// endReason: "hungup" | "cancel" | "reject" | "timeout"
 message GroupCallEndedTips {
   GroupMemberFullInfo opUser = 1;
   GroupInfo group = 2;
@@ -476,6 +477,8 @@ message GroupCallEndedTips {
   int64 durationSecs = 4;
   // defaultTips English display text, e.g. "Alice ended an audio/video call (10 minutes 30 seconds)"
   string defaultTips = 5;
+  // endReason indicates why the group call ended
+  string endReason = 6;
 }
 
 //	OnJoinGroupApplication()

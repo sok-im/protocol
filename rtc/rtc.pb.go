@@ -470,7 +470,9 @@ type SignalNotifyGroupCallEndedReq struct {
 	InviterUserID string `protobuf:"bytes,3,opt,name=inviterUserID,proto3" json:"inviterUserID"`
 	MediaType     string `protobuf:"bytes,4,opt,name=mediaType,proto3" json:"mediaType"`
 	// durationSecs is call duration in seconds; 0 means cancelled or not answered.
-	DurationSecs  int64 `protobuf:"varint,5,opt,name=durationSecs,proto3" json:"durationSecs"`
+	DurationSecs int64 `protobuf:"varint,5,opt,name=durationSecs,proto3" json:"durationSecs"`
+	// endReason: "hungup" | "cancel" | "reject" | "timeout"
+	EndReason     string `protobuf:"bytes,6,opt,name=endReason,proto3" json:"endReason"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -538,6 +540,13 @@ func (x *SignalNotifyGroupCallEndedReq) GetDurationSecs() int64 {
 		return x.DurationSecs
 	}
 	return 0
+}
+
+func (x *SignalNotifyGroupCallEndedReq) GetEndReason() string {
+	if x != nil {
+		return x.EndReason
+	}
+	return ""
 }
 
 type SignalNotifyGroupCallEndedResp struct {
@@ -3374,13 +3383,14 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\n" +
 	"customInfo\x18\x02 \x01(\tR\n" +
 	"customInfo\"\x1c\n" +
-	"\x1aSignalSendCustomSignalResp\"\xb9\x01\n" +
+	"\x1aSignalSendCustomSignalResp\"\xd7\x01\n" +
 	"\x1dSignalNotifyGroupCallEndedReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12$\n" +
 	"\rinviterUserID\x18\x03 \x01(\tR\rinviterUserID\x12\x1c\n" +
 	"\tmediaType\x18\x04 \x01(\tR\tmediaType\x12\"\n" +
-	"\fdurationSecs\x18\x05 \x01(\x03R\fdurationSecs\" \n" +
+	"\fdurationSecs\x18\x05 \x01(\x03R\fdurationSecs\x12\x1c\n" +
+	"\tendReason\x18\x06 \x01(\tR\tendReason\" \n" +
 	"\x1eSignalNotifyGroupCallEndedResp\"e\n" +
 	"\x17SignalOnStreamChangeReq\x12\x16\n" +
 	"\x06roomID\x18\x01 \x01(\tR\x06roomID\x12\x1e\n" +

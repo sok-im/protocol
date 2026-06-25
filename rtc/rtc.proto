@@ -52,6 +52,8 @@ message SignalNotifyGroupCallEndedReq {
   string mediaType = 4;
   // durationSecs is call duration in seconds; 0 means cancelled or not answered.
   int64 durationSecs = 5;
+  // endReason: "hungup" | "cancel" | "reject" | "timeout"
+  string endReason = 6;
 }
 
 message SignalNotifyGroupCallEndedResp {
