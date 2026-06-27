@@ -464,9 +464,6 @@ message GroupCallParticipantDeclinedTips {
   PublicUserInfo opUser = 4;
   // actionType: "reject" | "timeout" | "cancel"
   string actionType = 5;
-  int32 participantCount = 6;
-  repeated PublicUserInfo participantUserList = 7;
-  string defaultTips = 8;
 }
 
 // OnGroupBurnDurationSet()
