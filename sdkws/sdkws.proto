@@ -454,6 +454,21 @@ message GroupCallParticipantCountUpdatedTips {
   repeated PublicUserInfo participantUserList = 6;
 }
 
+// OnGroupCallParticipantDeclined()
+// Sent when an invitee rejects or times out, or the inviter cancels, during a group call.
+message GroupCallParticipantDeclinedTips {
+  GroupInfo group = 1;
+  string roomID = 2;
+  string mediaType = 3;
+  // opUser is the invitee who rejected/timed out, or the inviter who cancelled.
+  PublicUserInfo opUser = 4;
+  // actionType: "reject" | "timeout" | "cancel"
+  string actionType = 5;
+  int32 participantCount = 6;
+  repeated PublicUserInfo participantUserList = 7;
+  string defaultTips = 8;
+}
+
 // OnGroupBurnDurationSet()
 // durationSecs: message disappear duration in seconds set by admin; 0 means turned off
 message GroupBurnDurationSetTips {
