@@ -28,6 +28,7 @@ message RedPacketRecord {
   string status           = 20;
   int64  createdAt        = 21;
   int64  updatedAt        = 22;
+  string chainKey         = 23;
 }
 
 message RedPacketClaimRecord {
@@ -65,6 +66,7 @@ message CreateOrderReq {
   int32  totalShares       = 12;
   int64  expiryAt          = 13;
   string remark            = 14;
+  string chainKey          = 15;
 }
 
 message CreateOrderResp {
@@ -81,6 +83,7 @@ message CreatedCallbackReq {
   string scopeType        = 5;
   string receiverUserID   = 6;
   repeated string receiverUserIDs = 7;
+  string chainKey         = 8;
 }
 
 message CreatedCallbackResp {}
@@ -90,6 +93,7 @@ message CreatedCallbackResp {}
 message GetDetailReq {
   string packetID  = 1;
   string chainType = 2;
+  string chainKey  = 3;
 }
 
 message GetDetailResp {
@@ -104,6 +108,7 @@ message IssueClaimSignReq {
   string claimer    = 2;
   string randomSeed = 3;
   string chainType  = 4;
+  string chainKey   = 5;
 }
 
 message IssueClaimSignResp {
@@ -118,6 +123,7 @@ message ClaimResultReq {
   string claimer   = 2;
   string txHash    = 3;
   string chainType = 4;
+  string chainKey  = 5;
 }
 
 message ClaimResultResp {}
@@ -130,6 +136,7 @@ message IssueWalletBindChallengeReq {
   string walletAddress = 3;
   string domain        = 4;
   string uri           = 5;
+  string chainKey      = 6;
 }
 
 message IssueWalletBindChallengeResp {
@@ -144,6 +151,7 @@ message IssueWalletBindChallengeResp {
   string message     = 9;
   string issuedAt    = 10;
   string expiresAt   = 11;
+  string chainKey    = 12;
 }
 
 message ConfirmWalletBindReq {
@@ -158,11 +166,13 @@ message ConfirmWalletBindResp {
   string walletAddress = 4;
   string status        = 5;
   string verifiedAt    = 6;
+  string chainKey      = 7;
 }
 
 message GetWalletBindingReq {
   string chainType     = 1;
   string walletAddress = 2;
+  string chainKey      = 3;
 }
 
 message GetWalletBindingResp {
@@ -173,6 +183,7 @@ message GetWalletBindingResp {
   string status        = 5;
   string challengeID   = 6;
   string verifiedAt    = 7;
+  string chainKey      = 8;
 }
 
 // ─── Refund ───────────────────────────────────────────────────────────────────
@@ -180,6 +191,7 @@ message GetWalletBindingResp {
 message RequestRefundReq {
   string packetID  = 1;
   string chainType = 2;
+  string chainKey  = 3;
 }
 
 message RequestRefundResp {
@@ -190,6 +202,7 @@ message RequestRefundResp {
 message GetRefundReq {
   string packetID  = 1;
   string chainType = 2;
+  string chainKey  = 3;
 }
 
 message GetRefundResp {
@@ -198,12 +211,14 @@ message GetRefundResp {
   string txHash    = 3;
   string amount    = 4;
   int64  createdAt = 5;
+  string chainKey  = 6;
 }
 
 // ─── Admin ────────────────────────────────────────────────────────────────────
 
 message SetSignerReq {
   string signerAddress = 1;
+  string chainKey      = 2;
 }
 
 message SetSignerResp {
@@ -214,6 +229,7 @@ message SetTokenReq {
   string tokenAddress = 1;
   bool   allowed      = 2;
   string minAmount    = 3;
+  string chainKey     = 4;
 }
 
 message SetTokenResp {
@@ -222,6 +238,7 @@ message SetTokenResp {
 
 message SetExpiryReq {
   int64 expirySeconds = 1;
+  string chainKey     = 2;
 }
 
 message SetExpiryResp {
@@ -230,6 +247,7 @@ message SetExpiryResp {
 
 message SetAllowAllTokensReq {
   bool allowAll = 1;
+  string chainKey = 2;
 }
 
 message SetAllowAllTokensResp {
@@ -238,6 +256,7 @@ message SetAllowAllTokensResp {
 
 message SetNativeTokenEnabledReq {
   bool enabled = 1;
+  string chainKey = 2;
 }
 
 message SetNativeTokenEnabledResp {
@@ -247,6 +266,7 @@ message SetNativeTokenEnabledResp {
 message ParseTxEventsReq {
   string chain  = 1;
   string txHash = 2;
+  string chainKey = 3;
 }
 
 message ParseTxEventsResp {
