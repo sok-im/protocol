@@ -31,6 +31,7 @@ message SignalReq {
     SignalRejectReq reject = 6;
     SignalGetTokenByRoomIDReq getTokenByRoomID = 7;
     SignalTimeoutReq timeout = 8;
+    SignalJoinReq join = 9;
   }
 }
 
@@ -75,6 +76,7 @@ message SignalResp {
     SignalRejectResp reject = 6;
     SignalGetTokenByRoomIDResp getTokenByRoomID = 7;
     SignalTimeoutResp timeout = 8;
+    SignalJoinResp join = 9;
   }
 }
 
@@ -193,6 +195,20 @@ message SignalTimeoutReq {
 }
 
 message SignalTimeoutResp {}
+
+// SignalJoinReq is sent when a group member joins an ongoing group call without a prior invite.
+message SignalJoinReq {
+  InvitationInfo invitation = 1;
+  ParticipantMetaData participant = 2;
+  int32 opUserPlatformID = 3;
+  string userID = 4;
+}
+
+message SignalJoinResp {
+  string token = 1;
+  string roomID = 2;
+  string liveURL = 3;
+}
 
 message SignalGetRoomByGroupIDReq {
   string groupID = 1;
