@@ -38,6 +38,7 @@ const (
 	Friend_RespondFriendApply_FullMethodName             = "/openim.relation.friend/respondFriendApply"
 	Friend_UpdateFriends_FullMethodName                  = "/openim.relation.friend/updateFriends"
 	Friend_SetFriendRemark_FullMethodName                = "/openim.relation.friend/setFriendRemark"
+	Friend_SetFriendName_FullMethodName                  = "/openim.relation.friend/setFriendName"
 	Friend_ImportFriends_FullMethodName                  = "/openim.relation.friend/importFriends"
 	Friend_GetDesignatedFriends_FullMethodName           = "/openim.relation.friend/getDesignatedFriends"
 	Friend_GetPaginationFriends_FullMethodName           = "/openim.relation.friend/getPaginationFriends"
@@ -99,6 +100,8 @@ type FriendClient interface {
 	UpdateFriends(ctx context.Context, in *UpdateFriendsReq, opts ...grpc.CallOption) (*UpdateFriendsResp, error)
 	// Set friend nickname
 	SetFriendRemark(ctx context.Context, in *SetFriendRemarkReq, opts ...grpc.CallOption) (*SetFriendRemarkResp, error)
+	// Set friend firstName + lastName (owner's custom name for the friend)
+	SetFriendName(ctx context.Context, in *SetFriendNameReq, opts ...grpc.CallOption) (*SetFriendNameResp, error)
 	// Import friends relationship
 	ImportFriends(ctx context.Context, in *ImportFriendReq, opts ...grpc.CallOption) (*ImportFriendResp, error)
 	// Paginate and retrieve friend list; do not return error if no results.
@@ -327,6 +330,16 @@ func (c *friendClient) SetFriendRemark(ctx context.Context, in *SetFriendRemarkR
 	return out, nil
 }
 
+func (c *friendClient) SetFriendName(ctx context.Context, in *SetFriendNameReq, opts ...grpc.CallOption) (*SetFriendNameResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetFriendNameResp)
+	err := c.cc.Invoke(ctx, Friend_SetFriendName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *friendClient) ImportFriends(ctx context.Context, in *ImportFriendReq, opts ...grpc.CallOption) (*ImportFriendResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ImportFriendResp)
@@ -530,6 +543,8 @@ type FriendServer interface {
 	UpdateFriends(context.Context, *UpdateFriendsReq) (*UpdateFriendsResp, error)
 	// Set friend nickname
 	SetFriendRemark(context.Context, *SetFriendRemarkReq) (*SetFriendRemarkResp, error)
+	// Set friend firstName + lastName (owner's custom name for the friend)
+	SetFriendName(context.Context, *SetFriendNameReq) (*SetFriendNameResp, error)
 	// Import friends relationship
 	ImportFriends(context.Context, *ImportFriendReq) (*ImportFriendResp, error)
 	// Paginate and retrieve friend list; do not return error if no results.
@@ -624,6 +639,9 @@ func (UnimplementedFriendServer) UpdateFriends(context.Context, *UpdateFriendsRe
 }
 func (UnimplementedFriendServer) SetFriendRemark(context.Context, *SetFriendRemarkReq) (*SetFriendRemarkResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetFriendRemark not implemented")
+}
+func (UnimplementedFriendServer) SetFriendName(context.Context, *SetFriendNameReq) (*SetFriendNameResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetFriendName not implemented")
 }
 func (UnimplementedFriendServer) ImportFriends(context.Context, *ImportFriendReq) (*ImportFriendResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method ImportFriends not implemented")
@@ -1036,6 +1054,24 @@ func _Friend_SetFriendRemark_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_SetFriendName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFriendNameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).SetFriendName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_SetFriendName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).SetFriendName(ctx, req.(*SetFriendNameReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Friend_ImportFriends_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImportFriendReq)
 	if err := dec(in); err != nil {
@@ -1406,6 +1442,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "setFriendRemark",
 			Handler:    _Friend_SetFriendRemark_Handler,
+		},
+		{
+			MethodName: "setFriendName",
+			Handler:    _Friend_SetFriendName_Handler,
 		},
 		{
 			MethodName: "importFriends",

@@ -197,6 +197,9 @@ message FriendInfo {
   bool isMute = 12;
   int64 muteDuration = 13;
   int64 muteEndTime = 14;
+  // Owner's custom firstName/lastName for this friend (display priority below remark).
+  string friendFirstName = 15;
+  string friendLastName = 16;
 }
 
 message BlackInfo {

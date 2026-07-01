@@ -187,6 +187,14 @@ message setFriendRemarkReq {
 }
 message setFriendRemarkResp {}
 
+message setFriendNameReq {
+  string ownerUserID = 1;
+  string friendUserID = 2;
+  string firstName = 3;
+  string lastName = 4;
+}
+message setFriendNameResp {}
+
 message getPaginationFriendsApplyFromReq {
   string userID = 1;
   openim.sdkws.RequestPagination pagination = 2;
@@ -368,6 +376,8 @@ service friend {
   rpc updateFriends(updateFriendsReq) returns (updateFriendsResp);
   // Set friend nickname
   rpc setFriendRemark(setFriendRemarkReq) returns (setFriendRemarkResp);
+  // Set friend firstName + lastName (owner's custom name for the friend)
+  rpc setFriendName(setFriendNameReq) returns (setFriendNameResp);
   // Import friends relationship
   rpc importFriends(importFriendReq) returns (importFriendResp);
   // Paginate and retrieve friend list; do not return error if no results.

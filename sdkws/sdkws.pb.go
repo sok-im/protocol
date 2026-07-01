@@ -1296,6 +1296,9 @@ type FriendInfo struct {
 	IsMute          bool                   `protobuf:"varint,12,opt,name=isMute,proto3" json:"isMute"`
 	MuteDuration    int64                  `protobuf:"varint,13,opt,name=muteDuration,proto3" json:"muteDuration"`
 	MuteEndTime     int64                  `protobuf:"varint,14,opt,name=muteEndTime,proto3" json:"muteEndTime"`
+	// Owner's custom firstName/lastName for this friend (display priority below remark).
+	FriendFirstName string `protobuf:"bytes,15,opt,name=friendFirstName,proto3" json:"friendFirstName"`
+	FriendLastName  string `protobuf:"bytes,16,opt,name=friendLastName,proto3" json:"friendLastName"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1426,6 +1429,20 @@ func (x *FriendInfo) GetMuteEndTime() int64 {
 		return x.MuteEndTime
 	}
 	return 0
+}
+
+func (x *FriendInfo) GetFriendFirstName() string {
+	if x != nil {
+		return x.FriendFirstName
+	}
+	return ""
+}
+
+func (x *FriendInfo) GetFriendLastName() string {
+	if x != nil {
+		return x.FriendLastName
+	}
+	return ""
 }
 
 type BlackInfo struct {
@@ -1966,8 +1983,8 @@ func (x *PullMsgs) GetEndSeq() int64 {
 
 type PullMessageBySeqsResp struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -2062,8 +2079,8 @@ func (x *GetMaxSeqReq) GetUserID() string {
 
 type GetMaxSeqResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	MinSeqs       map[string]int64       `protobuf:"bytes,2,rep,name=minSeqs,proto3" json:"minSeqs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MaxSeqs       map[string]int64       `protobuf:"bytes,1,rep,name=maxSeqs,proto3" json:"maxSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MinSeqs       map[string]int64       `protobuf:"bytes,2,rep,name=minSeqs,proto3" json:"minSeqs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2191,7 +2208,7 @@ type MsgData struct {
 	CreateTime       int64                  `protobuf:"varint,16,opt,name=createTime,proto3" json:"createTime"`
 	Status           int32                  `protobuf:"varint,17,opt,name=status,proto3" json:"status"`
 	IsRead           bool                   `protobuf:"varint,18,opt,name=isRead,proto3" json:"isRead"`
-	Options          map[string]bool        `protobuf:"bytes,19,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	Options          map[string]bool        `protobuf:"bytes,19,rep,name=options,proto3" json:"options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	OfflinePushInfo  *OfflinePushInfo       `protobuf:"bytes,20,opt,name=offlinePushInfo,proto3" json:"offlinePushInfo"`
 	AtUserIDList     []string               `protobuf:"bytes,21,rep,name=atUserIDList,proto3" json:"atUserIDList"`
 	AttachedInfo     string                 `protobuf:"bytes,22,opt,name=attachedInfo,proto3" json:"attachedInfo"`
@@ -2386,8 +2403,8 @@ func (x *MsgData) GetEx() string {
 
 type PushMessages struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Msgs             map[string]*PullMsgs   `protobuf:"bytes,1,rep,name=msgs,proto3" json:"msgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	NotificationMsgs map[string]*PullMsgs   `protobuf:"bytes,2,rep,name=notificationMsgs,proto3" json:"notificationMsgs" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -3066,7 +3083,7 @@ type GroupPinnedMsgInfo struct {
 	ContentType      int32                  `protobuf:"varint,14,opt,name=contentType,proto3" json:"contentType"`
 	Content          string                 `protobuf:"bytes,15,opt,name=content,proto3" json:"content"`
 	AtUserIDList     []string               `protobuf:"bytes,16,rep,name=atUserIDList,proto3" json:"atUserIDList"`
-	Options          map[string]bool        `protobuf:"bytes,17,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	Options          map[string]bool        `protobuf:"bytes,17,rep,name=options,proto3" json:"options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	AttachedInfo     string                 `protobuf:"bytes,18,opt,name=attachedInfo,proto3" json:"attachedInfo"`
 	Ex               string                 `protobuf:"bytes,19,opt,name=ex,proto3" json:"ex"`
 	SendTime         int64                  `protobuf:"varint,20,opt,name=sendTime,proto3" json:"sendTime"`
@@ -7298,7 +7315,7 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\x12callRingtoneAuthor\x18\x12 \x01(\v2\x1c.openim.protobuf.StringValueR\x12callRingtoneAuthor\x12K\n" +
 	"\x12groupInviteSetting\x18\x0e \x01(\v2\x1b.openim.protobuf.Int32ValueR\x12groupInviteSetting\x12E\n" +
 	"\x0fmsgBurnDuration\x18\x0f \x01(\v2\x1b.openim.protobuf.Int32ValueR\x0fmsgBurnDuration\x128\n" +
-	"\blanguage\x18\x13 \x01(\v2\x1c.openim.protobuf.StringValueR\blanguage\"\xe2\x03\n" +
+	"\blanguage\x18\x13 \x01(\v2\x1c.openim.protobuf.StringValueR\blanguage\"\xb4\x04\n" +
 	"\n" +
 	"FriendInfo\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\x16\n" +
@@ -7319,7 +7336,9 @@ const file_sdkws_sdkws_proto_rawDesc = "" +
 	"\fburnDuration\x18\v \x01(\x05R\fburnDuration\x12\x16\n" +
 	"\x06isMute\x18\f \x01(\bR\x06isMute\x12\"\n" +
 	"\fmuteDuration\x18\r \x01(\x03R\fmuteDuration\x12 \n" +
-	"\vmuteEndTime\x18\x0e \x01(\x03R\vmuteEndTime\"\xe7\x01\n" +
+	"\vmuteEndTime\x18\x0e \x01(\x03R\vmuteEndTime\x12(\n" +
+	"\x0ffriendFirstName\x18\x0f \x01(\tR\x0ffriendFirstName\x12&\n" +
+	"\x0efriendLastName\x18\x10 \x01(\tR\x0efriendLastName\"\xe7\x01\n" +
 	"\tBlackInfo\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\x1e\n" +
 	"\n" +
