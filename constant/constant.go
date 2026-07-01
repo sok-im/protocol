@@ -107,6 +107,10 @@ const (
 	BusinessNotification      = 2001
 	ServiceNotification       = 2002 // 服务通知
 	PaymentNotification       = 2003 // 支付通知
+	RedPacketClaimNotification   = 2004 // 红包领取通知
+	TransferReceiveNotification    = 2005 // 转账接收通知
+	RedPacketExpiredNotification   = 2006 // 红包过期通知
+	TransferExpiredNotification    = 2007 // 转账过期通知
 	BusinessNotificationEnd   = 2099
 
 	MsgRevokeNotification  = 2101
@@ -360,7 +364,9 @@ func GroupIsBanPrivateChat(status int32) bool {
 // IsNotificationSessionContentType 判断是否为通知会话消息类型（需配合 NotificationChatType 使用）。
 func IsNotificationSessionContentType(contentType int32) bool {
 	switch contentType {
-	case OANotification, ServiceNotification, PaymentNotification:
+	case OANotification, ServiceNotification, PaymentNotification,
+		RedPacketClaimNotification, TransferReceiveNotification,
+		RedPacketExpiredNotification, TransferExpiredNotification:
 		return true
 	default:
 		return false
