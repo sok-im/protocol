@@ -200,6 +200,8 @@ message FriendInfo {
   // Owner's custom firstName/lastName for this friend (display priority below remark).
   string friendFirstName = 15;
   string friendLastName = 16;
+  // Owner's private note for this friend; independent of remark and NOT used for display.
+  string note = 17;
 }
 
 message BlackInfo {

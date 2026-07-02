@@ -55,6 +55,7 @@ const (
 	Friend_GetMute_FullMethodName                        = "/openim.relation.friend/GetMute"
 	Friend_PinFriend_FullMethodName                      = "/openim.relation.friend/pinFriend"
 	Friend_UnpinFriend_FullMethodName                    = "/openim.relation.friend/unpinFriend"
+	Friend_SetFriendNote_FullMethodName                  = "/openim.relation.friend/setFriendNote"
 )
 
 // FriendClient is the client API for Friend service.
@@ -130,6 +131,8 @@ type FriendClient interface {
 	PinFriend(ctx context.Context, in *PinFriendReq, opts ...grpc.CallOption) (*PinFriendResp, error)
 	// 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
 	UnpinFriend(ctx context.Context, in *UnpinFriendReq, opts ...grpc.CallOption) (*UnpinFriendResp, error)
+	// 设置好友私有备注（note），独立于 remark，不影响会话/群聊中的好友显示名
+	SetFriendNote(ctx context.Context, in *SetFriendNoteReq, opts ...grpc.CallOption) (*SetFriendNoteResp, error)
 }
 
 type friendClient struct {
@@ -500,6 +503,16 @@ func (c *friendClient) UnpinFriend(ctx context.Context, in *UnpinFriendReq, opts
 	return out, nil
 }
 
+func (c *friendClient) SetFriendNote(ctx context.Context, in *SetFriendNoteReq, opts ...grpc.CallOption) (*SetFriendNoteResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetFriendNoteResp)
+	err := c.cc.Invoke(ctx, Friend_SetFriendNote_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendServer is the server API for Friend service.
 // All implementations must embed UnimplementedFriendServer
 // for forward compatibility.
@@ -573,6 +586,8 @@ type FriendServer interface {
 	PinFriend(context.Context, *PinFriendReq) (*PinFriendResp, error)
 	// 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
 	UnpinFriend(context.Context, *UnpinFriendReq) (*UnpinFriendResp, error)
+	// 设置好友私有备注（note），独立于 remark，不影响会话/群聊中的好友显示名
+	SetFriendNote(context.Context, *SetFriendNoteReq) (*SetFriendNoteResp, error)
 	mustEmbedUnimplementedFriendServer()
 }
 
@@ -690,6 +705,9 @@ func (UnimplementedFriendServer) PinFriend(context.Context, *PinFriendReq) (*Pin
 }
 func (UnimplementedFriendServer) UnpinFriend(context.Context, *UnpinFriendReq) (*UnpinFriendResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method UnpinFriend not implemented")
+}
+func (UnimplementedFriendServer) SetFriendNote(context.Context, *SetFriendNoteReq) (*SetFriendNoteResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetFriendNote not implemented")
 }
 func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
 func (UnimplementedFriendServer) testEmbeddedByValue()                {}
@@ -1360,6 +1378,24 @@ func _Friend_UnpinFriend_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_SetFriendNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFriendNoteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).SetFriendNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_SetFriendNote_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).SetFriendNote(ctx, req.(*SetFriendNoteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1510,6 +1546,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpinFriend",
 			Handler:    _Friend_UnpinFriend_Handler,
+		},
+		{
+			MethodName: "setFriendNote",
+			Handler:    _Friend_SetFriendNote_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -164,6 +164,16 @@ func (x *SetFriendNameReq) Check() error {
 	return nil
 }
 
+func (x *SetFriendNoteReq) Check() error {
+	if x.OwnerUserID == "" {
+		return errors.New("ownerUserID is empty")
+	}
+	if x.FriendUserID == "" {
+		return errors.New("friendUserID is empty")
+	}
+	return nil
+}
+
 func (x *GetPaginationFriendsApplyFromReq) Check() error {
 	if x.UserID == "" {
 		return errors.New("userID is empty")

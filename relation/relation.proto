@@ -336,6 +336,17 @@ message GetPinnedFriendIDsResp {
   repeated string friendUserIDs = 1;
 }
 
+// 好友备注（note）：owner 对好友的私有备注，独立于 remark。
+// 与 remark 不同，note 不参与会话名、群成员昵称等好友显示；
+// 通过 FriendInfo.note 随好友信息同步返回（getDesignatedFriends / 增量同步）。
+message setFriendNoteReq {
+  string ownerUserID = 1;
+  string friendUserID = 2;
+  string note = 3;
+}
+
+message setFriendNoteResp {}
+
 service friend {
   // Friend request
   rpc applyToAddFriend(applyToAddFriendReq) returns (applyToAddFriendResp);
@@ -413,6 +424,9 @@ service friend {
   rpc pinFriend(pinFriendReq) returns (pinFriendResp);
   // 好友会话取消置顶（同步写入 friend.is_pinned = false 与 conversation.isPinned = false）
   rpc unpinFriend(unpinFriendReq) returns (unpinFriendResp);
+
+  // 设置好友私有备注（note），独立于 remark，不影响会话/群聊中的好友显示名
+  rpc setFriendNote(setFriendNoteReq) returns (setFriendNoteResp);
 }
 
 message setMuteReq {

@@ -3614,6 +3614,105 @@ func (x *GetPinnedFriendIDsResp) GetFriendUserIDs() []string {
 	return nil
 }
 
+// 好友备注（note）：owner 对好友的私有备注，独立于 remark。
+// 与 remark 不同，note 不参与会话名、群成员昵称等好友显示；
+// 通过 FriendInfo.note 随好友信息同步返回（getDesignatedFriends / 增量同步）。
+type SetFriendNoteReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
+	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetFriendNoteReq) Reset() {
+	*x = SetFriendNoteReq{}
+	mi := &file_relation_relation_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetFriendNoteReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetFriendNoteReq) ProtoMessage() {}
+
+func (x *SetFriendNoteReq) ProtoReflect() protoreflect.Message {
+	mi := &file_relation_relation_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetFriendNoteReq.ProtoReflect.Descriptor instead.
+func (*SetFriendNoteReq) Descriptor() ([]byte, []int) {
+	return file_relation_relation_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *SetFriendNoteReq) GetOwnerUserID() string {
+	if x != nil {
+		return x.OwnerUserID
+	}
+	return ""
+}
+
+func (x *SetFriendNoteReq) GetFriendUserID() string {
+	if x != nil {
+		return x.FriendUserID
+	}
+	return ""
+}
+
+func (x *SetFriendNoteReq) GetNote() string {
+	if x != nil {
+		return x.Note
+	}
+	return ""
+}
+
+type SetFriendNoteResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetFriendNoteResp) Reset() {
+	*x = SetFriendNoteResp{}
+	mi := &file_relation_relation_proto_msgTypes[64]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetFriendNoteResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetFriendNoteResp) ProtoMessage() {}
+
+func (x *SetFriendNoteResp) ProtoReflect() protoreflect.Message {
+	mi := &file_relation_relation_proto_msgTypes[64]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetFriendNoteResp.ProtoReflect.Descriptor instead.
+func (*SetFriendNoteResp) Descriptor() ([]byte, []int) {
+	return file_relation_relation_proto_rawDescGZIP(), []int{64}
+}
+
 type SetMuteReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
@@ -3625,7 +3724,7 @@ type SetMuteReq struct {
 
 func (x *SetMuteReq) Reset() {
 	*x = SetMuteReq{}
-	mi := &file_relation_relation_proto_msgTypes[63]
+	mi := &file_relation_relation_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3637,7 +3736,7 @@ func (x *SetMuteReq) String() string {
 func (*SetMuteReq) ProtoMessage() {}
 
 func (x *SetMuteReq) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[63]
+	mi := &file_relation_relation_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3650,7 +3749,7 @@ func (x *SetMuteReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetMuteReq.ProtoReflect.Descriptor instead.
 func (*SetMuteReq) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{63}
+	return file_relation_relation_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *SetMuteReq) GetOwnerUserID() string {
@@ -3682,7 +3781,7 @@ type SetMuteResp struct {
 
 func (x *SetMuteResp) Reset() {
 	*x = SetMuteResp{}
-	mi := &file_relation_relation_proto_msgTypes[64]
+	mi := &file_relation_relation_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3694,7 +3793,7 @@ func (x *SetMuteResp) String() string {
 func (*SetMuteResp) ProtoMessage() {}
 
 func (x *SetMuteResp) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[64]
+	mi := &file_relation_relation_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3707,7 +3806,7 @@ func (x *SetMuteResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetMuteResp.ProtoReflect.Descriptor instead.
 func (*SetMuteResp) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{64}
+	return file_relation_relation_proto_rawDescGZIP(), []int{66}
 }
 
 type GetMuteReq struct {
@@ -3720,7 +3819,7 @@ type GetMuteReq struct {
 
 func (x *GetMuteReq) Reset() {
 	*x = GetMuteReq{}
-	mi := &file_relation_relation_proto_msgTypes[65]
+	mi := &file_relation_relation_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3732,7 +3831,7 @@ func (x *GetMuteReq) String() string {
 func (*GetMuteReq) ProtoMessage() {}
 
 func (x *GetMuteReq) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[65]
+	mi := &file_relation_relation_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3745,7 +3844,7 @@ func (x *GetMuteReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMuteReq.ProtoReflect.Descriptor instead.
 func (*GetMuteReq) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{65}
+	return file_relation_relation_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *GetMuteReq) GetOwnerUserID() string {
@@ -3774,7 +3873,7 @@ type GetMuteResp struct {
 
 func (x *GetMuteResp) Reset() {
 	*x = GetMuteResp{}
-	mi := &file_relation_relation_proto_msgTypes[66]
+	mi := &file_relation_relation_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3786,7 +3885,7 @@ func (x *GetMuteResp) String() string {
 func (*GetMuteResp) ProtoMessage() {}
 
 func (x *GetMuteResp) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[66]
+	mi := &file_relation_relation_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3799,7 +3898,7 @@ func (x *GetMuteResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMuteResp.ProtoReflect.Descriptor instead.
 func (*GetMuteResp) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{66}
+	return file_relation_relation_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *GetMuteResp) GetMuted() bool {
@@ -3834,7 +3933,7 @@ type PinFriendReq struct {
 
 func (x *PinFriendReq) Reset() {
 	*x = PinFriendReq{}
-	mi := &file_relation_relation_proto_msgTypes[67]
+	mi := &file_relation_relation_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3846,7 +3945,7 @@ func (x *PinFriendReq) String() string {
 func (*PinFriendReq) ProtoMessage() {}
 
 func (x *PinFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[67]
+	mi := &file_relation_relation_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3859,7 +3958,7 @@ func (x *PinFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinFriendReq.ProtoReflect.Descriptor instead.
 func (*PinFriendReq) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{67}
+	return file_relation_relation_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *PinFriendReq) GetOwnerUserID() string {
@@ -3884,7 +3983,7 @@ type PinFriendResp struct {
 
 func (x *PinFriendResp) Reset() {
 	*x = PinFriendResp{}
-	mi := &file_relation_relation_proto_msgTypes[68]
+	mi := &file_relation_relation_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3896,7 +3995,7 @@ func (x *PinFriendResp) String() string {
 func (*PinFriendResp) ProtoMessage() {}
 
 func (x *PinFriendResp) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[68]
+	mi := &file_relation_relation_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3909,7 +4008,7 @@ func (x *PinFriendResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PinFriendResp.ProtoReflect.Descriptor instead.
 func (*PinFriendResp) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{68}
+	return file_relation_relation_proto_rawDescGZIP(), []int{70}
 }
 
 type UnpinFriendReq struct {
@@ -3922,7 +4021,7 @@ type UnpinFriendReq struct {
 
 func (x *UnpinFriendReq) Reset() {
 	*x = UnpinFriendReq{}
-	mi := &file_relation_relation_proto_msgTypes[69]
+	mi := &file_relation_relation_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3934,7 +4033,7 @@ func (x *UnpinFriendReq) String() string {
 func (*UnpinFriendReq) ProtoMessage() {}
 
 func (x *UnpinFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[69]
+	mi := &file_relation_relation_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3947,7 +4046,7 @@ func (x *UnpinFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinFriendReq.ProtoReflect.Descriptor instead.
 func (*UnpinFriendReq) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{69}
+	return file_relation_relation_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *UnpinFriendReq) GetOwnerUserID() string {
@@ -3972,7 +4071,7 @@ type UnpinFriendResp struct {
 
 func (x *UnpinFriendResp) Reset() {
 	*x = UnpinFriendResp{}
-	mi := &file_relation_relation_proto_msgTypes[70]
+	mi := &file_relation_relation_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3984,7 +4083,7 @@ func (x *UnpinFriendResp) String() string {
 func (*UnpinFriendResp) ProtoMessage() {}
 
 func (x *UnpinFriendResp) ProtoReflect() protoreflect.Message {
-	mi := &file_relation_relation_proto_msgTypes[70]
+	mi := &file_relation_relation_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3997,7 +4096,7 @@ func (x *UnpinFriendResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpinFriendResp.ProtoReflect.Descriptor instead.
 func (*UnpinFriendResp) Descriptor() ([]byte, []int) {
-	return file_relation_relation_proto_rawDescGZIP(), []int{70}
+	return file_relation_relation_proto_rawDescGZIP(), []int{72}
 }
 
 var File_relation_relation_proto protoreflect.FileDescriptor
@@ -4261,7 +4360,12 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x15GetPinnedFriendIDsReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\">\n" +
 	"\x16GetPinnedFriendIDsResp\x12$\n" +
-	"\rfriendUserIDs\x18\x01 \x03(\tR\rfriendUserIDs\"n\n" +
+	"\rfriendUserIDs\x18\x01 \x03(\tR\rfriendUserIDs\"l\n" +
+	"\x10setFriendNoteReq\x12 \n" +
+	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
+	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\x12\x12\n" +
+	"\x04note\x18\x03 \x01(\tR\x04note\"\x13\n" +
+	"\x11setFriendNoteResp\"n\n" +
 	"\n" +
 	"setMuteReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
@@ -4283,7 +4387,7 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x0eunpinFriendReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
 	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\"\x11\n" +
-	"\x0funpinFriendResp2\x8a\x1c\n" +
+	"\x0funpinFriendResp2\xe2\x1c\n" +
 	"\x06friend\x12_\n" +
 	"\x10applyToAddFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12^\n" +
 	"\x0faddOnewayFriend\x12$.openim.relation.applyToAddFriendReq\x1a%.openim.relation.applyToAddFriendResp\x12\x80\x01\n" +
@@ -4320,7 +4424,8 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\aSetMute\x12\x1b.openim.relation.setMuteReq\x1a\x1c.openim.relation.setMuteResp\x12D\n" +
 	"\aGetMute\x12\x1b.openim.relation.getMuteReq\x1a\x1c.openim.relation.getMuteResp\x12J\n" +
 	"\tpinFriend\x12\x1d.openim.relation.pinFriendReq\x1a\x1e.openim.relation.pinFriendResp\x12P\n" +
-	"\vunpinFriend\x12\x1f.openim.relation.unpinFriendReq\x1a .openim.relation.unpinFriendRespB(Z&github.com/openimsdk/protocol/relationb\x06proto3"
+	"\vunpinFriend\x12\x1f.openim.relation.unpinFriendReq\x1a .openim.relation.unpinFriendResp\x12V\n" +
+	"\rsetFriendNote\x12!.openim.relation.setFriendNoteReq\x1a\".openim.relation.setFriendNoteRespB(Z&github.com/openimsdk/protocol/relationb\x06proto3"
 
 var (
 	file_relation_relation_proto_rawDescOnce sync.Once
@@ -4334,7 +4439,7 @@ func file_relation_relation_proto_rawDescGZIP() []byte {
 	return file_relation_relation_proto_rawDescData
 }
 
-var file_relation_relation_proto_msgTypes = make([]protoimpl.MessageInfo, 71)
+var file_relation_relation_proto_msgTypes = make([]protoimpl.MessageInfo, 73)
 var file_relation_relation_proto_goTypes = []any{
 	(*GetPaginationFriendsReq)(nil),            // 0: openim.relation.getPaginationFriendsReq
 	(*GetPaginationFriendsResp)(nil),           // 1: openim.relation.getPaginationFriendsResp
@@ -4399,57 +4504,59 @@ var file_relation_relation_proto_goTypes = []any{
 	(*GetFriendPhoneResp)(nil),                 // 60: openim.relation.getFriendPhoneResp
 	(*GetPinnedFriendIDsReq)(nil),              // 61: openim.relation.GetPinnedFriendIDsReq
 	(*GetPinnedFriendIDsResp)(nil),             // 62: openim.relation.GetPinnedFriendIDsResp
-	(*SetMuteReq)(nil),                         // 63: openim.relation.setMuteReq
-	(*SetMuteResp)(nil),                        // 64: openim.relation.setMuteResp
-	(*GetMuteReq)(nil),                         // 65: openim.relation.getMuteReq
-	(*GetMuteResp)(nil),                        // 66: openim.relation.getMuteResp
-	(*PinFriendReq)(nil),                       // 67: openim.relation.pinFriendReq
-	(*PinFriendResp)(nil),                      // 68: openim.relation.pinFriendResp
-	(*UnpinFriendReq)(nil),                     // 69: openim.relation.unpinFriendReq
-	(*UnpinFriendResp)(nil),                    // 70: openim.relation.unpinFriendResp
-	(*sdkws.RequestPagination)(nil),            // 71: openim.sdkws.RequestPagination
-	(*sdkws.FriendInfo)(nil),                   // 72: openim.sdkws.FriendInfo
-	(*sdkws.FriendRequest)(nil),                // 73: openim.sdkws.FriendRequest
-	(*sdkws.BlackInfo)(nil),                    // 74: openim.sdkws.BlackInfo
-	(*wrapperspb.BoolValue)(nil),               // 75: openim.protobuf.BoolValue
-	(*wrapperspb.StringValue)(nil),             // 76: openim.protobuf.StringValue
-	(*wrapperspb.Int64Value)(nil),              // 77: openim.protobuf.Int64Value
-	(*wrapperspb.Int32Value)(nil),              // 78: openim.protobuf.Int32Value
-	(*sdkws.UserInfo)(nil),                     // 79: openim.sdkws.UserInfo
+	(*SetFriendNoteReq)(nil),                   // 63: openim.relation.setFriendNoteReq
+	(*SetFriendNoteResp)(nil),                  // 64: openim.relation.setFriendNoteResp
+	(*SetMuteReq)(nil),                         // 65: openim.relation.setMuteReq
+	(*SetMuteResp)(nil),                        // 66: openim.relation.setMuteResp
+	(*GetMuteReq)(nil),                         // 67: openim.relation.getMuteReq
+	(*GetMuteResp)(nil),                        // 68: openim.relation.getMuteResp
+	(*PinFriendReq)(nil),                       // 69: openim.relation.pinFriendReq
+	(*PinFriendResp)(nil),                      // 70: openim.relation.pinFriendResp
+	(*UnpinFriendReq)(nil),                     // 71: openim.relation.unpinFriendReq
+	(*UnpinFriendResp)(nil),                    // 72: openim.relation.unpinFriendResp
+	(*sdkws.RequestPagination)(nil),            // 73: openim.sdkws.RequestPagination
+	(*sdkws.FriendInfo)(nil),                   // 74: openim.sdkws.FriendInfo
+	(*sdkws.FriendRequest)(nil),                // 75: openim.sdkws.FriendRequest
+	(*sdkws.BlackInfo)(nil),                    // 76: openim.sdkws.BlackInfo
+	(*wrapperspb.BoolValue)(nil),               // 77: openim.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil),             // 78: openim.protobuf.StringValue
+	(*wrapperspb.Int64Value)(nil),              // 79: openim.protobuf.Int64Value
+	(*wrapperspb.Int32Value)(nil),              // 80: openim.protobuf.Int32Value
+	(*sdkws.UserInfo)(nil),                     // 81: openim.sdkws.UserInfo
 }
 var file_relation_relation_proto_depIdxs = []int32{
-	71, // 0: openim.relation.getPaginationFriendsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	72, // 1: openim.relation.getPaginationFriendsResp.friendsInfo:type_name -> openim.sdkws.FriendInfo
-	71, // 2: openim.relation.getPaginationFriendsApplyToReq.pagination:type_name -> openim.sdkws.RequestPagination
-	73, // 3: openim.relation.getPaginationFriendsApplyToResp.FriendRequests:type_name -> openim.sdkws.FriendRequest
-	73, // 4: openim.relation.getDesignatedFriendsApplyResp.friendRequests:type_name -> openim.sdkws.FriendRequest
-	73, // 5: openim.relation.getIncrementalFriendsApplyToResp.changes:type_name -> openim.sdkws.FriendRequest
-	73, // 6: openim.relation.getIncrementalFriendsApplyFromResp.changes:type_name -> openim.sdkws.FriendRequest
-	72, // 7: openim.relation.getDesignatedFriendsResp.friendsInfo:type_name -> openim.sdkws.FriendInfo
-	71, // 8: openim.relation.getPaginationBlacksReq.pagination:type_name -> openim.sdkws.RequestPagination
-	74, // 9: openim.relation.getPaginationBlacksResp.blacks:type_name -> openim.sdkws.BlackInfo
-	75, // 10: openim.relation.updateFriendsReq.isPinned:type_name -> openim.protobuf.BoolValue
-	76, // 11: openim.relation.updateFriendsReq.remark:type_name -> openim.protobuf.StringValue
-	76, // 12: openim.relation.updateFriendsReq.ex:type_name -> openim.protobuf.StringValue
-	75, // 13: openim.relation.updateFriendsReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
-	77, // 14: openim.relation.updateFriendsReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
-	78, // 15: openim.relation.updateFriendsReq.burnDuration:type_name -> openim.protobuf.Int32Value
-	75, // 16: openim.relation.updateFriendsReq.isMute:type_name -> openim.protobuf.BoolValue
-	77, // 17: openim.relation.updateFriendsReq.muteDuration:type_name -> openim.protobuf.Int64Value
-	77, // 18: openim.relation.updateFriendsReq.muteEndTime:type_name -> openim.protobuf.Int64Value
-	71, // 19: openim.relation.getPaginationFriendsApplyFromReq.pagination:type_name -> openim.sdkws.RequestPagination
-	73, // 20: openim.relation.getPaginationFriendsApplyFromResp.friendRequests:type_name -> openim.sdkws.FriendRequest
-	79, // 21: openim.relation.getSpecifiedFriendsInfoInfo.userInfo:type_name -> openim.sdkws.UserInfo
-	72, // 22: openim.relation.getSpecifiedFriendsInfoInfo.friendInfo:type_name -> openim.sdkws.FriendInfo
-	74, // 23: openim.relation.getSpecifiedFriendsInfoInfo.blackInfo:type_name -> openim.sdkws.BlackInfo
+	73, // 0: openim.relation.getPaginationFriendsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	74, // 1: openim.relation.getPaginationFriendsResp.friendsInfo:type_name -> openim.sdkws.FriendInfo
+	73, // 2: openim.relation.getPaginationFriendsApplyToReq.pagination:type_name -> openim.sdkws.RequestPagination
+	75, // 3: openim.relation.getPaginationFriendsApplyToResp.FriendRequests:type_name -> openim.sdkws.FriendRequest
+	75, // 4: openim.relation.getDesignatedFriendsApplyResp.friendRequests:type_name -> openim.sdkws.FriendRequest
+	75, // 5: openim.relation.getIncrementalFriendsApplyToResp.changes:type_name -> openim.sdkws.FriendRequest
+	75, // 6: openim.relation.getIncrementalFriendsApplyFromResp.changes:type_name -> openim.sdkws.FriendRequest
+	74, // 7: openim.relation.getDesignatedFriendsResp.friendsInfo:type_name -> openim.sdkws.FriendInfo
+	73, // 8: openim.relation.getPaginationBlacksReq.pagination:type_name -> openim.sdkws.RequestPagination
+	76, // 9: openim.relation.getPaginationBlacksResp.blacks:type_name -> openim.sdkws.BlackInfo
+	77, // 10: openim.relation.updateFriendsReq.isPinned:type_name -> openim.protobuf.BoolValue
+	78, // 11: openim.relation.updateFriendsReq.remark:type_name -> openim.protobuf.StringValue
+	78, // 12: openim.relation.updateFriendsReq.ex:type_name -> openim.protobuf.StringValue
+	77, // 13: openim.relation.updateFriendsReq.isMsgDestruct:type_name -> openim.protobuf.BoolValue
+	79, // 14: openim.relation.updateFriendsReq.msgDestructTime:type_name -> openim.protobuf.Int64Value
+	80, // 15: openim.relation.updateFriendsReq.burnDuration:type_name -> openim.protobuf.Int32Value
+	77, // 16: openim.relation.updateFriendsReq.isMute:type_name -> openim.protobuf.BoolValue
+	79, // 17: openim.relation.updateFriendsReq.muteDuration:type_name -> openim.protobuf.Int64Value
+	79, // 18: openim.relation.updateFriendsReq.muteEndTime:type_name -> openim.protobuf.Int64Value
+	73, // 19: openim.relation.getPaginationFriendsApplyFromReq.pagination:type_name -> openim.sdkws.RequestPagination
+	75, // 20: openim.relation.getPaginationFriendsApplyFromResp.friendRequests:type_name -> openim.sdkws.FriendRequest
+	81, // 21: openim.relation.getSpecifiedFriendsInfoInfo.userInfo:type_name -> openim.sdkws.UserInfo
+	74, // 22: openim.relation.getSpecifiedFriendsInfoInfo.friendInfo:type_name -> openim.sdkws.FriendInfo
+	76, // 23: openim.relation.getSpecifiedFriendsInfoInfo.blackInfo:type_name -> openim.sdkws.BlackInfo
 	44, // 24: openim.relation.getSpecifiedFriendsInfoResp.infos:type_name -> openim.relation.getSpecifiedFriendsInfoInfo
-	72, // 25: openim.relation.getIncrementalFriendsResp.insert:type_name -> openim.sdkws.FriendInfo
-	72, // 26: openim.relation.getIncrementalFriendsResp.update:type_name -> openim.sdkws.FriendInfo
-	74, // 27: openim.relation.getIncrementalBlacksResp.insert:type_name -> openim.sdkws.BlackInfo
-	74, // 28: openim.relation.getIncrementalBlacksResp.update:type_name -> openim.sdkws.BlackInfo
-	74, // 29: openim.relation.GetSpecifiedBlacksResp.blacks:type_name -> openim.sdkws.BlackInfo
-	79, // 30: openim.relation.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
-	79, // 31: openim.relation.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
+	74, // 25: openim.relation.getIncrementalFriendsResp.insert:type_name -> openim.sdkws.FriendInfo
+	74, // 26: openim.relation.getIncrementalFriendsResp.update:type_name -> openim.sdkws.FriendInfo
+	76, // 27: openim.relation.getIncrementalBlacksResp.insert:type_name -> openim.sdkws.BlackInfo
+	76, // 28: openim.relation.getIncrementalBlacksResp.update:type_name -> openim.sdkws.BlackInfo
+	76, // 29: openim.relation.GetSpecifiedBlacksResp.blacks:type_name -> openim.sdkws.BlackInfo
+	81, // 30: openim.relation.notificationUserInfoUpdateReq.oldUserInfo:type_name -> openim.sdkws.UserInfo
+	81, // 31: openim.relation.notificationUserInfoUpdateReq.newUserInfo:type_name -> openim.sdkws.UserInfo
 	56, // 32: openim.relation.getFriendInfoResp.friendInfos:type_name -> openim.relation.FriendInfoOnly
 	2,  // 33: openim.relation.friend.applyToAddFriend:input_type -> openim.relation.applyToAddFriendReq
 	2,  // 34: openim.relation.friend.addOnewayFriend:input_type -> openim.relation.applyToAddFriendReq
@@ -4483,48 +4590,50 @@ var file_relation_relation_proto_depIdxs = []int32{
 	57, // 62: openim.relation.friend.getFriendInfo:input_type -> openim.relation.getFriendInfoReq
 	59, // 63: openim.relation.friend.getFriendPhone:input_type -> openim.relation.getFriendPhoneReq
 	61, // 64: openim.relation.friend.GetPinnedFriendIDs:input_type -> openim.relation.GetPinnedFriendIDsReq
-	63, // 65: openim.relation.friend.SetMute:input_type -> openim.relation.setMuteReq
-	65, // 66: openim.relation.friend.GetMute:input_type -> openim.relation.getMuteReq
-	67, // 67: openim.relation.friend.pinFriend:input_type -> openim.relation.pinFriendReq
-	69, // 68: openim.relation.friend.unpinFriend:input_type -> openim.relation.unpinFriendReq
-	3,  // 69: openim.relation.friend.applyToAddFriend:output_type -> openim.relation.applyToAddFriendResp
-	3,  // 70: openim.relation.friend.addOnewayFriend:output_type -> openim.relation.applyToAddFriendResp
-	8,  // 71: openim.relation.friend.getPaginationFriendsApplyTo:output_type -> openim.relation.getPaginationFriendsApplyToResp
-	40, // 72: openim.relation.friend.getPaginationFriendsApplyFrom:output_type -> openim.relation.getPaginationFriendsApplyFromResp
-	12, // 73: openim.relation.friend.getSelfUnhandledApplyCount:output_type -> openim.relation.getSelfUnhandledApplyCountResp
-	10, // 74: openim.relation.friend.getDesignatedFriendsApply:output_type -> openim.relation.getDesignatedFriendsApplyResp
-	14, // 75: openim.relation.friend.getIncrementalFriendsApplyTo:output_type -> openim.relation.getIncrementalFriendsApplyToResp
-	16, // 76: openim.relation.friend.getIncrementalFriendsApplyFrom:output_type -> openim.relation.getIncrementalFriendsApplyFromResp
-	20, // 77: openim.relation.friend.addBlack:output_type -> openim.relation.addBlackResp
-	22, // 78: openim.relation.friend.removeBlack:output_type -> openim.relation.removeBlackResp
-	26, // 79: openim.relation.friend.isFriend:output_type -> openim.relation.isFriendResp
-	28, // 80: openim.relation.friend.isBlack:output_type -> openim.relation.isBlackResp
-	24, // 81: openim.relation.friend.getPaginationBlacks:output_type -> openim.relation.getPaginationBlacksResp
-	51, // 82: openim.relation.friend.GetSpecifiedBlacks:output_type -> openim.relation.GetSpecifiedBlacksResp
-	30, // 83: openim.relation.friend.deleteFriend:output_type -> openim.relation.deleteFriendResp
-	30, // 84: openim.relation.friend.deleteFriendOneway:output_type -> openim.relation.deleteFriendResp
-	32, // 85: openim.relation.friend.respondFriendApply:output_type -> openim.relation.respondFriendApplyResp
-	34, // 86: openim.relation.friend.updateFriends:output_type -> openim.relation.updateFriendsResp
-	36, // 87: openim.relation.friend.setFriendRemark:output_type -> openim.relation.setFriendRemarkResp
-	38, // 88: openim.relation.friend.setFriendName:output_type -> openim.relation.setFriendNameResp
-	6,  // 89: openim.relation.friend.importFriends:output_type -> openim.relation.importFriendResp
-	18, // 90: openim.relation.friend.getDesignatedFriends:output_type -> openim.relation.getDesignatedFriendsResp
-	1,  // 91: openim.relation.friend.getPaginationFriends:output_type -> openim.relation.getPaginationFriendsResp
-	42, // 92: openim.relation.friend.getFriendIDs:output_type -> openim.relation.getFriendIDsResp
-	45, // 93: openim.relation.friend.GetSpecifiedFriendsInfo:output_type -> openim.relation.getSpecifiedFriendsInfoResp
-	47, // 94: openim.relation.friend.getIncrementalFriends:output_type -> openim.relation.getIncrementalFriendsResp
-	49, // 95: openim.relation.friend.getIncrementalBlacks:output_type -> openim.relation.getIncrementalBlacksResp
-	53, // 96: openim.relation.friend.getFullFriendUserIDs:output_type -> openim.relation.getFullFriendUserIDsResp
-	55, // 97: openim.relation.friend.NotificationUserInfoUpdate:output_type -> openim.relation.notificationUserInfoUpdateResp
-	58, // 98: openim.relation.friend.getFriendInfo:output_type -> openim.relation.getFriendInfoResp
-	60, // 99: openim.relation.friend.getFriendPhone:output_type -> openim.relation.getFriendPhoneResp
-	62, // 100: openim.relation.friend.GetPinnedFriendIDs:output_type -> openim.relation.GetPinnedFriendIDsResp
-	64, // 101: openim.relation.friend.SetMute:output_type -> openim.relation.setMuteResp
-	66, // 102: openim.relation.friend.GetMute:output_type -> openim.relation.getMuteResp
-	68, // 103: openim.relation.friend.pinFriend:output_type -> openim.relation.pinFriendResp
-	70, // 104: openim.relation.friend.unpinFriend:output_type -> openim.relation.unpinFriendResp
-	69, // [69:105] is the sub-list for method output_type
-	33, // [33:69] is the sub-list for method input_type
+	65, // 65: openim.relation.friend.SetMute:input_type -> openim.relation.setMuteReq
+	67, // 66: openim.relation.friend.GetMute:input_type -> openim.relation.getMuteReq
+	69, // 67: openim.relation.friend.pinFriend:input_type -> openim.relation.pinFriendReq
+	71, // 68: openim.relation.friend.unpinFriend:input_type -> openim.relation.unpinFriendReq
+	63, // 69: openim.relation.friend.setFriendNote:input_type -> openim.relation.setFriendNoteReq
+	3,  // 70: openim.relation.friend.applyToAddFriend:output_type -> openim.relation.applyToAddFriendResp
+	3,  // 71: openim.relation.friend.addOnewayFriend:output_type -> openim.relation.applyToAddFriendResp
+	8,  // 72: openim.relation.friend.getPaginationFriendsApplyTo:output_type -> openim.relation.getPaginationFriendsApplyToResp
+	40, // 73: openim.relation.friend.getPaginationFriendsApplyFrom:output_type -> openim.relation.getPaginationFriendsApplyFromResp
+	12, // 74: openim.relation.friend.getSelfUnhandledApplyCount:output_type -> openim.relation.getSelfUnhandledApplyCountResp
+	10, // 75: openim.relation.friend.getDesignatedFriendsApply:output_type -> openim.relation.getDesignatedFriendsApplyResp
+	14, // 76: openim.relation.friend.getIncrementalFriendsApplyTo:output_type -> openim.relation.getIncrementalFriendsApplyToResp
+	16, // 77: openim.relation.friend.getIncrementalFriendsApplyFrom:output_type -> openim.relation.getIncrementalFriendsApplyFromResp
+	20, // 78: openim.relation.friend.addBlack:output_type -> openim.relation.addBlackResp
+	22, // 79: openim.relation.friend.removeBlack:output_type -> openim.relation.removeBlackResp
+	26, // 80: openim.relation.friend.isFriend:output_type -> openim.relation.isFriendResp
+	28, // 81: openim.relation.friend.isBlack:output_type -> openim.relation.isBlackResp
+	24, // 82: openim.relation.friend.getPaginationBlacks:output_type -> openim.relation.getPaginationBlacksResp
+	51, // 83: openim.relation.friend.GetSpecifiedBlacks:output_type -> openim.relation.GetSpecifiedBlacksResp
+	30, // 84: openim.relation.friend.deleteFriend:output_type -> openim.relation.deleteFriendResp
+	30, // 85: openim.relation.friend.deleteFriendOneway:output_type -> openim.relation.deleteFriendResp
+	32, // 86: openim.relation.friend.respondFriendApply:output_type -> openim.relation.respondFriendApplyResp
+	34, // 87: openim.relation.friend.updateFriends:output_type -> openim.relation.updateFriendsResp
+	36, // 88: openim.relation.friend.setFriendRemark:output_type -> openim.relation.setFriendRemarkResp
+	38, // 89: openim.relation.friend.setFriendName:output_type -> openim.relation.setFriendNameResp
+	6,  // 90: openim.relation.friend.importFriends:output_type -> openim.relation.importFriendResp
+	18, // 91: openim.relation.friend.getDesignatedFriends:output_type -> openim.relation.getDesignatedFriendsResp
+	1,  // 92: openim.relation.friend.getPaginationFriends:output_type -> openim.relation.getPaginationFriendsResp
+	42, // 93: openim.relation.friend.getFriendIDs:output_type -> openim.relation.getFriendIDsResp
+	45, // 94: openim.relation.friend.GetSpecifiedFriendsInfo:output_type -> openim.relation.getSpecifiedFriendsInfoResp
+	47, // 95: openim.relation.friend.getIncrementalFriends:output_type -> openim.relation.getIncrementalFriendsResp
+	49, // 96: openim.relation.friend.getIncrementalBlacks:output_type -> openim.relation.getIncrementalBlacksResp
+	53, // 97: openim.relation.friend.getFullFriendUserIDs:output_type -> openim.relation.getFullFriendUserIDsResp
+	55, // 98: openim.relation.friend.NotificationUserInfoUpdate:output_type -> openim.relation.notificationUserInfoUpdateResp
+	58, // 99: openim.relation.friend.getFriendInfo:output_type -> openim.relation.getFriendInfoResp
+	60, // 100: openim.relation.friend.getFriendPhone:output_type -> openim.relation.getFriendPhoneResp
+	62, // 101: openim.relation.friend.GetPinnedFriendIDs:output_type -> openim.relation.GetPinnedFriendIDsResp
+	66, // 102: openim.relation.friend.SetMute:output_type -> openim.relation.setMuteResp
+	68, // 103: openim.relation.friend.GetMute:output_type -> openim.relation.getMuteResp
+	70, // 104: openim.relation.friend.pinFriend:output_type -> openim.relation.pinFriendResp
+	72, // 105: openim.relation.friend.unpinFriend:output_type -> openim.relation.unpinFriendResp
+	64, // 106: openim.relation.friend.setFriendNote:output_type -> openim.relation.setFriendNoteResp
+	70, // [70:107] is the sub-list for method output_type
+	33, // [33:70] is the sub-list for method input_type
 	33, // [33:33] is the sub-list for extension type_name
 	33, // [33:33] is the sub-list for extension extendee
 	0,  // [0:33] is the sub-list for field type_name
@@ -4541,7 +4650,7 @@ func file_relation_relation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_relation_relation_proto_rawDesc), len(file_relation_relation_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   71,
+			NumMessages:   73,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
