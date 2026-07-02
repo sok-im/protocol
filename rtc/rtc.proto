@@ -32,6 +32,7 @@ message SignalReq {
     SignalGetTokenByRoomIDReq getTokenByRoomID = 7;
     SignalTimeoutReq timeout = 8;
     SignalJoinReq join = 9;
+    SignalHeartbeatReq heartbeat = 10;
   }
 }
 
@@ -77,6 +78,7 @@ message SignalResp {
     SignalGetTokenByRoomIDResp getTokenByRoomID = 7;
     SignalTimeoutResp timeout = 8;
     SignalJoinResp join = 9;
+    SignalHeartbeatResp heartbeat = 10;
   }
 }
 
@@ -208,6 +210,18 @@ message SignalJoinResp {
   string token = 1;
   string roomID = 2;
   string liveURL = 3;
+}
+
+// SignalHeartbeatReq is sent periodically by a client during an active call so
+// the server refreshes the caller's call-status TTL in Redis. Without it the
+// call-status entry expires (CallStatusExpire) mid-call and the user would be
+// wrongly treated as idle, allowing a third party to place a new call.
+message SignalHeartbeatReq {
+  string userID = 1;
+  string roomID = 2;
+}
+
+message SignalHeartbeatResp {
 }
 
 message SignalGetRoomByGroupIDReq {

@@ -207,6 +207,7 @@ type SignalReq struct {
 	//	*SignalReq_GetTokenByRoomID
 	//	*SignalReq_Timeout
 	//	*SignalReq_Join
+	//	*SignalReq_Heartbeat
 	Payload       isSignalReq_Payload `protobuf_oneof:"payload"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -330,6 +331,15 @@ func (x *SignalReq) GetJoin() *SignalJoinReq {
 	return nil
 }
 
+func (x *SignalReq) GetHeartbeat() *SignalHeartbeatReq {
+	if x != nil {
+		if x, ok := x.Payload.(*SignalReq_Heartbeat); ok {
+			return x.Heartbeat
+		}
+	}
+	return nil
+}
+
 type isSignalReq_Payload interface {
 	isSignalReq_Payload()
 }
@@ -370,6 +380,10 @@ type SignalReq_Join struct {
 	Join *SignalJoinReq `protobuf:"bytes,9,opt,name=join,proto3,oneof"`
 }
 
+type SignalReq_Heartbeat struct {
+	Heartbeat *SignalHeartbeatReq `protobuf:"bytes,10,opt,name=heartbeat,proto3,oneof"`
+}
+
 func (*SignalReq_Invite) isSignalReq_Payload() {}
 
 func (*SignalReq_InviteInGroup) isSignalReq_Payload() {}
@@ -387,6 +401,8 @@ func (*SignalReq_GetTokenByRoomID) isSignalReq_Payload() {}
 func (*SignalReq_Timeout) isSignalReq_Payload() {}
 
 func (*SignalReq_Join) isSignalReq_Payload() {}
+
+func (*SignalReq_Heartbeat) isSignalReq_Payload() {}
 
 type SignalSendCustomSignalReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -674,6 +690,7 @@ type SignalResp struct {
 	//	*SignalResp_GetTokenByRoomID
 	//	*SignalResp_Timeout
 	//	*SignalResp_Join
+	//	*SignalResp_Heartbeat
 	Payload       isSignalResp_Payload `protobuf_oneof:"payload"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -797,6 +814,15 @@ func (x *SignalResp) GetJoin() *SignalJoinResp {
 	return nil
 }
 
+func (x *SignalResp) GetHeartbeat() *SignalHeartbeatResp {
+	if x != nil {
+		if x, ok := x.Payload.(*SignalResp_Heartbeat); ok {
+			return x.Heartbeat
+		}
+	}
+	return nil
+}
+
 type isSignalResp_Payload interface {
 	isSignalResp_Payload()
 }
@@ -837,6 +863,10 @@ type SignalResp_Join struct {
 	Join *SignalJoinResp `protobuf:"bytes,9,opt,name=join,proto3,oneof"`
 }
 
+type SignalResp_Heartbeat struct {
+	Heartbeat *SignalHeartbeatResp `protobuf:"bytes,10,opt,name=heartbeat,proto3,oneof"`
+}
+
 func (*SignalResp_Invite) isSignalResp_Payload() {}
 
 func (*SignalResp_InviteInGroup) isSignalResp_Payload() {}
@@ -854,6 +884,8 @@ func (*SignalResp_GetTokenByRoomID) isSignalResp_Payload() {}
 func (*SignalResp_Timeout) isSignalResp_Payload() {}
 
 func (*SignalResp_Join) isSignalResp_Payload() {}
+
+func (*SignalResp_Heartbeat) isSignalResp_Payload() {}
 
 type InvitationInfo struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
@@ -1998,6 +2030,98 @@ func (x *SignalJoinResp) GetLiveURL() string {
 	return ""
 }
 
+// SignalHeartbeatReq is sent periodically by a client during an active call so
+// the server refreshes the caller's call-status TTL in Redis. Without it the
+// call-status entry expires (CallStatusExpire) mid-call and the user would be
+// wrongly treated as idle, allowing a third party to place a new call.
+type SignalHeartbeatReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
+	RoomID        string                 `protobuf:"bytes,2,opt,name=roomID,proto3" json:"roomID"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignalHeartbeatReq) Reset() {
+	*x = SignalHeartbeatReq{}
+	mi := &file_rtc_rtc_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignalHeartbeatReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignalHeartbeatReq) ProtoMessage() {}
+
+func (x *SignalHeartbeatReq) ProtoReflect() protoreflect.Message {
+	mi := &file_rtc_rtc_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignalHeartbeatReq.ProtoReflect.Descriptor instead.
+func (*SignalHeartbeatReq) Descriptor() ([]byte, []int) {
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SignalHeartbeatReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *SignalHeartbeatReq) GetRoomID() string {
+	if x != nil {
+		return x.RoomID
+	}
+	return ""
+}
+
+type SignalHeartbeatResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignalHeartbeatResp) Reset() {
+	*x = SignalHeartbeatResp{}
+	mi := &file_rtc_rtc_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignalHeartbeatResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignalHeartbeatResp) ProtoMessage() {}
+
+func (x *SignalHeartbeatResp) ProtoReflect() protoreflect.Message {
+	mi := &file_rtc_rtc_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignalHeartbeatResp.ProtoReflect.Descriptor instead.
+func (*SignalHeartbeatResp) Descriptor() ([]byte, []int) {
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{28}
+}
+
 type SignalGetRoomByGroupIDReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GroupID       string                 `protobuf:"bytes,1,opt,name=groupID,proto3" json:"groupID"`
@@ -2007,7 +2131,7 @@ type SignalGetRoomByGroupIDReq struct {
 
 func (x *SignalGetRoomByGroupIDReq) Reset() {
 	*x = SignalGetRoomByGroupIDReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[27]
+	mi := &file_rtc_rtc_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2019,7 +2143,7 @@ func (x *SignalGetRoomByGroupIDReq) String() string {
 func (*SignalGetRoomByGroupIDReq) ProtoMessage() {}
 
 func (x *SignalGetRoomByGroupIDReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[27]
+	mi := &file_rtc_rtc_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2032,7 +2156,7 @@ func (x *SignalGetRoomByGroupIDReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetRoomByGroupIDReq.ProtoReflect.Descriptor instead.
 func (*SignalGetRoomByGroupIDReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{27}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SignalGetRoomByGroupIDReq) GetGroupID() string {
@@ -2056,7 +2180,7 @@ type SignalGetRoomByGroupIDResp struct {
 
 func (x *SignalGetRoomByGroupIDResp) Reset() {
 	*x = SignalGetRoomByGroupIDResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[28]
+	mi := &file_rtc_rtc_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2068,7 +2192,7 @@ func (x *SignalGetRoomByGroupIDResp) String() string {
 func (*SignalGetRoomByGroupIDResp) ProtoMessage() {}
 
 func (x *SignalGetRoomByGroupIDResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[28]
+	mi := &file_rtc_rtc_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2081,7 +2205,7 @@ func (x *SignalGetRoomByGroupIDResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetRoomByGroupIDResp.ProtoReflect.Descriptor instead.
 func (*SignalGetRoomByGroupIDResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{28}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SignalGetRoomByGroupIDResp) GetInvitation() *InvitationInfo {
@@ -2123,7 +2247,7 @@ type SignalOnRoomParticipantConnectedReq struct {
 
 func (x *SignalOnRoomParticipantConnectedReq) Reset() {
 	*x = SignalOnRoomParticipantConnectedReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[29]
+	mi := &file_rtc_rtc_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2135,7 +2259,7 @@ func (x *SignalOnRoomParticipantConnectedReq) String() string {
 func (*SignalOnRoomParticipantConnectedReq) ProtoMessage() {}
 
 func (x *SignalOnRoomParticipantConnectedReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[29]
+	mi := &file_rtc_rtc_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2148,7 +2272,7 @@ func (x *SignalOnRoomParticipantConnectedReq) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SignalOnRoomParticipantConnectedReq.ProtoReflect.Descriptor instead.
 func (*SignalOnRoomParticipantConnectedReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{29}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SignalOnRoomParticipantConnectedReq) GetInvitation() *InvitationInfo {
@@ -2183,7 +2307,7 @@ type SignalOnRoomParticipantDisconnectedReq struct {
 
 func (x *SignalOnRoomParticipantDisconnectedReq) Reset() {
 	*x = SignalOnRoomParticipantDisconnectedReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[30]
+	mi := &file_rtc_rtc_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2195,7 +2319,7 @@ func (x *SignalOnRoomParticipantDisconnectedReq) String() string {
 func (*SignalOnRoomParticipantDisconnectedReq) ProtoMessage() {}
 
 func (x *SignalOnRoomParticipantDisconnectedReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[30]
+	mi := &file_rtc_rtc_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2332,7 @@ func (x *SignalOnRoomParticipantDisconnectedReq) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use SignalOnRoomParticipantDisconnectedReq.ProtoReflect.Descriptor instead.
 func (*SignalOnRoomParticipantDisconnectedReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{30}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *SignalOnRoomParticipantDisconnectedReq) GetInvitation() *InvitationInfo {
@@ -2243,7 +2367,7 @@ type SignalGetTokenByRoomIDReq struct {
 
 func (x *SignalGetTokenByRoomIDReq) Reset() {
 	*x = SignalGetTokenByRoomIDReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[31]
+	mi := &file_rtc_rtc_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2255,7 +2379,7 @@ func (x *SignalGetTokenByRoomIDReq) String() string {
 func (*SignalGetTokenByRoomIDReq) ProtoMessage() {}
 
 func (x *SignalGetTokenByRoomIDReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[31]
+	mi := &file_rtc_rtc_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2268,7 +2392,7 @@ func (x *SignalGetTokenByRoomIDReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetTokenByRoomIDReq.ProtoReflect.Descriptor instead.
 func (*SignalGetTokenByRoomIDReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{31}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SignalGetTokenByRoomIDReq) GetRoomID() string {
@@ -2302,7 +2426,7 @@ type SignalGetTokenByRoomIDResp struct {
 
 func (x *SignalGetTokenByRoomIDResp) Reset() {
 	*x = SignalGetTokenByRoomIDResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[32]
+	mi := &file_rtc_rtc_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2314,7 +2438,7 @@ func (x *SignalGetTokenByRoomIDResp) String() string {
 func (*SignalGetTokenByRoomIDResp) ProtoMessage() {}
 
 func (x *SignalGetTokenByRoomIDResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[32]
+	mi := &file_rtc_rtc_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2327,7 +2451,7 @@ func (x *SignalGetTokenByRoomIDResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetTokenByRoomIDResp.ProtoReflect.Descriptor instead.
 func (*SignalGetTokenByRoomIDResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{32}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SignalGetTokenByRoomIDResp) GetToken() string {
@@ -2353,7 +2477,7 @@ type SignalMessageAssembleReq struct {
 
 func (x *SignalMessageAssembleReq) Reset() {
 	*x = SignalMessageAssembleReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[33]
+	mi := &file_rtc_rtc_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2365,7 +2489,7 @@ func (x *SignalMessageAssembleReq) String() string {
 func (*SignalMessageAssembleReq) ProtoMessage() {}
 
 func (x *SignalMessageAssembleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[33]
+	mi := &file_rtc_rtc_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2378,7 +2502,7 @@ func (x *SignalMessageAssembleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalMessageAssembleReq.ProtoReflect.Descriptor instead.
 func (*SignalMessageAssembleReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{33}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SignalMessageAssembleReq) GetSignalReq() *SignalReq {
@@ -2397,7 +2521,7 @@ type SignalMessageAssembleResp struct {
 
 func (x *SignalMessageAssembleResp) Reset() {
 	*x = SignalMessageAssembleResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[34]
+	mi := &file_rtc_rtc_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2409,7 +2533,7 @@ func (x *SignalMessageAssembleResp) String() string {
 func (*SignalMessageAssembleResp) ProtoMessage() {}
 
 func (x *SignalMessageAssembleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[34]
+	mi := &file_rtc_rtc_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2422,7 +2546,7 @@ func (x *SignalMessageAssembleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalMessageAssembleResp.ProtoReflect.Descriptor instead.
 func (*SignalMessageAssembleResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{34}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *SignalMessageAssembleResp) GetSignalResp() *SignalResp {
@@ -2441,7 +2565,7 @@ type SignalGetRoomsReq struct {
 
 func (x *SignalGetRoomsReq) Reset() {
 	*x = SignalGetRoomsReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[35]
+	mi := &file_rtc_rtc_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2453,7 +2577,7 @@ func (x *SignalGetRoomsReq) String() string {
 func (*SignalGetRoomsReq) ProtoMessage() {}
 
 func (x *SignalGetRoomsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[35]
+	mi := &file_rtc_rtc_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2466,7 +2590,7 @@ func (x *SignalGetRoomsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetRoomsReq.ProtoReflect.Descriptor instead.
 func (*SignalGetRoomsReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{35}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *SignalGetRoomsReq) GetRoomIDs() []string {
@@ -2485,7 +2609,7 @@ type SignalGetRoomsResp struct {
 
 func (x *SignalGetRoomsResp) Reset() {
 	*x = SignalGetRoomsResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[36]
+	mi := &file_rtc_rtc_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2497,7 +2621,7 @@ func (x *SignalGetRoomsResp) String() string {
 func (*SignalGetRoomsResp) ProtoMessage() {}
 
 func (x *SignalGetRoomsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[36]
+	mi := &file_rtc_rtc_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2510,7 +2634,7 @@ func (x *SignalGetRoomsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalGetRoomsResp.ProtoReflect.Descriptor instead.
 func (*SignalGetRoomsResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{36}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *SignalGetRoomsResp) GetRoomList() []*SignalGetRoomByGroupIDResp {
@@ -2529,7 +2653,7 @@ type GetSignalInvitationInfoReq struct {
 
 func (x *GetSignalInvitationInfoReq) Reset() {
 	*x = GetSignalInvitationInfoReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[37]
+	mi := &file_rtc_rtc_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2541,7 +2665,7 @@ func (x *GetSignalInvitationInfoReq) String() string {
 func (*GetSignalInvitationInfoReq) ProtoMessage() {}
 
 func (x *GetSignalInvitationInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[37]
+	mi := &file_rtc_rtc_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2554,7 +2678,7 @@ func (x *GetSignalInvitationInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSignalInvitationInfoReq.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationInfoReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{37}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *GetSignalInvitationInfoReq) GetRoomID() string {
@@ -2574,7 +2698,7 @@ type GetSignalInvitationInfoResp struct {
 
 func (x *GetSignalInvitationInfoResp) Reset() {
 	*x = GetSignalInvitationInfoResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[38]
+	mi := &file_rtc_rtc_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2586,7 +2710,7 @@ func (x *GetSignalInvitationInfoResp) String() string {
 func (*GetSignalInvitationInfoResp) ProtoMessage() {}
 
 func (x *GetSignalInvitationInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[38]
+	mi := &file_rtc_rtc_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2599,7 +2723,7 @@ func (x *GetSignalInvitationInfoResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSignalInvitationInfoResp.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationInfoResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{38}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *GetSignalInvitationInfoResp) GetInvitationInfo() *InvitationInfo {
@@ -2625,7 +2749,7 @@ type GetSignalInvitationInfoStartAppReq struct {
 
 func (x *GetSignalInvitationInfoStartAppReq) Reset() {
 	*x = GetSignalInvitationInfoStartAppReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[39]
+	mi := &file_rtc_rtc_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2637,7 +2761,7 @@ func (x *GetSignalInvitationInfoStartAppReq) String() string {
 func (*GetSignalInvitationInfoStartAppReq) ProtoMessage() {}
 
 func (x *GetSignalInvitationInfoStartAppReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[39]
+	mi := &file_rtc_rtc_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2650,7 +2774,7 @@ func (x *GetSignalInvitationInfoStartAppReq) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetSignalInvitationInfoStartAppReq.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationInfoStartAppReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{39}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *GetSignalInvitationInfoStartAppReq) GetUserID() string {
@@ -2670,7 +2794,7 @@ type GetSignalInvitationInfoStartAppResp struct {
 
 func (x *GetSignalInvitationInfoStartAppResp) Reset() {
 	*x = GetSignalInvitationInfoStartAppResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[40]
+	mi := &file_rtc_rtc_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2682,7 +2806,7 @@ func (x *GetSignalInvitationInfoStartAppResp) String() string {
 func (*GetSignalInvitationInfoStartAppResp) ProtoMessage() {}
 
 func (x *GetSignalInvitationInfoStartAppResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[40]
+	mi := &file_rtc_rtc_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2695,7 +2819,7 @@ func (x *GetSignalInvitationInfoStartAppResp) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetSignalInvitationInfoStartAppResp.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationInfoStartAppResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{40}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *GetSignalInvitationInfoStartAppResp) GetInvitation() *InvitationInfo {
@@ -2723,7 +2847,7 @@ type SignalUser struct {
 
 func (x *SignalUser) Reset() {
 	*x = SignalUser{}
-	mi := &file_rtc_rtc_proto_msgTypes[41]
+	mi := &file_rtc_rtc_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2735,7 +2859,7 @@ func (x *SignalUser) String() string {
 func (*SignalUser) ProtoMessage() {}
 
 func (x *SignalUser) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[41]
+	mi := &file_rtc_rtc_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2748,7 +2872,7 @@ func (x *SignalUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalUser.ProtoReflect.Descriptor instead.
 func (*SignalUser) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{41}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *SignalUser) GetUserID() string {
@@ -2794,7 +2918,7 @@ type SignalRecord struct {
 
 func (x *SignalRecord) Reset() {
 	*x = SignalRecord{}
-	mi := &file_rtc_rtc_proto_msgTypes[42]
+	mi := &file_rtc_rtc_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2806,7 +2930,7 @@ func (x *SignalRecord) String() string {
 func (*SignalRecord) ProtoMessage() {}
 
 func (x *SignalRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[42]
+	mi := &file_rtc_rtc_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2819,7 +2943,7 @@ func (x *SignalRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignalRecord.ProtoReflect.Descriptor instead.
 func (*SignalRecord) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{42}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *SignalRecord) GetRoomID() string {
@@ -2930,7 +3054,7 @@ type FileRecord struct {
 
 func (x *FileRecord) Reset() {
 	*x = FileRecord{}
-	mi := &file_rtc_rtc_proto_msgTypes[43]
+	mi := &file_rtc_rtc_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2942,7 +3066,7 @@ func (x *FileRecord) String() string {
 func (*FileRecord) ProtoMessage() {}
 
 func (x *FileRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[43]
+	mi := &file_rtc_rtc_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2955,7 +3079,7 @@ func (x *FileRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileRecord.ProtoReflect.Descriptor instead.
 func (*FileRecord) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{43}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *FileRecord) GetSize() string {
@@ -2987,7 +3111,7 @@ type GetSignalInvitationRecordsReq struct {
 
 func (x *GetSignalInvitationRecordsReq) Reset() {
 	*x = GetSignalInvitationRecordsReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[44]
+	mi := &file_rtc_rtc_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2999,7 +3123,7 @@ func (x *GetSignalInvitationRecordsReq) String() string {
 func (*GetSignalInvitationRecordsReq) ProtoMessage() {}
 
 func (x *GetSignalInvitationRecordsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[44]
+	mi := &file_rtc_rtc_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3012,7 +3136,7 @@ func (x *GetSignalInvitationRecordsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSignalInvitationRecordsReq.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationRecordsReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{44}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GetSignalInvitationRecordsReq) GetPagination() *sdkws.RequestPagination {
@@ -3074,7 +3198,7 @@ type GetSignalInvitationRecordsResp struct {
 
 func (x *GetSignalInvitationRecordsResp) Reset() {
 	*x = GetSignalInvitationRecordsResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[45]
+	mi := &file_rtc_rtc_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3086,7 +3210,7 @@ func (x *GetSignalInvitationRecordsResp) String() string {
 func (*GetSignalInvitationRecordsResp) ProtoMessage() {}
 
 func (x *GetSignalInvitationRecordsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[45]
+	mi := &file_rtc_rtc_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3099,7 +3223,7 @@ func (x *GetSignalInvitationRecordsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSignalInvitationRecordsResp.ProtoReflect.Descriptor instead.
 func (*GetSignalInvitationRecordsResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{45}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GetSignalInvitationRecordsResp) GetTotal() int32 {
@@ -3125,7 +3249,7 @@ type DeleteSignalRecordsReq struct {
 
 func (x *DeleteSignalRecordsReq) Reset() {
 	*x = DeleteSignalRecordsReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[46]
+	mi := &file_rtc_rtc_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3137,7 +3261,7 @@ func (x *DeleteSignalRecordsReq) String() string {
 func (*DeleteSignalRecordsReq) ProtoMessage() {}
 
 func (x *DeleteSignalRecordsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[46]
+	mi := &file_rtc_rtc_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3150,7 +3274,7 @@ func (x *DeleteSignalRecordsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSignalRecordsReq.ProtoReflect.Descriptor instead.
 func (*DeleteSignalRecordsReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{46}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *DeleteSignalRecordsReq) GetSIDs() []string {
@@ -3168,7 +3292,7 @@ type DeleteSignalRecordsResp struct {
 
 func (x *DeleteSignalRecordsResp) Reset() {
 	*x = DeleteSignalRecordsResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[47]
+	mi := &file_rtc_rtc_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3180,7 +3304,7 @@ func (x *DeleteSignalRecordsResp) String() string {
 func (*DeleteSignalRecordsResp) ProtoMessage() {}
 
 func (x *DeleteSignalRecordsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[47]
+	mi := &file_rtc_rtc_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3193,7 +3317,7 @@ func (x *DeleteSignalRecordsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSignalRecordsResp.ProtoReflect.Descriptor instead.
 func (*DeleteSignalRecordsResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{47}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{49}
 }
 
 // CallRecordItem represents one completed call event stored in the call_record table.
@@ -3227,7 +3351,7 @@ type CallRecordItem struct {
 
 func (x *CallRecordItem) Reset() {
 	*x = CallRecordItem{}
-	mi := &file_rtc_rtc_proto_msgTypes[48]
+	mi := &file_rtc_rtc_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3239,7 +3363,7 @@ func (x *CallRecordItem) String() string {
 func (*CallRecordItem) ProtoMessage() {}
 
 func (x *CallRecordItem) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[48]
+	mi := &file_rtc_rtc_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3252,7 +3376,7 @@ func (x *CallRecordItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallRecordItem.ProtoReflect.Descriptor instead.
 func (*CallRecordItem) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{48}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *CallRecordItem) GetSid() string {
@@ -3390,7 +3514,7 @@ type GetCallRecordsReq struct {
 
 func (x *GetCallRecordsReq) Reset() {
 	*x = GetCallRecordsReq{}
-	mi := &file_rtc_rtc_proto_msgTypes[49]
+	mi := &file_rtc_rtc_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3402,7 +3526,7 @@ func (x *GetCallRecordsReq) String() string {
 func (*GetCallRecordsReq) ProtoMessage() {}
 
 func (x *GetCallRecordsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[49]
+	mi := &file_rtc_rtc_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3415,7 +3539,7 @@ func (x *GetCallRecordsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCallRecordsReq.ProtoReflect.Descriptor instead.
 func (*GetCallRecordsReq) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{49}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GetCallRecordsReq) GetUserID() string {
@@ -3470,7 +3594,7 @@ type GetCallRecordsResp struct {
 
 func (x *GetCallRecordsResp) Reset() {
 	*x = GetCallRecordsResp{}
-	mi := &file_rtc_rtc_proto_msgTypes[50]
+	mi := &file_rtc_rtc_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3482,7 +3606,7 @@ func (x *GetCallRecordsResp) String() string {
 func (*GetCallRecordsResp) ProtoMessage() {}
 
 func (x *GetCallRecordsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_rtc_rtc_proto_msgTypes[50]
+	mi := &file_rtc_rtc_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3495,7 +3619,7 @@ func (x *GetCallRecordsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCallRecordsResp.ProtoReflect.Descriptor instead.
 func (*GetCallRecordsResp) Descriptor() ([]byte, []int) {
-	return file_rtc_rtc_proto_rawDescGZIP(), []int{50}
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GetCallRecordsResp) GetTotal() int32 {
@@ -3528,7 +3652,7 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\bmetaData\x18\x03 \x01(\v2\x1f.openim.rtc.ParticipantMetaDataR\bmetaData\">\n" +
 	"\x10GetJoinTokenResp\x12\x10\n" +
 	"\x03jwt\x18\x01 \x01(\tR\x03jwt\x12\x18\n" +
-	"\aliveURL\x18\x02 \x01(\tR\aliveURL\"\xb5\x04\n" +
+	"\aliveURL\x18\x02 \x01(\tR\aliveURL\"\xf5\x04\n" +
 	"\tSignalReq\x125\n" +
 	"\x06invite\x18\x01 \x01(\v2\x1b.openim.rtc.SignalInviteReqH\x00R\x06invite\x12J\n" +
 	"\rinviteInGroup\x18\x02 \x01(\v2\".openim.rtc.SignalInviteInGroupReqH\x00R\rinviteInGroup\x125\n" +
@@ -3538,7 +3662,9 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x06reject\x18\x06 \x01(\v2\x1b.openim.rtc.SignalRejectReqH\x00R\x06reject\x12S\n" +
 	"\x10getTokenByRoomID\x18\a \x01(\v2%.openim.rtc.SignalGetTokenByRoomIDReqH\x00R\x10getTokenByRoomID\x128\n" +
 	"\atimeout\x18\b \x01(\v2\x1c.openim.rtc.SignalTimeoutReqH\x00R\atimeout\x12/\n" +
-	"\x04join\x18\t \x01(\v2\x19.openim.rtc.SignalJoinReqH\x00R\x04joinB\t\n" +
+	"\x04join\x18\t \x01(\v2\x19.openim.rtc.SignalJoinReqH\x00R\x04join\x12>\n" +
+	"\theartbeat\x18\n" +
+	" \x01(\v2\x1e.openim.rtc.SignalHeartbeatReqH\x00R\theartbeatB\t\n" +
 	"\apayload\"S\n" +
 	"\x19SignalSendCustomSignalReq\x12\x16\n" +
 	"\x06roomID\x18\x01 \x01(\tR\x06roomID\x12\x1e\n" +
@@ -3559,7 +3685,7 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\n" +
 	"streamType\x18\x02 \x01(\tR\n" +
 	"streamType\x12\x12\n" +
-	"\x04mute\x18\x03 \x01(\bR\x04mute\"\xbf\x04\n" +
+	"\x04mute\x18\x03 \x01(\bR\x04mute\"\x80\x05\n" +
 	"\n" +
 	"SignalResp\x126\n" +
 	"\x06invite\x18\x01 \x01(\v2\x1c.openim.rtc.SignalInviteRespH\x00R\x06invite\x12K\n" +
@@ -3570,7 +3696,9 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x06reject\x18\x06 \x01(\v2\x1c.openim.rtc.SignalRejectRespH\x00R\x06reject\x12T\n" +
 	"\x10getTokenByRoomID\x18\a \x01(\v2&.openim.rtc.SignalGetTokenByRoomIDRespH\x00R\x10getTokenByRoomID\x129\n" +
 	"\atimeout\x18\b \x01(\v2\x1d.openim.rtc.SignalTimeoutRespH\x00R\atimeout\x120\n" +
-	"\x04join\x18\t \x01(\v2\x1a.openim.rtc.SignalJoinRespH\x00R\x04joinB\t\n" +
+	"\x04join\x18\t \x01(\v2\x1a.openim.rtc.SignalJoinRespH\x00R\x04join\x12?\n" +
+	"\theartbeat\x18\n" +
+	" \x01(\v2\x1f.openim.rtc.SignalHeartbeatRespH\x00R\theartbeatB\t\n" +
 	"\apayload\"\xe2\x03\n" +
 	"\x0eInvitationInfo\x12$\n" +
 	"\rinviterUserID\x18\x01 \x01(\tR\rinviterUserID\x12,\n" +
@@ -3674,7 +3802,11 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x0eSignalJoinResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
-	"\aliveURL\x18\x03 \x01(\tR\aliveURL\"5\n" +
+	"\aliveURL\x18\x03 \x01(\tR\aliveURL\"D\n" +
+	"\x12SignalHeartbeatReq\x12\x16\n" +
+	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x16\n" +
+	"\x06roomID\x18\x02 \x01(\tR\x06roomID\"\x15\n" +
+	"\x13SignalHeartbeatResp\"5\n" +
 	"\x19SignalGetRoomByGroupIDReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\"\xcb\x01\n" +
 	"\x1aSignalGetRoomByGroupIDResp\x12:\n" +
@@ -3827,7 +3959,7 @@ func file_rtc_rtc_proto_rawDescGZIP() []byte {
 	return file_rtc_rtc_proto_rawDescData
 }
 
-var file_rtc_rtc_proto_msgTypes = make([]protoimpl.MessageInfo, 51)
+var file_rtc_rtc_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_rtc_rtc_proto_goTypes = []any{
 	(*ParticipantMetaData)(nil),                    // 0: openim.rtc.ParticipantMetaData
 	(*GetJoinTokenReq)(nil),                        // 1: openim.rtc.GetJoinTokenReq
@@ -3856,41 +3988,43 @@ var file_rtc_rtc_proto_goTypes = []any{
 	(*SignalTimeoutResp)(nil),                      // 24: openim.rtc.SignalTimeoutResp
 	(*SignalJoinReq)(nil),                          // 25: openim.rtc.SignalJoinReq
 	(*SignalJoinResp)(nil),                         // 26: openim.rtc.SignalJoinResp
-	(*SignalGetRoomByGroupIDReq)(nil),              // 27: openim.rtc.SignalGetRoomByGroupIDReq
-	(*SignalGetRoomByGroupIDResp)(nil),             // 28: openim.rtc.SignalGetRoomByGroupIDResp
-	(*SignalOnRoomParticipantConnectedReq)(nil),    // 29: openim.rtc.SignalOnRoomParticipantConnectedReq
-	(*SignalOnRoomParticipantDisconnectedReq)(nil), // 30: openim.rtc.SignalOnRoomParticipantDisconnectedReq
-	(*SignalGetTokenByRoomIDReq)(nil),              // 31: openim.rtc.SignalGetTokenByRoomIDReq
-	(*SignalGetTokenByRoomIDResp)(nil),             // 32: openim.rtc.SignalGetTokenByRoomIDResp
-	(*SignalMessageAssembleReq)(nil),               // 33: openim.rtc.SignalMessageAssembleReq
-	(*SignalMessageAssembleResp)(nil),              // 34: openim.rtc.SignalMessageAssembleResp
-	(*SignalGetRoomsReq)(nil),                      // 35: openim.rtc.SignalGetRoomsReq
-	(*SignalGetRoomsResp)(nil),                     // 36: openim.rtc.SignalGetRoomsResp
-	(*GetSignalInvitationInfoReq)(nil),             // 37: openim.rtc.GetSignalInvitationInfoReq
-	(*GetSignalInvitationInfoResp)(nil),            // 38: openim.rtc.GetSignalInvitationInfoResp
-	(*GetSignalInvitationInfoStartAppReq)(nil),     // 39: openim.rtc.GetSignalInvitationInfoStartAppReq
-	(*GetSignalInvitationInfoStartAppResp)(nil),    // 40: openim.rtc.GetSignalInvitationInfoStartAppResp
-	(*SignalUser)(nil),                             // 41: openim.rtc.SignalUser
-	(*SignalRecord)(nil),                           // 42: openim.rtc.SignalRecord
-	(*FileRecord)(nil),                             // 43: openim.rtc.FileRecord
-	(*GetSignalInvitationRecordsReq)(nil),          // 44: openim.rtc.GetSignalInvitationRecordsReq
-	(*GetSignalInvitationRecordsResp)(nil),         // 45: openim.rtc.GetSignalInvitationRecordsResp
-	(*DeleteSignalRecordsReq)(nil),                 // 46: openim.rtc.DeleteSignalRecordsReq
-	(*DeleteSignalRecordsResp)(nil),                // 47: openim.rtc.DeleteSignalRecordsResp
-	(*CallRecordItem)(nil),                         // 48: openim.rtc.CallRecordItem
-	(*GetCallRecordsReq)(nil),                      // 49: openim.rtc.GetCallRecordsReq
-	(*GetCallRecordsResp)(nil),                     // 50: openim.rtc.GetCallRecordsResp
-	(*sdkws.GroupInfo)(nil),                        // 51: openim.sdkws.GroupInfo
-	(*sdkws.GroupMemberFullInfo)(nil),              // 52: openim.sdkws.GroupMemberFullInfo
-	(*sdkws.PublicUserInfo)(nil),                   // 53: openim.sdkws.PublicUserInfo
-	(*sdkws.OfflinePushInfo)(nil),                  // 54: openim.sdkws.OfflinePushInfo
-	(*sdkws.RequestPagination)(nil),                // 55: openim.sdkws.RequestPagination
-	(*sdkws.UserInfo)(nil),                         // 56: openim.sdkws.UserInfo
+	(*SignalHeartbeatReq)(nil),                     // 27: openim.rtc.SignalHeartbeatReq
+	(*SignalHeartbeatResp)(nil),                    // 28: openim.rtc.SignalHeartbeatResp
+	(*SignalGetRoomByGroupIDReq)(nil),              // 29: openim.rtc.SignalGetRoomByGroupIDReq
+	(*SignalGetRoomByGroupIDResp)(nil),             // 30: openim.rtc.SignalGetRoomByGroupIDResp
+	(*SignalOnRoomParticipantConnectedReq)(nil),    // 31: openim.rtc.SignalOnRoomParticipantConnectedReq
+	(*SignalOnRoomParticipantDisconnectedReq)(nil), // 32: openim.rtc.SignalOnRoomParticipantDisconnectedReq
+	(*SignalGetTokenByRoomIDReq)(nil),              // 33: openim.rtc.SignalGetTokenByRoomIDReq
+	(*SignalGetTokenByRoomIDResp)(nil),             // 34: openim.rtc.SignalGetTokenByRoomIDResp
+	(*SignalMessageAssembleReq)(nil),               // 35: openim.rtc.SignalMessageAssembleReq
+	(*SignalMessageAssembleResp)(nil),              // 36: openim.rtc.SignalMessageAssembleResp
+	(*SignalGetRoomsReq)(nil),                      // 37: openim.rtc.SignalGetRoomsReq
+	(*SignalGetRoomsResp)(nil),                     // 38: openim.rtc.SignalGetRoomsResp
+	(*GetSignalInvitationInfoReq)(nil),             // 39: openim.rtc.GetSignalInvitationInfoReq
+	(*GetSignalInvitationInfoResp)(nil),            // 40: openim.rtc.GetSignalInvitationInfoResp
+	(*GetSignalInvitationInfoStartAppReq)(nil),     // 41: openim.rtc.GetSignalInvitationInfoStartAppReq
+	(*GetSignalInvitationInfoStartAppResp)(nil),    // 42: openim.rtc.GetSignalInvitationInfoStartAppResp
+	(*SignalUser)(nil),                             // 43: openim.rtc.SignalUser
+	(*SignalRecord)(nil),                           // 44: openim.rtc.SignalRecord
+	(*FileRecord)(nil),                             // 45: openim.rtc.FileRecord
+	(*GetSignalInvitationRecordsReq)(nil),          // 46: openim.rtc.GetSignalInvitationRecordsReq
+	(*GetSignalInvitationRecordsResp)(nil),         // 47: openim.rtc.GetSignalInvitationRecordsResp
+	(*DeleteSignalRecordsReq)(nil),                 // 48: openim.rtc.DeleteSignalRecordsReq
+	(*DeleteSignalRecordsResp)(nil),                // 49: openim.rtc.DeleteSignalRecordsResp
+	(*CallRecordItem)(nil),                         // 50: openim.rtc.CallRecordItem
+	(*GetCallRecordsReq)(nil),                      // 51: openim.rtc.GetCallRecordsReq
+	(*GetCallRecordsResp)(nil),                     // 52: openim.rtc.GetCallRecordsResp
+	(*sdkws.GroupInfo)(nil),                        // 53: openim.sdkws.GroupInfo
+	(*sdkws.GroupMemberFullInfo)(nil),              // 54: openim.sdkws.GroupMemberFullInfo
+	(*sdkws.PublicUserInfo)(nil),                   // 55: openim.sdkws.PublicUserInfo
+	(*sdkws.OfflinePushInfo)(nil),                  // 56: openim.sdkws.OfflinePushInfo
+	(*sdkws.RequestPagination)(nil),                // 57: openim.sdkws.RequestPagination
+	(*sdkws.UserInfo)(nil),                         // 58: openim.sdkws.UserInfo
 }
 var file_rtc_rtc_proto_depIdxs = []int32{
-	51, // 0: openim.rtc.ParticipantMetaData.groupInfo:type_name -> openim.sdkws.GroupInfo
-	52, // 1: openim.rtc.ParticipantMetaData.groupMemberInfo:type_name -> openim.sdkws.GroupMemberFullInfo
-	53, // 2: openim.rtc.ParticipantMetaData.userInfo:type_name -> openim.sdkws.PublicUserInfo
+	53, // 0: openim.rtc.ParticipantMetaData.groupInfo:type_name -> openim.sdkws.GroupInfo
+	54, // 1: openim.rtc.ParticipantMetaData.groupMemberInfo:type_name -> openim.sdkws.GroupMemberFullInfo
+	55, // 2: openim.rtc.ParticipantMetaData.userInfo:type_name -> openim.sdkws.PublicUserInfo
 	0,  // 3: openim.rtc.GetJoinTokenReq.metaData:type_name -> openim.rtc.ParticipantMetaData
 	11, // 4: openim.rtc.SignalReq.invite:type_name -> openim.rtc.SignalInviteReq
 	13, // 5: openim.rtc.SignalReq.inviteInGroup:type_name -> openim.rtc.SignalInviteInGroupReq
@@ -3898,86 +4032,88 @@ var file_rtc_rtc_proto_depIdxs = []int32{
 	17, // 7: openim.rtc.SignalReq.accept:type_name -> openim.rtc.SignalAcceptReq
 	19, // 8: openim.rtc.SignalReq.hungUp:type_name -> openim.rtc.SignalHungUpReq
 	21, // 9: openim.rtc.SignalReq.reject:type_name -> openim.rtc.SignalRejectReq
-	31, // 10: openim.rtc.SignalReq.getTokenByRoomID:type_name -> openim.rtc.SignalGetTokenByRoomIDReq
+	33, // 10: openim.rtc.SignalReq.getTokenByRoomID:type_name -> openim.rtc.SignalGetTokenByRoomIDReq
 	23, // 11: openim.rtc.SignalReq.timeout:type_name -> openim.rtc.SignalTimeoutReq
 	25, // 12: openim.rtc.SignalReq.join:type_name -> openim.rtc.SignalJoinReq
-	12, // 13: openim.rtc.SignalResp.invite:type_name -> openim.rtc.SignalInviteResp
-	14, // 14: openim.rtc.SignalResp.inviteInGroup:type_name -> openim.rtc.SignalInviteInGroupResp
-	16, // 15: openim.rtc.SignalResp.cancel:type_name -> openim.rtc.SignalCancelResp
-	18, // 16: openim.rtc.SignalResp.accept:type_name -> openim.rtc.SignalAcceptResp
-	20, // 17: openim.rtc.SignalResp.hungUp:type_name -> openim.rtc.SignalHungUpResp
-	22, // 18: openim.rtc.SignalResp.reject:type_name -> openim.rtc.SignalRejectResp
-	32, // 19: openim.rtc.SignalResp.getTokenByRoomID:type_name -> openim.rtc.SignalGetTokenByRoomIDResp
-	24, // 20: openim.rtc.SignalResp.timeout:type_name -> openim.rtc.SignalTimeoutResp
-	26, // 21: openim.rtc.SignalResp.join:type_name -> openim.rtc.SignalJoinResp
-	10, // 22: openim.rtc.SignalInviteReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 23: openim.rtc.SignalInviteReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	0,  // 24: openim.rtc.SignalInviteReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 25: openim.rtc.SignalInviteInGroupReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 26: openim.rtc.SignalInviteInGroupReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	0,  // 27: openim.rtc.SignalInviteInGroupReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 28: openim.rtc.SignalCancelReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 29: openim.rtc.SignalCancelReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	0,  // 30: openim.rtc.SignalCancelReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 31: openim.rtc.SignalAcceptReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 32: openim.rtc.SignalAcceptReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	0,  // 33: openim.rtc.SignalAcceptReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 34: openim.rtc.SignalHungUpReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 35: openim.rtc.SignalHungUpReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	10, // 36: openim.rtc.SignalRejectReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 37: openim.rtc.SignalRejectReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	0,  // 38: openim.rtc.SignalRejectReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 39: openim.rtc.SignalTimeoutReq.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 40: openim.rtc.SignalTimeoutReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	10, // 41: openim.rtc.SignalJoinReq.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 42: openim.rtc.SignalJoinReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 43: openim.rtc.SignalGetRoomByGroupIDResp.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 44: openim.rtc.SignalGetRoomByGroupIDResp.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 45: openim.rtc.SignalOnRoomParticipantConnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 46: openim.rtc.SignalOnRoomParticipantConnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 47: openim.rtc.SignalOnRoomParticipantDisconnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 48: openim.rtc.SignalOnRoomParticipantDisconnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	0,  // 49: openim.rtc.SignalGetTokenByRoomIDReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	3,  // 50: openim.rtc.SignalMessageAssembleReq.signalReq:type_name -> openim.rtc.SignalReq
-	9,  // 51: openim.rtc.SignalMessageAssembleResp.signalResp:type_name -> openim.rtc.SignalResp
-	28, // 52: openim.rtc.SignalGetRoomsResp.roomList:type_name -> openim.rtc.SignalGetRoomByGroupIDResp
-	10, // 53: openim.rtc.GetSignalInvitationInfoResp.invitationInfo:type_name -> openim.rtc.InvitationInfo
-	54, // 54: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	10, // 55: openim.rtc.GetSignalInvitationInfoStartAppResp.invitation:type_name -> openim.rtc.InvitationInfo
-	54, // 56: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	41, // 57: openim.rtc.SignalRecord.inviterUsers:type_name -> openim.rtc.SignalUser
-	55, // 58: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	56, // 59: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
-	42, // 60: openim.rtc.GetSignalInvitationRecordsResp.signalRecords:type_name -> openim.rtc.SignalRecord
-	55, // 61: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	48, // 62: openim.rtc.GetCallRecordsResp.records:type_name -> openim.rtc.CallRecordItem
-	33, // 63: openim.rtc.RtcService.SignalMessageAssemble:input_type -> openim.rtc.SignalMessageAssembleReq
-	27, // 64: openim.rtc.RtcService.SignalGetRoomByGroupID:input_type -> openim.rtc.SignalGetRoomByGroupIDReq
-	31, // 65: openim.rtc.RtcService.SignalGetTokenByRoomID:input_type -> openim.rtc.SignalGetTokenByRoomIDReq
-	35, // 66: openim.rtc.RtcService.SignalGetRooms:input_type -> openim.rtc.SignalGetRoomsReq
-	37, // 67: openim.rtc.RtcService.GetSignalInvitationInfo:input_type -> openim.rtc.GetSignalInvitationInfoReq
-	39, // 68: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:input_type -> openim.rtc.GetSignalInvitationInfoStartAppReq
-	4,  // 69: openim.rtc.RtcService.SignalSendCustomSignal:input_type -> openim.rtc.SignalSendCustomSignalReq
-	6,  // 70: openim.rtc.RtcService.SignalNotifyGroupCallEnded:input_type -> openim.rtc.SignalNotifyGroupCallEndedReq
-	44, // 71: openim.rtc.RtcService.GetSignalInvitationRecords:input_type -> openim.rtc.GetSignalInvitationRecordsReq
-	46, // 72: openim.rtc.RtcService.DeleteSignalRecords:input_type -> openim.rtc.DeleteSignalRecordsReq
-	49, // 73: openim.rtc.RtcService.GetCallRecords:input_type -> openim.rtc.GetCallRecordsReq
-	34, // 74: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
-	28, // 75: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
-	32, // 76: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
-	36, // 77: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
-	38, // 78: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
-	40, // 79: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
-	5,  // 80: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
-	7,  // 81: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
-	45, // 82: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
-	47, // 83: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
-	50, // 84: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
-	74, // [74:85] is the sub-list for method output_type
-	63, // [63:74] is the sub-list for method input_type
-	63, // [63:63] is the sub-list for extension type_name
-	63, // [63:63] is the sub-list for extension extendee
-	0,  // [0:63] is the sub-list for field type_name
+	27, // 13: openim.rtc.SignalReq.heartbeat:type_name -> openim.rtc.SignalHeartbeatReq
+	12, // 14: openim.rtc.SignalResp.invite:type_name -> openim.rtc.SignalInviteResp
+	14, // 15: openim.rtc.SignalResp.inviteInGroup:type_name -> openim.rtc.SignalInviteInGroupResp
+	16, // 16: openim.rtc.SignalResp.cancel:type_name -> openim.rtc.SignalCancelResp
+	18, // 17: openim.rtc.SignalResp.accept:type_name -> openim.rtc.SignalAcceptResp
+	20, // 18: openim.rtc.SignalResp.hungUp:type_name -> openim.rtc.SignalHungUpResp
+	22, // 19: openim.rtc.SignalResp.reject:type_name -> openim.rtc.SignalRejectResp
+	34, // 20: openim.rtc.SignalResp.getTokenByRoomID:type_name -> openim.rtc.SignalGetTokenByRoomIDResp
+	24, // 21: openim.rtc.SignalResp.timeout:type_name -> openim.rtc.SignalTimeoutResp
+	26, // 22: openim.rtc.SignalResp.join:type_name -> openim.rtc.SignalJoinResp
+	28, // 23: openim.rtc.SignalResp.heartbeat:type_name -> openim.rtc.SignalHeartbeatResp
+	10, // 24: openim.rtc.SignalInviteReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 25: openim.rtc.SignalInviteReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	0,  // 26: openim.rtc.SignalInviteReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 27: openim.rtc.SignalInviteInGroupReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 28: openim.rtc.SignalInviteInGroupReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	0,  // 29: openim.rtc.SignalInviteInGroupReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 30: openim.rtc.SignalCancelReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 31: openim.rtc.SignalCancelReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	0,  // 32: openim.rtc.SignalCancelReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 33: openim.rtc.SignalAcceptReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 34: openim.rtc.SignalAcceptReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	0,  // 35: openim.rtc.SignalAcceptReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 36: openim.rtc.SignalHungUpReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 37: openim.rtc.SignalHungUpReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	10, // 38: openim.rtc.SignalRejectReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 39: openim.rtc.SignalRejectReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	0,  // 40: openim.rtc.SignalRejectReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 41: openim.rtc.SignalTimeoutReq.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 42: openim.rtc.SignalTimeoutReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	10, // 43: openim.rtc.SignalJoinReq.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 44: openim.rtc.SignalJoinReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 45: openim.rtc.SignalGetRoomByGroupIDResp.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 46: openim.rtc.SignalGetRoomByGroupIDResp.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 47: openim.rtc.SignalOnRoomParticipantConnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 48: openim.rtc.SignalOnRoomParticipantConnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 49: openim.rtc.SignalOnRoomParticipantDisconnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 50: openim.rtc.SignalOnRoomParticipantDisconnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	0,  // 51: openim.rtc.SignalGetTokenByRoomIDReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	3,  // 52: openim.rtc.SignalMessageAssembleReq.signalReq:type_name -> openim.rtc.SignalReq
+	9,  // 53: openim.rtc.SignalMessageAssembleResp.signalResp:type_name -> openim.rtc.SignalResp
+	30, // 54: openim.rtc.SignalGetRoomsResp.roomList:type_name -> openim.rtc.SignalGetRoomByGroupIDResp
+	10, // 55: openim.rtc.GetSignalInvitationInfoResp.invitationInfo:type_name -> openim.rtc.InvitationInfo
+	56, // 56: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	10, // 57: openim.rtc.GetSignalInvitationInfoStartAppResp.invitation:type_name -> openim.rtc.InvitationInfo
+	56, // 58: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	43, // 59: openim.rtc.SignalRecord.inviterUsers:type_name -> openim.rtc.SignalUser
+	57, // 60: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	58, // 61: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
+	44, // 62: openim.rtc.GetSignalInvitationRecordsResp.signalRecords:type_name -> openim.rtc.SignalRecord
+	57, // 63: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	50, // 64: openim.rtc.GetCallRecordsResp.records:type_name -> openim.rtc.CallRecordItem
+	35, // 65: openim.rtc.RtcService.SignalMessageAssemble:input_type -> openim.rtc.SignalMessageAssembleReq
+	29, // 66: openim.rtc.RtcService.SignalGetRoomByGroupID:input_type -> openim.rtc.SignalGetRoomByGroupIDReq
+	33, // 67: openim.rtc.RtcService.SignalGetTokenByRoomID:input_type -> openim.rtc.SignalGetTokenByRoomIDReq
+	37, // 68: openim.rtc.RtcService.SignalGetRooms:input_type -> openim.rtc.SignalGetRoomsReq
+	39, // 69: openim.rtc.RtcService.GetSignalInvitationInfo:input_type -> openim.rtc.GetSignalInvitationInfoReq
+	41, // 70: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:input_type -> openim.rtc.GetSignalInvitationInfoStartAppReq
+	4,  // 71: openim.rtc.RtcService.SignalSendCustomSignal:input_type -> openim.rtc.SignalSendCustomSignalReq
+	6,  // 72: openim.rtc.RtcService.SignalNotifyGroupCallEnded:input_type -> openim.rtc.SignalNotifyGroupCallEndedReq
+	46, // 73: openim.rtc.RtcService.GetSignalInvitationRecords:input_type -> openim.rtc.GetSignalInvitationRecordsReq
+	48, // 74: openim.rtc.RtcService.DeleteSignalRecords:input_type -> openim.rtc.DeleteSignalRecordsReq
+	51, // 75: openim.rtc.RtcService.GetCallRecords:input_type -> openim.rtc.GetCallRecordsReq
+	36, // 76: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
+	30, // 77: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
+	34, // 78: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
+	38, // 79: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
+	40, // 80: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
+	42, // 81: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
+	5,  // 82: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
+	7,  // 83: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
+	47, // 84: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
+	49, // 85: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
+	52, // 86: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
+	76, // [76:87] is the sub-list for method output_type
+	65, // [65:76] is the sub-list for method input_type
+	65, // [65:65] is the sub-list for extension type_name
+	65, // [65:65] is the sub-list for extension extendee
+	0,  // [0:65] is the sub-list for field type_name
 }
 
 func init() { file_rtc_rtc_proto_init() }
@@ -3995,6 +4131,7 @@ func file_rtc_rtc_proto_init() {
 		(*SignalReq_GetTokenByRoomID)(nil),
 		(*SignalReq_Timeout)(nil),
 		(*SignalReq_Join)(nil),
+		(*SignalReq_Heartbeat)(nil),
 	}
 	file_rtc_rtc_proto_msgTypes[9].OneofWrappers = []any{
 		(*SignalResp_Invite)(nil),
@@ -4006,6 +4143,7 @@ func file_rtc_rtc_proto_init() {
 		(*SignalResp_GetTokenByRoomID)(nil),
 		(*SignalResp_Timeout)(nil),
 		(*SignalResp_Join)(nil),
+		(*SignalResp_Heartbeat)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -4013,7 +4151,7 @@ func file_rtc_rtc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rtc_rtc_proto_rawDesc), len(file_rtc_rtc_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   51,
+			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
