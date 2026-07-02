@@ -29,6 +29,7 @@ message RedPacketRecord {
   int64  createdAt        = 21;
   int64  updatedAt        = 22;
   string chainKey         = 23;
+  string transactionType  = 24;
 }
 
 message RedPacketClaimRecord {
@@ -67,6 +68,7 @@ message CreateOrderReq {
   int64  expiryAt          = 13;
   string remark            = 14;
   string chainKey          = 15;
+  string transactionType   = 16;
 }
 
 message CreateOrderResp {
