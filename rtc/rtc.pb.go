@@ -3636,6 +3636,101 @@ func (x *GetCallRecordsResp) GetRecords() []*CallRecordItem {
 	return nil
 }
 
+// NotifyRoomEventReq lets an external event source (e.g. the LiveKit webhook
+// receiver in the api gateway) trigger an immediate call-watchdog re-check for
+// a single room instead of waiting for the next periodic scan tick. The
+// watchdog's own staleness rules (ring-timeout deadline, empty-room grace
+// period) still apply; this only schedules an early check.
+type NotifyRoomEventReq struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	RoomID string                 `protobuf:"bytes,1,opt,name=roomID,proto3" json:"roomID"`
+	// eventType: e.g. "room_finished" | "participant_left" (informational; the
+	// server always re-evaluates the invitation's actual current state).
+	EventType     string `protobuf:"bytes,2,opt,name=eventType,proto3" json:"eventType"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NotifyRoomEventReq) Reset() {
+	*x = NotifyRoomEventReq{}
+	mi := &file_rtc_rtc_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NotifyRoomEventReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NotifyRoomEventReq) ProtoMessage() {}
+
+func (x *NotifyRoomEventReq) ProtoReflect() protoreflect.Message {
+	mi := &file_rtc_rtc_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NotifyRoomEventReq.ProtoReflect.Descriptor instead.
+func (*NotifyRoomEventReq) Descriptor() ([]byte, []int) {
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *NotifyRoomEventReq) GetRoomID() string {
+	if x != nil {
+		return x.RoomID
+	}
+	return ""
+}
+
+func (x *NotifyRoomEventReq) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+type NotifyRoomEventResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NotifyRoomEventResp) Reset() {
+	*x = NotifyRoomEventResp{}
+	mi := &file_rtc_rtc_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NotifyRoomEventResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NotifyRoomEventResp) ProtoMessage() {}
+
+func (x *NotifyRoomEventResp) ProtoReflect() protoreflect.Message {
+	mi := &file_rtc_rtc_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NotifyRoomEventResp.ProtoReflect.Descriptor instead.
+func (*NotifyRoomEventResp) Descriptor() ([]byte, []int) {
+	return file_rtc_rtc_proto_rawDescGZIP(), []int{54}
+}
+
 var File_rtc_rtc_proto protoreflect.FileDescriptor
 
 const file_rtc_rtc_proto_rawDesc = "" +
@@ -3932,7 +4027,11 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\akeyword\x18\x06 \x01(\tR\akeyword\"`\n" +
 	"\x12GetCallRecordsResp\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x05R\x05total\x124\n" +
-	"\arecords\x18\x02 \x03(\v2\x1a.openim.rtc.CallRecordItemR\arecords2\x8a\t\n" +
+	"\arecords\x18\x02 \x03(\v2\x1a.openim.rtc.CallRecordItemR\arecords\"J\n" +
+	"\x12NotifyRoomEventReq\x12\x16\n" +
+	"\x06roomID\x18\x01 \x01(\tR\x06roomID\x12\x1c\n" +
+	"\teventType\x18\x02 \x01(\tR\teventType\"\x15\n" +
+	"\x13NotifyRoomEventResp2\xde\t\n" +
 	"\n" +
 	"RtcService\x12d\n" +
 	"\x15SignalMessageAssemble\x12$.openim.rtc.SignalMessageAssembleReq\x1a%.openim.rtc.SignalMessageAssembleResp\x12g\n" +
@@ -3945,7 +4044,8 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"\x1aSignalNotifyGroupCallEnded\x12).openim.rtc.SignalNotifyGroupCallEndedReq\x1a*.openim.rtc.SignalNotifyGroupCallEndedResp\x12s\n" +
 	"\x1aGetSignalInvitationRecords\x12).openim.rtc.GetSignalInvitationRecordsReq\x1a*.openim.rtc.GetSignalInvitationRecordsResp\x12^\n" +
 	"\x13DeleteSignalRecords\x12\".openim.rtc.DeleteSignalRecordsReq\x1a#.openim.rtc.DeleteSignalRecordsResp\x12O\n" +
-	"\x0eGetCallRecords\x12\x1d.openim.rtc.GetCallRecordsReq\x1a\x1e.openim.rtc.GetCallRecordsRespB#Z!github.com/openimsdk/protocol/rtcb\x06proto3"
+	"\x0eGetCallRecords\x12\x1d.openim.rtc.GetCallRecordsReq\x1a\x1e.openim.rtc.GetCallRecordsResp\x12R\n" +
+	"\x0fNotifyRoomEvent\x12\x1e.openim.rtc.NotifyRoomEventReq\x1a\x1f.openim.rtc.NotifyRoomEventRespB#Z!github.com/openimsdk/protocol/rtcb\x06proto3"
 
 var (
 	file_rtc_rtc_proto_rawDescOnce sync.Once
@@ -3959,7 +4059,7 @@ func file_rtc_rtc_proto_rawDescGZIP() []byte {
 	return file_rtc_rtc_proto_rawDescData
 }
 
-var file_rtc_rtc_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
+var file_rtc_rtc_proto_msgTypes = make([]protoimpl.MessageInfo, 55)
 var file_rtc_rtc_proto_goTypes = []any{
 	(*ParticipantMetaData)(nil),                    // 0: openim.rtc.ParticipantMetaData
 	(*GetJoinTokenReq)(nil),                        // 1: openim.rtc.GetJoinTokenReq
@@ -4014,17 +4114,19 @@ var file_rtc_rtc_proto_goTypes = []any{
 	(*CallRecordItem)(nil),                         // 50: openim.rtc.CallRecordItem
 	(*GetCallRecordsReq)(nil),                      // 51: openim.rtc.GetCallRecordsReq
 	(*GetCallRecordsResp)(nil),                     // 52: openim.rtc.GetCallRecordsResp
-	(*sdkws.GroupInfo)(nil),                        // 53: openim.sdkws.GroupInfo
-	(*sdkws.GroupMemberFullInfo)(nil),              // 54: openim.sdkws.GroupMemberFullInfo
-	(*sdkws.PublicUserInfo)(nil),                   // 55: openim.sdkws.PublicUserInfo
-	(*sdkws.OfflinePushInfo)(nil),                  // 56: openim.sdkws.OfflinePushInfo
-	(*sdkws.RequestPagination)(nil),                // 57: openim.sdkws.RequestPagination
-	(*sdkws.UserInfo)(nil),                         // 58: openim.sdkws.UserInfo
+	(*NotifyRoomEventReq)(nil),                     // 53: openim.rtc.NotifyRoomEventReq
+	(*NotifyRoomEventResp)(nil),                    // 54: openim.rtc.NotifyRoomEventResp
+	(*sdkws.GroupInfo)(nil),                        // 55: openim.sdkws.GroupInfo
+	(*sdkws.GroupMemberFullInfo)(nil),              // 56: openim.sdkws.GroupMemberFullInfo
+	(*sdkws.PublicUserInfo)(nil),                   // 57: openim.sdkws.PublicUserInfo
+	(*sdkws.OfflinePushInfo)(nil),                  // 58: openim.sdkws.OfflinePushInfo
+	(*sdkws.RequestPagination)(nil),                // 59: openim.sdkws.RequestPagination
+	(*sdkws.UserInfo)(nil),                         // 60: openim.sdkws.UserInfo
 }
 var file_rtc_rtc_proto_depIdxs = []int32{
-	53, // 0: openim.rtc.ParticipantMetaData.groupInfo:type_name -> openim.sdkws.GroupInfo
-	54, // 1: openim.rtc.ParticipantMetaData.groupMemberInfo:type_name -> openim.sdkws.GroupMemberFullInfo
-	55, // 2: openim.rtc.ParticipantMetaData.userInfo:type_name -> openim.sdkws.PublicUserInfo
+	55, // 0: openim.rtc.ParticipantMetaData.groupInfo:type_name -> openim.sdkws.GroupInfo
+	56, // 1: openim.rtc.ParticipantMetaData.groupMemberInfo:type_name -> openim.sdkws.GroupMemberFullInfo
+	57, // 2: openim.rtc.ParticipantMetaData.userInfo:type_name -> openim.sdkws.PublicUserInfo
 	0,  // 3: openim.rtc.GetJoinTokenReq.metaData:type_name -> openim.rtc.ParticipantMetaData
 	11, // 4: openim.rtc.SignalReq.invite:type_name -> openim.rtc.SignalInviteReq
 	13, // 5: openim.rtc.SignalReq.inviteInGroup:type_name -> openim.rtc.SignalInviteInGroupReq
@@ -4047,24 +4149,24 @@ var file_rtc_rtc_proto_depIdxs = []int32{
 	26, // 22: openim.rtc.SignalResp.join:type_name -> openim.rtc.SignalJoinResp
 	28, // 23: openim.rtc.SignalResp.heartbeat:type_name -> openim.rtc.SignalHeartbeatResp
 	10, // 24: openim.rtc.SignalInviteReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 25: openim.rtc.SignalInviteReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 25: openim.rtc.SignalInviteReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	0,  // 26: openim.rtc.SignalInviteReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 27: openim.rtc.SignalInviteInGroupReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 28: openim.rtc.SignalInviteInGroupReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 28: openim.rtc.SignalInviteInGroupReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	0,  // 29: openim.rtc.SignalInviteInGroupReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 30: openim.rtc.SignalCancelReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 31: openim.rtc.SignalCancelReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 31: openim.rtc.SignalCancelReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	0,  // 32: openim.rtc.SignalCancelReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 33: openim.rtc.SignalAcceptReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 34: openim.rtc.SignalAcceptReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 34: openim.rtc.SignalAcceptReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	0,  // 35: openim.rtc.SignalAcceptReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 36: openim.rtc.SignalHungUpReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 37: openim.rtc.SignalHungUpReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 37: openim.rtc.SignalHungUpReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	10, // 38: openim.rtc.SignalRejectReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 39: openim.rtc.SignalRejectReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 39: openim.rtc.SignalRejectReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	0,  // 40: openim.rtc.SignalRejectReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 41: openim.rtc.SignalTimeoutReq.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 42: openim.rtc.SignalTimeoutReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 42: openim.rtc.SignalTimeoutReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	10, // 43: openim.rtc.SignalJoinReq.invitation:type_name -> openim.rtc.InvitationInfo
 	0,  // 44: openim.rtc.SignalJoinReq.participant:type_name -> openim.rtc.ParticipantMetaData
 	10, // 45: openim.rtc.SignalGetRoomByGroupIDResp.invitation:type_name -> openim.rtc.InvitationInfo
@@ -4078,14 +4180,14 @@ var file_rtc_rtc_proto_depIdxs = []int32{
 	9,  // 53: openim.rtc.SignalMessageAssembleResp.signalResp:type_name -> openim.rtc.SignalResp
 	30, // 54: openim.rtc.SignalGetRoomsResp.roomList:type_name -> openim.rtc.SignalGetRoomByGroupIDResp
 	10, // 55: openim.rtc.GetSignalInvitationInfoResp.invitationInfo:type_name -> openim.rtc.InvitationInfo
-	56, // 56: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 56: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	10, // 57: openim.rtc.GetSignalInvitationInfoStartAppResp.invitation:type_name -> openim.rtc.InvitationInfo
-	56, // 58: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	58, // 58: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	43, // 59: openim.rtc.SignalRecord.inviterUsers:type_name -> openim.rtc.SignalUser
-	57, // 60: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	58, // 61: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
+	59, // 60: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	60, // 61: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
 	44, // 62: openim.rtc.GetSignalInvitationRecordsResp.signalRecords:type_name -> openim.rtc.SignalRecord
-	57, // 63: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	59, // 63: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
 	50, // 64: openim.rtc.GetCallRecordsResp.records:type_name -> openim.rtc.CallRecordItem
 	35, // 65: openim.rtc.RtcService.SignalMessageAssemble:input_type -> openim.rtc.SignalMessageAssembleReq
 	29, // 66: openim.rtc.RtcService.SignalGetRoomByGroupID:input_type -> openim.rtc.SignalGetRoomByGroupIDReq
@@ -4098,19 +4200,21 @@ var file_rtc_rtc_proto_depIdxs = []int32{
 	46, // 73: openim.rtc.RtcService.GetSignalInvitationRecords:input_type -> openim.rtc.GetSignalInvitationRecordsReq
 	48, // 74: openim.rtc.RtcService.DeleteSignalRecords:input_type -> openim.rtc.DeleteSignalRecordsReq
 	51, // 75: openim.rtc.RtcService.GetCallRecords:input_type -> openim.rtc.GetCallRecordsReq
-	36, // 76: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
-	30, // 77: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
-	34, // 78: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
-	38, // 79: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
-	40, // 80: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
-	42, // 81: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
-	5,  // 82: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
-	7,  // 83: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
-	47, // 84: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
-	49, // 85: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
-	52, // 86: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
-	76, // [76:87] is the sub-list for method output_type
-	65, // [65:76] is the sub-list for method input_type
+	53, // 76: openim.rtc.RtcService.NotifyRoomEvent:input_type -> openim.rtc.NotifyRoomEventReq
+	36, // 77: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
+	30, // 78: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
+	34, // 79: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
+	38, // 80: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
+	40, // 81: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
+	42, // 82: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
+	5,  // 83: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
+	7,  // 84: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
+	47, // 85: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
+	49, // 86: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
+	52, // 87: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
+	54, // 88: openim.rtc.RtcService.NotifyRoomEvent:output_type -> openim.rtc.NotifyRoomEventResp
+	77, // [77:89] is the sub-list for method output_type
+	65, // [65:77] is the sub-list for method input_type
 	65, // [65:65] is the sub-list for extension type_name
 	65, // [65:65] is the sub-list for extension extendee
 	0,  // [0:65] is the sub-list for field type_name
@@ -4151,7 +4255,7 @@ func file_rtc_rtc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rtc_rtc_proto_rawDesc), len(file_rtc_rtc_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   53,
+			NumMessages:   55,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -387,6 +387,21 @@ message GetCallRecordsResp {
   repeated CallRecordItem records = 2;
 }
 
+// NotifyRoomEventReq lets an external event source (e.g. the LiveKit webhook
+// receiver in the api gateway) trigger an immediate call-watchdog re-check for
+// a single room instead of waiting for the next periodic scan tick. The
+// watchdog's own staleness rules (ring-timeout deadline, empty-room grace
+// period) still apply; this only schedules an early check.
+message NotifyRoomEventReq {
+  string roomID = 1;
+  // eventType: e.g. "room_finished" | "participant_left" (informational; the
+  // server always re-evaluates the invitation's actual current state).
+  string eventType = 2;
+}
+
+message NotifyRoomEventResp {
+}
+
 service RtcService {
   rpc SignalMessageAssemble(SignalMessageAssembleReq) returns(SignalMessageAssembleResp);
   rpc SignalGetRoomByGroupID(SignalGetRoomByGroupIDReq) returns(SignalGetRoomByGroupIDResp);
@@ -407,4 +422,8 @@ service RtcService {
 
   // call record history
   rpc GetCallRecords(GetCallRecordsReq) returns(GetCallRecordsResp);
+
+  // NotifyRoomEvent is an internal-only fast-path trigger for the call
+  // watchdog (see the LiveKit webhook receiver in internal/api/rtc.go).
+  rpc NotifyRoomEvent(NotifyRoomEventReq) returns(NotifyRoomEventResp);
 }

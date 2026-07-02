@@ -30,6 +30,7 @@ const (
 	RtcService_GetSignalInvitationRecords_FullMethodName      = "/openim.rtc.RtcService/GetSignalInvitationRecords"
 	RtcService_DeleteSignalRecords_FullMethodName             = "/openim.rtc.RtcService/DeleteSignalRecords"
 	RtcService_GetCallRecords_FullMethodName                  = "/openim.rtc.RtcService/GetCallRecords"
+	RtcService_NotifyRoomEvent_FullMethodName                 = "/openim.rtc.RtcService/NotifyRoomEvent"
 )
 
 // RtcServiceClient is the client API for RtcService service.
@@ -51,6 +52,9 @@ type RtcServiceClient interface {
 	DeleteSignalRecords(ctx context.Context, in *DeleteSignalRecordsReq, opts ...grpc.CallOption) (*DeleteSignalRecordsResp, error)
 	// call record history
 	GetCallRecords(ctx context.Context, in *GetCallRecordsReq, opts ...grpc.CallOption) (*GetCallRecordsResp, error)
+	// NotifyRoomEvent is an internal-only fast-path trigger for the call
+	// watchdog (see the LiveKit webhook receiver in internal/api/rtc.go).
+	NotifyRoomEvent(ctx context.Context, in *NotifyRoomEventReq, opts ...grpc.CallOption) (*NotifyRoomEventResp, error)
 }
 
 type rtcServiceClient struct {
@@ -171,6 +175,16 @@ func (c *rtcServiceClient) GetCallRecords(ctx context.Context, in *GetCallRecord
 	return out, nil
 }
 
+func (c *rtcServiceClient) NotifyRoomEvent(ctx context.Context, in *NotifyRoomEventReq, opts ...grpc.CallOption) (*NotifyRoomEventResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NotifyRoomEventResp)
+	err := c.cc.Invoke(ctx, RtcService_NotifyRoomEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RtcServiceServer is the server API for RtcService service.
 // All implementations must embed UnimplementedRtcServiceServer
 // for forward compatibility.
@@ -190,6 +204,9 @@ type RtcServiceServer interface {
 	DeleteSignalRecords(context.Context, *DeleteSignalRecordsReq) (*DeleteSignalRecordsResp, error)
 	// call record history
 	GetCallRecords(context.Context, *GetCallRecordsReq) (*GetCallRecordsResp, error)
+	// NotifyRoomEvent is an internal-only fast-path trigger for the call
+	// watchdog (see the LiveKit webhook receiver in internal/api/rtc.go).
+	NotifyRoomEvent(context.Context, *NotifyRoomEventReq) (*NotifyRoomEventResp, error)
 	mustEmbedUnimplementedRtcServiceServer()
 }
 
@@ -232,6 +249,9 @@ func (UnimplementedRtcServiceServer) DeleteSignalRecords(context.Context, *Delet
 }
 func (UnimplementedRtcServiceServer) GetCallRecords(context.Context, *GetCallRecordsReq) (*GetCallRecordsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCallRecords not implemented")
+}
+func (UnimplementedRtcServiceServer) NotifyRoomEvent(context.Context, *NotifyRoomEventReq) (*NotifyRoomEventResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method NotifyRoomEvent not implemented")
 }
 func (UnimplementedRtcServiceServer) mustEmbedUnimplementedRtcServiceServer() {}
 func (UnimplementedRtcServiceServer) testEmbeddedByValue()                    {}
@@ -452,6 +472,24 @@ func _RtcService_GetCallRecords_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RtcService_NotifyRoomEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotifyRoomEventReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RtcServiceServer).NotifyRoomEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RtcService_NotifyRoomEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RtcServiceServer).NotifyRoomEvent(ctx, req.(*NotifyRoomEventReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RtcService_ServiceDesc is the grpc.ServiceDesc for RtcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -502,6 +540,10 @@ var RtcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCallRecords",
 			Handler:    _RtcService_GetCallRecords_Handler,
+		},
+		{
+			MethodName: "NotifyRoomEvent",
+			Handler:    _RtcService_NotifyRoomEvent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
