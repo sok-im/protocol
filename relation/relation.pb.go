@@ -128,12 +128,19 @@ func (x *GetPaginationFriendsResp) GetTotal() int32 {
 }
 
 type ApplyToAddFriendReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FromUserID    string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
-	ToUserID      string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
-	ReqMsg        string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg"`
-	Ex            string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
-	Remark        string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	FromUserID string                 `protobuf:"bytes,1,opt,name=fromUserID,proto3" json:"fromUserID"`
+	ToUserID   string                 `protobuf:"bytes,2,opt,name=toUserID,proto3" json:"toUserID"`
+	ReqMsg     string                 `protobuf:"bytes,3,opt,name=reqMsg,proto3" json:"reqMsg"`
+	Ex         string                 `protobuf:"bytes,4,opt,name=ex,proto3" json:"ex"`
+	Remark     string                 `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
+	// firstName/lastName/note only apply to addOnewayFriend (which reuses this
+	// message and creates the friendship immediately). They are ignored by
+	// applyToAddFriend, where the friendship does not exist yet. All optional:
+	// an absent field is simply not set on the new friend record.
+	FirstName     *string `protobuf:"bytes,6,opt,name=firstName,proto3,oneof" json:"firstName"`
+	LastName      *string `protobuf:"bytes,7,opt,name=lastName,proto3,oneof" json:"lastName"`
+	Note          *string `protobuf:"bytes,8,opt,name=note,proto3,oneof" json:"note"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,6 +206,27 @@ func (x *ApplyToAddFriendReq) GetEx() string {
 func (x *ApplyToAddFriendReq) GetRemark() string {
 	if x != nil {
 		return x.Remark
+	}
+	return ""
+}
+
+func (x *ApplyToAddFriendReq) GetFirstName() string {
+	if x != nil && x.FirstName != nil {
+		return *x.FirstName
+	}
+	return ""
+}
+
+func (x *ApplyToAddFriendReq) GetLastName() string {
+	if x != nil && x.LastName != nil {
+		return *x.LastName
+	}
+	return ""
+}
+
+func (x *ApplyToAddFriendReq) GetNote() string {
+	if x != nil && x.Note != nil {
+		return *x.Note
 	}
 	return ""
 }
@@ -2085,11 +2113,16 @@ func (*SetFriendRemarkResp) Descriptor() ([]byte, []int) {
 }
 
 type SetFriendNameReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerUserID   string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
-	FriendUserID  string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
-	FirstName     string                 `protobuf:"bytes,3,opt,name=firstName,proto3" json:"firstName"`
-	LastName      string                 `protobuf:"bytes,4,opt,name=lastName,proto3" json:"lastName"`
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	OwnerUserID  string                 `protobuf:"bytes,1,opt,name=ownerUserID,proto3" json:"ownerUserID"`
+	FriendUserID string                 `protobuf:"bytes,2,opt,name=friendUserID,proto3" json:"friendUserID"`
+	// firstName/lastName/note are all optional: an absent field leaves the
+	// existing value untouched, while an explicit value (including "") updates
+	// it. This lets a caller change only the name, only the note, or both in a
+	// single request without clobbering the field it didn't intend to touch.
+	FirstName     *string `protobuf:"bytes,3,opt,name=firstName,proto3,oneof" json:"firstName"`
+	LastName      *string `protobuf:"bytes,4,opt,name=lastName,proto3,oneof" json:"lastName"`
+	Note          *string `protobuf:"bytes,5,opt,name=note,proto3,oneof" json:"note"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2139,15 +2172,22 @@ func (x *SetFriendNameReq) GetFriendUserID() string {
 }
 
 func (x *SetFriendNameReq) GetFirstName() string {
-	if x != nil {
-		return x.FirstName
+	if x != nil && x.FirstName != nil {
+		return *x.FirstName
 	}
 	return ""
 }
 
 func (x *SetFriendNameReq) GetLastName() string {
-	if x != nil {
-		return x.LastName
+	if x != nil && x.LastName != nil {
+		return *x.LastName
+	}
+	return ""
+}
+
+func (x *SetFriendNameReq) GetNote() string {
+	if x != nil && x.Note != nil {
+		return *x.Note
 	}
 	return ""
 }
@@ -4111,7 +4151,7 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\x06userID\x18\x02 \x01(\tR\x06userID\"l\n" +
 	"\x18getPaginationFriendsResp\x12:\n" +
 	"\vfriendsInfo\x18\x01 \x03(\v2\x18.openim.sdkws.FriendInfoR\vfriendsInfo\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\x91\x01\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x92\x02\n" +
 	"\x13applyToAddFriendReq\x12\x1e\n" +
 	"\n" +
 	"fromUserID\x18\x01 \x01(\tR\n" +
@@ -4119,7 +4159,14 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\btoUserID\x18\x02 \x01(\tR\btoUserID\x12\x16\n" +
 	"\x06reqMsg\x18\x03 \x01(\tR\x06reqMsg\x12\x0e\n" +
 	"\x02ex\x18\x04 \x01(\tR\x02ex\x12\x16\n" +
-	"\x06remark\x18\x05 \x01(\tR\x06remark\"\x16\n" +
+	"\x06remark\x18\x05 \x01(\tR\x06remark\x12!\n" +
+	"\tfirstName\x18\x06 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12\x1f\n" +
+	"\blastName\x18\a \x01(\tH\x01R\blastName\x88\x01\x01\x12\x17\n" +
+	"\x04note\x18\b \x01(\tH\x02R\x04note\x88\x01\x01B\f\n" +
+	"\n" +
+	"_firstNameB\v\n" +
+	"\t_lastNameB\a\n" +
+	"\x05_note\"\x16\n" +
 	"\x14applyToAddFriendResp\"\xa8\x03\n" +
 	"\n" +
 	"friendInfo\x12 \n" +
@@ -4249,12 +4296,17 @@ const file_relation_relation_proto_rawDesc = "" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
 	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\x12\x16\n" +
 	"\x06remark\x18\x03 \x01(\tR\x06remark\"\x15\n" +
-	"\x13setFriendRemarkResp\"\x92\x01\n" +
+	"\x13setFriendRemarkResp\"\xd9\x01\n" +
 	"\x10setFriendNameReq\x12 \n" +
 	"\vownerUserID\x18\x01 \x01(\tR\vownerUserID\x12\"\n" +
-	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\x12\x1c\n" +
-	"\tfirstName\x18\x03 \x01(\tR\tfirstName\x12\x1a\n" +
-	"\blastName\x18\x04 \x01(\tR\blastName\"\x13\n" +
+	"\ffriendUserID\x18\x02 \x01(\tR\ffriendUserID\x12!\n" +
+	"\tfirstName\x18\x03 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12\x1f\n" +
+	"\blastName\x18\x04 \x01(\tH\x01R\blastName\x88\x01\x01\x12\x17\n" +
+	"\x04note\x18\x05 \x01(\tH\x02R\x04note\x88\x01\x01B\f\n" +
+	"\n" +
+	"_firstNameB\v\n" +
+	"\t_lastNameB\a\n" +
+	"\x05_note\"\x13\n" +
 	"\x11setFriendNameResp\"\xa1\x01\n" +
 	" getPaginationFriendsApplyFromReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12?\n" +
@@ -4644,6 +4696,8 @@ func file_relation_relation_proto_init() {
 	if File_relation_relation_proto != nil {
 		return
 	}
+	file_relation_relation_proto_msgTypes[2].OneofWrappers = []any{}
+	file_relation_relation_proto_msgTypes[37].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

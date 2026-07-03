@@ -21,6 +21,13 @@ message applyToAddFriendReq {
   string reqMsg = 3;
   string ex = 4;
   string remark = 5;
+  // firstName/lastName/note only apply to addOnewayFriend (which reuses this
+  // message and creates the friendship immediately). They are ignored by
+  // applyToAddFriend, where the friendship does not exist yet. All optional:
+  // an absent field is simply not set on the new friend record.
+  optional string firstName = 6;
+  optional string lastName = 7;
+  optional string note = 8;
 }
 message applyToAddFriendResp {}
 
@@ -190,8 +197,13 @@ message setFriendRemarkResp {}
 message setFriendNameReq {
   string ownerUserID = 1;
   string friendUserID = 2;
-  string firstName = 3;
-  string lastName = 4;
+  // firstName/lastName/note are all optional: an absent field leaves the
+  // existing value untouched, while an explicit value (including "") updates
+  // it. This lets a caller change only the name, only the note, or both in a
+  // single request without clobbering the field it didn't intend to touch.
+  optional string firstName = 3;
+  optional string lastName = 4;
+  optional string note = 5;
 }
 message setFriendNameResp {}
 
