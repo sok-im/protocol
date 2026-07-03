@@ -184,6 +184,13 @@ message updateFriendsReq {
   openim.protobuf.BoolValue isMute = 9;
   openim.protobuf.Int64Value muteDuration = 10;
   openim.protobuf.Int64Value muteEndTime = 11;
+  // owner 对好友设置的展示用名字，可选：absent 表示不修改，
+  // 显式值（含 ""）表示更新。与 setFriendName 的 firstName/lastName 语义一致。
+  openim.protobuf.StringValue friendFirstName = 12;
+  openim.protobuf.StringValue friendLastName = 13;
+  // owner 对好友的私有备注，可选：absent 表示不修改，显式值（含 ""）表示更新。
+  // note 独立于 remark，不参与好友显示（会话名、群成员昵称）。
+  openim.protobuf.StringValue note = 14;
 }
 message updateFriendsResp {}
 
