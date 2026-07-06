@@ -210,6 +210,10 @@ message SignalJoinResp {
   string token = 1;
   string roomID = 2;
   string liveURL = 3;
+  // participant 当前正在通话的用户（含本次 join 的用户）；仅含 userInfo 等元数据。
+  repeated ParticipantMetaData participant = 4;
+  // inCall 为 true 表示房间内至少有一名用户正在通话（含本次 join 的用户）。
+  bool inCall = 5;
 }
 
 // SignalHeartbeatReq is sent periodically by a client during an active call so
