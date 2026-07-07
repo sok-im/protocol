@@ -286,6 +286,16 @@ message GetSignalInvitationInfoResp {
   sdkws.OfflinePushInfo offlinePushInfo = 2;
 }
 
+// IsCallEndedByRoomIDReq checks whether the call identified by roomID has ended.
+message IsCallEndedByRoomIDReq {
+  string roomID = 1;
+}
+
+message IsCallEndedByRoomIDResp {
+  // isEnded is true when the invitation no longer exists or is no longer active.
+  bool isEnded = 1;
+}
+
 message GetSignalInvitationInfoStartAppReq {
   string userID = 1;
 }
@@ -410,6 +420,7 @@ service RtcService {
 
   rpc GetSignalInvitationInfo(GetSignalInvitationInfoReq) returns(GetSignalInvitationInfoResp);
   rpc GetSignalInvitationInfoStartApp(GetSignalInvitationInfoStartAppReq) returns(GetSignalInvitationInfoStartAppResp);
+  rpc IsCallEndedByRoomID(IsCallEndedByRoomIDReq) returns(IsCallEndedByRoomIDResp);
 
   // custom signal
   rpc SignalSendCustomSignal(SignalSendCustomSignalReq) returns(SignalSendCustomSignalResp);
