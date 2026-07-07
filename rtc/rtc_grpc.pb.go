@@ -25,6 +25,7 @@ const (
 	RtcService_SignalGetRooms_FullMethodName                  = "/openim.rtc.RtcService/SignalGetRooms"
 	RtcService_GetSignalInvitationInfo_FullMethodName         = "/openim.rtc.RtcService/GetSignalInvitationInfo"
 	RtcService_GetSignalInvitationInfoStartApp_FullMethodName = "/openim.rtc.RtcService/GetSignalInvitationInfoStartApp"
+	RtcService_IsCallEndedByRoomID_FullMethodName             = "/openim.rtc.RtcService/IsCallEndedByRoomID"
 	RtcService_SignalSendCustomSignal_FullMethodName          = "/openim.rtc.RtcService/SignalSendCustomSignal"
 	RtcService_SignalNotifyGroupCallEnded_FullMethodName      = "/openim.rtc.RtcService/SignalNotifyGroupCallEnded"
 	RtcService_GetSignalInvitationRecords_FullMethodName      = "/openim.rtc.RtcService/GetSignalInvitationRecords"
@@ -43,6 +44,7 @@ type RtcServiceClient interface {
 	SignalGetRooms(ctx context.Context, in *SignalGetRoomsReq, opts ...grpc.CallOption) (*SignalGetRoomsResp, error)
 	GetSignalInvitationInfo(ctx context.Context, in *GetSignalInvitationInfoReq, opts ...grpc.CallOption) (*GetSignalInvitationInfoResp, error)
 	GetSignalInvitationInfoStartApp(ctx context.Context, in *GetSignalInvitationInfoStartAppReq, opts ...grpc.CallOption) (*GetSignalInvitationInfoStartAppResp, error)
+	IsCallEndedByRoomID(ctx context.Context, in *IsCallEndedByRoomIDReq, opts ...grpc.CallOption) (*IsCallEndedByRoomIDResp, error)
 	// custom signal
 	SignalSendCustomSignal(ctx context.Context, in *SignalSendCustomSignalReq, opts ...grpc.CallOption) (*SignalSendCustomSignalResp, error)
 	// group call ended notification (1523)
@@ -125,6 +127,16 @@ func (c *rtcServiceClient) GetSignalInvitationInfoStartApp(ctx context.Context, 
 	return out, nil
 }
 
+func (c *rtcServiceClient) IsCallEndedByRoomID(ctx context.Context, in *IsCallEndedByRoomIDReq, opts ...grpc.CallOption) (*IsCallEndedByRoomIDResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsCallEndedByRoomIDResp)
+	err := c.cc.Invoke(ctx, RtcService_IsCallEndedByRoomID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *rtcServiceClient) SignalSendCustomSignal(ctx context.Context, in *SignalSendCustomSignalReq, opts ...grpc.CallOption) (*SignalSendCustomSignalResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignalSendCustomSignalResp)
@@ -195,6 +207,7 @@ type RtcServiceServer interface {
 	SignalGetRooms(context.Context, *SignalGetRoomsReq) (*SignalGetRoomsResp, error)
 	GetSignalInvitationInfo(context.Context, *GetSignalInvitationInfoReq) (*GetSignalInvitationInfoResp, error)
 	GetSignalInvitationInfoStartApp(context.Context, *GetSignalInvitationInfoStartAppReq) (*GetSignalInvitationInfoStartAppResp, error)
+	IsCallEndedByRoomID(context.Context, *IsCallEndedByRoomIDReq) (*IsCallEndedByRoomIDResp, error)
 	// custom signal
 	SignalSendCustomSignal(context.Context, *SignalSendCustomSignalReq) (*SignalSendCustomSignalResp, error)
 	// group call ended notification (1523)
@@ -234,6 +247,9 @@ func (UnimplementedRtcServiceServer) GetSignalInvitationInfo(context.Context, *G
 }
 func (UnimplementedRtcServiceServer) GetSignalInvitationInfoStartApp(context.Context, *GetSignalInvitationInfoStartAppReq) (*GetSignalInvitationInfoStartAppResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSignalInvitationInfoStartApp not implemented")
+}
+func (UnimplementedRtcServiceServer) IsCallEndedByRoomID(context.Context, *IsCallEndedByRoomIDReq) (*IsCallEndedByRoomIDResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method IsCallEndedByRoomID not implemented")
 }
 func (UnimplementedRtcServiceServer) SignalSendCustomSignal(context.Context, *SignalSendCustomSignalReq) (*SignalSendCustomSignalResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SignalSendCustomSignal not implemented")
@@ -382,6 +398,24 @@ func _RtcService_GetSignalInvitationInfoStartApp_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RtcService_IsCallEndedByRoomID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsCallEndedByRoomIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RtcServiceServer).IsCallEndedByRoomID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RtcService_IsCallEndedByRoomID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RtcServiceServer).IsCallEndedByRoomID(ctx, req.(*IsCallEndedByRoomIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RtcService_SignalSendCustomSignal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignalSendCustomSignalReq)
 	if err := dec(in); err != nil {
@@ -520,6 +554,10 @@ var RtcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSignalInvitationInfoStartApp",
 			Handler:    _RtcService_GetSignalInvitationInfoStartApp_Handler,
+		},
+		{
+			MethodName: "IsCallEndedByRoomID",
+			Handler:    _RtcService_IsCallEndedByRoomID_Handler,
 		},
 		{
 			MethodName: "SignalSendCustomSignal",
