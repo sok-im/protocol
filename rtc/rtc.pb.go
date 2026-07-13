@@ -7,12 +7,13 @@
 package rtc
 
 import (
-	sdkws "github.com/openimsdk/protocol/sdkws"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	sdkws "github.com/openimsdk/protocol/sdkws"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -1971,10 +1972,14 @@ func (x *SignalJoinReq) GetUserID() string {
 }
 
 type SignalJoinResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token"`
-	RoomID        string                 `protobuf:"bytes,2,opt,name=roomID,proto3" json:"roomID"`
-	LiveURL       string                 `protobuf:"bytes,3,opt,name=liveURL,proto3" json:"liveURL"`
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	Token   string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token"`
+	RoomID  string                 `protobuf:"bytes,2,opt,name=roomID,proto3" json:"roomID"`
+	LiveURL string                 `protobuf:"bytes,3,opt,name=liveURL,proto3" json:"liveURL"`
+	// participant 当前正在通话的用户（含本次 join 的用户）；仅含 userInfo 等元数据。
+	Participant []*ParticipantMetaData `protobuf:"bytes,4,rep,name=participant,proto3" json:"participant"`
+	// inCall 为 true 表示房间内至少有一名用户正在通话（含本次 join 的用户）。
+	InCall        bool `protobuf:"varint,5,opt,name=inCall,proto3" json:"inCall"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2028,6 +2033,20 @@ func (x *SignalJoinResp) GetLiveURL() string {
 		return x.LiveURL
 	}
 	return ""
+}
+
+func (x *SignalJoinResp) GetParticipant() []*ParticipantMetaData {
+	if x != nil {
+		return x.Participant
+	}
+	return nil
+}
+
+func (x *SignalJoinResp) GetInCall() bool {
+	if x != nil {
+		return x.InCall
+	}
+	return false
 }
 
 // SignalHeartbeatReq is sent periodically by a client during an active call so
@@ -3983,11 +4002,13 @@ const file_rtc_rtc_proto_rawDesc = "" +
 	"invitation\x12A\n" +
 	"\vparticipant\x18\x02 \x01(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12*\n" +
 	"\x10opUserPlatformID\x18\x03 \x01(\x05R\x10opUserPlatformID\x12\x16\n" +
-	"\x06userID\x18\x04 \x01(\tR\x06userID\"X\n" +
+	"\x06userID\x18\x04 \x01(\tR\x06userID\"\xb3\x01\n" +
 	"\x0eSignalJoinResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\x12\x18\n" +
-	"\aliveURL\x18\x03 \x01(\tR\aliveURL\"D\n" +
+	"\aliveURL\x18\x03 \x01(\tR\aliveURL\x12A\n" +
+	"\vparticipant\x18\x04 \x03(\v2\x1f.openim.rtc.ParticipantMetaDataR\vparticipant\x12\x16\n" +
+	"\x06inCall\x18\x05 \x01(\bR\x06inCall\"D\n" +
 	"\x12SignalHeartbeatReq\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x16\n" +
 	"\x06roomID\x18\x02 \x01(\tR\x06roomID\"\x15\n" +
