@@ -30,6 +30,12 @@ message RedPacketRecord {
   int64  updatedAt        = 22;
   string chainKey         = 23;
   string transactionType  = 24;
+  int32  decimals             = 25;
+  string totalAmountDisplay   = 26;
+  string claimedAmountDisplay = 27;
+  string remainingAmount          = 28;
+  string remainingAmountDisplay   = 29;
+  int32  remainingShares          = 30;
 }
 
 message RedPacketClaimRecord {
@@ -43,6 +49,7 @@ message RedPacketClaimRecord {
   string status        = 8;
   int64  createdAt     = 9;
   int64  updatedAt     = 10;
+  string claimedAmountDisplay = 11;
 }
 
 message ParsedEvent {
