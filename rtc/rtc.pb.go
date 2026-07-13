@@ -7,13 +7,12 @@
 package rtc
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	sdkws "github.com/openimsdk/protocol/sdkws"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -4288,57 +4287,58 @@ var file_rtc_rtc_proto_depIdxs = []int32{
 	60, // 42: openim.rtc.SignalTimeoutReq.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
 	10, // 43: openim.rtc.SignalJoinReq.invitation:type_name -> openim.rtc.InvitationInfo
 	0,  // 44: openim.rtc.SignalJoinReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 45: openim.rtc.SignalGetRoomByGroupIDResp.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 46: openim.rtc.SignalGetRoomByGroupIDResp.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 47: openim.rtc.SignalOnRoomParticipantConnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 48: openim.rtc.SignalOnRoomParticipantConnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	10, // 49: openim.rtc.SignalOnRoomParticipantDisconnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
-	0,  // 50: openim.rtc.SignalOnRoomParticipantDisconnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	0,  // 51: openim.rtc.SignalGetTokenByRoomIDReq.participant:type_name -> openim.rtc.ParticipantMetaData
-	3,  // 52: openim.rtc.SignalMessageAssembleReq.signalReq:type_name -> openim.rtc.SignalReq
-	9,  // 53: openim.rtc.SignalMessageAssembleResp.signalResp:type_name -> openim.rtc.SignalResp
-	30, // 54: openim.rtc.SignalGetRoomsResp.roomList:type_name -> openim.rtc.SignalGetRoomByGroupIDResp
-	10, // 55: openim.rtc.GetSignalInvitationInfoResp.invitationInfo:type_name -> openim.rtc.InvitationInfo
-	60, // 56: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	10, // 57: openim.rtc.GetSignalInvitationInfoStartAppResp.invitation:type_name -> openim.rtc.InvitationInfo
-	60, // 58: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
-	45, // 59: openim.rtc.SignalRecord.inviterUsers:type_name -> openim.rtc.SignalUser
-	61, // 60: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	62, // 61: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
-	46, // 62: openim.rtc.GetSignalInvitationRecordsResp.signalRecords:type_name -> openim.rtc.SignalRecord
-	61, // 63: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
-	52, // 64: openim.rtc.GetCallRecordsResp.records:type_name -> openim.rtc.CallRecordItem
-	35, // 65: openim.rtc.RtcService.SignalMessageAssemble:input_type -> openim.rtc.SignalMessageAssembleReq
-	29, // 66: openim.rtc.RtcService.SignalGetRoomByGroupID:input_type -> openim.rtc.SignalGetRoomByGroupIDReq
-	33, // 67: openim.rtc.RtcService.SignalGetTokenByRoomID:input_type -> openim.rtc.SignalGetTokenByRoomIDReq
-	37, // 68: openim.rtc.RtcService.SignalGetRooms:input_type -> openim.rtc.SignalGetRoomsReq
-	39, // 69: openim.rtc.RtcService.GetSignalInvitationInfo:input_type -> openim.rtc.GetSignalInvitationInfoReq
-	43, // 70: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:input_type -> openim.rtc.GetSignalInvitationInfoStartAppReq
-	41, // 71: openim.rtc.RtcService.IsCallEndedByRoomID:input_type -> openim.rtc.IsCallEndedByRoomIDReq
-	4,  // 72: openim.rtc.RtcService.SignalSendCustomSignal:input_type -> openim.rtc.SignalSendCustomSignalReq
-	6,  // 73: openim.rtc.RtcService.SignalNotifyGroupCallEnded:input_type -> openim.rtc.SignalNotifyGroupCallEndedReq
-	48, // 74: openim.rtc.RtcService.GetSignalInvitationRecords:input_type -> openim.rtc.GetSignalInvitationRecordsReq
-	50, // 75: openim.rtc.RtcService.DeleteSignalRecords:input_type -> openim.rtc.DeleteSignalRecordsReq
-	53, // 76: openim.rtc.RtcService.GetCallRecords:input_type -> openim.rtc.GetCallRecordsReq
-	55, // 77: openim.rtc.RtcService.NotifyRoomEvent:input_type -> openim.rtc.NotifyRoomEventReq
-	36, // 78: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
-	30, // 79: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
-	34, // 80: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
-	38, // 81: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
-	40, // 82: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
-	44, // 83: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
-	42, // 84: openim.rtc.RtcService.IsCallEndedByRoomID:output_type -> openim.rtc.IsCallEndedByRoomIDResp
-	5,  // 85: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
-	7,  // 86: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
-	49, // 87: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
-	51, // 88: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
-	54, // 89: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
-	56, // 90: openim.rtc.RtcService.NotifyRoomEvent:output_type -> openim.rtc.NotifyRoomEventResp
-	78, // [78:91] is the sub-list for method output_type
-	65, // [65:78] is the sub-list for method input_type
-	65, // [65:65] is the sub-list for extension type_name
-	65, // [65:65] is the sub-list for extension extendee
-	0,  // [0:65] is the sub-list for field type_name
+	0,  // 45: openim.rtc.SignalJoinResp.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 46: openim.rtc.SignalGetRoomByGroupIDResp.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 47: openim.rtc.SignalGetRoomByGroupIDResp.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 48: openim.rtc.SignalOnRoomParticipantConnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 49: openim.rtc.SignalOnRoomParticipantConnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	10, // 50: openim.rtc.SignalOnRoomParticipantDisconnectedReq.invitation:type_name -> openim.rtc.InvitationInfo
+	0,  // 51: openim.rtc.SignalOnRoomParticipantDisconnectedReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	0,  // 52: openim.rtc.SignalGetTokenByRoomIDReq.participant:type_name -> openim.rtc.ParticipantMetaData
+	3,  // 53: openim.rtc.SignalMessageAssembleReq.signalReq:type_name -> openim.rtc.SignalReq
+	9,  // 54: openim.rtc.SignalMessageAssembleResp.signalResp:type_name -> openim.rtc.SignalResp
+	30, // 55: openim.rtc.SignalGetRoomsResp.roomList:type_name -> openim.rtc.SignalGetRoomByGroupIDResp
+	10, // 56: openim.rtc.GetSignalInvitationInfoResp.invitationInfo:type_name -> openim.rtc.InvitationInfo
+	60, // 57: openim.rtc.GetSignalInvitationInfoResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	10, // 58: openim.rtc.GetSignalInvitationInfoStartAppResp.invitation:type_name -> openim.rtc.InvitationInfo
+	60, // 59: openim.rtc.GetSignalInvitationInfoStartAppResp.offlinePushInfo:type_name -> openim.sdkws.OfflinePushInfo
+	45, // 60: openim.rtc.SignalRecord.inviterUsers:type_name -> openim.rtc.SignalUser
+	61, // 61: openim.rtc.GetSignalInvitationRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	62, // 62: openim.rtc.GetSignalInvitationRecordsReq.JoinedUsers:type_name -> openim.sdkws.UserInfo
+	46, // 63: openim.rtc.GetSignalInvitationRecordsResp.signalRecords:type_name -> openim.rtc.SignalRecord
+	61, // 64: openim.rtc.GetCallRecordsReq.pagination:type_name -> openim.sdkws.RequestPagination
+	52, // 65: openim.rtc.GetCallRecordsResp.records:type_name -> openim.rtc.CallRecordItem
+	35, // 66: openim.rtc.RtcService.SignalMessageAssemble:input_type -> openim.rtc.SignalMessageAssembleReq
+	29, // 67: openim.rtc.RtcService.SignalGetRoomByGroupID:input_type -> openim.rtc.SignalGetRoomByGroupIDReq
+	33, // 68: openim.rtc.RtcService.SignalGetTokenByRoomID:input_type -> openim.rtc.SignalGetTokenByRoomIDReq
+	37, // 69: openim.rtc.RtcService.SignalGetRooms:input_type -> openim.rtc.SignalGetRoomsReq
+	39, // 70: openim.rtc.RtcService.GetSignalInvitationInfo:input_type -> openim.rtc.GetSignalInvitationInfoReq
+	43, // 71: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:input_type -> openim.rtc.GetSignalInvitationInfoStartAppReq
+	41, // 72: openim.rtc.RtcService.IsCallEndedByRoomID:input_type -> openim.rtc.IsCallEndedByRoomIDReq
+	4,  // 73: openim.rtc.RtcService.SignalSendCustomSignal:input_type -> openim.rtc.SignalSendCustomSignalReq
+	6,  // 74: openim.rtc.RtcService.SignalNotifyGroupCallEnded:input_type -> openim.rtc.SignalNotifyGroupCallEndedReq
+	48, // 75: openim.rtc.RtcService.GetSignalInvitationRecords:input_type -> openim.rtc.GetSignalInvitationRecordsReq
+	50, // 76: openim.rtc.RtcService.DeleteSignalRecords:input_type -> openim.rtc.DeleteSignalRecordsReq
+	53, // 77: openim.rtc.RtcService.GetCallRecords:input_type -> openim.rtc.GetCallRecordsReq
+	55, // 78: openim.rtc.RtcService.NotifyRoomEvent:input_type -> openim.rtc.NotifyRoomEventReq
+	36, // 79: openim.rtc.RtcService.SignalMessageAssemble:output_type -> openim.rtc.SignalMessageAssembleResp
+	30, // 80: openim.rtc.RtcService.SignalGetRoomByGroupID:output_type -> openim.rtc.SignalGetRoomByGroupIDResp
+	34, // 81: openim.rtc.RtcService.SignalGetTokenByRoomID:output_type -> openim.rtc.SignalGetTokenByRoomIDResp
+	38, // 82: openim.rtc.RtcService.SignalGetRooms:output_type -> openim.rtc.SignalGetRoomsResp
+	40, // 83: openim.rtc.RtcService.GetSignalInvitationInfo:output_type -> openim.rtc.GetSignalInvitationInfoResp
+	44, // 84: openim.rtc.RtcService.GetSignalInvitationInfoStartApp:output_type -> openim.rtc.GetSignalInvitationInfoStartAppResp
+	42, // 85: openim.rtc.RtcService.IsCallEndedByRoomID:output_type -> openim.rtc.IsCallEndedByRoomIDResp
+	5,  // 86: openim.rtc.RtcService.SignalSendCustomSignal:output_type -> openim.rtc.SignalSendCustomSignalResp
+	7,  // 87: openim.rtc.RtcService.SignalNotifyGroupCallEnded:output_type -> openim.rtc.SignalNotifyGroupCallEndedResp
+	49, // 88: openim.rtc.RtcService.GetSignalInvitationRecords:output_type -> openim.rtc.GetSignalInvitationRecordsResp
+	51, // 89: openim.rtc.RtcService.DeleteSignalRecords:output_type -> openim.rtc.DeleteSignalRecordsResp
+	54, // 90: openim.rtc.RtcService.GetCallRecords:output_type -> openim.rtc.GetCallRecordsResp
+	56, // 91: openim.rtc.RtcService.NotifyRoomEvent:output_type -> openim.rtc.NotifyRoomEventResp
+	79, // [79:92] is the sub-list for method output_type
+	66, // [66:79] is the sub-list for method input_type
+	66, // [66:66] is the sub-list for extension type_name
+	66, // [66:66] is the sub-list for extension extendee
+	0,  // [0:66] is the sub-list for field type_name
 }
 
 func init() { file_rtc_rtc_proto_init() }
