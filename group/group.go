@@ -470,6 +470,10 @@ func (x *GetGroupBlockReq) Check() error {
 	return nil
 }
 
+func (x *GetBlockGroupReq) Check() error {
+	return nil
+}
+
 func (x *PinGroupReq) Check() error {
 	if x.GroupID == "" {
 		return errors.New("groupID is empty")

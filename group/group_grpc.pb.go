@@ -68,6 +68,7 @@ const (
 	Group_GetGroupMute_FullMethodName                      = "/openim.group.group/getGroupMute"
 	Group_SetGroupBlock_FullMethodName                     = "/openim.group.group/setGroupBlock"
 	Group_GetGroupBlock_FullMethodName                     = "/openim.group.group/getGroupBlock"
+	Group_GetBlockGroup_FullMethodName                     = "/openim.group.group/getBlockGroup"
 	Group_PinGroup_FullMethodName                          = "/openim.group.group/pinGroup"
 	Group_UnpinGroup_FullMethodName                        = "/openim.group.group/unpinGroup"
 	Group_CreateGroupInviteLink_FullMethodName             = "/openim.group.group/createGroupInviteLink"
@@ -159,10 +160,12 @@ type GroupClient interface {
 	SetGroupMute(ctx context.Context, in *SetGroupMuteReq, opts ...grpc.CallOption) (*SetGroupMuteResp, error)
 	// 查询当前用户对该群的静音状态
 	GetGroupMute(ctx context.Context, in *GetGroupMuteReq, opts ...grpc.CallOption) (*GetGroupMuteResp, error)
-	// 当前用户屏蔽该群聊天消息推送（写入 group_block；在线+离线都不推聊天消息）
+	// 当前用户屏蔽该群消息与通知推送（写入 group_block；在线+离线都不推）
 	SetGroupBlock(ctx context.Context, in *SetGroupBlockReq, opts ...grpc.CallOption) (*SetGroupBlockResp, error)
 	// 查询当前用户对该群的屏蔽状态
 	GetGroupBlock(ctx context.Context, in *GetGroupBlockReq, opts ...grpc.CallOption) (*GetGroupBlockResp, error)
+	// 获取当前用户已屏蔽的群 ID 列表
+	GetBlockGroup(ctx context.Context, in *GetBlockGroupReq, opts ...grpc.CallOption) (*GetBlockGroupResp, error)
 	// 当前用户置顶该群会话（同步写入 conversation.isPinned = true）
 	PinGroup(ctx context.Context, in *PinGroupReq, opts ...grpc.CallOption) (*PinGroupResp, error)
 	// 当前用户取消置顶该群会话（同步写入 conversation.isPinned = false）
@@ -673,6 +676,16 @@ func (c *groupClient) GetGroupBlock(ctx context.Context, in *GetGroupBlockReq, o
 	return out, nil
 }
 
+func (c *groupClient) GetBlockGroup(ctx context.Context, in *GetBlockGroupReq, opts ...grpc.CallOption) (*GetBlockGroupResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBlockGroupResp)
+	err := c.cc.Invoke(ctx, Group_GetBlockGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *groupClient) PinGroup(ctx context.Context, in *PinGroupReq, opts ...grpc.CallOption) (*PinGroupResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PinGroupResp)
@@ -825,10 +838,12 @@ type GroupServer interface {
 	SetGroupMute(context.Context, *SetGroupMuteReq) (*SetGroupMuteResp, error)
 	// 查询当前用户对该群的静音状态
 	GetGroupMute(context.Context, *GetGroupMuteReq) (*GetGroupMuteResp, error)
-	// 当前用户屏蔽该群聊天消息推送（写入 group_block；在线+离线都不推聊天消息）
+	// 当前用户屏蔽该群消息与通知推送（写入 group_block；在线+离线都不推）
 	SetGroupBlock(context.Context, *SetGroupBlockReq) (*SetGroupBlockResp, error)
 	// 查询当前用户对该群的屏蔽状态
 	GetGroupBlock(context.Context, *GetGroupBlockReq) (*GetGroupBlockResp, error)
+	// 获取当前用户已屏蔽的群 ID 列表
+	GetBlockGroup(context.Context, *GetBlockGroupReq) (*GetBlockGroupResp, error)
 	// 当前用户置顶该群会话（同步写入 conversation.isPinned = true）
 	PinGroup(context.Context, *PinGroupReq) (*PinGroupResp, error)
 	// 当前用户取消置顶该群会话（同步写入 conversation.isPinned = false）
@@ -995,6 +1010,9 @@ func (UnimplementedGroupServer) SetGroupBlock(context.Context, *SetGroupBlockReq
 }
 func (UnimplementedGroupServer) GetGroupBlock(context.Context, *GetGroupBlockReq) (*GetGroupBlockResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupBlock not implemented")
+}
+func (UnimplementedGroupServer) GetBlockGroup(context.Context, *GetBlockGroupReq) (*GetBlockGroupResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBlockGroup not implemented")
 }
 func (UnimplementedGroupServer) PinGroup(context.Context, *PinGroupReq) (*PinGroupResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method PinGroup not implemented")
@@ -1920,6 +1938,24 @@ func _Group_GetGroupBlock_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Group_GetBlockGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBlockGroupReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupServer).GetBlockGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Group_GetBlockGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupServer).GetBlockGroup(ctx, req.(*GetBlockGroupReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Group_PinGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PinGroupReq)
 	if err := dec(in); err != nil {
@@ -2248,6 +2284,10 @@ var Group_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getGroupBlock",
 			Handler:    _Group_GetGroupBlock_Handler,
+		},
+		{
+			MethodName: "getBlockGroup",
+			Handler:    _Group_GetBlockGroup_Handler,
 		},
 		{
 			MethodName: "pinGroup",
