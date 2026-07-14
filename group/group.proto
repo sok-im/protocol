@@ -499,6 +499,23 @@ message GetGroupMuteResp {
   int64 duration = 3;
 }
 
+// Per-user block of group chat message push (stored in MongoDB group_block).
+// block=true shields online+offline push for chat messages; group membership notifications still deliver.
+message SetGroupBlockReq {
+  string groupID = 1;
+  bool   block   = 2; // true = block, false = unblock
+}
+
+message SetGroupBlockResp {}
+
+message GetGroupBlockReq {
+  string groupID = 1;
+}
+
+message GetGroupBlockResp {
+  bool blocked = 1;
+}
+
 // 群会话置顶 / 取消置顶（针对当前用户在该群会话的 isPinned 标记）
 message PinGroupReq {
   string groupID = 1;
@@ -659,6 +676,11 @@ service group {
   rpc setGroupMute(SetGroupMuteReq) returns (SetGroupMuteResp);
   // 查询当前用户对该群的静音状态
   rpc getGroupMute(GetGroupMuteReq) returns (GetGroupMuteResp);
+
+  // 当前用户屏蔽该群聊天消息推送（写入 group_block；在线+离线都不推聊天消息）
+  rpc setGroupBlock(SetGroupBlockReq) returns (SetGroupBlockResp);
+  // 查询当前用户对该群的屏蔽状态
+  rpc getGroupBlock(GetGroupBlockReq) returns (GetGroupBlockResp);
 
   // 当前用户置顶该群会话（同步写入 conversation.isPinned = true）
   rpc pinGroup(PinGroupReq) returns (PinGroupResp);
