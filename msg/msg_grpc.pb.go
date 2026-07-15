@@ -57,6 +57,9 @@ const (
 	Msg_ReportSpam_FullMethodName                       = "/openim.msg.msg/ReportSpam"
 	Msg_GetSpamReports_FullMethodName                   = "/openim.msg.msg/GetSpamReports"
 	Msg_HandleSpamReport_FullMethodName                 = "/openim.msg.msg/HandleSpamReport"
+	Msg_SetMessageReaction_FullMethodName               = "/openim.msg.msg/SetMessageReaction"
+	Msg_GetMessageReactions_FullMethodName              = "/openim.msg.msg/GetMessageReactions"
+	Msg_BatchGetMessageReactions_FullMethodName         = "/openim.msg.msg/BatchGetMessageReactions"
 )
 
 // MsgClient is the client API for Msg service.
@@ -118,6 +121,12 @@ type MsgClient interface {
 	GetSpamReports(ctx context.Context, in *GetSpamReportsReq, opts ...grpc.CallOption) (*GetSpamReportsResp, error)
 	// HandleSpamReport: admin marks a spam report as handled or ignored
 	HandleSpamReport(ctx context.Context, in *HandleSpamReportReq, opts ...grpc.CallOption) (*HandleSpamReportResp, error)
+	// SetMessageReaction: add/switch/remove the caller's emoji reaction on a message
+	SetMessageReaction(ctx context.Context, in *SetMessageReactionReq, opts ...grpc.CallOption) (*SetMessageReactionResp, error)
+	// GetMessageReactions: query aggregated reactions for a single message
+	GetMessageReactions(ctx context.Context, in *GetMessageReactionsReq, opts ...grpc.CallOption) (*GetMessageReactionsResp, error)
+	// BatchGetMessageReactions: batch hydrate reactions for a list of messages in a conversation
+	BatchGetMessageReactions(ctx context.Context, in *BatchGetMessageReactionsReq, opts ...grpc.CallOption) (*BatchGetMessageReactionsResp, error)
 }
 
 type msgClient struct {
@@ -498,6 +507,36 @@ func (c *msgClient) HandleSpamReport(ctx context.Context, in *HandleSpamReportRe
 	return out, nil
 }
 
+func (c *msgClient) SetMessageReaction(ctx context.Context, in *SetMessageReactionReq, opts ...grpc.CallOption) (*SetMessageReactionResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetMessageReactionResp)
+	err := c.cc.Invoke(ctx, Msg_SetMessageReaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) GetMessageReactions(ctx context.Context, in *GetMessageReactionsReq, opts ...grpc.CallOption) (*GetMessageReactionsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMessageReactionsResp)
+	err := c.cc.Invoke(ctx, Msg_GetMessageReactions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) BatchGetMessageReactions(ctx context.Context, in *BatchGetMessageReactionsReq, opts ...grpc.CallOption) (*BatchGetMessageReactionsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BatchGetMessageReactionsResp)
+	err := c.cc.Invoke(ctx, Msg_BatchGetMessageReactions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility.
@@ -557,6 +596,12 @@ type MsgServer interface {
 	GetSpamReports(context.Context, *GetSpamReportsReq) (*GetSpamReportsResp, error)
 	// HandleSpamReport: admin marks a spam report as handled or ignored
 	HandleSpamReport(context.Context, *HandleSpamReportReq) (*HandleSpamReportResp, error)
+	// SetMessageReaction: add/switch/remove the caller's emoji reaction on a message
+	SetMessageReaction(context.Context, *SetMessageReactionReq) (*SetMessageReactionResp, error)
+	// GetMessageReactions: query aggregated reactions for a single message
+	GetMessageReactions(context.Context, *GetMessageReactionsReq) (*GetMessageReactionsResp, error)
+	// BatchGetMessageReactions: batch hydrate reactions for a list of messages in a conversation
+	BatchGetMessageReactions(context.Context, *BatchGetMessageReactionsReq) (*BatchGetMessageReactionsResp, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -677,6 +722,15 @@ func (UnimplementedMsgServer) GetSpamReports(context.Context, *GetSpamReportsReq
 }
 func (UnimplementedMsgServer) HandleSpamReport(context.Context, *HandleSpamReportReq) (*HandleSpamReportResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method HandleSpamReport not implemented")
+}
+func (UnimplementedMsgServer) SetMessageReaction(context.Context, *SetMessageReactionReq) (*SetMessageReactionResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetMessageReaction not implemented")
+}
+func (UnimplementedMsgServer) GetMessageReactions(context.Context, *GetMessageReactionsReq) (*GetMessageReactionsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMessageReactions not implemented")
+}
+func (UnimplementedMsgServer) BatchGetMessageReactions(context.Context, *BatchGetMessageReactionsReq) (*BatchGetMessageReactionsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method BatchGetMessageReactions not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -1365,6 +1419,60 @@ func _Msg_HandleSpamReport_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SetMessageReaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetMessageReactionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SetMessageReaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_SetMessageReaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SetMessageReaction(ctx, req.(*SetMessageReactionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_GetMessageReactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMessageReactionsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).GetMessageReactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_GetMessageReactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).GetMessageReactions(ctx, req.(*GetMessageReactionsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_BatchGetMessageReactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BatchGetMessageReactionsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).BatchGetMessageReactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_BatchGetMessageReactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).BatchGetMessageReactions(ctx, req.(*BatchGetMessageReactionsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1519,6 +1627,18 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "HandleSpamReport",
 			Handler:    _Msg_HandleSpamReport_Handler,
+		},
+		{
+			MethodName: "SetMessageReaction",
+			Handler:    _Msg_SetMessageReaction_Handler,
+		},
+		{
+			MethodName: "GetMessageReactions",
+			Handler:    _Msg_GetMessageReactions_Handler,
+		},
+		{
+			MethodName: "BatchGetMessageReactions",
+			Handler:    _Msg_BatchGetMessageReactions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

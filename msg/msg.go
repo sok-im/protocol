@@ -93,6 +93,45 @@ func (x *DelMsgsReq) Check() error {
 	return nil
 }
 
+func (x *SetMessageReactionReq) Check() error {
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if x.ClientMsgID == "" {
+		return errors.New("clientMsgID is empty")
+	}
+	if x.Emoji == "" {
+		return errors.New("emoji is empty")
+	}
+	if x.Action != "add" && x.Action != "remove" {
+		return errors.New("action must be add or remove")
+	}
+	return nil
+}
+
+func (x *GetMessageReactionsReq) Check() error {
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if x.ClientMsgID == "" {
+		return errors.New("clientMsgID is empty")
+	}
+	return nil
+}
+
+func (x *BatchGetMessageReactionsReq) Check() error {
+	if x.ConversationID == "" {
+		return errors.New("conversationID is empty")
+	}
+	if len(x.ClientMsgIDs) == 0 {
+		return errors.New("clientMsgIDs is empty")
+	}
+	if len(x.ClientMsgIDs) > 200 {
+		return errors.New("clientMsgIDs too many, max 200")
+	}
+	return nil
+}
+
 func (x *RevokeMsgReq) Check() error {
 	if x.ConversationID == "" {
 		return errors.New("conversationID is empty")

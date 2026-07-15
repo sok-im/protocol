@@ -119,6 +119,8 @@ const (
 
 	MsgRevokeNotification  = 2101
 	DeleteMsgsNotification = 2102
+	// MsgReactionUpdatedNotification 消息表情反应聚合快照更新通知（不计未读、不改会话摘要）
+	MsgReactionUpdatedNotification = 2103
 
 	HasReadReceipt = 2200
 

@@ -446,6 +446,69 @@ message HandleSpamReportReq {
 
 message HandleSpamReportResp {}
 
+// ReactionInfo 单个 emoji 的聚合结果
+message ReactionInfo {
+  string          emoji      = 1;
+  uint32          count      = 2;
+  repeated string userIDs    = 3; // detail=false 时可能为空
+  bool            includesMe = 4;
+}
+
+// MessageReactions 一条消息的反应聚合快照
+message MessageReactions {
+  repeated ReactionInfo reactions = 1;
+  int64                 version   = 2;
+}
+
+// SetMessageReactionReq 设置/切换/取消调用者对某条消息的反应
+message SetMessageReactionReq {
+  string conversationID = 1;
+  string clientMsgID    = 2;
+  string emoji          = 3;
+  string action         = 4; // add | remove
+}
+
+message SetMessageReactionResp {
+  string                clientMsgID = 1;
+  repeated ReactionInfo reactions   = 2;
+  int64                 version     = 3;
+}
+
+// GetMessageReactionsReq 查询单条消息聚合
+message GetMessageReactionsReq {
+  string conversationID = 1;
+  string clientMsgID    = 2;
+  bool   detail         = 3; // true 返回完整 userIDs
+}
+
+message GetMessageReactionsResp {
+  string                clientMsgID = 1;
+  repeated ReactionInfo reactions   = 2;
+  int64                 version     = 3;
+}
+
+// BatchGetMessageReactionsReq 进入会话时批量拉取
+message BatchGetMessageReactionsReq {
+  string          conversationID = 1;
+  repeated string clientMsgIDs   = 2;
+  bool            detail         = 3;
+}
+
+message BatchGetMessageReactionsResp {
+  map<string, MessageReactions> reactions = 1; // clientMsgID -> 聚合
+}
+
+// MessageReactionUpdatedTips message.reaction.updated 通知负载
+message MessageReactionUpdatedTips {
+  string                conversationID = 1;
+  string                clientMsgID    = 2;
+  repeated ReactionInfo reactions      = 3;
+  int64                 version        = 4;
+  string                actorUserID    = 5;
+  string                emoji          = 6;
+  string                action         = 7;
+}
+
 service msg {
   // Get min and max seq (including the user and specified groups)
   rpc GetMaxSeq(sdkws.GetMaxSeqReq) returns (sdkws.GetMaxSeqResp);
@@ -510,4 +573,11 @@ service msg {
   rpc GetSpamReports(GetSpamReportsReq) returns (GetSpamReportsResp);
   // HandleSpamReport: admin marks a spam report as handled or ignored
   rpc HandleSpamReport(HandleSpamReportReq) returns (HandleSpamReportResp);
+
+  // SetMessageReaction: add/switch/remove the caller's emoji reaction on a message
+  rpc SetMessageReaction(SetMessageReactionReq) returns (SetMessageReactionResp);
+  // GetMessageReactions: query aggregated reactions for a single message
+  rpc GetMessageReactions(GetMessageReactionsReq) returns (GetMessageReactionsResp);
+  // BatchGetMessageReactions: batch hydrate reactions for a list of messages in a conversation
+  rpc BatchGetMessageReactions(BatchGetMessageReactionsReq) returns (BatchGetMessageReactionsResp);
 }

@@ -35,7 +35,6 @@ const (
 	Conversation_GetConversationsByConversationID_FullMethodName        = "/openim.conversation.conversation/GetConversationsByConversationID"
 	Conversation_GetConversationOfflinePushUserIDs_FullMethodName       = "/openim.conversation.conversation/GetConversationOfflinePushUserIDs"
 	Conversation_GetConversationNotReceiveMessageUserIDs_FullMethodName = "/openim.conversation.conversation/GetConversationNotReceiveMessageUserIDs"
-	Conversation_GetConversationShieldUserIDs_FullMethodName            = "/openim.conversation.conversation/GetConversationShieldUserIDs"
 	Conversation_UpdateConversation_FullMethodName                      = "/openim.conversation.conversation/UpdateConversation"
 	Conversation_GetFullOwnerConversationIDs_FullMethodName             = "/openim.conversation.conversation/GetFullOwnerConversationIDs"
 	Conversation_GetIncrementalConversation_FullMethodName              = "/openim.conversation.conversation/GetIncrementalConversation"
@@ -72,7 +71,6 @@ type ConversationClient interface {
 	GetConversationsByConversationID(ctx context.Context, in *GetConversationsByConversationIDReq, opts ...grpc.CallOption) (*GetConversationsByConversationIDResp, error)
 	GetConversationOfflinePushUserIDs(ctx context.Context, in *GetConversationOfflinePushUserIDsReq, opts ...grpc.CallOption) (*GetConversationOfflinePushUserIDsResp, error)
 	GetConversationNotReceiveMessageUserIDs(ctx context.Context, in *GetConversationNotReceiveMessageUserIDsReq, opts ...grpc.CallOption) (*GetConversationNotReceiveMessageUserIDsResp, error)
-	GetConversationShieldUserIDs(ctx context.Context, in *GetConversationShieldUserIDsReq, opts ...grpc.CallOption) (*GetConversationShieldUserIDsResp, error)
 	UpdateConversation(ctx context.Context, in *UpdateConversationReq, opts ...grpc.CallOption) (*UpdateConversationResp, error)
 	GetFullOwnerConversationIDs(ctx context.Context, in *GetFullOwnerConversationIDsReq, opts ...grpc.CallOption) (*GetFullOwnerConversationIDsResp, error)
 	GetIncrementalConversation(ctx context.Context, in *GetIncrementalConversationReq, opts ...grpc.CallOption) (*GetIncrementalConversationResp, error)
@@ -260,16 +258,6 @@ func (c *conversationClient) GetConversationNotReceiveMessageUserIDs(ctx context
 	return out, nil
 }
 
-func (c *conversationClient) GetConversationShieldUserIDs(ctx context.Context, in *GetConversationShieldUserIDsReq, opts ...grpc.CallOption) (*GetConversationShieldUserIDsResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetConversationShieldUserIDsResp)
-	err := c.cc.Invoke(ctx, Conversation_GetConversationShieldUserIDs_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *conversationClient) UpdateConversation(ctx context.Context, in *UpdateConversationReq, opts ...grpc.CallOption) (*UpdateConversationResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateConversationResp)
@@ -430,7 +418,6 @@ type ConversationServer interface {
 	GetConversationsByConversationID(context.Context, *GetConversationsByConversationIDReq) (*GetConversationsByConversationIDResp, error)
 	GetConversationOfflinePushUserIDs(context.Context, *GetConversationOfflinePushUserIDsReq) (*GetConversationOfflinePushUserIDsResp, error)
 	GetConversationNotReceiveMessageUserIDs(context.Context, *GetConversationNotReceiveMessageUserIDsReq) (*GetConversationNotReceiveMessageUserIDsResp, error)
-	GetConversationShieldUserIDs(context.Context, *GetConversationShieldUserIDsReq) (*GetConversationShieldUserIDsResp, error)
 	UpdateConversation(context.Context, *UpdateConversationReq) (*UpdateConversationResp, error)
 	GetFullOwnerConversationIDs(context.Context, *GetFullOwnerConversationIDsReq) (*GetFullOwnerConversationIDsResp, error)
 	GetIncrementalConversation(context.Context, *GetIncrementalConversationReq) (*GetIncrementalConversationResp, error)
@@ -505,9 +492,6 @@ func (UnimplementedConversationServer) GetConversationOfflinePushUserIDs(context
 }
 func (UnimplementedConversationServer) GetConversationNotReceiveMessageUserIDs(context.Context, *GetConversationNotReceiveMessageUserIDsReq) (*GetConversationNotReceiveMessageUserIDsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetConversationNotReceiveMessageUserIDs not implemented")
-}
-func (UnimplementedConversationServer) GetConversationShieldUserIDs(context.Context, *GetConversationShieldUserIDsReq) (*GetConversationShieldUserIDsResp, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetConversationShieldUserIDs not implemented")
 }
 func (UnimplementedConversationServer) UpdateConversation(context.Context, *UpdateConversationReq) (*UpdateConversationResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateConversation not implemented")
@@ -860,24 +844,6 @@ func _Conversation_GetConversationNotReceiveMessageUserIDs_Handler(srv interface
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Conversation_GetConversationShieldUserIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConversationShieldUserIDsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConversationServer).GetConversationShieldUserIDs(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Conversation_GetConversationShieldUserIDs_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConversationServer).GetConversationShieldUserIDs(ctx, req.(*GetConversationShieldUserIDsReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Conversation_UpdateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateConversationReq)
 	if err := dec(in); err != nil {
@@ -1200,10 +1166,6 @@ var Conversation_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetConversationNotReceiveMessageUserIDs",
 			Handler:    _Conversation_GetConversationNotReceiveMessageUserIDs_Handler,
-		},
-		{
-			MethodName: "GetConversationShieldUserIDs",
-			Handler:    _Conversation_GetConversationShieldUserIDs_Handler,
 		},
 		{
 			MethodName: "UpdateConversation",
