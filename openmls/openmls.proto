@@ -79,12 +79,26 @@ message SubmitCommitReq {
   uint64 fromEpoch = 4;
   string commitMessage = 5;
   repeated WelcomeMessage welcomeMessages = 6;
+  // commitHash 用于去重/校验（doc §6.1，SHA256 base64url）
+  string commitHash = 7;
+  // idempotencyKey 幂等键（UUID）：命中历史记录时返回 duplicate=true，不重复推进 epoch
+  string idempotencyKey = 8;
 }
 
 message SubmitCommitResp {
   uint64 newEpoch = 1;
   int64 sequenceNumber = 2;
   int32 broadcastCount = 3;
+  // accepted 为 true 表示 Commit 被接受（或幂等命中）；false 表示 epoch 冲突（见 expectedFromEpoch）
+  bool accepted = 4;
+  // duplicate 为 true 表示命中 idempotencyKey 历史记录，未重复推进 epoch（doc §6.2）
+  bool duplicate = 5;
+  // acceptedEpoch 接受后的 epoch（= fromEpoch + 1）；幂等命中时为原始接受 epoch
+  uint64 acceptedEpoch = 6;
+  // commitID 本次（或幂等命中的）Commit ID
+  string commitID = 7;
+  // expectedFromEpoch 仅在 epoch 冲突（accepted=false）时返回，告知客户端应追赶到的 epoch（doc §6.3）
+  uint64 expectedFromEpoch = 8;
 }
 
 message GetCommitsReq {

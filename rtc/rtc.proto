@@ -20,6 +20,18 @@ message GetJoinTokenResp{
   string liveURL = 2;
 }
 
+// E2EECapability declares the client's end-to-end-encryption capabilities.
+// It is carried alongside invite/accept/join/token requests so the server can
+// gate token issuance for E2EE-required rooms (see doc §2.2, §4.1).
+// The server only compares these against its allow-list; it never derives keys.
+message E2EECapability {
+  repeated string schemes = 1;
+  bool frameCryptor = 2;
+  int32 maxKeyRingSize = 3;
+  string platform = 4;
+  string clientVersion = 5;
+}
+
 
 message SignalReq {
   oneof payload {
@@ -98,6 +110,8 @@ message InvitationInfo  {
   string callerRingtoneURL = 12;
   // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
   repeated string notAllowUserIDList = 13;
+  // conversationID 规范化会话 ID（单聊 si_...，群聊 groupID）；服务端负责回传（doc §3.2）
+  string conversationID = 14;
 }
 
 message SignalInviteReq {
@@ -105,6 +119,7 @@ message SignalInviteReq {
   sdkws.OfflinePushInfo offlinePushInfo  = 2;
   ParticipantMetaData participant = 3;
   string userID = 4;
+  E2EECapability e2eeCapability = 5;
 }
 
 message SignalInviteResp {
@@ -118,6 +133,8 @@ message SignalInviteResp {
   repeated string notAllowUserIDList = 6;
   // callerRingtoneURL 主叫方设置的来电铃声 URL
   string callerRingtoneURL = 7;
+  // conversationID 规范化会话 ID（doc §3.1，必须显式回传）
+  string conversationID = 8;
 }
 
 message SignalInviteInGroupReq {
@@ -125,6 +142,7 @@ message SignalInviteInGroupReq {
   sdkws.OfflinePushInfo offlinePushInfo  = 2;
   ParticipantMetaData participant = 3;
   string userID = 4;
+  E2EECapability e2eeCapability = 5;
 }
 
 message SignalInviteInGroupResp {
@@ -136,6 +154,8 @@ message SignalInviteInGroupResp {
   string calleeRingtoneURL = 5;
   // notAllowUserIDList 因通话接听设置不允许被邀请的用户 ID 列表
   repeated string notAllowUserIDList = 6;
+  // conversationID 规范化会话 ID（群聊为 groupID，doc §3.2）
+  string conversationID = 7;
 }
 
 message SignalCancelReq {
@@ -155,12 +175,17 @@ message SignalAcceptReq {
   ParticipantMetaData participant = 3;
   int32 opUserPlatformID = 4;
   string userID = 5;
+  E2EECapability e2eeCapability = 6;
 }
 
 message SignalAcceptResp {
   string token = 1;
   string roomID = 2;
   string liveURL = 3;
+  // conversationID 规范化会话 ID（doc §3.3，接听响应必须回传）
+  string conversationID = 4;
+  // e2ee 原样回传的 E2EE 描述符 JSON（来自邀请时保存的 customData，doc §3.3）
+  string e2ee = 5;
 }
 
 message SignalHungUpReq {
@@ -204,6 +229,7 @@ message SignalJoinReq {
   ParticipantMetaData participant = 2;
   int32 opUserPlatformID = 3;
   string userID = 4;
+  E2EECapability e2eeCapability = 5;
 }
 
 message SignalJoinResp {
@@ -214,6 +240,10 @@ message SignalJoinResp {
   repeated ParticipantMetaData participant = 4;
   // inCall 为 true 表示房间内至少有一名用户正在通话（含本次 join 的用户）。
   bool inCall = 5;
+  // conversationID 规范化会话 ID（群聊为 groupID，doc §3.2）
+  string conversationID = 6;
+  // e2ee 原样回传的 E2EE 描述符 JSON（来自邀请时保存的 customData）
+  string e2ee = 7;
 }
 
 // SignalHeartbeatReq is sent periodically by a client during an active call so
@@ -239,6 +269,10 @@ message SignalGetRoomByGroupIDResp {
   string roomID = 3;
   // inCall 为 true 表示房间内至少有一名用户已接通（LiveKit 侧有 participant）。
   bool inCall = 4;
+  // conversationID 规范化会话 ID（群聊为 groupID，doc §3.2）
+  string conversationID = 5;
+  // e2ee 原样回传的 E2EE 描述符 JSON（来自邀请时保存的 customData）
+  string e2ee = 6;
 }
 
 message SignalOnRoomParticipantConnectedReq {
@@ -257,11 +291,16 @@ message SignalGetTokenByRoomIDReq {
   string roomID = 1;
   ParticipantMetaData participant = 2;
   string userID = 3;
+  E2EECapability e2eeCapability = 4;
 }
 
 message SignalGetTokenByRoomIDResp {
   string token = 1;
   string liveURL = 2;
+  // conversationID 规范化会话 ID（doc §3.1）
+  string conversationID = 3;
+  // e2ee 原样回传的 E2EE 描述符 JSON
+  string e2ee = 4;
 }
 
 message SignalMessageAssembleReq {
@@ -307,6 +346,8 @@ message GetSignalInvitationInfoStartAppReq {
 message GetSignalInvitationInfoStartAppResp {
   InvitationInfo invitation = 1;
   sdkws.OfflinePushInfo offlinePushInfo = 2;
+  // conversationID 规范化会话 ID（应用启动恢复，doc §3.1）
+  string conversationID = 3;
 }
 
 message SignalUser {
@@ -416,6 +457,13 @@ message NotifyRoomEventReq {
 message NotifyRoomEventResp {
 }
 
+message SignalRemoveParticipantsReq {
+  string groupID = 1;
+  repeated string userIDs = 2;
+}
+
+message SignalRemoveParticipantsResp {}
+
 service RtcService {
   rpc SignalMessageAssemble(SignalMessageAssembleReq) returns(SignalMessageAssembleResp);
   rpc SignalGetRoomByGroupID(SignalGetRoomByGroupIDReq) returns(SignalGetRoomByGroupIDResp);
@@ -430,6 +478,8 @@ service RtcService {
   rpc SignalSendCustomSignal(SignalSendCustomSignalReq) returns(SignalSendCustomSignalResp);
   // group call ended notification (1523)
   rpc SignalNotifyGroupCallEnded(SignalNotifyGroupCallEndedReq) returns(SignalNotifyGroupCallEndedResp);
+  // remove participants from an ongoing group call (LiveKit room)
+  rpc SignalRemoveParticipants(SignalRemoveParticipantsReq) returns(SignalRemoveParticipantsResp);
 
   // rtc cms
   rpc GetSignalInvitationRecords(GetSignalInvitationRecordsReq) returns(GetSignalInvitationRecordsResp);

@@ -28,6 +28,7 @@ const (
 	RtcService_IsCallEndedByRoomID_FullMethodName             = "/openim.rtc.RtcService/IsCallEndedByRoomID"
 	RtcService_SignalSendCustomSignal_FullMethodName          = "/openim.rtc.RtcService/SignalSendCustomSignal"
 	RtcService_SignalNotifyGroupCallEnded_FullMethodName      = "/openim.rtc.RtcService/SignalNotifyGroupCallEnded"
+	RtcService_SignalRemoveParticipants_FullMethodName        = "/openim.rtc.RtcService/SignalRemoveParticipants"
 	RtcService_GetSignalInvitationRecords_FullMethodName      = "/openim.rtc.RtcService/GetSignalInvitationRecords"
 	RtcService_DeleteSignalRecords_FullMethodName             = "/openim.rtc.RtcService/DeleteSignalRecords"
 	RtcService_GetCallRecords_FullMethodName                  = "/openim.rtc.RtcService/GetCallRecords"
@@ -49,6 +50,8 @@ type RtcServiceClient interface {
 	SignalSendCustomSignal(ctx context.Context, in *SignalSendCustomSignalReq, opts ...grpc.CallOption) (*SignalSendCustomSignalResp, error)
 	// group call ended notification (1523)
 	SignalNotifyGroupCallEnded(ctx context.Context, in *SignalNotifyGroupCallEndedReq, opts ...grpc.CallOption) (*SignalNotifyGroupCallEndedResp, error)
+	// remove participants from an ongoing group call (LiveKit room)
+	SignalRemoveParticipants(ctx context.Context, in *SignalRemoveParticipantsReq, opts ...grpc.CallOption) (*SignalRemoveParticipantsResp, error)
 	// rtc cms
 	GetSignalInvitationRecords(ctx context.Context, in *GetSignalInvitationRecordsReq, opts ...grpc.CallOption) (*GetSignalInvitationRecordsResp, error)
 	DeleteSignalRecords(ctx context.Context, in *DeleteSignalRecordsReq, opts ...grpc.CallOption) (*DeleteSignalRecordsResp, error)
@@ -157,6 +160,16 @@ func (c *rtcServiceClient) SignalNotifyGroupCallEnded(ctx context.Context, in *S
 	return out, nil
 }
 
+func (c *rtcServiceClient) SignalRemoveParticipants(ctx context.Context, in *SignalRemoveParticipantsReq, opts ...grpc.CallOption) (*SignalRemoveParticipantsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SignalRemoveParticipantsResp)
+	err := c.cc.Invoke(ctx, RtcService_SignalRemoveParticipants_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *rtcServiceClient) GetSignalInvitationRecords(ctx context.Context, in *GetSignalInvitationRecordsReq, opts ...grpc.CallOption) (*GetSignalInvitationRecordsResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSignalInvitationRecordsResp)
@@ -212,6 +225,8 @@ type RtcServiceServer interface {
 	SignalSendCustomSignal(context.Context, *SignalSendCustomSignalReq) (*SignalSendCustomSignalResp, error)
 	// group call ended notification (1523)
 	SignalNotifyGroupCallEnded(context.Context, *SignalNotifyGroupCallEndedReq) (*SignalNotifyGroupCallEndedResp, error)
+	// remove participants from an ongoing group call (LiveKit room)
+	SignalRemoveParticipants(context.Context, *SignalRemoveParticipantsReq) (*SignalRemoveParticipantsResp, error)
 	// rtc cms
 	GetSignalInvitationRecords(context.Context, *GetSignalInvitationRecordsReq) (*GetSignalInvitationRecordsResp, error)
 	DeleteSignalRecords(context.Context, *DeleteSignalRecordsReq) (*DeleteSignalRecordsResp, error)
@@ -256,6 +271,9 @@ func (UnimplementedRtcServiceServer) SignalSendCustomSignal(context.Context, *Si
 }
 func (UnimplementedRtcServiceServer) SignalNotifyGroupCallEnded(context.Context, *SignalNotifyGroupCallEndedReq) (*SignalNotifyGroupCallEndedResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method SignalNotifyGroupCallEnded not implemented")
+}
+func (UnimplementedRtcServiceServer) SignalRemoveParticipants(context.Context, *SignalRemoveParticipantsReq) (*SignalRemoveParticipantsResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method SignalRemoveParticipants not implemented")
 }
 func (UnimplementedRtcServiceServer) GetSignalInvitationRecords(context.Context, *GetSignalInvitationRecordsReq) (*GetSignalInvitationRecordsResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSignalInvitationRecords not implemented")
@@ -452,6 +470,24 @@ func _RtcService_SignalNotifyGroupCallEnded_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RtcService_SignalRemoveParticipants_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignalRemoveParticipantsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RtcServiceServer).SignalRemoveParticipants(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RtcService_SignalRemoveParticipants_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RtcServiceServer).SignalRemoveParticipants(ctx, req.(*SignalRemoveParticipantsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RtcService_GetSignalInvitationRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSignalInvitationRecordsReq)
 	if err := dec(in); err != nil {
@@ -566,6 +602,10 @@ var RtcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignalNotifyGroupCallEnded",
 			Handler:    _RtcService_SignalNotifyGroupCallEnded_Handler,
+		},
+		{
+			MethodName: "SignalRemoveParticipants",
+			Handler:    _RtcService_SignalRemoveParticipants_Handler,
 		},
 		{
 			MethodName: "GetSignalInvitationRecords",

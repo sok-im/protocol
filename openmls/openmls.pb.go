@@ -689,8 +689,12 @@ type SubmitCommitReq struct {
 	FromEpoch       uint64                 `protobuf:"varint,4,opt,name=fromEpoch,proto3" json:"fromEpoch"`
 	CommitMessage   string                 `protobuf:"bytes,5,opt,name=commitMessage,proto3" json:"commitMessage"`
 	WelcomeMessages []*WelcomeMessage      `protobuf:"bytes,6,rep,name=welcomeMessages,proto3" json:"welcomeMessages"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// commitHash 用于去重/校验（doc §6.1，SHA256 base64url）
+	CommitHash string `protobuf:"bytes,7,opt,name=commitHash,proto3" json:"commitHash"`
+	// idempotencyKey 幂等键（UUID）：命中历史记录时返回 duplicate=true，不重复推进 epoch
+	IdempotencyKey string `protobuf:"bytes,8,opt,name=idempotencyKey,proto3" json:"idempotencyKey"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *SubmitCommitReq) Reset() {
@@ -765,13 +769,37 @@ func (x *SubmitCommitReq) GetWelcomeMessages() []*WelcomeMessage {
 	return nil
 }
 
+func (x *SubmitCommitReq) GetCommitHash() string {
+	if x != nil {
+		return x.CommitHash
+	}
+	return ""
+}
+
+func (x *SubmitCommitReq) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
 type SubmitCommitResp struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	NewEpoch       uint64                 `protobuf:"varint,1,opt,name=newEpoch,proto3" json:"newEpoch"`
 	SequenceNumber int64                  `protobuf:"varint,2,opt,name=sequenceNumber,proto3" json:"sequenceNumber"`
 	BroadcastCount int32                  `protobuf:"varint,3,opt,name=broadcastCount,proto3" json:"broadcastCount"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// accepted 为 true 表示 Commit 被接受（或幂等命中）；false 表示 epoch 冲突（见 expectedFromEpoch）
+	Accepted bool `protobuf:"varint,4,opt,name=accepted,proto3" json:"accepted"`
+	// duplicate 为 true 表示命中 idempotencyKey 历史记录，未重复推进 epoch（doc §6.2）
+	Duplicate bool `protobuf:"varint,5,opt,name=duplicate,proto3" json:"duplicate"`
+	// acceptedEpoch 接受后的 epoch（= fromEpoch + 1）；幂等命中时为原始接受 epoch
+	AcceptedEpoch uint64 `protobuf:"varint,6,opt,name=acceptedEpoch,proto3" json:"acceptedEpoch"`
+	// commitID 本次（或幂等命中的）Commit ID
+	CommitID string `protobuf:"bytes,7,opt,name=commitID,proto3" json:"commitID"`
+	// expectedFromEpoch 仅在 epoch 冲突（accepted=false）时返回，告知客户端应追赶到的 epoch（doc §6.3）
+	ExpectedFromEpoch uint64 `protobuf:"varint,8,opt,name=expectedFromEpoch,proto3" json:"expectedFromEpoch"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SubmitCommitResp) Reset() {
@@ -821,6 +849,41 @@ func (x *SubmitCommitResp) GetSequenceNumber() int64 {
 func (x *SubmitCommitResp) GetBroadcastCount() int32 {
 	if x != nil {
 		return x.BroadcastCount
+	}
+	return 0
+}
+
+func (x *SubmitCommitResp) GetAccepted() bool {
+	if x != nil {
+		return x.Accepted
+	}
+	return false
+}
+
+func (x *SubmitCommitResp) GetDuplicate() bool {
+	if x != nil {
+		return x.Duplicate
+	}
+	return false
+}
+
+func (x *SubmitCommitResp) GetAcceptedEpoch() uint64 {
+	if x != nil {
+		return x.AcceptedEpoch
+	}
+	return 0
+}
+
+func (x *SubmitCommitResp) GetCommitID() string {
+	if x != nil {
+		return x.CommitID
+	}
+	return ""
+}
+
+func (x *SubmitCommitResp) GetExpectedFromEpoch() uint64 {
+	if x != nil {
+		return x.ExpectedFromEpoch
 	}
 	return 0
 }
@@ -2037,18 +2100,27 @@ const file_openmls_openmls_proto_rawDesc = "" +
 	"\x0eWelcomeMessage\x12(\n" +
 	"\x0frecipientUserID\x18\x01 \x01(\tR\x0frecipientUserID\x12,\n" +
 	"\x11recipientDeviceID\x18\x02 \x01(\tR\x11recipientDeviceID\x12&\n" +
-	"\x0ewelcomeMessage\x18\x03 \x01(\tR\x0ewelcomeMessage\"\x85\x02\n" +
+	"\x0ewelcomeMessage\x18\x03 \x01(\tR\x0ewelcomeMessage\"\xcd\x02\n" +
 	"\x0fSubmitCommitReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\"\n" +
 	"\fsenderUserID\x18\x02 \x01(\tR\fsenderUserID\x12&\n" +
 	"\x0esenderDeviceID\x18\x03 \x01(\tR\x0esenderDeviceID\x12\x1c\n" +
 	"\tfromEpoch\x18\x04 \x01(\x04R\tfromEpoch\x12$\n" +
 	"\rcommitMessage\x18\x05 \x01(\tR\rcommitMessage\x12H\n" +
-	"\x0fwelcomeMessages\x18\x06 \x03(\v2\x1e.openim.openmls.WelcomeMessageR\x0fwelcomeMessages\"~\n" +
+	"\x0fwelcomeMessages\x18\x06 \x03(\v2\x1e.openim.openmls.WelcomeMessageR\x0fwelcomeMessages\x12\x1e\n" +
+	"\n" +
+	"commitHash\x18\a \x01(\tR\n" +
+	"commitHash\x12&\n" +
+	"\x0eidempotencyKey\x18\b \x01(\tR\x0eidempotencyKey\"\xa8\x02\n" +
 	"\x10SubmitCommitResp\x12\x1a\n" +
 	"\bnewEpoch\x18\x01 \x01(\x04R\bnewEpoch\x12&\n" +
 	"\x0esequenceNumber\x18\x02 \x01(\x03R\x0esequenceNumber\x12&\n" +
-	"\x0ebroadcastCount\x18\x03 \x01(\x05R\x0ebroadcastCount\"_\n" +
+	"\x0ebroadcastCount\x18\x03 \x01(\x05R\x0ebroadcastCount\x12\x1a\n" +
+	"\baccepted\x18\x04 \x01(\bR\baccepted\x12\x1c\n" +
+	"\tduplicate\x18\x05 \x01(\bR\tduplicate\x12$\n" +
+	"\racceptedEpoch\x18\x06 \x01(\x04R\racceptedEpoch\x12\x1a\n" +
+	"\bcommitID\x18\a \x01(\tR\bcommitID\x12,\n" +
+	"\x11expectedFromEpoch\x18\b \x01(\x04R\x11expectedFromEpoch\"_\n" +
 	"\rGetCommitsReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x1e\n" +
 	"\n" +
