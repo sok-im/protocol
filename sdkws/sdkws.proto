@@ -372,6 +372,17 @@ message GroupNeedVerificationSetTips {
   string defaultTips = 4;
 }
 
+// OnGroupPermissionChanged()
+// changedFields API names: allowSendMsg / allowAddMember / allowPinMsg / allowMemberBurn
+message GroupPermissionChangedTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  repeated string changedFields = 3;
+  int64 operationTime = 4;
+  uint64 groupMemberVersion = 5;
+  string groupMemberVersionID = 6;
+}
+
 // OnGroupFaceURLSet()
 message GroupFaceURLSetTips {
   GroupMemberFullInfo opUser = 1; //who do this
