@@ -1708,8 +1708,7 @@ func (x *GetWalletBindingResp) GetChainKey() string {
 type RequestRefundReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
-	ChainType     string                 `protobuf:"bytes,2,opt,name=chainType,proto3" json:"chainType"`
-	ChainKey      string                 `protobuf:"bytes,3,opt,name=chainKey,proto3" json:"chainKey"`
+	ChainKey      string                 `protobuf:"bytes,2,opt,name=chainKey,proto3" json:"chainKey"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1747,13 +1746,6 @@ func (*RequestRefundReq) Descriptor() ([]byte, []int) {
 func (x *RequestRefundReq) GetPacketID() string {
 	if x != nil {
 		return x.PacketID
-	}
-	return ""
-}
-
-func (x *RequestRefundReq) GetChainType() string {
-	if x != nil {
-		return x.ChainType
 	}
 	return ""
 }
@@ -1820,8 +1812,7 @@ func (x *RequestRefundResp) GetStatus() string {
 type GetRefundReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
-	ChainType     string                 `protobuf:"bytes,2,opt,name=chainType,proto3" json:"chainType"`
-	ChainKey      string                 `protobuf:"bytes,3,opt,name=chainKey,proto3" json:"chainKey"`
+	ChainKey      string                 `protobuf:"bytes,2,opt,name=chainKey,proto3" json:"chainKey"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1859,13 +1850,6 @@ func (*GetRefundReq) Descriptor() ([]byte, []int) {
 func (x *GetRefundReq) GetPacketID() string {
 	if x != nil {
 		return x.PacketID
-	}
-	return ""
-}
-
-func (x *GetRefundReq) GetChainType() string {
-	if x != nil {
-		return x.ChainType
 	}
 	return ""
 }
@@ -1961,6 +1945,122 @@ func (x *GetRefundResp) GetChainKey() string {
 	return ""
 }
 
+// RefundCallback is submitted by the creator's client after it broadcasts the
+// on-chain refund transaction itself (self-service refund). The backend parses
+// the PacketRefunded event from the supplied txHash, records the refund and
+// marks the packet REFUNDED. This is the refund counterpart of ClaimResult.
+type RefundCallbackReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PacketID      string                 `protobuf:"bytes,1,opt,name=packetID,proto3" json:"packetID"`
+	TxHash        string                 `protobuf:"bytes,2,opt,name=txHash,proto3" json:"txHash"`
+	ChainKey      string                 `protobuf:"bytes,3,opt,name=chainKey,proto3" json:"chainKey"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefundCallbackReq) Reset() {
+	*x = RefundCallbackReq{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefundCallbackReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefundCallbackReq) ProtoMessage() {}
+
+func (x *RefundCallbackReq) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefundCallbackReq.ProtoReflect.Descriptor instead.
+func (*RefundCallbackReq) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *RefundCallbackReq) GetPacketID() string {
+	if x != nil {
+		return x.PacketID
+	}
+	return ""
+}
+
+func (x *RefundCallbackReq) GetTxHash() string {
+	if x != nil {
+		return x.TxHash
+	}
+	return ""
+}
+
+func (x *RefundCallbackReq) GetChainKey() string {
+	if x != nil {
+		return x.ChainKey
+	}
+	return ""
+}
+
+type RefundCallbackResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TxHash        string                 `protobuf:"bytes,1,opt,name=txHash,proto3" json:"txHash"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefundCallbackResp) Reset() {
+	*x = RefundCallbackResp{}
+	mi := &file_redpacket_redpacket_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefundCallbackResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefundCallbackResp) ProtoMessage() {}
+
+func (x *RefundCallbackResp) ProtoReflect() protoreflect.Message {
+	mi := &file_redpacket_redpacket_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefundCallbackResp.ProtoReflect.Descriptor instead.
+func (*RefundCallbackResp) Descriptor() ([]byte, []int) {
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *RefundCallbackResp) GetTxHash() string {
+	if x != nil {
+		return x.TxHash
+	}
+	return ""
+}
+
+func (x *RefundCallbackResp) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 type SetSignerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SignerAddress string                 `protobuf:"bytes,1,opt,name=signerAddress,proto3" json:"signerAddress"`
@@ -1971,7 +2071,7 @@ type SetSignerReq struct {
 
 func (x *SetSignerReq) Reset() {
 	*x = SetSignerReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[23]
+	mi := &file_redpacket_redpacket_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1983,7 +2083,7 @@ func (x *SetSignerReq) String() string {
 func (*SetSignerReq) ProtoMessage() {}
 
 func (x *SetSignerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[23]
+	mi := &file_redpacket_redpacket_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1996,7 +2096,7 @@ func (x *SetSignerReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSignerReq.ProtoReflect.Descriptor instead.
 func (*SetSignerReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{23}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *SetSignerReq) GetSignerAddress() string {
@@ -2022,7 +2122,7 @@ type SetSignerResp struct {
 
 func (x *SetSignerResp) Reset() {
 	*x = SetSignerResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[24]
+	mi := &file_redpacket_redpacket_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2034,7 +2134,7 @@ func (x *SetSignerResp) String() string {
 func (*SetSignerResp) ProtoMessage() {}
 
 func (x *SetSignerResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[24]
+	mi := &file_redpacket_redpacket_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2047,7 +2147,7 @@ func (x *SetSignerResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSignerResp.ProtoReflect.Descriptor instead.
 func (*SetSignerResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{24}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SetSignerResp) GetMessage() string {
@@ -2069,7 +2169,7 @@ type SetTokenReq struct {
 
 func (x *SetTokenReq) Reset() {
 	*x = SetTokenReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[25]
+	mi := &file_redpacket_redpacket_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2081,7 +2181,7 @@ func (x *SetTokenReq) String() string {
 func (*SetTokenReq) ProtoMessage() {}
 
 func (x *SetTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[25]
+	mi := &file_redpacket_redpacket_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2094,7 +2194,7 @@ func (x *SetTokenReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetTokenReq.ProtoReflect.Descriptor instead.
 func (*SetTokenReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{25}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *SetTokenReq) GetTokenAddress() string {
@@ -2134,7 +2234,7 @@ type SetTokenResp struct {
 
 func (x *SetTokenResp) Reset() {
 	*x = SetTokenResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[26]
+	mi := &file_redpacket_redpacket_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2146,7 +2246,7 @@ func (x *SetTokenResp) String() string {
 func (*SetTokenResp) ProtoMessage() {}
 
 func (x *SetTokenResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[26]
+	mi := &file_redpacket_redpacket_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2159,7 +2259,7 @@ func (x *SetTokenResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetTokenResp.ProtoReflect.Descriptor instead.
 func (*SetTokenResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{26}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *SetTokenResp) GetMessage() string {
@@ -2179,7 +2279,7 @@ type SetExpiryReq struct {
 
 func (x *SetExpiryReq) Reset() {
 	*x = SetExpiryReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[27]
+	mi := &file_redpacket_redpacket_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2191,7 +2291,7 @@ func (x *SetExpiryReq) String() string {
 func (*SetExpiryReq) ProtoMessage() {}
 
 func (x *SetExpiryReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[27]
+	mi := &file_redpacket_redpacket_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2204,7 +2304,7 @@ func (x *SetExpiryReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetExpiryReq.ProtoReflect.Descriptor instead.
 func (*SetExpiryReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{27}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SetExpiryReq) GetExpirySeconds() int64 {
@@ -2230,7 +2330,7 @@ type SetExpiryResp struct {
 
 func (x *SetExpiryResp) Reset() {
 	*x = SetExpiryResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[28]
+	mi := &file_redpacket_redpacket_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2242,7 +2342,7 @@ func (x *SetExpiryResp) String() string {
 func (*SetExpiryResp) ProtoMessage() {}
 
 func (x *SetExpiryResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[28]
+	mi := &file_redpacket_redpacket_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2255,7 +2355,7 @@ func (x *SetExpiryResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetExpiryResp.ProtoReflect.Descriptor instead.
 func (*SetExpiryResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{28}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SetExpiryResp) GetMessage() string {
@@ -2275,7 +2375,7 @@ type SetAllowAllTokensReq struct {
 
 func (x *SetAllowAllTokensReq) Reset() {
 	*x = SetAllowAllTokensReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[29]
+	mi := &file_redpacket_redpacket_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2287,7 +2387,7 @@ func (x *SetAllowAllTokensReq) String() string {
 func (*SetAllowAllTokensReq) ProtoMessage() {}
 
 func (x *SetAllowAllTokensReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[29]
+	mi := &file_redpacket_redpacket_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2300,7 +2400,7 @@ func (x *SetAllowAllTokensReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAllowAllTokensReq.ProtoReflect.Descriptor instead.
 func (*SetAllowAllTokensReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{29}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SetAllowAllTokensReq) GetAllowAll() bool {
@@ -2326,7 +2426,7 @@ type SetAllowAllTokensResp struct {
 
 func (x *SetAllowAllTokensResp) Reset() {
 	*x = SetAllowAllTokensResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[30]
+	mi := &file_redpacket_redpacket_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2338,7 +2438,7 @@ func (x *SetAllowAllTokensResp) String() string {
 func (*SetAllowAllTokensResp) ProtoMessage() {}
 
 func (x *SetAllowAllTokensResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[30]
+	mi := &file_redpacket_redpacket_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2351,7 +2451,7 @@ func (x *SetAllowAllTokensResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAllowAllTokensResp.ProtoReflect.Descriptor instead.
 func (*SetAllowAllTokensResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{30}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *SetAllowAllTokensResp) GetMessage() string {
@@ -2371,7 +2471,7 @@ type SetNativeTokenEnabledReq struct {
 
 func (x *SetNativeTokenEnabledReq) Reset() {
 	*x = SetNativeTokenEnabledReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[31]
+	mi := &file_redpacket_redpacket_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2383,7 +2483,7 @@ func (x *SetNativeTokenEnabledReq) String() string {
 func (*SetNativeTokenEnabledReq) ProtoMessage() {}
 
 func (x *SetNativeTokenEnabledReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[31]
+	mi := &file_redpacket_redpacket_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2396,7 +2496,7 @@ func (x *SetNativeTokenEnabledReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNativeTokenEnabledReq.ProtoReflect.Descriptor instead.
 func (*SetNativeTokenEnabledReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{31}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SetNativeTokenEnabledReq) GetEnabled() bool {
@@ -2422,7 +2522,7 @@ type SetNativeTokenEnabledResp struct {
 
 func (x *SetNativeTokenEnabledResp) Reset() {
 	*x = SetNativeTokenEnabledResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[32]
+	mi := &file_redpacket_redpacket_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2434,7 +2534,7 @@ func (x *SetNativeTokenEnabledResp) String() string {
 func (*SetNativeTokenEnabledResp) ProtoMessage() {}
 
 func (x *SetNativeTokenEnabledResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[32]
+	mi := &file_redpacket_redpacket_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2447,7 +2547,7 @@ func (x *SetNativeTokenEnabledResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNativeTokenEnabledResp.ProtoReflect.Descriptor instead.
 func (*SetNativeTokenEnabledResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{32}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SetNativeTokenEnabledResp) GetMessage() string {
@@ -2468,7 +2568,7 @@ type ParseTxEventsReq struct {
 
 func (x *ParseTxEventsReq) Reset() {
 	*x = ParseTxEventsReq{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[33]
+	mi := &file_redpacket_redpacket_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2480,7 +2580,7 @@ func (x *ParseTxEventsReq) String() string {
 func (*ParseTxEventsReq) ProtoMessage() {}
 
 func (x *ParseTxEventsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[33]
+	mi := &file_redpacket_redpacket_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2493,7 +2593,7 @@ func (x *ParseTxEventsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseTxEventsReq.ProtoReflect.Descriptor instead.
 func (*ParseTxEventsReq) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{33}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ParseTxEventsReq) GetChain() string {
@@ -2529,7 +2629,7 @@ type ParseTxEventsResp struct {
 
 func (x *ParseTxEventsResp) Reset() {
 	*x = ParseTxEventsResp{}
-	mi := &file_redpacket_redpacket_proto_msgTypes[34]
+	mi := &file_redpacket_redpacket_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2541,7 +2641,7 @@ func (x *ParseTxEventsResp) String() string {
 func (*ParseTxEventsResp) ProtoMessage() {}
 
 func (x *ParseTxEventsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_redpacket_redpacket_proto_msgTypes[34]
+	mi := &file_redpacket_redpacket_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2554,7 +2654,7 @@ func (x *ParseTxEventsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseTxEventsResp.ProtoReflect.Descriptor instead.
 func (*ParseTxEventsResp) Descriptor() ([]byte, []int) {
-	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{34}
+	return file_redpacket_redpacket_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ParseTxEventsResp) GetChain() string {
@@ -2754,25 +2854,30 @@ const file_redpacket_redpacket_proto_rawDesc = "" +
 	"\n" +
 	"verifiedAt\x18\a \x01(\tR\n" +
 	"verifiedAt\x12\x1a\n" +
-	"\bchainKey\x18\b \x01(\tR\bchainKey\"h\n" +
+	"\bchainKey\x18\b \x01(\tR\bchainKey\"J\n" +
 	"\x10RequestRefundReq\x12\x1a\n" +
-	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x1c\n" +
-	"\tchainType\x18\x02 \x01(\tR\tchainType\x12\x1a\n" +
-	"\bchainKey\x18\x03 \x01(\tR\bchainKey\"C\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x1a\n" +
+	"\bchainKey\x18\x02 \x01(\tR\bchainKey\"C\n" +
 	"\x11RequestRefundResp\x12\x16\n" +
 	"\x06txHash\x18\x01 \x01(\tR\x06txHash\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\"d\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"F\n" +
 	"\fGetRefundReq\x12\x1a\n" +
-	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x1c\n" +
-	"\tchainType\x18\x02 \x01(\tR\tchainType\x12\x1a\n" +
-	"\bchainKey\x18\x03 \x01(\tR\bchainKey\"\xb1\x01\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x1a\n" +
+	"\bchainKey\x18\x02 \x01(\tR\bchainKey\"\xb1\x01\n" +
 	"\rGetRefundResp\x12\x1a\n" +
 	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x1a\n" +
 	"\brefundTo\x18\x02 \x01(\tR\brefundTo\x12\x16\n" +
 	"\x06txHash\x18\x03 \x01(\tR\x06txHash\x12\x16\n" +
 	"\x06amount\x18\x04 \x01(\tR\x06amount\x12\x1c\n" +
 	"\tcreatedAt\x18\x05 \x01(\x03R\tcreatedAt\x12\x1a\n" +
-	"\bchainKey\x18\x06 \x01(\tR\bchainKey\"P\n" +
+	"\bchainKey\x18\x06 \x01(\tR\bchainKey\"c\n" +
+	"\x11RefundCallbackReq\x12\x1a\n" +
+	"\bpacketID\x18\x01 \x01(\tR\bpacketID\x12\x16\n" +
+	"\x06txHash\x18\x02 \x01(\tR\x06txHash\x12\x1a\n" +
+	"\bchainKey\x18\x03 \x01(\tR\bchainKey\"D\n" +
+	"\x12RefundCallbackResp\x12\x16\n" +
+	"\x06txHash\x18\x01 \x01(\tR\x06txHash\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"P\n" +
 	"\fSetSignerReq\x12$\n" +
 	"\rsignerAddress\x18\x01 \x01(\tR\rsignerAddress\x12\x1a\n" +
 	"\bchainKey\x18\x02 \x01(\tR\bchainKey\")\n" +
@@ -2808,14 +2913,15 @@ const file_redpacket_redpacket_proto_rawDesc = "" +
 	"\x05chain\x18\x01 \x01(\tR\x05chain\x12\x16\n" +
 	"\x06txHash\x18\x02 \x01(\tR\x06txHash\x125\n" +
 	"\x06events\x18\x03 \x03(\v2\x1d.openim.redpacket.ParsedEventR\x06events\x12\x12\n" +
-	"\x04note\x18\x04 \x01(\tR\x04note2\xc3\v\n" +
+	"\x04note\x18\x04 \x01(\tR\x04note2\xa0\f\n" +
 	"\tRedPacket\x12R\n" +
 	"\vCreateOrder\x12 .openim.redpacket.CreateOrderReq\x1a!.openim.redpacket.CreateOrderResp\x12^\n" +
 	"\x0fCreatedCallback\x12$.openim.redpacket.CreatedCallbackReq\x1a%.openim.redpacket.CreatedCallbackResp\x12L\n" +
 	"\tGetDetail\x12\x1e.openim.redpacket.GetDetailReq\x1a\x1f.openim.redpacket.GetDetailResp\x12[\n" +
 	"\x0eIssueClaimSign\x12#.openim.redpacket.IssueClaimSignReq\x1a$.openim.redpacket.IssueClaimSignResp\x12R\n" +
 	"\vClaimResult\x12 .openim.redpacket.ClaimResultReq\x1a!.openim.redpacket.ClaimResultResp\x12X\n" +
-	"\rRequestRefund\x12\".openim.redpacket.RequestRefundReq\x1a#.openim.redpacket.RequestRefundResp\x12L\n" +
+	"\rRequestRefund\x12\".openim.redpacket.RequestRefundReq\x1a#.openim.redpacket.RequestRefundResp\x12[\n" +
+	"\x0eRefundCallback\x12#.openim.redpacket.RefundCallbackReq\x1a$.openim.redpacket.RefundCallbackResp\x12L\n" +
 	"\tGetRefund\x12\x1e.openim.redpacket.GetRefundReq\x1a\x1f.openim.redpacket.GetRefundResp\x12y\n" +
 	"\x18IssueWalletBindChallenge\x12-.openim.redpacket.IssueWalletBindChallengeReq\x1a..openim.redpacket.IssueWalletBindChallengeResp\x12d\n" +
 	"\x11ConfirmWalletBind\x12&.openim.redpacket.ConfirmWalletBindReq\x1a'.openim.redpacket.ConfirmWalletBindResp\x12a\n" +
@@ -2839,7 +2945,7 @@ func file_redpacket_redpacket_proto_rawDescGZIP() []byte {
 	return file_redpacket_redpacket_proto_rawDescData
 }
 
-var file_redpacket_redpacket_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_redpacket_redpacket_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_redpacket_redpacket_proto_goTypes = []any{
 	(*RedPacketRecord)(nil),              // 0: openim.redpacket.RedPacketRecord
 	(*RedPacketClaimRecord)(nil),         // 1: openim.redpacket.RedPacketClaimRecord
@@ -2864,22 +2970,24 @@ var file_redpacket_redpacket_proto_goTypes = []any{
 	(*RequestRefundResp)(nil),            // 20: openim.redpacket.RequestRefundResp
 	(*GetRefundReq)(nil),                 // 21: openim.redpacket.GetRefundReq
 	(*GetRefundResp)(nil),                // 22: openim.redpacket.GetRefundResp
-	(*SetSignerReq)(nil),                 // 23: openim.redpacket.SetSignerReq
-	(*SetSignerResp)(nil),                // 24: openim.redpacket.SetSignerResp
-	(*SetTokenReq)(nil),                  // 25: openim.redpacket.SetTokenReq
-	(*SetTokenResp)(nil),                 // 26: openim.redpacket.SetTokenResp
-	(*SetExpiryReq)(nil),                 // 27: openim.redpacket.SetExpiryReq
-	(*SetExpiryResp)(nil),                // 28: openim.redpacket.SetExpiryResp
-	(*SetAllowAllTokensReq)(nil),         // 29: openim.redpacket.SetAllowAllTokensReq
-	(*SetAllowAllTokensResp)(nil),        // 30: openim.redpacket.SetAllowAllTokensResp
-	(*SetNativeTokenEnabledReq)(nil),     // 31: openim.redpacket.SetNativeTokenEnabledReq
-	(*SetNativeTokenEnabledResp)(nil),    // 32: openim.redpacket.SetNativeTokenEnabledResp
-	(*ParseTxEventsReq)(nil),             // 33: openim.redpacket.ParseTxEventsReq
-	(*ParseTxEventsResp)(nil),            // 34: openim.redpacket.ParseTxEventsResp
-	nil,                                  // 35: openim.redpacket.ParsedEvent.DataEntry
+	(*RefundCallbackReq)(nil),            // 23: openim.redpacket.RefundCallbackReq
+	(*RefundCallbackResp)(nil),           // 24: openim.redpacket.RefundCallbackResp
+	(*SetSignerReq)(nil),                 // 25: openim.redpacket.SetSignerReq
+	(*SetSignerResp)(nil),                // 26: openim.redpacket.SetSignerResp
+	(*SetTokenReq)(nil),                  // 27: openim.redpacket.SetTokenReq
+	(*SetTokenResp)(nil),                 // 28: openim.redpacket.SetTokenResp
+	(*SetExpiryReq)(nil),                 // 29: openim.redpacket.SetExpiryReq
+	(*SetExpiryResp)(nil),                // 30: openim.redpacket.SetExpiryResp
+	(*SetAllowAllTokensReq)(nil),         // 31: openim.redpacket.SetAllowAllTokensReq
+	(*SetAllowAllTokensResp)(nil),        // 32: openim.redpacket.SetAllowAllTokensResp
+	(*SetNativeTokenEnabledReq)(nil),     // 33: openim.redpacket.SetNativeTokenEnabledReq
+	(*SetNativeTokenEnabledResp)(nil),    // 34: openim.redpacket.SetNativeTokenEnabledResp
+	(*ParseTxEventsReq)(nil),             // 35: openim.redpacket.ParseTxEventsReq
+	(*ParseTxEventsResp)(nil),            // 36: openim.redpacket.ParseTxEventsResp
+	nil,                                  // 37: openim.redpacket.ParsedEvent.DataEntry
 }
 var file_redpacket_redpacket_proto_depIdxs = []int32{
-	35, // 0: openim.redpacket.ParsedEvent.data:type_name -> openim.redpacket.ParsedEvent.DataEntry
+	37, // 0: openim.redpacket.ParsedEvent.data:type_name -> openim.redpacket.ParsedEvent.DataEntry
 	0,  // 1: openim.redpacket.GetDetailResp.record:type_name -> openim.redpacket.RedPacketRecord
 	1,  // 2: openim.redpacket.GetDetailResp.claims:type_name -> openim.redpacket.RedPacketClaimRecord
 	2,  // 3: openim.redpacket.ParseTxEventsResp.events:type_name -> openim.redpacket.ParsedEvent
@@ -2889,34 +2997,36 @@ var file_redpacket_redpacket_proto_depIdxs = []int32{
 	9,  // 7: openim.redpacket.RedPacket.IssueClaimSign:input_type -> openim.redpacket.IssueClaimSignReq
 	11, // 8: openim.redpacket.RedPacket.ClaimResult:input_type -> openim.redpacket.ClaimResultReq
 	19, // 9: openim.redpacket.RedPacket.RequestRefund:input_type -> openim.redpacket.RequestRefundReq
-	21, // 10: openim.redpacket.RedPacket.GetRefund:input_type -> openim.redpacket.GetRefundReq
-	13, // 11: openim.redpacket.RedPacket.IssueWalletBindChallenge:input_type -> openim.redpacket.IssueWalletBindChallengeReq
-	15, // 12: openim.redpacket.RedPacket.ConfirmWalletBind:input_type -> openim.redpacket.ConfirmWalletBindReq
-	17, // 13: openim.redpacket.RedPacket.GetWalletBinding:input_type -> openim.redpacket.GetWalletBindingReq
-	23, // 14: openim.redpacket.RedPacket.SetSigner:input_type -> openim.redpacket.SetSignerReq
-	25, // 15: openim.redpacket.RedPacket.SetToken:input_type -> openim.redpacket.SetTokenReq
-	27, // 16: openim.redpacket.RedPacket.SetExpiry:input_type -> openim.redpacket.SetExpiryReq
-	29, // 17: openim.redpacket.RedPacket.SetAllowAllTokens:input_type -> openim.redpacket.SetAllowAllTokensReq
-	31, // 18: openim.redpacket.RedPacket.SetNativeTokenEnabled:input_type -> openim.redpacket.SetNativeTokenEnabledReq
-	33, // 19: openim.redpacket.RedPacket.ParseTxEvents:input_type -> openim.redpacket.ParseTxEventsReq
-	4,  // 20: openim.redpacket.RedPacket.CreateOrder:output_type -> openim.redpacket.CreateOrderResp
-	6,  // 21: openim.redpacket.RedPacket.CreatedCallback:output_type -> openim.redpacket.CreatedCallbackResp
-	8,  // 22: openim.redpacket.RedPacket.GetDetail:output_type -> openim.redpacket.GetDetailResp
-	10, // 23: openim.redpacket.RedPacket.IssueClaimSign:output_type -> openim.redpacket.IssueClaimSignResp
-	12, // 24: openim.redpacket.RedPacket.ClaimResult:output_type -> openim.redpacket.ClaimResultResp
-	20, // 25: openim.redpacket.RedPacket.RequestRefund:output_type -> openim.redpacket.RequestRefundResp
-	22, // 26: openim.redpacket.RedPacket.GetRefund:output_type -> openim.redpacket.GetRefundResp
-	14, // 27: openim.redpacket.RedPacket.IssueWalletBindChallenge:output_type -> openim.redpacket.IssueWalletBindChallengeResp
-	16, // 28: openim.redpacket.RedPacket.ConfirmWalletBind:output_type -> openim.redpacket.ConfirmWalletBindResp
-	18, // 29: openim.redpacket.RedPacket.GetWalletBinding:output_type -> openim.redpacket.GetWalletBindingResp
-	24, // 30: openim.redpacket.RedPacket.SetSigner:output_type -> openim.redpacket.SetSignerResp
-	26, // 31: openim.redpacket.RedPacket.SetToken:output_type -> openim.redpacket.SetTokenResp
-	28, // 32: openim.redpacket.RedPacket.SetExpiry:output_type -> openim.redpacket.SetExpiryResp
-	30, // 33: openim.redpacket.RedPacket.SetAllowAllTokens:output_type -> openim.redpacket.SetAllowAllTokensResp
-	32, // 34: openim.redpacket.RedPacket.SetNativeTokenEnabled:output_type -> openim.redpacket.SetNativeTokenEnabledResp
-	34, // 35: openim.redpacket.RedPacket.ParseTxEvents:output_type -> openim.redpacket.ParseTxEventsResp
-	20, // [20:36] is the sub-list for method output_type
-	4,  // [4:20] is the sub-list for method input_type
+	23, // 10: openim.redpacket.RedPacket.RefundCallback:input_type -> openim.redpacket.RefundCallbackReq
+	21, // 11: openim.redpacket.RedPacket.GetRefund:input_type -> openim.redpacket.GetRefundReq
+	13, // 12: openim.redpacket.RedPacket.IssueWalletBindChallenge:input_type -> openim.redpacket.IssueWalletBindChallengeReq
+	15, // 13: openim.redpacket.RedPacket.ConfirmWalletBind:input_type -> openim.redpacket.ConfirmWalletBindReq
+	17, // 14: openim.redpacket.RedPacket.GetWalletBinding:input_type -> openim.redpacket.GetWalletBindingReq
+	25, // 15: openim.redpacket.RedPacket.SetSigner:input_type -> openim.redpacket.SetSignerReq
+	27, // 16: openim.redpacket.RedPacket.SetToken:input_type -> openim.redpacket.SetTokenReq
+	29, // 17: openim.redpacket.RedPacket.SetExpiry:input_type -> openim.redpacket.SetExpiryReq
+	31, // 18: openim.redpacket.RedPacket.SetAllowAllTokens:input_type -> openim.redpacket.SetAllowAllTokensReq
+	33, // 19: openim.redpacket.RedPacket.SetNativeTokenEnabled:input_type -> openim.redpacket.SetNativeTokenEnabledReq
+	35, // 20: openim.redpacket.RedPacket.ParseTxEvents:input_type -> openim.redpacket.ParseTxEventsReq
+	4,  // 21: openim.redpacket.RedPacket.CreateOrder:output_type -> openim.redpacket.CreateOrderResp
+	6,  // 22: openim.redpacket.RedPacket.CreatedCallback:output_type -> openim.redpacket.CreatedCallbackResp
+	8,  // 23: openim.redpacket.RedPacket.GetDetail:output_type -> openim.redpacket.GetDetailResp
+	10, // 24: openim.redpacket.RedPacket.IssueClaimSign:output_type -> openim.redpacket.IssueClaimSignResp
+	12, // 25: openim.redpacket.RedPacket.ClaimResult:output_type -> openim.redpacket.ClaimResultResp
+	20, // 26: openim.redpacket.RedPacket.RequestRefund:output_type -> openim.redpacket.RequestRefundResp
+	24, // 27: openim.redpacket.RedPacket.RefundCallback:output_type -> openim.redpacket.RefundCallbackResp
+	22, // 28: openim.redpacket.RedPacket.GetRefund:output_type -> openim.redpacket.GetRefundResp
+	14, // 29: openim.redpacket.RedPacket.IssueWalletBindChallenge:output_type -> openim.redpacket.IssueWalletBindChallengeResp
+	16, // 30: openim.redpacket.RedPacket.ConfirmWalletBind:output_type -> openim.redpacket.ConfirmWalletBindResp
+	18, // 31: openim.redpacket.RedPacket.GetWalletBinding:output_type -> openim.redpacket.GetWalletBindingResp
+	26, // 32: openim.redpacket.RedPacket.SetSigner:output_type -> openim.redpacket.SetSignerResp
+	28, // 33: openim.redpacket.RedPacket.SetToken:output_type -> openim.redpacket.SetTokenResp
+	30, // 34: openim.redpacket.RedPacket.SetExpiry:output_type -> openim.redpacket.SetExpiryResp
+	32, // 35: openim.redpacket.RedPacket.SetAllowAllTokens:output_type -> openim.redpacket.SetAllowAllTokensResp
+	34, // 36: openim.redpacket.RedPacket.SetNativeTokenEnabled:output_type -> openim.redpacket.SetNativeTokenEnabledResp
+	36, // 37: openim.redpacket.RedPacket.ParseTxEvents:output_type -> openim.redpacket.ParseTxEventsResp
+	21, // [21:38] is the sub-list for method output_type
+	4,  // [4:21] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -2933,7 +3043,7 @@ func file_redpacket_redpacket_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_redpacket_redpacket_proto_rawDesc), len(file_redpacket_redpacket_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   36,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

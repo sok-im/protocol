@@ -199,8 +199,7 @@ message GetWalletBindingResp {
 
 message RequestRefundReq {
   string packetID  = 1;
-  string chainType = 2;
-  string chainKey  = 3;
+  string chainKey  = 2;
 }
 
 message RequestRefundResp {
@@ -210,8 +209,7 @@ message RequestRefundResp {
 
 message GetRefundReq {
   string packetID  = 1;
-  string chainType = 2;
-  string chainKey  = 3;
+  string chainKey  = 2;
 }
 
 message GetRefundResp {
@@ -221,6 +219,21 @@ message GetRefundResp {
   string amount    = 4;
   int64  createdAt = 5;
   string chainKey  = 6;
+}
+
+// RefundCallback is submitted by the creator's client after it broadcasts the
+// on-chain refund transaction itself (self-service refund). The backend parses
+// the PacketRefunded event from the supplied txHash, records the refund and
+// marks the packet REFUNDED. This is the refund counterpart of ClaimResult.
+message RefundCallbackReq {
+  string packetID  = 1;
+  string txHash    = 2;
+  string chainKey  = 3;
+}
+
+message RefundCallbackResp {
+  string txHash = 1;
+  string status = 2;
 }
 
 // ─── Admin ────────────────────────────────────────────────────────────────────
@@ -294,6 +307,7 @@ service RedPacket {
   rpc IssueClaimSign(IssueClaimSignReq)     returns (IssueClaimSignResp);
   rpc ClaimResult(ClaimResultReq)           returns (ClaimResultResp);
   rpc RequestRefund(RequestRefundReq)       returns (RequestRefundResp);
+  rpc RefundCallback(RefundCallbackReq)     returns (RefundCallbackResp);
   rpc GetRefund(GetRefundReq)               returns (GetRefundResp);
 
   rpc IssueWalletBindChallenge(IssueWalletBindChallengeReq) returns (IssueWalletBindChallengeResp);
