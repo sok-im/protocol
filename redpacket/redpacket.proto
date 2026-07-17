@@ -31,6 +31,7 @@ message RedPacketRecord {
   string chainKey         = 23;
   string transactionType  = 24;
   int32  decimals             = 25;
+  string symbol               = 31;
   string totalAmountDisplay   = 26;
   string claimedAmountDisplay = 27;
   string remainingAmount          = 28;
