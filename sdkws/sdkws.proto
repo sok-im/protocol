@@ -372,6 +372,19 @@ message GroupNeedVerificationSetTips {
   string defaultTips = 4;
 }
 
+// OnGroupPermissionChanged()
+// changedFields: only fields that actually changed; key is API name
+// (allowSendMsg / allowAddMember / allowPinMsg / allowMemberBurn),
+// value is the new value after update. One change → one entry; many → many.
+message GroupPermissionChangedTips {
+  GroupMemberFullInfo opUser = 1;
+  GroupInfo group = 2;
+  map<string, int32> changedFields = 3;
+  int64 operationTime = 4;
+  uint64 groupMemberVersion = 5;
+  string groupMemberVersionID = 6;
+}
+
 // OnGroupFaceURLSet()
 message GroupFaceURLSetTips {
   GroupMemberFullInfo opUser = 1; //who do this
