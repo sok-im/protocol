@@ -7,13 +7,12 @@
 package sdkws
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	wrapperspb "github.com/openimsdk/protocol/wrapperspb"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
