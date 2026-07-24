@@ -14,6 +14,14 @@ func (x *MsgData) Check() error {
 	if x.Content == nil {
 		return errors.New("content is empty")
 	}
+	if constant.IsWalletActionNotificationContentType(x.ContentType) {
+		switch x.SessionType {
+		case constant.NotificationChatType, constant.ReadGroupChatType, constant.WriteGroupChatType:
+			return nil
+		default:
+			return errors.New("notification msg must have correct session type and content type")
+		}
+	}
 	if x.SessionType == constant.NotificationChatType && !constant.IsNotificationSessionContentType(x.ContentType) ||
 		x.SessionType != constant.NotificationChatType && constant.IsNotificationSessionContentType(x.ContentType) {
 		return errors.New("notification msg must have correct session type and content type")

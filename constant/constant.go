@@ -371,8 +371,18 @@ func GroupIsBanPrivateChat(status int32) bool {
 // IsNotificationSessionContentType 判断是否为通知会话消息类型（需配合 NotificationChatType 使用）。
 func IsNotificationSessionContentType(contentType int32) bool {
 	switch contentType {
-	case OANotification, ServiceNotification, PaymentNotification,
-		RedPacketClaimNotification, TransferReceiveNotification,
+	case OANotification, ServiceNotification, PaymentNotification:
+		return true
+	default:
+		return false
+	}
+}
+
+// IsWalletActionNotificationContentType 钱包动作通知（红包/转账）。
+// 可出现在 NotificationChatType（单聊通知会话）或群聊会话（ReadGroupChatType）。
+func IsWalletActionNotificationContentType(contentType int32) bool {
+	switch contentType {
+	case RedPacketClaimNotification, TransferReceiveNotification,
 		RedPacketExpiredNotification, TransferExpiredNotification:
 		return true
 	default:
